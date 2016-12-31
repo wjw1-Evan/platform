@@ -1,0 +1,110 @@
+﻿@using System.Configuration
+@model Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "注册";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+
+            <div style="border: 1px solid #ddd; background-color: white; margin-top: 5px; padding: 40px 0">
+
+
+                <div class="text-center">
+                    <h4>@ConfigurationManager.AppSettings["SystemName"]</h4>
+                </div>
+
+                <div class="text-center">
+                    <h4 style="color: green">注册新用户</h4>
+                </div>
+
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                {
+
+                    @Html.AntiForgeryToken()
+
+                    @Html.Partial("_validationSummary")
+
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1  col-md-6 col-md-offset-3">
+                            @Html.EditorFor(mode => mode.UserName, new {placeholder = "用户名"})
+                            @Html.ValidationMessageFor(a => a.UserName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1  col-md-6 col-md-offset-3">
+                            @Html.EditorFor(mode => mode.Password, new {placeholder = "密码"})
+                            @Html.ValidationMessageFor(a => a.Password)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1  col-md-6 col-md-offset-3">
+                            @Html.EditorFor(mode => mode.ConfirmPassword, new {placeholder = "确认密码"})
+                            @Html.ValidationMessageFor(a => a.ConfirmPassword)
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1   col-md-6 col-md-offset-3">
+                            <input type="checkbox" name="agreements" id="agreements" checked required/>
+
+
+                            <script>
+                                $(function(){
+                                    var cb = document.getElementById("agreements");
+                                    cb.onclick=function(){
+                                        if(cb.checked==true){
+                                            document.getElementById("submitbutton").disabled = false;
+                                        }
+                                        else{
+                                            document.getElementById("submitbutton").disabled = true;
+                                        }
+                                    }});
+                            </script>
+
+
+                            同意并接受 <a href="javascript:;" data-toggle="modal" data-target="#myModal">《用户协议》</a>
+
+
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">用户注册协议</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                          
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">同意</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-10  col-xs-offset-1  col-md-6 col-md-offset-3">
+                            <button id="submitbutton" type="submit" class="btn btn-lg btn-success btn-block">
+                                同意并注册
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

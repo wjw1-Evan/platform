@@ -1,0 +1,98 @@
+﻿@model IList<Models.Infrastructure.IUserDictionary>
+
+<SCRIPT type="text/javascript">
+    <!--
+    var setting_@(Html.NameForModel()) = {
+        view: {
+            dblClickExpand: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            //beforeClick: beforeClick_@(Html.NameForModel()),
+            onClick: onClick_@(Html.NameForModel())
+        }
+    };
+
+    var zNodes_@(Html.NameForModel()) = [
+
+        @foreach (var item in Model)
+        {
+            @Html.Raw("{ id: "+item.SystemId+", pId: "+ (item.SystemId.Length<=3?"0":item.SystemId.Substring(0,item.SystemId.Length-3))+", name:'"+item.Name+"',guid:'"+item.Id+"' },")
+        }
+    ];
+
+    function beforeClick_@(Html.NameForModel())(treeId, treeNode) {
+        var check = (treeNode && !treeNode.isParent);
+        if (!check) alert("只能选择小类...");
+        return check;
+    }
+
+    function onClick_@(Html.NameForModel())(e, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj("@Html.NameForModel()_tree"),
+            nodes = zTree.getSelectedNodes(),
+            v = "",
+        guid = "";
+        nodes.sort(function compare(a, b) { return a.id - b.id; });
+
+
+        for (var i = 0, l = nodes.length; i < l; i++) {
+            v += nodes[i].name + ",";
+            guid += nodes[i].guid;
+        }
+
+
+        if (v.length > 0) v = v.substring(0, v.length - 1);
+        var cityObj = $("#@Html.NameForModel()_Text");
+        cityObj.attr("value", v);
+
+        hideMenu_@(Html.NameForModel())();
+
+        $("#@Html.NameForModel()").val(guid).trigger("change");
+
+
+    }
+
+    function showMenu_@(Html.NameForModel())() {
+        //var cityObj = $("#" + elementId + "_Text");
+        //var cityOffset = $("#" + elementId + "_Text").offset();
+
+        $("#@Html.NameForModel()_menuContent").slideDown("fast");
+
+        $("body").bind("mousedown", onBodyDown_@(Html.NameForModel()));
+    }
+
+    function hideMenu_@(Html.NameForModel())() {
+        $("#@Html.NameForModel()_menuContent").fadeOut("fast");
+        $("body").unbind("mousedown", onBodyDown_@(Html.NameForModel()));
+    }
+
+    function onBodyDown_@(Html.NameForModel())(event) {
+        if (!(event.target.id === "@Html.NameForModel()_menuContent" || $(event.target).parents("#@Html.NameForModel()_menuContent").length > 0)) {
+            hideMenu_@(Html.NameForModel())();
+        }
+    }
+
+    $(document).ready(function() {
+        $.fn.zTree.init($("#@Html.NameForModel()_tree"), setting_@(Html.NameForModel()), zNodes_@(Html.NameForModel()));
+    });
+    //-->
+</SCRIPT>
+
+<div class="dropdown">
+    <input id="@Html.NameForModel()" name="@Html.NameForModel()" type="hidden" value="@(Model.FirstOrDefault(a => a.Selected)?.Id)" required />
+
+    <div class="input-group">
+        <input id="@Html.NameForModel()_Text" type="text" value="@(Model.FirstOrDefault(a => a.Selected)?.Name)" required readonly="readonly" class="form-control" onclick="showMenu_@(Html.NameForModel())();" />
+        <span class="input-group-btn">
+            <input type="button" value="选 择" class="btn btn-default" onclick="showMenu_@(Html.NameForModel())();" />
+        </span>
+    </div>
+
+    <div id="@Html.NameForModel()_menuContent" class="dropdown-menu " style="width: 100%; z-index: 100000">
+        <ul id="@Html.NameForModel()_tree" class="ztree" style="margin-top: 0;"></ul>
+    </div>
+</div>

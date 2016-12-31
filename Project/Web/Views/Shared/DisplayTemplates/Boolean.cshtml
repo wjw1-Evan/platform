@@ -1,0 +1,10 @@
+﻿@model bool?
+
+<span class="checkbox c-checkbox inline">
+    <label>
+        <input id="@Html.IdForModel()" name="@Html.NameForModel()" type="checkbox" value="True" checked="@Model" disabled="disabled">
+        <span class="fa fa-check"></span>
+    </label>
+</span>
+
+

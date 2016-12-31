@@ -1,0 +1,36 @@
+﻿@using Resources
+@using Web.Helpers
+
+<div class="content-heading">
+    <div class="pull-right">
+        @Html.Partial("Button_Back_List")
+    </div>
+
+    @Html.ThisControllerName() -
+
+    @{
+        var action = (string)HttpContext.Current.Request.RequestContext.RouteData.Values["action"];
+        if (action == "Details")
+        {
+            @Lang.Details
+        }
+        if (action == "Edit")
+        {
+            if (ViewContext.RouteData.Values["id"] == null)
+            {
+                <span>@Lang.Create</span>
+            }
+            else
+            {
+                <span>@Lang.Edit</span>
+            }
+        }
+    }
+</div>
+
+<div class="panel panel-default">
+
+    <div class="panel-body form-horizontal">
+        @RenderBody()
+    </div>
+</div>

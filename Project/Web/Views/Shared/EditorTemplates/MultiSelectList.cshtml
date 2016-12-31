@@ -1,0 +1,34 @@
+﻿@model MultiSelectList
+
+<select id="@Html.NameForModel()" name="@Html.NameForModel()" multiple="multiple">
+    @foreach (var item in Model)
+    {
+        if (item.Group != null)
+        {
+            <optgroup label="@item.Group.Name ">
+                <option value="@item.Value" @(item.Selected ? "selected" : "")>@item.Text</option>
+            </optgroup>
+        }
+        else
+        {
+            <option value="@item.Value" @(item.Selected ? "selected" : "")>@item.Text</option>
+        }
+    }
+</select>
+
+<script>
+  $(function () {
+      $('#@Html.NameForModel()').multiselect({
+          //enableFiltering: false,
+          //filterPlaceholder: true,
+          buttonClass: 'form-control',
+          buttonWidth: '100%',
+          includeSelectAllOption: true,
+          selectAllText: '全选',
+          nonSelectedText: '请选择',
+          allSelectedText: '已全选',
+          enableCollapsibleOptGroups: true,
+          maxHeight: 300
+      });
+  });
+</script>

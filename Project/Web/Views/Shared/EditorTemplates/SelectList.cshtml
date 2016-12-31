@@ -1,0 +1,28 @@
+﻿
+@using Resources
+@model SelectList
+
+@{
+    var htmlattributes = new Dictionary<string, object> { { "placeholder", ViewData["placeholder"] } };
+
+    if (ViewData.ModelMetadata.IsRequired)
+    {
+        htmlattributes.Add("required", "required");
+    }
+}
+
+@Html.DropDownList("", Model, Lang.Select, htmlattributes)
+
+<script>
+    $(function () {
+        $('#@Html.NameForModel()').multiselect({
+            enableFiltering: true,
+            filterPlaceholder: "@Html.Raw(Lang.keyword)",
+            buttonClass: 'form-control',
+            buttonWidth: '100%',
+            includeSelectAllOption: true,
+            enableCollapsibleOptGroups: true,
+            maxHeight: 300
+        });
+    });
+</script>

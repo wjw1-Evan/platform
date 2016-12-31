@@ -1,0 +1,15 @@
+﻿@using Resources
+@using Web.Helpers
+
+<div class="text-center">
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-check"></i>
+            @Lang.Save
+        </button>
+    </div>
+    <a class="btn  btn-default" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" href="@Url.Action("Index",  Request.ToRouteValueDictionary())">
+        <i class="fa fa-times"></i>
+        @Lang.Cancel
+    </a>
+</div>

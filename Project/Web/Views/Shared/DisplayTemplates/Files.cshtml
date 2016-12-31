@@ -1,0 +1,22 @@
+﻿@using Web.Controllers
+@model string
+
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    <ul>
+        @try
+        {
+            foreach (FilesController.UserUploadFile item in Json.Decode(Model, typeof(List<FilesController.UserUploadFile>)))
+            {
+                <li>
+                    <a href="@item.Url" target="_blank">"@item.Filename</a>
+                </li>
+            }
+        }
+        catch
+        {
+            // ignored
+        }
+    </ul>
+}

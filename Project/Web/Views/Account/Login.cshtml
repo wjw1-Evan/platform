@@ -1,0 +1,88 @@
+﻿@using System.Configuration
+@using Web.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "登录";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+
+            <div style="border: 1px solid #ddd; background-color: white; margin-top: 5px;">
+
+                <div style="background: url(/Content/734183473925172512.jpg) no-repeat;">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-xs-2"></div>
+                        <div class="col-md-4 col-xs-8 ">
+                            <div style="margin: 100px 0; padding: 40px 50px; border: 1px solid #eee; background-color:white;background-color:rgba(255,255,255,0.8)">
+
+
+                                <div class="text-center">
+                                    <h4>@ConfigurationManager.AppSettings["SystemName"]</h4>
+                                </div>
+
+                                <div class="text-center">
+                                    <h4 style="color: green">账户登陆</h4> 
+                                </div>
+
+                                @using (Html.BeginForm("Login", "Account", new {ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group ">
+                                        <div>
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group has-success">
+                                        <div>
+                                            @Html.EditorFor(mode => mode.UserName, new { placeholder = "用户名或手机号" })
+                                            @Html.ValidationMessageFor(a => a.UserName)
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success">
+                                        <div>
+                                            @Html.EditorFor(mode => mode.Password, new { placeholder = "密码" })
+                                            @Html.ValidationMessageFor(a => a.Password)
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-success">
+                                        <div>
+                                            <span class="checkbox c-checkbox">
+                                                <label>
+                                                    <input id="RememberMe" name="RememberMe" type="checkbox" value="True">
+                                                    <span class="fa fa-check"></span> 记住密码
+                                                </label>
+                                            </span>
+ 
+                                           
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div>
+                                            <button type="submit" class="btn btn-lg btn-success btn-block">
+                                                立即登录
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        还没有账户？   @Html.ActionLink("立即注册", "Register")  @Html.ActionLink("忘记密码?", "ForgotPassword")
+
+                                    </div>
+
+                                
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

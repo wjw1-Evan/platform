@@ -1,0 +1,17 @@
+﻿@model int?
+    
+
+
+@{
+    var htmlattributes = new Dictionary<string, object> { { "class", "form-control" }, { "placeholder", ViewData["placeholder"] }, { "type", "number" } };
+
+    if (ViewData.ModelMetadata.IsRequired)
+    {
+        htmlattributes.Add("required", "required");
+    }
+}
+
+@Html.TextBoxFor(a => a, htmlattributes)
+
+
+

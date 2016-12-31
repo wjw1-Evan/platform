@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "../../../../views/Shared/_Layout.cshtml";
+}
+
+@section Styles
+{
+@RenderSection("Styles", false)
+    <style>
+        
+.navbar-nav li a {
+    padding-left: 18px; padding-right: 18px
+}
+    </style>
+}
+
+@section Scripts{
+
+@RenderSection("Scripts", false)
+
+    <script src="/signalr/hubs"></script>
+
+    <script>
+        $(function () {
+            var messenger = $.connection.messenger; // generate the client-side hub proxy { Initialized to Exposed Hub }
+
+            messenger.client.add = function (message) {
+                if (message !== "" && message != null) {
+                    $.notify('<a href="/Platform?loadPage=MyMessage">' + message + "</a>", { "status": "danger", "pos": "bottom-right" });
+                }
+            };
+
+            // Start the Connection
+            $.connection.hub.start().done().fail(function () {
+                $.notify('消息推送服务启动失败！', { "status": "danger", "pos": "bottom-right" });
+            });
+        });
+    </script>
+
+    <script>
+        $.ajaxSetup({ cache: false });
+
+        $(document).ajaxStart(function () {
+            $("#page-loading").show();
+        });
+
+        $(document).ajaxStop(function () {
+            $("#page-loading").hide();
+        });
+
+        $(document).ajaxError(function (event, request) {
+            if (request.responseText === '' || request.responseText == undefined) {
+                $.notify('您的网络无法访问到服务器，请稍后再试！', { "status": "danger", "pos": "bottom-right" });
+            } else {
+                $.notify(request.responseText, { "status": "danger", "pos": "bottom-right" });
+            }
+        });
+    </script>
+}
+
+<div class="wrapper">
+    <!-- top navbar-->
+    <header class="topnavbar-wrapper">
+        @Html.Partial("_TopNavbar")
+    </header>
+    <!-- sidebar-->
+    <aside class="aside">
+        @Html.Action("Menu", "Index")
+    </aside>
+    <!-- offsidebar-->
+    <aside class="offsidebar hide">
+        @Html.Partial("_Offsidebar")
+    </aside>
+    <!-- Main section-->
+    <section>
+        <!-- Page content-->
+        <div class="content-wrapper" id="Main">
+            @RenderBody()
+        </div>
+    </section>
+    <!-- Page footer-->
+    <footer>
+        @Html.Partial("_Footer")
+    </footer>
+</div>
+

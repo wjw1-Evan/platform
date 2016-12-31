@@ -1,0 +1,11 @@
+﻿@model DateTime?
+
+@Html.TextBoxFor(a => a, "{0:yyyy/MM/dd HH:mm}", new { @class = " form-control", placeholder = ViewData["placeholder"] })
+
+<span class="fa fa-calendar-check-o form-control-feedback" style="margin: 10px"></span>
+
+<script>
+    $(function () {
+        $('#@Html.NameForModel()').datetimepicker({ lang: 'zh' });
+    });
+</script>

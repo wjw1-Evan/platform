@@ -1,0 +1,17 @@
+﻿
+
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+@section scripts{
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+}
+
+
+
+@{
+    Html.RenderAction("Index", string.IsNullOrEmpty(ViewBag.LoadPage) ? "Desktop" :(string) ViewBag.LoadPage);
+}

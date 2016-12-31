@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "../Shared/_LayoutSingleForm.cshtml";
+}
+
+@using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+            {
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Partial("_alerts")
+        @Html.Partial("_validationSummary")
+    </div>
+
+    @Html.EditorForModel("object4SingleForm")
+
+    @Html.Partial("Button_Submit")
+
+}
+

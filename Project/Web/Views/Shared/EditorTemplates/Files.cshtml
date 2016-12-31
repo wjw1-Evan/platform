@@ -1,0 +1,83 @@
+﻿@using Web.Controllers
+@model string
+
+<div>
+    <ul id="@(Html.IdForModel())s">
+        @if (!string.IsNullOrEmpty(Model))
+        {
+            try
+            {
+                foreach (FilesController.UserUploadFile item in Json.Decode(Model, typeof(List<FilesController.UserUploadFile>)))
+                {
+                    <li>
+                        <a href="@item.Url" target="_blank">@item.Filename</a> <button type='button' class='close' style='float: none' onclick='$(this).parent().remove();'><span aria-hidden='true'>&times;</span></button>
+                    </li>
+                }
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+    </ul>
+
+    @Html.HiddenFor(a => a)
+
+    <span id="btn_Browse" style="cursor: pointer;" onclick="$('input[id=fileUpload_@Html.IdForModel()]').click();" class="btn btn-default">
+        + 添加文件
+    </span>
+
+    <input id="fileUpload_@Html.IdForModel()" type="file" name="file" style="display: none" multiple="multiple">
+
+    <script type="text/javascript">
+        $(function () {
+
+            var title = $('#@(Html.IdForModel())s'); //the element I want to monitor
+            title.bind('DOMSubtreeModified', function (e) {
+
+                var a = [];
+
+                $("#@Html.IdForModel()").attr("value", "");
+
+                $('#@(Html.IdForModel())s a').each(function (index, element) {
+                    a.push({ "filename": $(element).text(), "url": $(element).attr('href') });
+                });
+
+                $("#@Html.IdForModel()").attr("value", JSON.stringify(a));
+            });
+
+
+            $('input[id=fileUpload_@Html.IdForModel()]').bind("change", function () {
+
+                var formData = new FormData();
+
+                var files = $("#fileUpload_@Html.IdForModel()")[0].files;
+
+                for (var i = 0; i < files.length; i++) {
+                    formData.append(files[i].name, files[i]);
+                }
+
+                $.ajax({
+                    cache: false,
+                    url: '@Url.Action("UploadFile", "Files", new {area = "", filetype = FilesController.Filetypes.全部})',
+                    type: 'POST',
+                    data: formData,
+                    // 告诉jQuery不要去处理发送的数据
+                    processData: false,
+                    // 告诉jQuery不要去设置Content-Type请求头
+                    contentType: false,
+                    success: function (responseStr) {
+                        for (var o in responseStr) {
+                            if (responseStr.hasOwnProperty(o)) {
+                                $("#@Html.IdForModel()s").append("<li><a href='" + responseStr[o].Url + "'  target='_blank'>" + responseStr[o].Filename + "</a> <button type='button' class='close' style='float:none' onclick='$(this).parent().remove();'><span aria-hidden='true'>&times;</span></button></li>");
+                            }
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+</div>
+<div>
+    @ViewData["placeholder"]
+</div>

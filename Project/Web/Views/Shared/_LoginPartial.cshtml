@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+}
+
+<ul class="nav navbar-nav navbar-right">
+    @if (Request.IsAuthenticated)
+    {
+        <li>
+            <a href="@Url.Action("Index", "ChangePassword", new { area = "Platform" })" title="">
+                @User.Identity.GetUserName()
+            </a>
+        </li>
+        <li><a>|</a></li>
+        <li>
+            <a href="@Url.Action("LogOff", "Account", new { area = "" })" title="注销">
+                退出账户
+            </a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@Url.Action("Login", "Account", new { area = "" })">您好，请登录</a>
+        </li>
+    }
+  
+</ul>

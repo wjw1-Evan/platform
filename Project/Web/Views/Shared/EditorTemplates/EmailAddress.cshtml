@@ -1,0 +1,15 @@
+﻿@model string
+
+@{
+    var htmlattributes = new Dictionary<string, object> { { "class", "form-control" }, { "placeholder", ViewData["placeholder"] }, { "type", "email" } };
+
+    if (ViewData.ModelMetadata.IsRequired)
+    {
+        htmlattributes.Add("required", "required");
+    }
+}
+
+@Html.TextBoxFor(a => a, htmlattributes)
+
+
+

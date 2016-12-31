@@ -1,0 +1,57 @@
+﻿@using System.Configuration
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@section Styles{
+    @RenderSection("Styles", false)
+
+
+}
+
+@section Scripts
+{
+    @RenderSection("Scripts", false)
+
+    <script>
+        $(document).ajaxError(function (event, request) {
+            if (request.responseText === '' || request.responseText == undefined) {
+                $.notify('您的网络无法访问到服务器，请稍后再试！', { "status": "danger", "pos": "bottom-right" });
+            } else {
+                $.notify(request.responseText, { "status": "danger", "pos": "bottom-right" });
+            }
+        });
+    </script>
+}
+
+@Html.Partial("_alerts")
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">@ConfigurationManager.AppSettings["SystemName"]</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="~/">欢迎访问 @ConfigurationManager.AppSettings["SystemName"]</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            @Html.Partial("_LoginPartial")
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div style="margin-top: 50px;">
+
+
+    @RenderBody()
+
+</div>
+
+<div class="text-center">
+    
+    @ConfigurationManager.AppSettings["Copyright"]
+</div>

@@ -1,0 +1,11 @@
+@using BootstrapSupport
+
+@foreach (var key in Alerts.All)
+{
+    if (TempData.ContainsKey(key))
+    {
+        <script>
+            $.notify("@TempData[key]", { "status": "@key" });
+        </script>
+    }
+}

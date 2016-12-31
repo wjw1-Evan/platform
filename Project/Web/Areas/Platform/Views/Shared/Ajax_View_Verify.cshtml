@@ -1,0 +1,13 @@
+﻿
+@using Resources
+@using Web.Helpers
+@{
+    var routevalues = Request.ToRouteValueDictionary();
+
+    routevalues.Add("id", Model);
+}
+
+
+<div>
+    @Ajax.ActionLink(Lang.Details, "Details", null, routevalues, new AjaxOptions { UpdateTargetId = "Main" })
+</div>

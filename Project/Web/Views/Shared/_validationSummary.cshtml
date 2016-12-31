@@ -1,0 +1,16 @@
+@*@if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+    {
+        <div class="alert  alert-danger">
+            <a class="close" data-dismiss="alert">&times;</a>
+            @Html.ValidationSummary()
+        </div>
+    }*@
+@foreach (var item in ViewData.ModelState.Values)
+{
+    foreach (var err in @item.Errors)
+    {
+        <script>
+            $.notify("@err.ErrorMessage", { "status": "danger", "pos": "bottom-right" });
+        </script>
+    }
+}

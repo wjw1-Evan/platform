@@ -1,0 +1,12 @@
+﻿@using Resources
+
+
+@using (Ajax.BeginForm(null, new RouteValueDictionary(), new AjaxOptions { UpdateTargetId = "Main", HttpMethod = "Get" }))
+{
+    <div class="input-group">
+        @Html.TextBox("keyword", null, new { @class = "form-control ", placeholder = Lang.keyword })
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i> @Lang.Search</button>
+        </span>
+    </div>
+}

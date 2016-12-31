@@ -1,0 +1,13 @@
+﻿@model string
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    for (var i = 0; i < Model.Split(',').Length - 1; i = i + 2)
+    {
+    <div>
+        @Model.Split(',')[i]
+        :
+        @Model.Split(',')[i + 1]
+    </div>
+    }
+}

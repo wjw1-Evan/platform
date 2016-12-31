@@ -1,0 +1,66 @@
+﻿@using System.Data.Entity.Validation
+@{
+    Layout = null;
+}
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <div class="container">
+        <div  style="margin-top: 50px ; font-family:Microsoft YaHei; font-size: 14px; color: #555555; ">
+            <div style="min-height: 1px; text-align:center; "><img src="~/Content/404/pri_warning.png" /></div>
+            <div style=" margin-top:10px auto;  min-height: 1px; padding-right: 15px; text-align:center;">
+                <div style="border-bottom: #DDDDDD 1px solid;">
+                    <span style="display: block; font-size: 16px; letter-spacing: 1px; margin-bottom:5px; padding-left:10px;">@Model.Exception.Message</span>
+                    @if (Model.Exception is DbEntityValidationException)
+            {
+
+                foreach (var validationErrors in Model.Exception.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                                <h5><span style="display: block; line-height: 40px;">
+                                    @string.Format("Property: {0} Error: {1}",
+                        validationError.PropertyName, validationError.ErrorMessage)
+                                   </h5>
+                                </span>
+                            }
+                        }
+
+
+                    }
+                    <a href="/">返回首页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>*@
+
+
+<h5>@Model.Exception.Message</h5>
+
+
+
+    @if (Model.Exception is DbEntityValidationException)
+    {
+
+        foreach (var validationErrors in Model.Exception.EntityValidationErrors)
+        {
+            foreach (var validationError in validationErrors.ValidationErrors)
+            {
+                <h5>
+                    @string.Format("Property: {0} Error: {1}",
+                validationError.PropertyName, validationError.ErrorMessage)
+                </h5>
+            }
+        }
+
+
+    }

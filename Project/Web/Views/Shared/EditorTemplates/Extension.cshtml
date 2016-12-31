@@ -1,0 +1,50 @@
+﻿@model string
+@Html.HiddenFor(a => a)
+
+<script>
+    $(function () {
+        $("form").submit(function () {
+            var @Html.NameFor(a => a)_values = "";
+            $(".@Html.NameFor(a => a)_value").each(function () {
+                @Html.NameFor(a => a)_values = @Html.NameFor(a => a)_values + $(this).val() + ",";
+            });
+
+            $("#@Html.NameFor(a => a)").val(@Html.NameFor(a => a)_values);
+        });
+    });
+    function @Html.NameFor(a => a)addrow() {
+        $("#@Html.NameFor(a => a)_add").append("<div class='row'><div class='col-xs-2'><input type='text' class='@Html.NameFor(a => a)_value text-right form-control' placeholder='标签'  /></div><div class='col-xs-4'><input  type='text' class='@Html.NameFor(a => a)_value form-control'  placeholder='值'   /></div><div class='col-xs-1'><button type='button' class='btn btn-default' onclick='$(this).parent().parent().remove();'><i class='fa fa-times' aria-hidden='true'></i></button></div></div>");
+    };
+</script>
+<div class="pull-right">
+    <button type="button" class="btn btn-info" onclick="@Html.NameFor(a => a)addrow()">添加</button>
+</div>
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    for (var i = 0; i < Model.Split(',').Length - 1; i++)
+    {
+        <div class='row'>
+            <div class='col-xs-2'>
+                <input type="text" class="@Html.NameFor(a => a)_value text-right form-control" placeholder="标签" value="@Model.Split(',')[i]" />
+            </div>
+
+            <div class='col-xs-4'>
+
+                <input type="text" class="@Html.NameFor(a => a)_value form-control" placeholder="值" value="@Model.Split(',')[++i]" />
+            </div>
+
+            <div class='col-xs-1'>
+                <button type="button" class="btn  btn-default" onclick="$(this).parent().parent().remove();"><i class='fa fa-times' aria-hidden='true'></i></button>
+            </div>
+        </div>
+
+    }
+}
+else
+{
+    <script>
+        @Html.NameFor(a => a)addrow();
+    </script>
+}
+<div id="@Html.NameFor(a => a)_add"></div>

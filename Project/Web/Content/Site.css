@@ -1,0 +1,344 @@
+﻿
+* {
+    font-family: 'Microsoft YaHei';
+}
+
+body {
+    background-size: 100% auto;
+    background: url(/content/sitebg.jpg) repeat center;
+    font-size: 13px;
+    color: #333;
+}
+
+a {
+    -webkit-transition: all .3s ease-in-out 0s;
+    -moz-transition: all .2s ease-in-out 0s;
+    -ms-transition: all .2s ease-in-out 0s;
+    -o-transition: all .2s ease-in-out 0s;
+    transition: all .2s ease-in-out 0s;
+    color: #333;
+}
+
+.text-white > a:hover, .text-white > ul > li > a:hover {
+    color: #ccc;
+}
+
+.container {
+    padding: 0;
+}
+
+.text-white a, .text-white > ul > li > a {
+    color: white;
+}
+
+.navbar-brand {
+    font-size: 14px;
+}
+
+
+ul > .active {
+    background-color: #fcfcfc;
+    font-weight: bold;
+}
+
+
+.input-validation-error {
+    border-color: red;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+/*a:link {
+        color: black;
+}
+
+
+
+
+.navbar-default .navbar-brand {
+
+    color: inherit;
+}
+
+.navbar-default .navbar-nav > li > a {
+     color: black;
+}
+.navbar-default .navbar-nav > li > a:hover {
+     color: #777;
+}*/
+
+.field-validation-error {
+    color: red;
+}
+
+.wrapper {
+    background-color: #f5f7fa;
+}
+
+.multiselect {
+    text-align: left;
+}
+
+ul.multiselect-container.dropdown-menu {
+    width: 100%;
+}
+
+.multiselect b.caret {
+    position: absolute;
+    top: 14px;
+    right: 8px;
+}
+
+.multiselect-group {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.navbar-nav li  {
+    float: left;
+}
+
+.navbar-nav li a {
+  
+    padding-right: 0px;
+}
+
+.FriendSite a {
+    padding: 0 5px;
+}
+
+.productclassnemu div a {
+    padding: 4px 5px;
+    display: inline-block;
+    color: white;
+    font-size: 12px;
+}
+
+.columntitle {
+    background: url(/content/titlebg.png) no-repeat;
+    background-color: #006500;
+    width: 135px;
+    height: 39px;
+    font-size: 15px;
+    padding: 9px 0 8px 45px;
+}
+
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    padding: 5px;
+}
+
+
+.TopMenunav {
+}
+
+    .TopMenunav ul {
+        margin: 0;
+    }
+
+.nav-item {
+    position: relative;
+    text-align: center;
+    width: 120px;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+}
+
+    .nav-item a {
+        display: block;
+        color: #000;
+        font-size: 16px;
+        width: 120px;
+        line-height: 44px;
+        margin: 0;
+        padding: 0;
+    }
+
+        .nav-item a:hover {
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+.move-bg {
+    display: none;
+    position: absolute;
+    top: 49px;
+    width: 120px;
+    height: 1px;
+    background: #eee;
+    z-index: 0;
+}
+
+.TopMenunav .cur a {
+    color: #fff;
+    background-color: #006500;
+    z-index: 1;
+    line-height: 44px;
+    margin-bottom: -3px;
+}
+/*.TopMenunav ul .cur a{  color: white }*/
+
+
+ul.text-overflow {
+    list-style: disc;
+    padding-left: 0;
+}
+
+.text-overflow {
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+    .text-overflow > li {
+        line-height: 220%;
+        list-style-position: inside;
+        overflow: hidden;
+        -moz-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.nav-tabs-green {
+}
+
+
+
+    .nav-tabs-green > li {
+        float: left;
+        border: 0;
+    }
+
+
+        .nav-tabs-green > li.active {
+            border-top: 2px solid green;
+            border-left: 1px solid green;
+            border-right: 1px solid green;
+        }
+
+            .nav-tabs-green > li.active > a, .nav-tabs-green > li.active > a:hover, .nav-tabs-green > li.active > a:focus {
+                background-color: white;
+                border: 0;
+                color: green;
+            }
+
+a.pricedetailslink {
+    text-decoration: none;
+}
+
+    a.pricedetailslink:hover > div {
+        background-color: #ECECFB;
+    }
+
+
+/*main css*/
+.izl-rmenu {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    padding-bottom: 73px;
+    z-index: 999;
+}
+
+    .izl-rmenu .btn {
+        width: 72px;
+        height: 73px;
+        margin-bottom: 1px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .izl-rmenu .btn-qq {
+        background: url(/content/r_qq.png) 0px 0px no-repeat;
+        background-color: #6da9de;
+    }
+
+        .izl-rmenu .btn-qq:hover {
+            background-color: #488bc7;
+        }
+
+    .izl-rmenu a.btn-qq, .izl-rmenu a.btn-qq:visited {
+        background: url(/content/r_qq.png) 0px 0px no-repeat;
+        background-color: #6da9de;
+        text-decoration: none;
+        display: block;
+    }
+
+
+     .izl-rmenu .btn-phone {
+        background: url(/content/r_phone.png) 0px 0px no-repeat;
+        background-color: #fbb01f;
+    }
+
+        .izl-rmenu .btn-phone:hover {
+            background-color: #ff811b;
+        }
+
+    .izl-rmenu a.btn-phone, .izl-rmenu a.btn-phone:visited {
+        background: url(/content/r_phone.png) 0px 0px no-repeat;
+        background-color: #ff811b;
+        text-decoration: none;
+        display: block;
+    }
+
+
+    .izl-rmenu .btn-wx {
+        background: url(/content/r_wx.png) 0px 0px no-repeat;
+        background-color: #78c340;
+    }
+
+        .izl-rmenu .btn-wx:hover {
+            background-color: #58a81c;
+        }
+
+        .izl-rmenu .btn-wx .pic {
+            position: absolute;
+            left: -160px;
+            top: 0px;
+            display: none;
+            width: 160px;
+            height: 160px;
+        }
+
+    /*.izl-rmenu .btn-phone {
+        background: url(/content/r_phone.png) 0px 0px no-repeat;
+        background-color: #fbb01f;
+    }
+
+        .izl-rmenu .btn-phone:hover {
+            background-color: #ff811b;
+        }
+
+        .izl-rmenu .btn-phone .phone {
+            background-color: #ff811b;
+            position: absolute;
+            width: 160px;
+            left: -160px;
+            top: 0px;
+            line-height: 73px;
+            color: #FFF;
+            font-size: 18px;
+            text-align: center;
+            display: none;
+        }*/
+
+    .izl-rmenu .btn-top {
+        background: url(/content/r_top.png) 0px 0px no-repeat;
+        background-color: #666666;
+        display: none;
+    }
+
+        .izl-rmenu .btn-top:hover {
+            background-color: #444;
+        }
+
+.scroll_horizontal {
+    
+}
+
+
+.scroll_horizontal  .list{display: table;table-layout: fixed; width: 100%;padding: 0;margin: 0;} 
+
+.scroll_horizontal  .list li{display:table-cell} 

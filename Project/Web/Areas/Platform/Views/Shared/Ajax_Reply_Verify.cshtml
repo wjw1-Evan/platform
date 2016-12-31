@@ -1,0 +1,15 @@
+﻿@using Resources
+@using Web.Helpers
+@{
+
+    var routevalues = Request.ToRouteValueDictionary();
+
+    routevalues.Add("id", Model);
+}
+
+
+<div>
+    @Ajax.ActionLink(Lang.Details, "Details", null, routevalues, new AjaxOptions { UpdateTargetId = "Main" })
+    @Ajax.ActionLink(Lang.Replay, "Edit", null, routevalues, new AjaxOptions { UpdateTargetId = "Main" })
+    @Ajax.ActionLink(Lang.Delete, "Delete", null, routevalues, new AjaxOptions { UpdateTargetId = "Main", HttpMethod = "Delete", Confirm = "您确定要删除该记录吗？该操作不可恢复！" })
+</div>

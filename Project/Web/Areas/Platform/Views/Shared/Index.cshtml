@@ -1,0 +1,109 @@
+﻿@using Resources
+@model System.Collections.IEnumerable
+
+@using BootstrapSupport
+@using Web.Helpers
+
+@{
+    var routevalues = new RouteValueDictionary { ["keyword"] = Request["Keyword"] };
+}
+
+<div class="content-heading">
+    <div class="row">
+        <div class="col-xs-6">
+            @if (Model.VisibleProperties().Any(a => a.Name == "Id") && Html.CheckControllerAction("Create"))
+            {
+                @Html.Partial("Button_Create", new { })
+            }
+
+            @if (Html.CheckControllerAction("Import"))
+            {
+                @Html.Partial("Button_Import", new { })
+            }
+
+            @if (Html.CheckControllerAction("Report"))
+            {
+                @Html.Partial("Button_Export", new { report = true, ordering = Request["ordering"], keyword = Request["keyword"] })
+            }
+        </div>
+
+        <div class="col-xs-6">
+            @Html.Partial("Search_Input")
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    @Html.Partial("_alerts")
+
+    <div class="panel-body">
+        <!-- START table-responsive-->
+        <div class="table-responsive">
+            <table class="table table-striped table-hover  table-condensed">
+                <thead>
+                    <tr>
+                        @foreach (var title in Model.VisibleProperties())
+                        {
+                            if (title.Name == Model.GetType().GetGenericArguments()[0].IdentifierPropertyName())
+                            {
+                                <th class="text-center" nowrap>@Lang.Edit</th>
+                            }
+                            else
+                            {
+                                var r = new RouteValueDictionary(routevalues);
+                                if (r.Keys.Contains("ordering"))
+                                {
+                                    r.Remove("ordering");
+                                }
+                                <th nowrap>
+
+                                    @if (Request["ordering"] == title.Name)
+                                    {
+                                        r.Add("ordering", title.Name + " desc");
+                                        @Ajax.ActionLink(title.GetLabel().ToSeparatedWords() + " ↓", null, r, new AjaxOptions { UpdateTargetId = "Main" })
+                                    }
+                                    else if (Request["ordering"] == title.Name + " desc")
+                                    {
+                                        r.Add("ordering", title.Name);
+                                        @Ajax.ActionLink(title.GetLabel().ToSeparatedWords() + " ↑", null, r, new AjaxOptions { UpdateTargetId = "Main" })
+                                    }
+                                    else
+                                    {
+                                        r.Add("ordering", title.Name);
+                                        @Ajax.ActionLink(title.GetLabel().ToSeparatedWords() + "", null, r, new AjaxOptions { UpdateTargetId = "Main" })
+                                    }
+                                </th>
+                            }
+                        }
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        ViewData["DataList"] = item;
+                        <tr>
+                            @foreach (var title in Model.VisibleProperties())
+                            {
+                                if (title.Name == item.IdentifierPropertyName())
+                                {
+                                    <td class="text-center" nowrap>
+                                        @Html.Partial("Ajax_Edit_Verify", item.GetId())
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td nowrap>
+                                        @Html.Display("DataList." + title.Name)
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @Html.Raw(Ajax.MikePager((int)Model.GetType().GetProperty("PageIndex").GetValue(Model, null), (int)Model.GetType().GetProperty("PageSize").GetValue(Model, null), (int)Model.GetType().GetProperty("TotalCount").GetValue(Model, null)))
+        </div>
+    </div>
+</div>

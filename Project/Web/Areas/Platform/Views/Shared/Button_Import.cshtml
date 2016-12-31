@@ -1,0 +1,50 @@
+﻿@using Resources
+
+
+
+
+@*<a class="btn btn-info" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" href="@Url.Action("Import", Request.ToRouteValueDictionary())"> <i class="fa fa-fw fa-file-excel-o"></i> @Lang.Import </a>*@
+
+
+
+@*文件路径的文本框*@
+
+
+@*浏览本地文件按钮*@
+<span id="btn_Browse" style="cursor:pointer;" onclick="$('input[id=fileUpload]').click();" class="btn btn-info">
+    <i class="fa fa-fw fa-folder-open-o"></i> @Lang.Import
+
+</span>
+
+<input id="fileUpload" type="file" name="file" style="display: none">
+
+<script type="text/javascript">
+    $(function () {
+
+        $('input[id=fileUpload]').change(function () {
+
+            var formData = new FormData();
+            formData.append("file", $("#fileUpload")[0].files[0]);
+
+            $.ajax({
+                url: '@Url.Action("Import")',
+                type: 'POST',
+                data: formData,
+                // 告诉jQuery不要去处理发送的数据
+                processData: false,
+                // 告诉jQuery不要去设置Content-Type请求头
+                contentType: false,
+                beforeSend: function () {
+                    console.log("正在进行，请稍候");
+                },
+                success: function (responseStr) {
+                    $("#Main").html(responseStr);
+
+                },
+                error: function (responseStr) {
+                    console.log("error");
+                }
+            });
+        });
+    })
+</script>

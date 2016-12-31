@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Models.Infrastructure.IUserDictionary>
+
+@{
+    var defaultList = Model.Select(a => new  SelectListItem {Value = a.Id, Text = a.Name}).ToList();
+    defaultList.Insert(0,new SelectListItem {Value = "",Text = "请选择"});
+}
+
+@Html.DropDownList("", defaultList, new { @class = "form-control selectpicker" })

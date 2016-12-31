@@ -1,0 +1,37 @@
+﻿@using System.ComponentModel.DataAnnotations
+@model string
+
+@{
+
+    var htmlattributes = new Dictionary<string, object> {{"class", "form-control"}, {"placeholder", ViewData["placeholder"]}};
+    
+    if (ViewData.ModelMetadata.IsRequired)
+    {
+        htmlattributes.Add("required", "required");
+    }
+
+    var maxlength = ViewData.ModelMetadata.ContainerType.GetProperty(ViewData.ModelMetadata.PropertyName).CustomAttributes.FirstOrDefault(a => a.AttributeType == typeof(MaxLengthAttribute))?.ConstructorArguments.FirstOrDefault();
+
+    if (maxlength != null)
+    {
+        htmlattributes.Add("maxlength", maxlength.Value.Value);
+    }
+
+    var minlength = ViewData.ModelMetadata.ContainerType.GetProperty(ViewData.ModelMetadata.PropertyName).CustomAttributes.FirstOrDefault(a => a.AttributeType == typeof(MinLengthAttribute))?.ConstructorArguments.FirstOrDefault();
+
+    if (minlength != null)
+    {
+        htmlattributes.Add("minlength", minlength.Value.Value);
+    }
+}
+
+
+
+@Html.TextAreaFor(a => a, htmlattributes)
+
+<div>
+    @htmlattributes["placeholder"]
+</div>
+<script>
+    var editor_@(Html.NameForModel()) = CKEDITOR.replace('@Html.NameForModel()',{});
+</script>

@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNet.Identity
+@using Resources
+@using Web.Helpers
+@model PagedList<Models.SysModels.SysBroadcast>
+
+<div class="content-heading">
+    <div class="row">
+        <div class="col-xs-6">
+
+        </div>
+
+        <div class="col-xs-6">
+            @Html.Partial("Search_Input")
+        </div>
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <!-- p.lead.text-centerNo mails here-->
+        <div class="table-responsive">
+            <table class="table table-hover mb-mails">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center" width="50">
+                                @if (item.SysBroadcastReceiveds.All(a => a.CreatedBy != User.Identity.GetUserId()))
+                                {
+                                    <span>未读</span>
+                                }
+                                else
+                                {
+                                    <span>已读</span>
+                                }
+                            </td>
+                            <td class="text-center" width="80">
+                                @if (item.UserCreatedBy == null)
+                                {
+                                    <div><img alt="Mail Avatar" src="/Content/dummy.png" height="50" width="50" class="img-thumbnail"/>
+                                    </div>
+                                    <div>系统自动发送</div>
+                                }
+                                else
+                                {
+                                    <div><img alt="Mail Avatar" src="/Content/dummy.png" height="50" width="50" class="img-thumbnail"/>
+                                    </div>
+                                    <div>@Html.DisplayFor(a => item.UserCreatedBy)</div>
+                                }
+                            </td>
+                            <td>
+                                <div class="mb-mail-date pull-right">@Html.DisplayFor(a => item.CreatedDate) @Ajax.ActionLink(Lang.Delete, "Delete", new {item.Id}, new AjaxOptions {UpdateTargetId = "Main", HttpMethod = "Delete", Confirm = "您确定要删除该记录吗？该操作不可恢复！" })</div>
+                                <div class="mb-mail-meta">
+                                    <div class="pull-left">
+                                        <div class="mb-mail-subject">
+                                        
+                                            @Ajax.ActionLink(item.Title, "Details", new {id = item.Id}, new AjaxOptions {UpdateTargetId = "Main"})
+                                        </div>
+                                        <div class="mb-mail-from">
+                                        </div>
+                                    </div>
+                                    <div class="mb-mail-preview">@Html.DisplayFor(a => item.Content)</div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.Raw(Ajax.MikePager(Model))
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+﻿@using Resources
+@*<div class="btn-group">
+
+    <a class="btn btn-default" href="@Url.Action("Report")" target="_blank"> <i class="fa fa-share-square-o"></i> @Lang.Export </a>
+    <button type="button" data-toggle="dropdown" class="btn dropdown-toggle btn-default">
+        <span class="caret"></span>
+        <span class="sr-only">default</span>
+    </button>
+    <ul role="menu" class="dropdown-menu">
+        <li>
+            <a href="@{ @Url.Action("Report") }.txt" target="_blank">导出到文本文件</a>
+        </li>
+        <li>
+            <a href="@{ @Url.Action("Report") }.xlsx" target="_blank">导出到 Excel</a>
+        </li>
+    </ul>
+</div>*@
+
+<a class="btn btn-default" href="@(Url.Action("Report")).xlsx?keyword=@Request["keyword"]" target="_blank"> <i class="fa fa-share-square-o"></i> @Lang.Export </a>

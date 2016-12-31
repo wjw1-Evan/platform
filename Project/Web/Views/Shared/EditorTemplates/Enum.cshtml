@@ -1,0 +1,15 @@
+﻿@model Enum
+
+@Html.EnumDropDownListFor(a => a, new { @class = "form-control selectpicker" })
+
+<script>
+    $(document).ready(function () {
+        $('#@Html.NameForModel()').multiselect({
+            buttonClass: 'form-control',
+            buttonWidth: '100%',
+            includeSelectAllOption: true,
+            enableCollapsibleOptGroups: true,
+            maxHeight: 300
+        });
+    });
+</script>

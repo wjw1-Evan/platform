@@ -1,0 +1,33 @@
+﻿<div class="content-heading">
+  
+修改密码
+</div>
+
+
+
+<div class="panel panel-default">
+
+    <div class="panel-body form-horizontal">
+      @using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+            {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.Partial("_alerts")
+            @Html.Partial("_validationSummary")
+        </div>
+
+        @Html.EditorForModel()
+
+        @Html.Partial("Button_Submit")
+
+      }
+
+
+
+    </div>
+</div>
+
+                      
+
+

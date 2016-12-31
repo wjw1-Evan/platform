@@ -1,0 +1,91 @@
+@using Models.SysModels
+<!-- START Top Navbar-->
+<nav class="navbar topnavbar">
+    <!-- START navbar header-->
+    <div class="navbar-header">
+        <a href="javascript:;" class="navbar-brand">
+            <div class="brand-logo">
+                <img src="~/Content/logo_100.png" alt="App Logo" class="img-responsive center-block" />
+            </div>
+            <div class="brand-logo-collapsed">
+                <img src="~/Content/logo_50.png" alt="App Logo" class="img-responsive center-block" />
+            </div>
+        </a>
+    </div>
+    <!-- END navbar header-->
+    <!-- START Nav wrapper-->
+    <div class="nav-wrapper">
+
+        <ul class="nav navbar-nav">
+            <li>
+                <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                <a href="javascript:;" data-toggle-state="aside-collapsed" class="hidden-xs">
+                    <em class="fa fa-navicon"></em>
+                </a>
+                <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                <a href="javascript:;" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
+                    <em class="fa fa-navicon"></em>
+                </a>
+            </li>
+            <!-- START User avatar toggle-->
+        </ul>
+
+        <!-- START Right Navbar-->
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+                <a href="@Url.Action("Index","Index")" title="Loading..." id="page-loading"  style="display: none">
+                
+                    <img src="~/Content/loading.gif" />
+                </a>
+            </li>
+            <li style="padding-top: 15px;">
+                @Html.DropDownList("sysEnterprises")
+                <script>
+                    $(function() {
+                        $('select[id=sysEnterprises]').bind("change", function() {
+                            window.location = "?changesysenterprise=" + $(this).val();
+
+                        });
+                    })
+                </script>
+            </li>
+
+            <li>
+               @Ajax.ActionLink((string)ViewBag.UserName,"Index", "ChangePassword", new AjaxOptions() {UpdateTargetId = "Main"})
+            </li>
+
+            <li>
+                <a title="桌面"  href="@Url.Action("Index","Index")">
+                    <em class="fa fa-home"></em>
+                </a>
+            </li>
+            
+            <!-- START Alert menu-->
+            <li class="dropdown dropdown-list">
+                <a href="@Url.Action("Index","MyMessage")" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" title="消息">
+                    <em class="fa fa-bell-o"></em>
+                </a>
+                
+            </li>
+            <!-- END Alert menu-->
+            <!-- START Contacts button-->
+            <li>
+                <a href="javascript:;" data-toggle-state="offsidebar-open" data-no-persist="true" title="系统设置">
+                    <em class="fa fa-cog"></em>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("LogOff", "Account", new {Area = ""})" title="退出系统">
+                    <em class="fa fa-sign-out"></em>
+                </a>
+            </li>
+            <!-- END Contacts menu-->
+        </ul>
+        <!-- END Right Navbar-->
+    </div>
+    <!-- END Nav wrapper-->
+  
+</nav>
+<!-- END Top Navbar-->

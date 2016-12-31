@@ -1,0 +1,77 @@
+﻿@using Web.Controllers
+@model string
+
+
+    <div id="@(Html.IdForModel())s">
+        @if (!string.IsNullOrEmpty(Model))
+        {
+            foreach (var item in Model.Split(','))
+                        {
+                <div class='pull-left'>
+                    <button type='button' class='close' onclick='$(this).parent().remove();'><span aria-hidden='true'>&times;</span></button><a href='@item' target='_blank'><img src='@item' class='img-responsive img-thumbnail' style='width: 200px; height: 150px;' /></a>
+                </div>
+            }
+        }
+    </div>
+
+    @Html.HiddenFor(a => a)
+
+    <span id="btn_Browse" style="cursor:pointer;" onclick="$('input[id=fileUpload_@Html.IdForModel()]').click();" class="btn btn-default">
+        + 添加图片
+
+    </span>
+
+    <input id="fileUpload_@Html.IdForModel()" type="file" name="file" style="display: none" multiple="multiple" accept="image/*">
+
+    <script type="text/javascript">
+        $(function () {
+
+            var title = $('#@(Html.IdForModel())s');//the element I want to monitor
+            title.bind('DOMSubtreeModified', function (e) {
+
+                var a = new Array();
+
+                $("#@Html.IdForModel()").attr("value", "");
+
+                $('#@(Html.IdForModel())s img').each(function (index, element) {
+                    a.push($(element).attr('src'));
+                });
+
+                $("#@Html.IdForModel()").attr("value",  a);
+            });
+
+
+            $('input[id=fileUpload_@Html.IdForModel()]').bind("change", function () {
+
+                var formData = new FormData();
+
+                var files = $("#fileUpload_@Html.IdForModel()")[0].files;
+
+                for (var i = 0; i < files.length; i++) {
+                    formData.append(files[i].name, files[i]);
+                }
+
+                $.ajax({
+                    cache: false,
+                    url: '@Url.Action("UploadFile","Files",new { area = "", filetype = FilesController.Filetypes.图片})',
+                    type: 'POST',
+                    data: formData,
+                    // 告诉jQuery不要去处理发送的数据
+                    processData: false,
+                    // 告诉jQuery不要去设置Content-Type请求头
+                    contentType: false,
+                    success: function (responseStr) {
+                        for (var o in responseStr) {
+                            if (responseStr.hasOwnProperty(o)) {
+
+                                $("#@Html.IdForModel()s").append("<div class='pull-left'><button type='button' class='close' onclick='$(this).parent().remove();'><span aria-hidden='true'>&times;</span></button><a href='" + responseStr[o].Url + "' target='_blank'><img src='" + responseStr[o].Url + "' class='img-responsive img-thumbnail'  style='width: 200px; height: 150px;'/></a></div>");
+                            }
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+<div>
+    @ViewData["placeholder"]
+</div>

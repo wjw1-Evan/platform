@@ -1,0 +1,54 @@
+﻿@using Web.Controllers
+@model string
+
+
+
+        <img src="@(Model ?? "/Content/NoPicture.jpg")" id="preview_@Html.IdForModel()" class="img-responsive img-thumbnail " onclick="$('input[id=fileUpload_@Html.IdForModel()]').click();" style="width: 200px; height: 150px; cursor: pointer" alt="点击上传本地图片" title="点击上传本地图片"/>
+        
+
+    @*<span id="btn_Browse" style="cursor:pointer;" onclick="$('input[id=fileUpload_@Html.IdForModel()]').click();" class="btn btn-info">
+        <i class="fa fa-fw fa-folder-open-o"></i> @Lang.Select
+
+    </span>*@
+
+    @Html.HiddenFor(a => a)
+
+   
+
+    <input id="fileUpload_@Html.IdForModel()" type="file" name="file" style="display: none" accept="image/*">
+
+    <script type="text/javascript">
+        $(function () {
+
+            $('input[id=fileUpload_@Html.IdForModel()]').bind("change", function () {
+
+                var formData = new FormData();
+
+                var files = $("#fileUpload_@Html.IdForModel()")[0].files;
+
+                for (var i = 0; i < files.length; i++) {
+                    formData.append(files[i].name, files[i]);
+                }
+
+                $.ajax({
+                    cache: false,
+                    url: '@Url.Action("UploadFile","Files",new {area="", filetype = FilesController.Filetypes.图片})',
+                    type: 'POST',
+                    data: formData,
+                    // 告诉jQuery不要去处理发送的数据
+                    processData: false,
+                    // 告诉jQuery不要去设置Content-Type请求头
+                    contentType: false,
+                    success: function (responseStr) {
+
+             //上传成功
+                        $("#preview_@Html.IdForModel()").attr("src", responseStr[0].Url);
+                        $("#@Html.IdForModel()").attr("value", responseStr[0].Url);
+                    }
+                });
+            });
+        })
+    </script>
+<div>
+    @ViewData["placeholder"]
+</div>
