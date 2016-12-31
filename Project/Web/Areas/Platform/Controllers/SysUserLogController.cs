@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,7 +8,6 @@ using DoddleReport.Web;
 using IServices.ISysServices;
 using Web.Helpers;
 using System.Linq.Dynamic;
-using System.Threading.Tasks;
 
 namespace Web.Areas.Platform.Controllers
 {

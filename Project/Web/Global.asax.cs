@@ -1,12 +1,9 @@
-﻿using System;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 using System.Data.Entity;
 using System.Timers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using EntityFramework;
-using EntityFramework.Caching;
 using Microsoft.AspNet.Identity;
 using Services;
 using Web.Helpers;
@@ -24,6 +21,7 @@ namespace Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             Bootstrapper.Run();
 
 
@@ -42,7 +40,7 @@ namespace Web
             var onTimedEvent = DependencyResolver.Current.GetService<IOnTimedEvent>();
 
             _objTimer = new Timer { Interval = 10 * (1000 * 60) };
-            _objTimer.Elapsed += onTimedEvent.Run;
+            _objTimer.Elapsed += (source, elapsedEventArgs) => onTimedEvent.Run(source, elapsedEventArgs);
             _objTimer.Start();
         }
 

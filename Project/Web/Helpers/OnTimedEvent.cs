@@ -1,49 +1,31 @@
-﻿using System;
-using System.Configuration;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Threading.Tasks;
 using System.Timers;
 using IServices.Infrastructure;
 using IServices.ISysServices;
-
-using Models.SysModels;
 
 namespace Web.Helpers
 {
     public interface IOnTimedEvent
     {
-        void Run(object source, ElapsedEventArgs elapsedEventArgs);
+        Task Run(object source, ElapsedEventArgs elapsedEventArgs);
     }
 
     public class OnTimedEvent : IOnTimedEvent
     {
-     
         private readonly ISysUserLogService _sysUserLogService;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ISysUserService _iSysUserService;
-   
 
-
-        public OnTimedEvent(IUnitOfWork unitOfWork, ISysUserLogService sysUserLogService, ISysUserService iSysUserService )
+        public OnTimedEvent(IUnitOfWork unitOfWork, ISysUserLogService sysUserLogService)
         {
             _unitOfWork = unitOfWork;
             _sysUserLogService = sysUserLogService;
-            _iSysUserService = iSysUserService;
         }
 
-        public void Run(object source, ElapsedEventArgs elapsedEventArgs)
+        public async Task Run(object source, ElapsedEventArgs elapsedEventArgs)
         {
-            try
-            {
-                _sysUserLogService.DeleteExpiredData();
-                _unitOfWork.CommitAsync();
-                
-            }
-            catch (Exception )
-            {
-               
-            }
-
+            //清理过期用户操作日志
+            _sysUserLogService.DeleteExpiredData();
+            await _unitOfWork.CommitAsync();
         }
     }
 }

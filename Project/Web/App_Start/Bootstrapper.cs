@@ -2,7 +2,6 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using System.Reflection;
-using EntityFramework.Audit;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using Resources;

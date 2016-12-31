@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -8,12 +6,9 @@ using BootstrapSupport;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Models.SysModels;
-using Services;
-using Web.Helpers;
 using Web.Models;
 
 namespace Web.Controllers

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Models.Infrastructure;
 
 namespace IServices.Infrastructure
 {

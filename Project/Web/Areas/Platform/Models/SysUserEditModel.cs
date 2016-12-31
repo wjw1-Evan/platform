@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Models.SysModels;
 
 namespace Web.Areas.Platform.Models
 {
