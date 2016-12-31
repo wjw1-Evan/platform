@@ -1,0 +1,1734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="ActionDisplayName" xml:space="preserve">
+    <value>操作显示名称</value>
+  </data>
+  <data name="ActionName" xml:space="preserve">
+    <value>操作名称</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>区域</value>
+  </data>
+  <data name="AreaDisplayName" xml:space="preserve">
+    <value>区域显示名称</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>生日</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="ControllerDisplayName" xml:space="preserve">
+    <value>控制器显示名称</value>
+  </data>
+  <data name="ControllerName" xml:space="preserve">
+    <value>控制器名称</value>
+  </data>
+  <data name="Name_Required" xml:space="preserve">
+    <value>请填写名称</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>新建</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>创建人</value>
+  </data>
+  <data name="CreatedDate" xml:space="preserve">
+    <value>创建日期</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>显示</value>
+  </data>
+  <data name="District_Name_Required" xml:space="preserve">
+    <value>请填写名称</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="EmailConfirmed" xml:space="preserve">
+    <value>邮箱确认</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="Enterprise" xml:space="preserve">
+    <value>企业</value>
+  </data>
+  <data name="EnterpriseName" xml:space="preserve">
+    <value>企业名称</value>
+  </data>
+  <data name="EnterpriseShortName" xml:space="preserve">
+    <value>企业简称</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Module" xml:space="preserve">
+    <value>模块</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="NickName" xml:space="preserve">
+    <value>昵称</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>参数</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>电话号码</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>电话号码确认</value>
+  </data>
+  <data name="RecordId" xml:space="preserve">
+    <value>记录编号</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>请填写密码</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>备注</value>
+    <comment>备注信息</comment>
+  </data>
+  <data name="Remark_Description" xml:space="preserve">
+    <value>备注信息</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>角色名称</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>性别</value>
+  </data>
+  <data name="Sms_Phone_Display_Description" xml:space="preserve">
+    <value>最多200个手机号，以逗号间隔</value>
+  </data>
+  <data name="Phone_Required" xml:space="preserve">
+    <value>请填写手机号</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+  <data name="SysAction_ActionDisplayName_Required" xml:space="preserve">
+    <value>请填写操作显示名称</value>
+  </data>
+  <data name="SysAction_ActionName_Required" xml:space="preserve">
+    <value>请填写操作名称</value>
+  </data>
+  <data name="SysAction_SystemId_Required" xml:space="preserve">
+    <value>请填写系统编号</value>
+  </data>
+  <data name="SysArea" xml:space="preserve">
+    <value>区域</value>
+  </data>
+  <data name="SysBroadcast_Content_Required" xml:space="preserve">
+    <value>请填写内容</value>
+  </data>
+  <data name="SysBroadcast_Title_Required" xml:space="preserve">
+    <value>请填写主题</value>
+  </data>
+  <data name="SysController_ControllerDisplayName_Required" xml:space="preserve">
+    <value>请填写控制器显示名称</value>
+  </data>
+  <data name="SysController_SysAreaId_Required" xml:space="preserve">
+    <value>请填写区域</value>
+  </data>
+  <data name="SysController_SystemId_Required" xml:space="preserve">
+    <value>请填写系统编号</value>
+  </data>
+  <data name="SysDefault" xml:space="preserve">
+    <value>系统默认</value>
+  </data>
+  <data name="Content_Required" xml:space="preserve">
+    <value>请填写内容</value>
+  </data>
+  <data name="Title_Required" xml:space="preserve">
+    <value>请填写主题</value>
+  </data>
+  <data name="SystemId" xml:space="preserve">
+    <value>系统编号</value>
+  </data>
+  <data name="Email_Required" xml:space="preserve">
+    <value>请填写邮箱</value>
+  </data>
+  <data name="PhoneNumber_Required" xml:space="preserve">
+    <value>请填写手机号</value>
+  </data>
+  <data name="SysRolesId_Required" xml:space="preserve">
+    <value>请选择角色名称</value>
+  </data>
+  <data name="UserName_Required" xml:space="preserve">
+    <value>请填写用户名</value>
+  </data>
+  <data name="TargetBlank" xml:space="preserve">
+    <value>新页面</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="UpdateDate" xml:space="preserve">
+    <value>更新日期</value>
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value>更新人</value>
+  </data>
+  <data name="UpdatedDate" xml:space="preserve">
+    <value>更新日期</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>发布</value>
+  </data>
+  <data name="UnPublish" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="Replay" xml:space="preserve">
+    <value>回复</value>
+  </data>
+  <data name="Audit" xml:space="preserve">
+    <value>审核</value>
+  </data>
+  <data name="ApplyDate" xml:space="preserve">
+    <value>申请入会时间</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>企业名称</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>职务</value>
+  </data>
+  <data name="ResearchDirection" xml:space="preserve">
+    <value>擅长研究方向</value>
+  </data>
+  <data name="ActivityDate" xml:space="preserve">
+    <value>活动时间</value>
+  </data>
+  <data name="ActivityName" xml:space="preserve">
+    <value>活动名称</value>
+  </data>
+  <data name="PersonInCharge" xml:space="preserve">
+    <value>项目负责人</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="SendEmailAgain" xml:space="preserve">
+    <value>再次发送</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>全部删除</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Mark4Read" xml:space="preserve">
+    <value>标记已读</value>
+  </data>
+  <data name="Mark4ReadAll" xml:space="preserve">
+    <value>全部标记已读</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="FullName_Description" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="PasswordChaged" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PasswordChaged_Description" xml:space="preserve">
+    <value>新密码，不输入则不会修改密码</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>头像</value>
+  </data>
+  <data name="CameraCode" xml:space="preserve">
+    <value>摄像头编码</value>
+  </data>
+  <data name="DirectSupervisorUserName" xml:space="preserve">
+    <value>上级监控员姓名</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>手机</value>
+  </data>
+  <data name="MonitorLevel" xml:space="preserve">
+    <value>监控员级别</value>
+  </data>
+  <data name="MonitorUserName" xml:space="preserve">
+    <value>监控员姓名</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>关注状态</value>
+  </data>
+  <data name="SysUserName" xml:space="preserve">
+    <value>系统用户</value>
+  </data>
+  <data name="Userid" xml:space="preserve">
+    <value>用户ID</value>
+  </data>
+  <data name="Weixinid" xml:space="preserve">
+    <value>微信号</value>
+  </data>
+  <data name="DirectSupervisor" xml:space="preserve">
+    <value>直接上级</value>
+  </data>
+  <data name="MonitorUser" xml:space="preserve">
+    <value>监控员</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>所在位置</value>
+  </data>
+  <data name="Station" xml:space="preserve">
+    <value>所属站点</value>
+  </data>
+  <data name="KnowledgeTitle" xml:space="preserve">
+    <value>知识标题</value>
+  </data>
+  <data name="LeaveEndDate" xml:space="preserve">
+    <value>请假结束日期</value>
+  </data>
+  <data name="LeaveReason" xml:space="preserve">
+    <value>请假事由</value>
+  </data>
+  <data name="LeaveStartDate" xml:space="preserve">
+    <value>请假开始日期</value>
+  </data>
+  <data name="LeaveState" xml:space="preserve">
+    <value>审批状态</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>审批人</value>
+  </data>
+  <data name="BusinessTypeName" xml:space="preserve">
+    <value>业务类型</value>
+  </data>
+  <data name="DisplayOrder" xml:space="preserve">
+    <value>显示顺序</value>
+  </data>
+  <data name="BusinessCode" xml:space="preserve">
+    <value>业务编号</value>
+  </data>
+  <data name="Assigner" xml:space="preserve">
+    <value>指定人</value>
+  </data>
+  <data name="BusinessTypeShortName" xml:space="preserve">
+    <value>业务类型缩写</value>
+  </data>
+  <data name="JournalTypeName" xml:space="preserve">
+    <value>日报类型</value>
+  </data>
+  <data name="JournalFileName" xml:space="preserve">
+    <value>文件名称</value>
+  </data>
+  <data name="JournalReviewState" xml:space="preserve">
+    <value>审批状态</value>
+  </data>
+  <data name="SendDate" xml:space="preserve">
+    <value>发送日期</value>
+  </data>
+  <data name="BusinessPhaseName" xml:space="preserve">
+    <value>业务阶段</value>
+  </data>
+  <data name="BusinessJobContent" xml:space="preserve">
+    <value>业务内容</value>
+  </data>
+  <data name="AttachTypeName" xml:space="preserve">
+    <value>文档类型</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>文件名</value>
+  </data>
+  <data name="IsSpecial" xml:space="preserve">
+    <value>特殊指派</value>
+  </data>
+  <data name="InspectionSite" xml:space="preserve">
+    <value>检验地点</value>
+  </data>
+  <data name="InspectionTime" xml:space="preserve">
+    <value>检验时间</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>目的地</value>
+  </data>
+  <data name="StartingPlace" xml:space="preserve">
+    <value>起始地</value>
+  </data>
+  <data name="ApplicationReason" xml:space="preserve">
+    <value>申领事由</value>
+  </data>
+  <data name="Instrument" xml:space="preserve">
+    <value>检验仪器明细/编号</value>
+  </data>
+  <data name="Applicant" xml:space="preserve">
+    <value>申请人</value>
+  </data>
+  <data name="ApplicateDateTime" xml:space="preserve">
+    <value>申请日期</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>品牌</value>
+  </data>
+  <data name="ModelNumber" xml:space="preserve">
+    <value>型号</value>
+  </data>
+  <data name="PlateNumber" xml:space="preserve">
+    <value>车牌号</value>
+  </data>
+  <data name="ApprovedDateTime" xml:space="preserve">
+    <value>审批日期</value>
+  </data>
+  <data name="ApproveState" xml:space="preserve">
+    <value>主管审批状态</value>
+  </data>
+  <data name="ApplicationAmount" xml:space="preserve">
+    <value>申请金额</value>
+  </data>
+  <data name="Granted" xml:space="preserve">
+    <value>发放</value>
+  </data>
+  <data name="FinancialApproveState" xml:space="preserve">
+    <value>财务审批状态</value>
+  </data>
+  <data name="FinancialApprovedDateTime" xml:space="preserve">
+    <value>财务审批日期</value>
+  </data>
+  <data name="FinancialApprover" xml:space="preserve">
+    <value>审批财务</value>
+  </data>
+  <data name="GrantedDateTime" xml:space="preserve">
+    <value>发放日期</value>
+  </data>
+  <data name="GrantUser" xml:space="preserve">
+    <value>发放人</value>
+  </data>
+  <data name="IsReturn" xml:space="preserve">
+    <value>归还</value>
+  </data>
+  <data name="Approver" xml:space="preserve">
+    <value>主管审批</value>
+  </data>
+  <data name="ReviewDate" xml:space="preserve">
+    <value>审批日期</value>
+  </data>
+  <data name="ClerkFullName" xml:space="preserve">
+    <value>指定文员</value>
+  </data>
+  <data name="ConfirmerFullName" xml:space="preserve">
+    <value>确认人</value>
+  </data>
+  <data name="ConsignationConfirm" xml:space="preserve">
+    <value>委托明细确认</value>
+  </data>
+  <data name="ConsignationInput" xml:space="preserve">
+    <value>委托明细录入</value>
+  </data>
+  <data name="ConsignationInputDate" xml:space="preserve">
+    <value>委托明细录入日期</value>
+  </data>
+  <data name="InsertorConfirm" xml:space="preserve">
+    <value>检验员确认</value>
+  </data>
+  <data name="InsertorFullName" xml:space="preserve">
+    <value>指定检验员</value>
+  </data>
+  <data name="InspectorConfirmed" xml:space="preserve">
+    <value>检验员确认</value>
+  </data>
+  <data name="InspectorConfirmedDatetime" xml:space="preserve">
+    <value>检验员确认日期</value>
+  </data>
+  <data name="SetOutComfirmUser" xml:space="preserve">
+    <value>出发审批状态</value>
+  </data>
+  <data name="SetOutInput" xml:space="preserve">
+    <value>出发申请状态</value>
+  </data>
+  <data name="SysCode" xml:space="preserve">
+    <value>系统编号</value>
+  </data>
+  <data name="SubsidyAmount" xml:space="preserve">
+    <value>补贴金额/公里</value>
+  </data>
+  <data name="IsReaded" xml:space="preserve">
+    <value>已读</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>发布</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="ExpenseAmount" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="ExpensesType" xml:space="preserve">
+    <value>费用类型</value>
+  </data>
+  <data name="OccurrenceDate" xml:space="preserve">
+    <value>发生日期</value>
+  </data>
+  <data name="SystemCode" xml:space="preserve">
+    <value>系统编号</value>
+  </data>
+  <data name="SetOutConfirmedDatetime" xml:space="preserve">
+    <value>出发申请审批时间</value>
+  </data>
+  <data name="SetOutConfirmId" xml:space="preserve">
+    <value>出发申请审批人</value>
+  </data>
+  <data name="Count4Read" xml:space="preserve">
+    <value>阅读次数</value>
+  </data>
+  <data name="Inspector" xml:space="preserve">
+    <value>检验员</value>
+  </data>
+  <data name="Clerk" xml:space="preserve">
+    <value>文员</value>
+  </data>
+  <data name="AssignmentBusinessContents" xml:space="preserve">
+    <value>工作明细内容</value>
+  </data>
+  <data name="KnowledgeTypeName" xml:space="preserve">
+    <value>知识类型</value>
+  </data>
+  <data name="C4Assignment" xml:space="preserve">
+    <value>指派/个</value>
+  </data>
+  <data name="C4BideDays" xml:space="preserve">
+    <value>等待/天</value>
+  </data>
+  <data name="C4Days" xml:space="preserve">
+    <value>总耗时/天</value>
+  </data>
+  <data name="C4InspectDays" xml:space="preserve">
+    <value>检验/天</value>
+  </data>
+  <data name="C4Items" xml:space="preserve">
+    <value>需要确认/项</value>
+  </data>
+  <data name="C4ItemsConfirmed" xml:space="preserve">
+    <value>文员确认/项</value>
+  </data>
+  <data name="C4ItemsInspected" xml:space="preserve">
+    <value>检验确认/项</value>
+  </data>
+  <data name="C4JournalSendRecords" xml:space="preserve">
+    <value>发送日报/份</value>
+  </data>
+  <data name="C4JournalSendRecordsQualified" xml:space="preserve">
+    <value>合格数/份</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>委托人</value>
+  </data>
+  <data name="Count4Leaves" xml:space="preserve">
+    <value>请假/次</value>
+  </data>
+  <data name="InspectionEstimatedTime" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="Sum4BideDays" xml:space="preserve">
+    <value>等待/天</value>
+  </data>
+  <data name="Sum4C4JournalSendRecords" xml:space="preserve">
+    <value>发送日报/份</value>
+  </data>
+  <data name="Sum4C4JournalSendRecordsQualified" xml:space="preserve">
+    <value>合格数/份</value>
+  </data>
+  <data name="Sum4Days" xml:space="preserve">
+    <value>总耗时/天</value>
+  </data>
+  <data name="Sum4Expenses" xml:space="preserve">
+    <value>费用</value>
+  </data>
+  <data name="Sum4InspectDays" xml:space="preserve">
+    <value>检验/天</value>
+  </data>
+  <data name="Sum4Items" xml:space="preserve">
+    <value>需要检验/项</value>
+  </data>
+  <data name="Sum4ItemsConfirmed" xml:space="preserve">
+    <value>文员确认/项</value>
+  </data>
+  <data name="Sum4ItemsInspected" xml:space="preserve">
+    <value>检验确认/项</value>
+  </data>
+  <data name="Sum4LeaveDays" xml:space="preserve">
+    <value>请假/天</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="SysRoleIds" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>关键字</value>
+  </data>
+  <data name="Sum4AnnualLeaveDays" xml:space="preserve">
+    <value>年假/天</value>
+  </data>
+  <data name="CompanyAbbreviation" xml:space="preserve">
+    <value>公司简称</value>
+  </data>
+  <data name="CityName" xml:space="preserve">
+    <value>城市名称</value>
+  </data>
+  <data name="UserCreatedBy" xml:space="preserve">
+    <value>创建人</value>
+  </data>
+  <data name="Introducer" xml:space="preserve">
+    <value>介绍人</value>
+  </data>
+  <data name="AreaName" xml:space="preserve">
+    <value>区域名称</value>
+  </data>
+  <data name="IdNumber" xml:space="preserve">
+    <value>身份证号码</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>城市</value>
+  </data>
+  <data name="CityFullName" xml:space="preserve">
+    <value>城市全称</value>
+  </data>
+  <data name="Boby" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="TotalFee" xml:space="preserve">
+    <value>总计</value>
+  </data>
+  <data name="TradeNo" xml:space="preserve">
+    <value>交易编号</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>总数</value>
+  </data>
+  <data name="keyword" xml:space="preserve">
+    <value>关键词</value>
+  </data>
+  <data name="Capital" xml:space="preserve">
+    <value>资金</value>
+  </data>
+  <data name="TradeType" xml:space="preserve">
+    <value>交易类型</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>删除成功</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="LoginViewModel_UserName_Display_Descripttion" xml:space="preserve">
+    <value>用户名 / 手机号</value>
+  </data>
+  <data name="CompanyType" xml:space="preserve">
+    <value>企业性质</value>
+  </data>
+  <data name="CompanyTypeName" xml:space="preserve">
+    <value>企业性质名称</value>
+  </data>
+  <data name="KnowledgeClassName" xml:space="preserve">
+    <value>知识分类名称</value>
+  </data>
+  <data name="CmsCategoryName" xml:space="preserve">
+    <value>栏目名称</value>
+  </data>
+  <data name="Reset2Default" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="Class" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="Label_Description" xml:space="preserve">
+    <value>多个标签以空格分隔</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>公开</value>
+  </data>
+  <data name="Integral" xml:space="preserve">
+    <value>积分</value>
+  </data>
+  <data name="SecurityQuestion" xml:space="preserve">
+    <value>安全问题</value>
+  </data>
+  <data name="AddressLine" xml:space="preserve">
+    <value>详细地址</value>
+  </data>
+  <data name="Brief" xml:space="preserve">
+    <value>简介</value>
+  </data>
+  <data name="Brief_Description" xml:space="preserve">
+    <value>300字以内的自我描述，让人们更了解您</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="UserPointRestrictionValue_Description" xml:space="preserve">
+    <value>积分限制值，对应操作类型中的n</value>
+  </data>
+  <data name="UserPointRestrictionValue" xml:space="preserve">
+    <value>积分限制值</value>
+  </data>
+  <data name="PointValue" xml:space="preserve">
+    <value>积分点数</value>
+  </data>
+  <data name="Description4Rights" xml:space="preserve">
+    <value>等级特权描述</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>等级</value>
+  </data>
+  <data name="MaxPoints" xml:space="preserve">
+    <value>积分上限</value>
+  </data>
+  <data name="MinPoints" xml:space="preserve">
+    <value>积分下限</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Phone4Bank" xml:space="preserve">
+    <value>银行预留手机号</value>
+  </data>
+  <data name="desc_Phone4Bank" xml:space="preserve">
+    <value>银行预留手机号</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>资金出入银行</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>银行名称</value>
+  </data>
+  <data name="PostReporttext" xml:space="preserve">
+    <value>举报原因</value>
+  </data>
+  <data name="Ferquency" xml:space="preserve">
+    <value>频率</value>
+  </data>
+  <data name="Word" xml:space="preserve">
+    <value>单词</value>
+  </data>
+  <data name="Desc4OrganizationCode" xml:space="preserve">
+    <value>三证合一企业请填写统一社会信用代码</value>
+  </data>
+  <data name="Desc4RegistIdNumber" xml:space="preserve">
+    <value>三证合一企业请填写统一社会信用代码</value>
+  </data>
+  <data name="OrganizationCode" xml:space="preserve">
+    <value>组织机构代码</value>
+  </data>
+  <data name="RegistIdNumber" xml:space="preserve">
+    <value>营业执照注册号</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>审核</value>
+  </data>
+  <data name="Recommend" xml:space="preserve">
+    <value>推荐</value>
+  </data>
+  <data name="Amount4Certification" xml:space="preserve">
+    <value>验证金额</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>银行卡号或账号</value>
+  </data>
+  <data name="PostContent" xml:space="preserve">
+    <value>主题帖内容</value>
+  </data>
+  <data name="ReplyContent" xml:space="preserve">
+    <value>回复内容</value>
+  </data>
+  <data name="replyuser" xml:space="preserve">
+    <value>回复人</value>
+  </data>
+  <data name="ReportState" xml:space="preserve">
+    <value>处理状态</value>
+  </data>
+  <data name="reportuser" xml:space="preserve">
+    <value>举报人</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>基本信息</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>简介</value>
+  </data>
+  <data name="Pic" xml:space="preserve">
+    <value>实物照片</value>
+  </data>
+  <data name="AuditDateTime" xml:space="preserve">
+    <value>审核时间</value>
+  </data>
+  <data name="AuditState" xml:space="preserve">
+    <value>审核状态</value>
+  </data>
+  <data name="AuditUser" xml:space="preserve">
+    <value>审核人</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>版块</value>
+  </data>
+  <data name="Digest" xml:space="preserve">
+    <value>精品</value>
+  </data>
+  <data name="PostTitle" xml:space="preserve">
+    <value>帖子主题</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>置顶</value>
+  </data>
+  <data name="IsNeedToAudit" xml:space="preserve">
+    <value>需要审核</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>付款方式</value>
+  </data>
+  <data name="ReportItem" xml:space="preserve">
+    <value>举报类别</value>
+  </data>
+  <data name="AuditUserId" xml:space="preserve">
+    <value>审核人</value>
+  </data>
+  <data name="ForumPostId" xml:space="preserve">
+    <value>主题帖Id</value>
+  </data>
+  <data name="PostReplyId" xml:space="preserve">
+    <value>回复贴Id</value>
+  </data>
+  <data name="BroadCastBodyType" xml:space="preserve">
+    <value>消息格式</value>
+  </data>
+  <data name="BroadCastTypeName" xml:space="preserve">
+    <value>类型名称</value>
+  </data>
+  <data name="CategoryDescription" xml:space="preserve">
+    <value>版块简介</value>
+  </data>
+  <data name="PictureCheckApplicationDateTime" xml:space="preserve">
+    <value>审核申请时间</value>
+  </data>
+  <data name="PictureCheckDateTime" xml:space="preserve">
+    <value>审核时间</value>
+  </data>
+  <data name="PictureCheckStatus" xml:space="preserve">
+    <value>审核状态</value>
+  </data>
+  <data name="Units" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>单价</value>
+  </data>
+  <data name="Inventory" xml:space="preserve">
+    <value>库存量</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>单价</value>
+  </data>
+  <data name="UnitCashPrice" xml:space="preserve">
+    <value>单价</value>
+  </data>
+  <data name="UnitIntegralPrice" xml:space="preserve">
+    <value>积分</value>
+  </data>
+  <data name="ProductContent" xml:space="preserve">
+    <value>商品描述</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>商品名称</value>
+  </data>
+  <data name="UserUpdatedBy" xml:space="preserve">
+    <value>更新人</value>
+  </data>
+  <data name="ProductReleaseDate" xml:space="preserve">
+    <value>商品上架日期</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>草稿</value>
+  </data>
+  <data name="Specification" xml:space="preserve">
+    <value>规格参数</value>
+  </data>
+  <data name="ProductInventorys" xml:space="preserve">
+    <value>商品库存</value>
+  </data>
+  <data name="ClassName" xml:space="preserve">
+    <value>分类名称</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>分组名称</value>
+  </data>
+  <data name="ReplyType" xml:space="preserve">
+    <value>回复类型</value>
+  </data>
+  <data name="AnswerContent" xml:space="preserve">
+    <value>回答内容</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>问题</value>
+  </data>
+  <data name="QuestionCategory" xml:space="preserve">
+    <value>问题分类</value>
+  </data>
+  <data name="CategoryLogo" xml:space="preserve">
+    <value>版块图标</value>
+  </data>
+  <data name="RecommendDate" xml:space="preserve">
+    <value>推荐时间</value>
+  </data>
+  <data name="PostType" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="WendaCategoryDescription" xml:space="preserve">
+    <value>类别简介</value>
+  </data>
+  <data name="WendaCategoryLogo" xml:space="preserve">
+    <value>类别图标</value>
+  </data>
+  <data name="Abstract" xml:space="preserve">
+    <value>摘要</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>分类</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>来自</value>
+  </data>
+  <data name="HyperLink" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="Is_Home" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="Is_Top" xml:space="preserve">
+    <value>置顶</value>
+  </data>
+  <data name="Labels" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="TitleImageUrl" xml:space="preserve">
+    <value>标题图地址</value>
+  </data>
+  <data name="VideoUrl" xml:space="preserve">
+    <value>视频地址</value>
+  </data>
+  <data name="ProductClassName" xml:space="preserve">
+    <value>商品分类名称</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="ProductClass" xml:space="preserve">
+    <value>商品分类</value>
+  </data>
+  <data name="ProductClassId" xml:space="preserve">
+    <value>商品分类</value>
+  </data>
+  <data name="UnitPrice_Description" xml:space="preserve">
+    <value>单价为0表示价格面议</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="BankAccount" xml:space="preserve">
+    <value>资金出入银行账号</value>
+  </data>
+  <data name="BusinessLicenseCode" xml:space="preserve">
+    <value>营业执照代码</value>
+  </data>
+  <data name="BusinessScope" xml:space="preserve">
+    <value>经营业务范围</value>
+  </data>
+  <data name="DetailedAddress" xml:space="preserve">
+    <value>详细地址</value>
+  </data>
+  <data name="DocumentNumber" xml:space="preserve">
+    <value>证件号码</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>证件类型</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>传真</value>
+  </data>
+  <data name="FinancialRegulators" xml:space="preserve">
+    <value>资金监管机构（银行）</value>
+  </data>
+  <data name="LegalDocumentNumber" xml:space="preserve">
+    <value>法人证件号码</value>
+  </data>
+  <data name="LegalDocumentType" xml:space="preserve">
+    <value>法人证件类型</value>
+  </data>
+  <data name="LegalRepresentative" xml:space="preserve">
+    <value>法定代表人</value>
+  </data>
+  <data name="NatureOfTheEnterprise" xml:space="preserve">
+    <value>企业性质</value>
+  </data>
+  <data name="RegisteredCapital" xml:space="preserve">
+    <value>注册资金（万元）</value>
+  </data>
+  <data name="ServiceCode" xml:space="preserve">
+    <value>服务机构代码</value>
+  </data>
+  <data name="SpecifiedBusiness" xml:space="preserve">
+    <value>指定业务人</value>
+  </data>
+  <data name="TaxRegistrationNumber" xml:space="preserve">
+    <value>税务登记号</value>
+  </data>
+  <data name="Tel" xml:space="preserve">
+    <value>联系电话</value>
+  </data>
+  <data name="ProductClassParameters" xml:space="preserve">
+    <value>商品参数</value>
+  </data>
+  <data name="ClosingDate" xml:space="preserve">
+    <value>截止日期</value>
+  </data>
+  <data name="ProductAddress" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="TeadeModel" xml:space="preserve">
+    <value>交易方式</value>
+    <comment>期货/现货</comment>
+  </data>
+  <data name="TransportationMethod" xml:space="preserve">
+    <value>运输方式</value>
+  </data>
+  <data name="EnableDate" xml:space="preserve">
+    <value>启用日期</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>费率</value>
+  </data>
+  <data name="UserType" xml:space="preserve">
+    <value>用户类型</value>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>发布日期</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="Consignee" xml:space="preserve">
+    <value>收货人</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="IncreaseRange" xml:space="preserve">
+    <value>加价幅度</value>
+  </data>
+  <data name="StartingPrice" xml:space="preserve">
+    <value>起拍价格</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="OrderId" xml:space="preserve">
+    <value>订单编号</value>
+  </data>
+  <data name="OrderType" xml:space="preserve">
+    <value>订单类型</value>
+    <comment>零售 竞拍</comment>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>百分比</value>
+  </data>
+  <data name="OrderState" xml:space="preserve">
+    <value>订单状态</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>总计</value>
+  </data>
+  <data name="ToVoid" xml:space="preserve">
+    <value>作废</value>
+  </data>
+  <data name="ConfirmPassword_Required" xml:space="preserve">
+    <value>请输入确认密码</value>
+  </data>
+  <data name="ProductAddress_Description" xml:space="preserve">
+    <value>请填写详细地址</value>
+  </data>
+  <data name="LogisticsService" xml:space="preserve">
+    <value>物流服务</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>手续费</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="AuctionBondState" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="AuctiontUser" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Bond" xml:space="preserve">
+    <value>保证金</value>
+  </data>
+  <data name="AuctionDate" xml:space="preserve">
+    <value>竞拍日期</value>
+  </data>
+  <data name="AuctionTime" xml:space="preserve">
+    <value>竞拍时间</value>
+  </data>
+  <data name="ProductId" xml:space="preserve">
+    <value>商品编号</value>
+  </data>
+  <data name="AuctionId" xml:space="preserve">
+    <value>竞拍编号</value>
+  </data>
+  <data name="ArbitrationState" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="RefundInstruction" xml:space="preserve">
+    <value>退款说明</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="RefundPrice" xml:space="preserve">
+    <value>退款金额</value>
+  </data>
+  <data name="RefundVoucher" xml:space="preserve">
+    <value>退款凭证</value>
+  </data>
+  <data name="SellerConfirmation" xml:space="preserve">
+    <value>卖家确认</value>
+  </data>
+  <data name="ArbitrationType" xml:space="preserve">
+    <value>仲裁类型</value>
+  </data>
+  <data name="Refundreason" xml:space="preserve">
+    <value>退款原因</value>
+  </data>
+  <data name="CargoStatu" xml:space="preserve">
+    <value>货物状态</value>
+  </data>
+  <data name="CargoState" xml:space="preserve">
+    <value>货物状态</value>
+  </data>
+  <data name="CustomerConfirmation" xml:space="preserve">
+    <value>客户确认</value>
+  </data>
+  <data name="Freight" xml:space="preserve">
+    <value>运费</value>
+  </data>
+  <data name="EndPlace" xml:space="preserve">
+    <value>卸货点</value>
+  </data>
+  <data name="StartPlace" xml:space="preserve">
+    <value>装货点</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="ProductContent_Description" xml:space="preserve">
+    <value>商品描述不能少于20个字</value>
+  </data>
+  <data name="AttorneyPic" xml:space="preserve">
+    <value>授权委托书</value>
+  </data>
+  <data name="BusinessLicensePic" xml:space="preserve">
+    <value>营业执照扫描件</value>
+  </data>
+  <data name="CompanyAccountPic" xml:space="preserve">
+    <value>公司账户信息</value>
+  </data>
+  <data name="SpecifiedBusinessPic" xml:space="preserve">
+    <value>身份证扫描件</value>
+  </data>
+  <data name="ProductCity" xml:space="preserve">
+    <value>城市</value>
+  </data>
+  <data name="PickEndTime" xml:space="preserve">
+    <value>提货结束时间</value>
+  </data>
+  <data name="PickStartTime" xml:space="preserve">
+    <value>提货开始时间</value>
+  </data>
+  <data name="IncreaseRange_Description" xml:space="preserve">
+    <value>加价幅度建议为10的倍数</value>
+  </data>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>缴纳日期</value>
+  </data>
+  <data name="UserRefund" xml:space="preserve">
+    <value>用户申请退还</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="CommodityQuality" xml:space="preserve">
+    <value>商品质量</value>
+  </data>
+  <data name="ServiceAttitude" xml:space="preserve">
+    <value>服务态度</value>
+  </data>
+  <data name="UnitPrice1" xml:space="preserve">
+    <value>单价（含税价）</value>
+  </data>
+  <data name="CarBehindPhoto" xml:space="preserve">
+    <value>车后照片</value>
+  </data>
+  <data name="CarFrontPhoto" xml:space="preserve">
+    <value>车前照片</value>
+  </data>
+  <data name="CarSidePhoto" xml:space="preserve">
+    <value>车侧面照片</value>
+  </data>
+  <data name="DrivingLicensePhoto" xml:space="preserve">
+    <value>驾驶证+行驶证照片</value>
+  </data>
+  <data name="PoundSinglePhoto" xml:space="preserve">
+    <value>磅单照片</value>
+  </data>
+  <data name="Evaluate" xml:space="preserve">
+    <value>评价</value>
+  </data>
+  <data name="ActualQuantity" xml:space="preserve">
+    <value>实际发货数量（吨）</value>
+  </data>
+  <data name="OtherExpenses" xml:space="preserve">
+    <value>其他费用（元）</value>
+  </data>
+  <data name="BuyerContract" xml:space="preserve">
+    <value>买方合同</value>
+  </data>
+  <data name="SellerContract" xml:space="preserve">
+    <value>卖方合同</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>合同</value>
+  </data>
+  <data name="ExpiryDate" xml:space="preserve">
+    <value>有效期至</value>
+  </data>
+  <data name="PayUser" xml:space="preserve">
+    <value>付款用户</value>
+  </data>
+  <data name="CapitalType" xml:space="preserve">
+    <value>资费类型</value>
+  </data>
+  <data name="CollectionTime" xml:space="preserve">
+    <value>收款时间</value>
+  </data>
+  <data name="ErrorMessageResourceNameNotFound" xml:space="preserve">
+    <value>请检查 {0}</value>
+  </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>{0}长度不能超过{1}</value>
+  </data>
+  <data name="MinLength" xml:space="preserve">
+    <value>{0}长度不能小于{1}</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>请填写 {0}</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="DateOfCollection" xml:space="preserve">
+    <value>收款日期</value>
+  </data>
+  <data name="BuyerContacts" xml:space="preserve">
+    <value>买家联系人</value>
+  </data>
+  <data name="BuyerEnterpriseName" xml:space="preserve">
+    <value>买家企业名称</value>
+  </data>
+  <data name="BuyerPhone" xml:space="preserve">
+    <value>买家电话</value>
+  </data>
+  <data name="BuyerUserName" xml:space="preserve">
+    <value>买家用户名</value>
+  </data>
+  <data name="SellerContacts" xml:space="preserve">
+    <value>卖家联系人</value>
+  </data>
+  <data name="SellerEnterpriseName" xml:space="preserve">
+    <value>卖家企业名称</value>
+  </data>
+  <data name="SellerPhone" xml:space="preserve">
+    <value>卖家电话</value>
+  </data>
+  <data name="SellerUserName" xml:space="preserve">
+    <value>卖家用户名</value>
+  </data>
+  <data name="PleaseUploadPDF" xml:space="preserve">
+    <value>请上传PDF文件</value>
+  </data>
+  <data name="ProductOldName" xml:space="preserve">
+    <value>商品原名称</value>
+  </data>
+  <data name="BuyerDeleted" xml:space="preserve">
+    <value>买家删除</value>
+  </data>
+  <data name="SellerDeleted" xml:space="preserve">
+    <value>卖家删除</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>原密码</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>部门</value>
+  </data>
+  <data name="AnotherName" xml:space="preserve">
+    <value>设备别名</value>
+  </data>
+  <data name="BuyproductDateTime" xml:space="preserve">
+    <value>购进时间</value>
+  </data>
+  <data name="DeviceOldWorth" xml:space="preserve">
+    <value>设备原值</value>
+  </data>
+  <data name="DeviceWorth" xml:space="preserve">
+    <value>设备净值</value>
+  </data>
+  <data name="FitProcess" xml:space="preserve">
+    <value>适用工序</value>
+  </data>
+  <data name="Manufacturer" xml:space="preserve">
+    <value>生产厂家</value>
+  </data>
+  <data name="OutfactureDateTime" xml:space="preserve">
+    <value>出厂日期</value>
+  </data>
+  <data name="UseDepartment" xml:space="preserve">
+    <value>使用部门</value>
+  </data>
+  <data name="UseYear" xml:space="preserve">
+    <value>使用年限</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>物料</value>
+  </data>
+  <data name="MaterialType" xml:space="preserve">
+    <value>物料类型</value>
+  </data>
+  <data name="MaterialStoreRoom" xml:space="preserve">
+    <value>物料库房</value>
+  </data>
+  <data name="DeviceTypeId" xml:space="preserve">
+    <value>设备类别</value>
+  </data>
+  <data name="SysAction" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="SysController" xml:space="preserve">
+    <value>控制器</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="DistrictionName" xml:space="preserve">
+    <value>地区名称</value>
+  </data>
+  <data name="Distriction_Name_Description" xml:space="preserve">
+    <value>地区名称</value>
+  </data>
+  <data name="DeviceProcess" xml:space="preserve">
+    <value>适用工序</value>
+  </data>
+  <data name="BusinessClass" xml:space="preserve">
+    <value>业务类别</value>
+  </data>
+  <data name="ClientCharacter" xml:space="preserve">
+    <value>客户性质</value>
+  </data>
+  <data name="ClientScale" xml:space="preserve">
+    <value>客户规模</value>
+  </data>
+  <data name="BillType" xml:space="preserve">
+    <value>发票类型</value>
+  </data>
+  <data name="ClientSource" xml:space="preserve">
+    <value>客户来源</value>
+  </data>
+  <data name="ClientType" xml:space="preserve">
+    <value>客户类型</value>
+  </data>
+  <data name="EmployeeType" xml:space="preserve">
+    <value>员工类型</value>
+  </data>
+  <data name="ExpendKind" xml:space="preserve">
+    <value>支出种类</value>
+  </data>
+  <data name="IncomeKind" xml:space="preserve">
+    <value>收入种类</value>
+  </data>
+  <data name="IntoStoreroomClass" xml:space="preserve">
+    <value>入库类别</value>
+  </data>
+  <data name="LaborForm" xml:space="preserve">
+    <value>用工形式</value>
+  </data>
+  <data name="MachineCode" xml:space="preserve">
+    <value>机台编码</value>
+  </data>
+  <data name="MaterialClass" xml:space="preserve">
+    <value>物料类别</value>
+  </data>
+  <data name="MaterialKind" xml:space="preserve">
+    <value>物料种类</value>
+  </data>
+  <data name="MaterialUnit" xml:space="preserve">
+    <value>物料单位</value>
+  </data>
+  <data name="OpenNumber" xml:space="preserve">
+    <value>产品开数</value>
+  </data>
+  <data name="OrderSource" xml:space="preserve">
+    <value>订单来源</value>
+  </data>
+  <data name="PaymentWay" xml:space="preserve">
+    <value>付款方式</value>
+  </data>
+  <data name="PositionCode" xml:space="preserve">
+    <value>职务编码</value>
+  </data>
+  <data name="PrintKind" xml:space="preserve">
+    <value>印品种类</value>
+  </data>
+  <data name="ProjectCost" xml:space="preserve">
+    <value>费用项目</value>
+  </data>
+  <data name="ReceivableDay" xml:space="preserve">
+    <value>回款账期</value>
+  </data>
+  <data name="SendWay" xml:space="preserve">
+    <value>送货方式</value>
+  </data>
+  <data name="WorkshopCode" xml:space="preserve">
+    <value>车间编码</value>
+  </data>
+  <data name="DistrictionName_Des" xml:space="preserve">
+    <value>请输入地区名称</value>
+  </data>
+  <data name="AfterPrintRequirement" xml:space="preserve">
+    <value>印后要求</value>
+  </data>
+  <data name="BindingStyle" xml:space="preserve">
+    <value>装订方式</value>
+  </data>
+  <data name="CustomerProperty" xml:space="preserve">
+    <value>客户财产</value>
+  </data>
+  <data name="CustomerProvide" xml:space="preserve">
+    <value>客户提供</value>
+  </data>
+  <data name="DesignRequirement" xml:space="preserve">
+    <value>设计制作要求</value>
+  </data>
+  <data name="EditionType" xml:space="preserve">
+    <value>版别</value>
+  </data>
+  <data name="InStorageType" xml:space="preserve">
+    <value>入库类型</value>
+  </data>
+  <data name="OutsourcingProject" xml:space="preserve">
+    <value>外协项目</value>
+  </data>
+  <data name="OutsourcingStatus" xml:space="preserve">
+    <value>外协状态</value>
+  </data>
+  <data name="OutsourcingTrack" xml:space="preserve">
+    <value>外协跟踪</value>
+  </data>
+  <data name="OutStorageType" xml:space="preserve">
+    <value>出库类型</value>
+  </data>
+  <data name="PackingRequirement" xml:space="preserve">
+    <value>送货包装要求</value>
+  </data>
+  <data name="PinshaiRequirement" xml:space="preserve">
+    <value>拼晒要求</value>
+  </data>
+  <data name="PrintDescription" xml:space="preserve">
+    <value>印品说明</value>
+  </data>
+  <data name="PrinterType" xml:space="preserve">
+    <value>印机类型</value>
+  </data>
+  <data name="PrintRequirement" xml:space="preserve">
+    <value>印刷要求</value>
+  </data>
+  <data name="ProductionType" xml:space="preserve">
+    <value>生产类型</value>
+  </data>
+  <data name="QualityRequirement" xml:space="preserve">
+    <value>质检要求</value>
+  </data>
+  <data name="TypeOfWorkCategory" xml:space="preserve">
+    <value>工种类别</value>
+  </data>
+  <data name="DeviceProcessCode" xml:space="preserve">
+    <value>工序编码</value>
+  </data>
+  <data name="DeviceProcessName" xml:space="preserve">
+    <value>工序名称</value>
+  </data>
+  <data name="TypeOfWorkCode" xml:space="preserve">
+    <value>工种编码</value>
+  </data>
+  <data name="TypeOfWorkName" xml:space="preserve">
+    <value>工种名称</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="StorageHouse" xml:space="preserve">
+    <value>库房</value>
+  </data>
+  <data name="StorageHouse_Desc" xml:space="preserve">
+    <value>请选择库房</value>
+  </data>
+  <data name="StorageLocationName" xml:space="preserve">
+    <value>库位名称</value>
+  </data>
+  <data name="StorageLocationName_Desc" xml:space="preserve">
+    <value>请输入库位名称</value>
+  </data>
+  <data name="StorageHouseName" xml:space="preserve">
+    <value>库房名称</value>
+  </data>
+  <data name="StorageHouseName_Desc" xml:space="preserve">
+    <value>请输入库房名称</value>
+  </data>
+  <data name="MaterialFile" xml:space="preserve">
+    <value>材料档案</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="OffNumber" xml:space="preserve">
+    <value>场外编号</value>
+  </data>
+  <data name="Batch" xml:space="preserve">
+    <value>批次</value>
+  </data>
+  <data name="ExpirationDate" xml:space="preserve">
+    <value>保质期至</value>
+  </data>
+  <data name="Lengthmm" xml:space="preserve">
+    <value>长度(mm)</value>
+  </data>
+  <data name="MaterialModel" xml:space="preserve">
+    <value>物料型号</value>
+  </data>
+  <data name="MaxInventory" xml:space="preserve">
+    <value>最高库存</value>
+  </data>
+  <data name="MinInventory" xml:space="preserve">
+    <value>最低库存</value>
+  </data>
+  <data name="ProductionDate" xml:space="preserve">
+    <value>生产日期</value>
+  </data>
+  <data name="Quotationton" xml:space="preserve">
+    <value>报价(吨)</value>
+  </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>规格</value>
+  </data>
+  <data name="Widthmm" xml:space="preserve">
+    <value>宽度(mm)</value>
+  </data>
+  <data name="DeviceProcessId" xml:space="preserve">
+    <value>适用工序</value>
+  </data>
+  <data name="DevicePic" xml:space="preserve">
+    <value>机器图片</value>
+  </data>
+</root>
