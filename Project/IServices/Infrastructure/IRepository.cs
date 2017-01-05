@@ -42,17 +42,11 @@ namespace IServices.Infrastructure
         T GetById(object id);
 
         /// <summary>
-        /// 获取全部未删除的数据
-        /// </summary>
-        /// <returns></returns>
-        IQueryable<T> GetAll();
-
-        /// <summary>
         /// 获取全部数据
         /// </summary>
         /// <param name="containsDeleted">是否包含已删除数据</param>
         /// <returns></returns>
-        IQueryable<T> GetAll(bool containsDeleted);
+        IQueryable<T> GetAll(bool containsDeleted = false, bool allEnt = false);
 
         IQueryable<T> GetAll(Expression<Func<T, bool>> where);
 

@@ -30,10 +30,7 @@ namespace Services.SysServices
 
         }
 
-        public override IQueryable<UserGradeConfiguration> GetAll()
-        {
-            return base.GetAll().OrderBy(a => a.Level);
-        }
+     
     }
 
 
@@ -44,11 +41,7 @@ namespace Services.SysServices
         {
 
         }
-
-        public override IQueryable<UserPointSetting> GetAll()
-        {
-            return base.GetAll().OrderBy(a => a.SystemId);
-        }
+      
 
         public UserPointSetting GetBySystemId(string systemId)
         {

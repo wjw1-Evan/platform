@@ -23,10 +23,5 @@ namespace Services.SysServices
         }
         
 
-        public override IQueryable<SysConfigurationSetting> GetAll()
-        {
-            return base.GetAll().OrderBy(a => a.SystemCode);
-        }
-
     }
 }

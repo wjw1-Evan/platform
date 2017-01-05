@@ -47,8 +47,37 @@ namespace Services.Infrastructure
                 ienterprise.EnterpriseId = _userInfo.EnterpriseId;
                 entity = ienterprise as T;
             }
-
             _dbset.Add(entity);
+        }
+
+        /// <summary>
+        /// 获取自动编码
+        /// </summary>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="prefix">编码前缀</param>
+        /// <param name="c4DateCode">保留日期位数,默认6位 yyMMdd 4位yyMM 2位yy 0位 无</param>
+        /// <param name="c4Padleft">自动补全位数,默认4位</param>
+        /// <returns></returns>
+        public virtual string GetRecordNo(string fieldName, string prefix, int c4DateCode = 6, int c4Padleft = 4)
+        {
+            string recordNo = "";
+            var model = GetAll(true);
+            if (!string.IsNullOrEmpty(prefix))
+                recordNo = prefix;//可支持无“-”分隔的前缀
+            if (c4DateCode > 0)
+                recordNo = recordNo + DateTimeLocal.Now.Date.ToString("yyMMdd").Substring(0, c4DateCode);
+            if (!string.IsNullOrEmpty(fieldName) && typeof(T).GetProperties().Any(a => a.Name == fieldName))
+            {
+                var param = Expression.Parameter(typeof(T), "c");
+                Expression left = Expression.Property(param, fieldName);
+                Expression right = Expression.Constant(recordNo);
+                var startsWith = Expression.Call(left, typeof(string).GetMethod("StartsWith", new[] { typeof(string) }), new[] { right });
+
+                var end = Expression.Lambda<Func<T, bool>>(startsWith, param);
+
+                model = model.Where(end);
+            }
+            return recordNo + (model.Count() + 1).ToString().PadLeft(c4Padleft, '0');
         }
 
         /// <summary>
@@ -80,7 +109,7 @@ namespace Services.Infrastructure
             {
                 var databaseValues = _dataContext.Entry(ienterprise).GetDatabaseValues();
 
-                var entId  = databaseValues.GetValue<string>("EnterpriseId");
+                var entId = databaseValues.GetValue<string>("EnterpriseId");
 
                 if (!string.IsNullOrEmpty(entId))
                 {
@@ -123,10 +152,10 @@ namespace Services.Infrastructure
         /// </summary>
         /// <param name="id"></param>
         /// <param name="remove">物理删除标记 默认false</param>
-        public virtual void Delete(object id,bool remove=false)
+        public virtual void Delete(object id, bool remove = false)
         {
             var item = GetById(id);
-            Delete(item,remove);
+            Delete(item, remove);
         }
 
         /// <summary>
@@ -134,7 +163,7 @@ namespace Services.Infrastructure
         /// </summary>
         /// <param name="item"></param>
         /// <param name="remove">物理删除标记 默认false</param>
-        public virtual void Delete(T item,bool remove=false)
+        public virtual void Delete(T item, bool remove = false)
         {
 
             var dbSetBase = item as IDbSetBase;
@@ -149,17 +178,6 @@ namespace Services.Infrastructure
                     _dbset.Remove(item);
             }
 
-            //if (dbSetBase != null && (iEnterprise?.EnterpriseId == _userInfo.EnterpriseId || iEnterprise == null))
-            //{
-            //    //标记删除
-            //    dbSetBase.Deleted = true;
-            //}
-
-            //else if (dbSetBase == null && (iEnterprise?.EnterpriseId == _userInfo.EnterpriseId || iEnterprise == null))
-            //{
-            //    //没有 Delete字段的 物理删除
-            //    _dbset.Remove(item);
-            //}
         }
 
         /// <summary>
@@ -167,11 +185,11 @@ namespace Services.Infrastructure
         /// </summary>
         /// <param name="where"></param>
         /// <param name="remove">物理删除标记 默认false</param>
-        public virtual void Delete(Expression<Func<T, bool>> where,bool remove=false)
+        public virtual void Delete(Expression<Func<T, bool>> where, bool remove = false)
         {
             foreach (var item in GetAll(where))
             {
-                Delete(item,remove);
+                Delete(item, remove);
             }
         }
 
@@ -186,7 +204,7 @@ namespace Services.Infrastructure
 
             var iEnterprise = item as IEnterprise;
 
-            if (iEnterprise!=null &&  iEnterprise.EnterpriseId != _userInfo.EnterpriseId) return null;
+            if (iEnterprise != null && iEnterprise.EnterpriseId != _userInfo.EnterpriseId) return null;
 
             return item;
         }
@@ -205,48 +223,25 @@ namespace Services.Infrastructure
         /// <summary>
         ///     获取用户所在企业数据
         /// </summary>
-        /// <returns></returns>
-        public virtual IQueryable<T> GetAll()
-        {
-            return GetAll(false);
-        }
-
-        /// <summary>
-        ///     获取用户所在企业数据
-        /// </summary>
         /// <param name="containsDeleted">包含已删除数据</param>
+        /// <param name="allEnt"></param>
         /// <returns></returns>
-        public virtual IQueryable<T> GetAll(bool containsDeleted)
+        public virtual IQueryable<T> GetAll(bool containsDeleted = false, bool allEnt = false)
         {
             var model = _dbset as IQueryable<T>;
-            
-            if (typeof(IEnterprise).IsAssignableFrom(typeof(T)))
+
+            if (!allEnt && typeof(IEnterprise).IsAssignableFrom(typeof(T)))
             {
-                var param = Expression.Parameter(typeof(T), "c");
-                Expression deleteleft = Expression.Property(param, "EnterpriseId");
-                Expression deleteright = Expression.Constant(_userInfo.EnterpriseId);
-                Expression deletefilter = Expression.Equal(deleteleft, deleteright);
-
-                var deleteend = Expression.Lambda<Func<T, bool>>(deletefilter, param);
-
-                model = model.Where(deleteend);
+                model = model.Where("EnterpriseId=\"" + _userInfo.EnterpriseId + "\"");
             }
 
             if (typeof(IDbSetBase).IsAssignableFrom(typeof(T)))
             {
-                var param = Expression.Parameter(typeof(T), "c");
-
                 if (!containsDeleted)
                 {
-                    Expression deleteleft = Expression.Property(param, "Deleted");
-                    Expression deleteright = Expression.Constant(false);
-                    Expression deletefilter = Expression.Equal(deleteleft, deleteright);
-
-                    var deleteend = Expression.Lambda<Func<T, bool>>(deletefilter, param);
-
-                    model = model.Where(deleteend);
+                    model = model.Where("Deleted=false");
                 }
-                
+
                 model = model.OrderBy("CreatedDate desc");
             }
 
@@ -254,7 +249,6 @@ namespace Services.Infrastructure
             {
                 model = model.OrderBy("SystemId");
             }
-      
 
             return model;
         }

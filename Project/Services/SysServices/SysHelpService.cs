@@ -12,9 +12,6 @@ namespace Services.SysServices
         {
         }
 
-        public override IQueryable<SysHelp> GetAll()
-        {
-            return base.GetAll().OrderBy(a => a.Sort).ThenByDescending(a=>a.CreatedDate);
-        }
+     
     }
 }
