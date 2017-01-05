@@ -50,35 +50,6 @@ namespace Services.Infrastructure
             _dbset.Add(entity);
         }
 
-        /// <summary>
-        /// 获取自动编码
-        /// </summary>
-        /// <param name="fieldName">字段名</param>
-        /// <param name="prefix">编码前缀</param>
-        /// <param name="c4DateCode">保留日期位数,默认6位 yyMMdd 4位yyMM 2位yy 0位 无</param>
-        /// <param name="c4Padleft">自动补全位数,默认4位</param>
-        /// <returns></returns>
-        public virtual string GetRecordNo(string fieldName, string prefix, int c4DateCode = 6, int c4Padleft = 4)
-        {
-            string recordNo = "";
-            var model = GetAll(true);
-            if (!string.IsNullOrEmpty(prefix))
-                recordNo = prefix;//可支持无“-”分隔的前缀
-            if (c4DateCode > 0)
-                recordNo = recordNo + DateTimeLocal.Now.Date.ToString("yyMMdd").Substring(0, c4DateCode);
-            if (!string.IsNullOrEmpty(fieldName) && typeof(T).GetProperties().Any(a => a.Name == fieldName))
-            {
-                var param = Expression.Parameter(typeof(T), "c");
-                Expression left = Expression.Property(param, fieldName);
-                Expression right = Expression.Constant(recordNo);
-                var startsWith = Expression.Call(left, typeof(string).GetMethod("StartsWith", new[] { typeof(string) }), new[] { right });
-
-                var end = Expression.Lambda<Func<T, bool>>(startsWith, param);
-
-                model = model.Where(end);
-            }
-            return recordNo + (model.Count() + 1).ToString().PadLeft(c4Padleft, '0');
-        }
 
         /// <summary>
         ///     更新
