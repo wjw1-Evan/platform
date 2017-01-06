@@ -335,6 +335,7 @@
     <Compile Include="Areas\Platform\Models\SysWordDictModel.cs" />
     <Compile Include="Areas\Platform\PlatformAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1001,7 +1002,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
- 
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
