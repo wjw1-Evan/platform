@@ -13,7 +13,8 @@ namespace Web
 
             bundles.Add(new StyleBundle("~/bundles/site").Include(
                     "~/Content/*.css",
-                       "~/Content/app/css/app.css"
+                       "~/Content/app/css/app.css",
+                       "~/Content/pace/themes/pace-theme-center-simple.css"
          ));
 
 
@@ -21,6 +22,7 @@ namespace Web
                       "~/Scripts/jquery*",
                         "~/Scripts/bootstrap*",
                           "~/Scripts/bootstrap-rating/bootstrap*",
+                          "~/Scripts/pace.js",
                         "~/Scripts/Chart.js"
 
 

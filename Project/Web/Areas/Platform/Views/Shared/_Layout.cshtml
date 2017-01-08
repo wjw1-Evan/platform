@@ -4,18 +4,18 @@
 
 @section Styles
 {
-@RenderSection("Styles", false)
+    @RenderSection("Styles", false)
     <style>
-        
-.navbar-nav li a {
-    padding-left: 18px; padding-right: 18px
-}
+        .navbar-nav li a {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
     </style>
 }
 
 @section Scripts{
 
-@RenderSection("Scripts", false)
+    @RenderSection("Scripts", false)
 
     <script src="/signalr/hubs"></script>
 
@@ -40,11 +40,12 @@
         $.ajaxSetup({ cache: false });
 
         $(document).ajaxStart(function () {
-            $("#page-loading").show();
+            Pace.restart();
         });
 
         $(document).ajaxStop(function () {
-            $("#page-loading").hide();
+            $('#Main input[type=text]:first').focus();
+            //Pace.stop();
         });
 
         $(document).ajaxError(function (event, request) {
