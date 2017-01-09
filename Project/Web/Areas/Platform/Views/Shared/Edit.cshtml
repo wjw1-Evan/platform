@@ -8,14 +8,19 @@
             {
     @Html.AntiForgeryToken()
 
-    <div class="form-group">
+    <div class="row">
         @Html.Partial("_alerts")
         @Html.Partial("_validationSummary")
     </div>
 
-    @Html.EditorForModel()
+    <div class="row">
+        @Html.EditorForModel()
+    </div>
+    <div class="row">
+        @Html.Partial("Button_Submit")
 
-    @Html.Partial("Button_Submit")
+
+    </div>
 
 }
 
