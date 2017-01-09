@@ -39,7 +39,7 @@
 
                                     <div class="form-group has-success">
                                         <div>
-                                            @Html.EditorFor(mode => mode.UserName, new { placeholder = "用户名或手机号" })
+                                            @Html.EditorFor(mode => mode.UserName, new { placeholder = "用户名" })
                                             @Html.ValidationMessageFor(a => a.UserName)
                                         </div>
                                     </div>
@@ -71,7 +71,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        还没有账户？   @Html.ActionLink("立即注册", "Register")  @Html.ActionLink("忘记密码?", "ForgotPassword")
+                                        还没有账户？   @Html.ActionLink("立即注册", "Register")
 
                                     </div>
 

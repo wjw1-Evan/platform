@@ -71,7 +71,6 @@ namespace Web.Models
         /// 
         /// </summary>
         [Required]
-        [Display(ResourceType = typeof(Lang), Description = "UserName")]
         public string UserName { get; set; }
 
         /// <summary>
