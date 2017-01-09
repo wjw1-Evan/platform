@@ -592,6 +592,7 @@
     <Content Include="Content\Success.png" />
     <Content Include="Content\touxiang.jpg" />
     <Content Include="Content\zTree.theme.metro.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
