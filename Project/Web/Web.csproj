@@ -340,7 +340,6 @@
     <Compile Include="Areas\Platform\Helpers\DeleteSuccessResult.cs" />
     <Compile Include="Areas\Platform\Helpers\EditSuccessResult.cs" />
     <Compile Include="Areas\Platform\Models\SysUserEditModel.cs" />
-    <Compile Include="Areas\Platform\Models\SysWordDictModel.cs" />
     <Compile Include="Areas\Platform\PlatformAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />

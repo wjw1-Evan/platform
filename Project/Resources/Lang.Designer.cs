@@ -2968,6 +2968,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 如不需要修改密码，请保持为空 的本地化字符串。
+        /// </summary>
+        public static string Passwordkeepnull {
+            get {
+                return ResourceManager.GetString("Passwordkeepnull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 缴纳日期 的本地化字符串。
         /// </summary>
         public static string PaymentDate {
