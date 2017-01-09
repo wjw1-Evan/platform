@@ -1,0 +1,88 @@
+﻿@using Models
+@foreach (var prop in ViewData.ModelMetadata.Properties.Where(pm => pm.ShowForDisplay &&  !ViewData.TemplateInfo.Visited(pm)).OrderBy(a => a.Order))
+{
+
+
+    if (prop.DataTypeName == "Html" || prop.DataTypeName == "MultilineText" || prop.IsComplexType)
+    {
+        <div class="col-md-12  col-sm-12">
+            <div class="row">
+                <div class="col-md-1 col-sm-2 text-right">
+                    <label for="@prop.PropertyName">@(prop.IsRequired ? "*" : "") @prop.DisplayName</label>
+                </div>
+                <div class="col-md-10 col-sm-8">
+                    @if (prop.PropertyName == "CreatedBy" || prop.PropertyName == "UpdatedBy")
+                    {
+
+                        var dbsetbase = Model as DbSetBase;
+
+                        if (dbsetbase != null)
+                        {
+                            @(prop.PropertyName == "CreatedBy" ? Html.DisplayFor(a => dbsetbase.UserCreatedBy) : Html.DisplayFor(a => dbsetbase.UserUpdatedBy))
+                        }
+                    }
+                    else
+                    {
+                        @Html.Display(prop.PropertyName)
+                    }
+                </div>
+                <div class="col-md-1 col-sm-2">
+                 
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-6  col-sm-12">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 text-right">
+                    <label  for="@prop.PropertyName">@(prop.IsRequired ? "*" : "") @prop.DisplayName</label>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    @if (prop.PropertyName == "CreatedBy" || prop.PropertyName == "UpdatedBy")
+                    {
+
+                        var dbsetbase = Model as DbSetBase;
+
+                        if (dbsetbase != null)
+                        {
+                            @(prop.PropertyName == "CreatedBy" ? Html.DisplayFor(a => dbsetbase.UserCreatedBy) : Html.DisplayFor(a => dbsetbase.UserUpdatedBy))
+                        }
+                    }
+                    else
+                    {
+                        @Html.Display(prop.PropertyName)
+                    }
+                </div>
+                <div class="col-md-2 col-sm-2">
+                  
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @*<div class="form-group">
+        <label class="col-sm-3 control-label" for="@prop.PropertyName"> @prop.DisplayName</label>
+        <div class="col-sm-6" style="padding: 7px 15px">
+
+
+            @if (prop.PropertyName == "CreatedBy" || prop.PropertyName == "UpdatedBy")
+            {
+
+                var dbsetbase = Model as DbSetBase;
+
+                if (dbsetbase != null)
+                {
+                    @(prop.PropertyName == "CreatedBy" ? Html.DisplayFor(a => dbsetbase.UserCreatedBy) : Html.DisplayFor(a => dbsetbase.UserUpdatedBy))
+                }
+            }
+            else
+            {
+                @Html.Display(prop.PropertyName)
+            }
+        </div>
+    </div>*@
+
+}

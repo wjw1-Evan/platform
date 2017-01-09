@@ -311,7 +311,7 @@ namespace Services.Migrations
             #region 角色定义
             //自动清理不需要的权限设置功能
             var ids4SysControllerSysActions = sysControllerSysActions.Select(a => a.Id).ToList();
-            context.SysRoleSysControllerSysActions.RemoveRange(context.SysRoleSysControllerSysActions.Where(rc => !ids4SysControllerSysActions.Contains(rc.SysControllerSysActionId)).ToList());
+            context.SysRoleSysControllerSysActions.RemoveRange(context.SysRoleSysControllerSysActions.Where(rc => rc.SysControllerSysAction.SysAction.System && !ids4SysControllerSysActions.Contains(rc.SysControllerSysActionId)).ToList());
             //context.Commit(); 实时提交一下是否能解决重复的问题？
             foreach (var ent in sysEnterprises)
             {

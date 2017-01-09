@@ -1006,6 +1006,8 @@
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Areas\Platform\Views\ChangePassword\Index.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\DisplayTemplates\object.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\EditorTemplates\object.cshtml" />
     <None Include="Properties\PublishProfiles\platform-wjw1 - Web Deploy.pubxml" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
@@ -1138,8 +1140,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Readme\" />
-    <Folder Include="Areas\Platform\Views\Shared\DisplayTemplates\" />
-    <Folder Include="Areas\Platform\Views\Shared\EditorTemplates\" />
     <Folder Include="Scripts\ckeditor\skins\moono\images\hidpi\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>

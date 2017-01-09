@@ -1,0 +1,58 @@
+﻿@foreach (var prop in ViewData.ModelMetadata.Properties.Where(pm => pm.ShowForEdit && !pm.IsReadOnly && !ViewData.TemplateInfo.Visited(pm)).OrderBy(a => a.Order))
+{
+    if (prop.TemplateHint == "HiddenInput")
+    {
+        @Html.Hidden(prop.PropertyName)
+    }
+    else
+    {
+        if (prop.DataTypeName == "Html" || prop.DataTypeName == "MultilineText" || prop.IsComplexType)
+        {
+            <div class="col-md-12  col-sm-12">
+                <div class="row">
+                    <div class="col-md-1 col-sm-2 text-right">
+                        <label for="@prop.PropertyName" style="padding-top: 8px;">@(prop.IsRequired ? "*" : "") @prop.DisplayName</label>
+                    </div>
+                    <div class="col-md-10 col-sm-8">
+                        @Html.Editor(prop.PropertyName, !string.IsNullOrEmpty(prop.TemplateHint) ? prop.TemplateHint : prop.DataTypeName, new {prop.PropertyName, placeholder = prop.Description})
+                    </div>
+                    <div class="col-md-1 col-sm-2">
+                        @Html.ValidationMessage(prop.PropertyName)
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6  col-sm-12">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 text-right">
+                        <label for="@prop.PropertyName" style="padding-top: 8px;">@(prop.IsRequired ? "*" : "") @prop.DisplayName</label>
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        @Html.Editor(prop.PropertyName, !string.IsNullOrEmpty(prop.TemplateHint) ? prop.TemplateHint : prop.DataTypeName, new {prop.PropertyName, placeholder = prop.Description})
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        @Html.ValidationMessage(prop.PropertyName)
+                    </div>
+                </div>
+            </div>
+        }
+
+    
+
+
+        @*<div class="form-group">
+            <label class="col-sm-3 control-label" for="@prop.PropertyName">@(prop.IsRequired ? "*" : "") @prop.DisplayName</label>
+            <div class="col-sm-6">
+                @Html.Editor(prop.PropertyName, !string.IsNullOrEmpty(prop.TemplateHint) ? prop.TemplateHint : prop.DataTypeName, new { prop.PropertyName, placeholder = prop.Description })
+                <span class="help-block m-b-none"></span>
+            </div>
+            <div class="col-sm-3" style="padding: 7px 15px">
+                @Html.ValidationMessage(prop.PropertyName)
+            </div>
+        </div>*@
+    }
+}
+
+
