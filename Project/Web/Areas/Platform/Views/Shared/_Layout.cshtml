@@ -45,7 +45,7 @@
 
         $(document).ajaxStop(function () {
             $('#Main input[type=text]:first').focus();
-            //Pace.stop();
+            Pace.stop();
         });
 
         $(document).ajaxError(function (event, request) {

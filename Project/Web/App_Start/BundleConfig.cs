@@ -13,8 +13,8 @@ namespace Web
 
             bundles.Add(new StyleBundle("~/bundles/site").Include(
                     "~/Content/*.css",
-                       "~/Content/app/css/app.css",
-                       "~/Content/pace/themes/pace-theme-corner-indicator.css"
+                       "~/Content/app/css/app.css"
+                       , "~/Content/pace/themes/pace-theme-center-simple.css"
          ));
 
 
