@@ -26,7 +26,7 @@
 
                     @Html.Partial("_validationSummary")
 
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                             @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                         </div>
@@ -50,8 +50,9 @@
                             @Html.EditorFor(mode => mode.ConfirmPassword, new {placeholder = "确认密码"})
                             @Html.ValidationMessageFor(a => a.ConfirmPassword)
                         </div>
-                    </div>
+                    </div>*@
                     
+                    @Html.EditorForModel()
 
                     <div class="form-group">
                         <div class="col-xs-10 col-xs-offset-1   col-md-6 col-md-offset-3">

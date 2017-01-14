@@ -173,7 +173,7 @@ namespace Web.Controllers
                 return View(model);
             }
 
-            var user = new SysUser { UserName = model.UserName, Email = model.UserName + "@" + Request.Url.Host };
+            var user = new SysUser { UserName = model.UserName, Email = model.Email };
 
             var result = await UserManager.CreateAsync(user, model.Password);
 
