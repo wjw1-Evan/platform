@@ -22,50 +22,47 @@ using Web.Helpers;
 namespace Web.Areas.Platform.Controllers
 {
     /// <summary>
-    /// 用户管理
+    ///     用户管理
     /// </summary>
     public class SysUserController : Controller
     {
-
+        private readonly ISysDepartmentService _iDepartmentService;
+        private readonly ISysEnterpriseService _iSysEnterpriseService;
+        private readonly ISysEnterpriseSysUserService _iSysEnterpriseSysUserService;
+        private readonly IUserInfo _iUserInfo;
         private readonly ISysRoleService _sysRoleService;
         private readonly ISysUserService _sysUserService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ISysDepartmentSysUserService _iSysDepartmentSysUserService;
         private ApplicationUserManager _userManager;
-        private readonly ISysUserCapitalService _iSysUserCapitalService;
-        private readonly ISysDepartmentService _iDepartmentService;
-        private readonly ISysEnterpriseService _iSysEnterpriseService;
-        private readonly IUserInfo _iUserInfo;
-        private readonly ISysEnterpriseSysUserService _iSysEnterpriseSysUserService;
-        private ISysDepartmentSysUserService _ISysDepartmentSysUserService;
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="unitOfWork"></param>
         /// <param name="sysUserService"></param>
         /// <param name="sysRoleService"></param>
-        /// <param name="iSysUserCapitalService"></param>
         /// <param name="iDepartmentService"></param>
         /// <param name="iUserInfo"></param>
         /// <param name="iSysEnterpriseSysUserService"></param>
         /// <param name="iSysEnterpriseService"></param>
         /// <param name="iSysDepartmentSysUserService"></param>
-        public SysUserController(IUnitOfWork unitOfWork, ISysUserService sysUserService, ISysRoleService sysRoleService, ISysUserCapitalService iSysUserCapitalService, ISysDepartmentService iDepartmentService, ISysEnterpriseService iSysEnterpriseService, IUserInfo iUserInfo, ISysEnterpriseSysUserService iSysEnterpriseSysUserService, ISysDepartmentSysUserService iSysDepartmentSysUserService)
+        public SysUserController(IUnitOfWork unitOfWork, ISysUserService sysUserService, ISysRoleService sysRoleService,
+            ISysDepartmentService iDepartmentService, ISysEnterpriseService iSysEnterpriseService, IUserInfo iUserInfo,
+            ISysEnterpriseSysUserService iSysEnterpriseSysUserService,
+            ISysDepartmentSysUserService iSysDepartmentSysUserService)
         {
             _unitOfWork = unitOfWork;
             _sysUserService = sysUserService;
             _sysRoleService = sysRoleService;
-            _iSysUserCapitalService = iSysUserCapitalService;
             _iDepartmentService = iDepartmentService;
             _iSysEnterpriseService = iSysEnterpriseService;
             _iUserInfo = iUserInfo;
             _iSysEnterpriseSysUserService = iSysEnterpriseSysUserService;
-            _ISysDepartmentSysUserService = iSysDepartmentSysUserService;
+            _iSysDepartmentSysUserService = iSysDepartmentSysUserService;
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="userManager"></param>
         public SysUserController(ApplicationUserManager userManager)
@@ -74,22 +71,15 @@ namespace Web.Areas.Platform.Controllers
         }
 
         /// <summary>
-        /// 
         /// </summary>
         public ApplicationUserManager UserManager
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            private set { _userManager = value; }
         }
 
         /// <summary>
-        /// 用户列表
+        ///     用户列表
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ordering"></param>
@@ -97,42 +87,41 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
         {
-            var model = _sysUserService.GetAll().GroupJoin(_iSysUserCapitalService.GetAll(), a => a.Id, b => b.CreatedBy, (a, b) => new
+            var model = _sysUserService.GetAll().Select(a => new
             {
-                Department = a.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId).SysDepartment.Name,
+                Department =
+                a.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId)
+                    .SysDepartment.Name,
                 a.UserName,
                 a.FullName,
-
                 PhoneNumber = a.PhoneNumberConfirmed ? a.PhoneNumber : "",
                 Email = a.EmailConfirmed ? a.Email : "",
-
                 a.CreatedDate,
                 a.UpdatedDate,
                 a.Id
             }).OrderByDescending(a => a.CreatedDate).Search(keyword);
 
             if (!string.IsNullOrEmpty(ordering))
-            {
                 model = model.OrderBy(ordering, null);
-            }
 
             return View(model.ToPagedList(pageIndex));
         }
 
         /// <summary>
-        /// 数据导出
+        ///     数据导出
         /// </summary>
         /// <returns></returns>
         public ReportResult Report()
         {
-            var model = _sysUserService.GetAll().GroupJoin(_iSysUserCapitalService.GetAll(), a => a.Id, b => b.CreatedBy, (a, b) => new
+            var model = _sysUserService.GetAll().Select(a => new
             {
-                Department = a.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId).SysDepartment.Name,
+                Department =
+                a.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId)
+                    .SysDepartment.Name,
                 a.UserName,
                 a.FullName,
                 PhoneNumber = a.PhoneNumberConfirmed ? a.PhoneNumber : "",
                 Email = a.EmailConfirmed ? a.Email : "",
-
                 a.CreatedDate,
                 a.UpdatedDate,
                 a.Id
@@ -146,7 +135,7 @@ namespace Web.Areas.Platform.Controllers
         }
 
         /// <summary>
-        /// 查看用户详细信息
+        ///     查看用户详细信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -158,16 +147,19 @@ namespace Web.Areas.Platform.Controllers
 
             var aa = config.CreateMapper().Map<SysUserEditModel>(item);
 
-            ViewBag.SysEnterprisesId = string.Join(",", item.SysEnterpriseSysUsers.Select(a => a.SysEnterprise.EnterpriseName).ToArray());
+            ViewBag.SysEnterprisesId = string.Join(",",
+                item.SysEnterpriseSysUsers.Select(a => a.SysEnterprise.EnterpriseName).ToArray());
 
 
-            ViewBag.DepartmentId = item.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId)?.SysDepartment.Name;
+            ViewBag.DepartmentId =
+                item.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId)?
+                    .SysDepartment.Name;
 
             return View(aa);
         }
 
         /// <summary>
-        /// 新建用户
+        ///     新建用户
         /// </summary>
         /// <returns></returns>
         public ActionResult Create()
@@ -176,7 +168,7 @@ namespace Web.Areas.Platform.Controllers
         }
 
         /// <summary>
-        /// 编辑用户
+        ///     编辑用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -184,13 +176,20 @@ namespace Web.Areas.Platform.Controllers
         {
             var item = new SysUser();
             if (!string.IsNullOrEmpty(id))
-            {
                 item = _sysUserService.GetById(id);
-            }
-            ViewBag.SysEnterprisesId = new MultiSelectList(_iSysEnterpriseService.GetAll(a => a.SysEnterpriseSysUsers.Any(b => b.SysUserId == _iUserInfo.UserId)), "Id", "EnterpriseName", item.SysEnterpriseSysUsers?.Select(a => a.SysEnterpriseId));
-            ViewBag.SysRolesId = new MultiSelectList(_sysRoleService.GetAll(), "Id", "RoleName", item.Roles?.Select(a => a.RoleId));
+            ViewBag.SysEnterprisesId =
+                new MultiSelectList(
+                    _iSysEnterpriseService.GetAll(
+                        a => a.SysEnterpriseSysUsers.Any(b => b.SysUserId == _iUserInfo.UserId)), "Id", "EnterpriseName",
+                    item.SysEnterpriseSysUsers?.Select(a => a.SysEnterpriseId));
+            ViewBag.SysRolesId = new MultiSelectList(_sysRoleService.GetAll(), "Id", "RoleName",
+                item.Roles?.Select(a => a.RoleId));
 
-            ViewBag.DepartmentId = _iDepartmentService.GetAll().ToSystemIdSelectList(item.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId)?.SysDepartmentId);
+            ViewBag.DepartmentId =
+                _iDepartmentService.GetAll()
+                    .ToSystemIdSelectList(
+                        item.SysDepartmentSysUsers.FirstOrDefault(
+                            c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId)?.SysDepartmentId);
 
             var config = new MapperConfiguration(a => a.CreateMap<SysUser, SysUserEditModel>());
 
@@ -201,7 +200,7 @@ namespace Web.Areas.Platform.Controllers
         }
 
         /// <summary>
-        /// 保存用户
+        ///     保存用户
         /// </summary>
         /// <param name="id"></param>
         /// <param name="collection"></param>
@@ -212,8 +211,13 @@ namespace Web.Areas.Platform.Controllers
             if (!ModelState.IsValid)
             {
                 Edit(id);
-                ViewBag.SysEnterprisesId = new MultiSelectList(_iSysEnterpriseService.GetAll(a => a.SysEnterpriseSysUsers.Any(b => b.SysUserId == _iUserInfo.UserId)), "Id", "EnterpriseName", collection.SysEnterprisesId);
-                ViewBag.SysRolesId = new MultiSelectList(_sysRoleService.GetAll(), "Id", "RoleName", collection.SysRolesId);
+                ViewBag.SysEnterprisesId =
+                    new MultiSelectList(
+                        _iSysEnterpriseService.GetAll(
+                            a => a.SysEnterpriseSysUsers.Any(b => b.SysUserId == _iUserInfo.UserId)), "Id",
+                        "EnterpriseName", collection.SysEnterprisesId);
+                ViewBag.SysRolesId = new MultiSelectList(_sysRoleService.GetAll(), "Id", "RoleName",
+                    collection.SysRolesId);
 
                 ViewBag.DepartmentId = _iDepartmentService.GetAll().ToSystemIdSelectList(collection.DepartmentId);
                 return View(collection);
@@ -239,32 +243,32 @@ namespace Web.Areas.Platform.Controllers
 
 
                 foreach (var role in _sysRoleService.GetAll().ToList())
-                {
                     await UserManager.RemoveFromRoleAsync(item.Id, role.Name);
-                }
 
                 foreach (var roleId in collection.SysRolesId)
-                {
-                    item.Roles.Add(new IdentityUserRole { RoleId = roleId, UserId = item.Id });
-                }
+                    item.Roles.Add(new IdentityUserRole {RoleId = roleId, UserId = item.Id});
 
-                _ISysDepartmentSysUserService.Delete(a => a.SysUserId == item.Id && a.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId);
+                _iSysDepartmentSysUserService.Delete(
+                    a => a.SysUserId == item.Id && a.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId);
 
-                _ISysDepartmentSysUserService.Save(null, new SysDepartmentSysUser() { SysDepartmentId = collection.DepartmentId, SysUserId = item.Id });
+                _iSysDepartmentSysUserService.Save(null,
+                    new SysDepartmentSysUser {SysDepartmentId = collection.DepartmentId, SysUserId = item.Id});
 
                 //处理关联企业
                 //限制编辑自己的关联企业
                 if (item.Id != _iUserInfo.UserId)
                 {
-                    foreach (var ent in _iSysEnterpriseSysUserService.GetAll(a => a.SysUserId == _iUserInfo.UserId).ToList())
-                    {
-                        _iSysEnterpriseSysUserService.Delete(a => a.SysEnterpriseId == ent.SysEnterpriseId && a.SysUserId == item.Id);
-                    }
+                    foreach (
+                        var ent in _iSysEnterpriseSysUserService.GetAll(a => a.SysUserId == _iUserInfo.UserId).ToList())
+                        _iSysEnterpriseSysUserService.Delete(
+                            a => a.SysEnterpriseId == ent.SysEnterpriseId && a.SysUserId == item.Id);
 
                     foreach (var entId in collection.SysEnterprisesId)
-                    {
-                        item.SysEnterpriseSysUsers.Add(new SysEnterpriseSysUser() { SysEnterpriseId = entId, SysUserId = item.Id });
-                    }
+                        item.SysEnterpriseSysUsers.Add(new SysEnterpriseSysUser
+                        {
+                            SysEnterpriseId = entId,
+                            SysUserId = item.Id
+                        });
                 }
 
                 await _unitOfWork.CommitAsync();
@@ -275,12 +279,8 @@ namespace Web.Areas.Platform.Controllers
                     var re = UserManager.AddPassword(id, collection.Password);
 
                     if (!re.Succeeded)
-                    {
                         foreach (var error in re.Errors)
-                        {
                             ModelState.AddModelError("", error);
-                        }
-                    }
                 }
             }
             else
@@ -288,28 +288,28 @@ namespace Web.Areas.Platform.Controllers
                 collection.Id = Guid.NewGuid().ToString();
                 var item = mapper.Map<SysUserEditModel, SysUser>(collection);
 
-                item.SysDepartmentSysUsers.Add(new SysDepartmentSysUser { SysUserId = item.Id, SysDepartmentId = collection.DepartmentId });
+                item.SysDepartmentSysUsers.Add(new SysDepartmentSysUser
+                {
+                    SysUserId = item.Id,
+                    SysDepartmentId = collection.DepartmentId
+                });
 
                 foreach (var roleId in collection.SysRolesId)
-                {
-                    item.Roles.Add(new IdentityUserRole { RoleId = roleId, UserId = item.Id });
-                }
+                    item.Roles.Add(new IdentityUserRole {RoleId = roleId, UserId = item.Id});
 
                 foreach (var entId in collection.SysEnterprisesId)
-                {
-                    item.SysEnterpriseSysUsers.Add(new SysEnterpriseSysUser() { SysEnterpriseId = entId, SysUserId = item.Id });
-                }
+                    item.SysEnterpriseSysUsers.Add(new SysEnterpriseSysUser
+                    {
+                        SysEnterpriseId = entId,
+                        SysUserId = item.Id
+                    });
 
                 //创建用户
                 var re = await UserManager.CreateAsync(item, collection.Password);
 
                 if (!re.Succeeded)
-                {
                     foreach (var error in re.Errors)
-                    {
                         ModelState.AddModelError("", error);
-                    }
-                }
             }
 
             if (!ModelState.IsValid)
@@ -325,7 +325,7 @@ namespace Web.Areas.Platform.Controllers
         }
 
         /// <summary>
-        /// 删除用户
+        ///     删除用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -1734,4 +1734,10 @@
   <data name="Passwordkeepnull" xml:space="preserve">
     <value>如不需要修改密码，请保持为空</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>修改</value>
+  </data>
 </root>

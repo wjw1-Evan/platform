@@ -1,33 +1,35 @@
-﻿<div class="content-heading">
-  
-修改密码
+﻿@using Resources
+@using Web.Helpers
+
+<div class="content-heading">
+    @Html.ThisControllerName()
 </div>
-
-
 
 <div class="panel panel-default">
 
     <div class="panel-body form-horizontal">
-      @using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
+        @using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "Main" }))
             {
-        @Html.AntiForgeryToken()
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.Partial("_alerts")
-            @Html.Partial("_validationSummary")
-        </div>
+            <div class="row">
+                @Html.Partial("_alerts")
+                @Html.Partial("_validationSummary")
+            </div>
 
-        @Html.EditorForModel()
-
-        @Html.Partial("Button_Submit")
-
-      }
-
-
-
+            <div class="row">
+                @Html.EditorForModel()
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-check"></i>
+                            @Lang.Modify
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        }
     </div>
 </div>
-
-                      
-
-

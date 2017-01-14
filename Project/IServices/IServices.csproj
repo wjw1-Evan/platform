@@ -57,7 +57,6 @@
     <Compile Include="ISysServices\ISysHelpClassService.cs" />
     <Compile Include="ISysServices\ISysConfigurationSetting.cs" />
     <Compile Include="ISysServices\ISysKeywordService.cs" />
-    <Compile Include="ISysServices\ISysUserCapitalService.cs" />
     <Compile Include="ISysServices\ISysActionService.cs" />
     <Compile Include="ISysServices\ISysAreaService.cs" />
     <Compile Include="ISysServices\ISysBroadcastReceivedService.cs" />

@@ -75,7 +75,7 @@ namespace Web.Areas.Platform.Controllers
                 return PartialView(model);
             }
 
-            var result = await UserManager.ChangePasswordAsync(_iUserInfo.UserId, model.CurrentPassword, model.Password);
+            var result = await UserManager.ChangePasswordAsync(_iUserInfo.UserId, model.CurrentPassword, model.NewPassword);
 
             if (result.Succeeded)
             {

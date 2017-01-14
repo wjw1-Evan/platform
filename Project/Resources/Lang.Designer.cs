@@ -2707,6 +2707,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 修改 的本地化字符串。
+        /// </summary>
+        public static string Modify {
+            get {
+                return ResourceManager.GetString("Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 模块 的本地化字符串。
         /// </summary>
         public static string Module {
@@ -2766,6 +2775,15 @@ namespace Resources {
         public static string NatureOfTheEnterprise {
             get {
                 return ResourceManager.GetString("NatureOfTheEnterprise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 新密码 的本地化字符串。
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
             }
         }
         

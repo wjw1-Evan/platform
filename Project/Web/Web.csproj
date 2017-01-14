@@ -334,7 +334,6 @@
     <Compile Include="Areas\Platform\Controllers\SysHelpController.cs" />
     <Compile Include="Areas\Platform\Controllers\SyskeywordController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysRoleController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysUserCapitalController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysUserController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysUserLogController.cs" />
     <Compile Include="Areas\Platform\Helpers\DeleteSuccessResult.cs" />

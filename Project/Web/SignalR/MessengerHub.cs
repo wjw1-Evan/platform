@@ -51,7 +51,7 @@ namespace Web.SignalR
 
             var date = DateTime.Now.AddDays(-1);
 
-            _iSysSignalROnlineService.Delete(a => a.CreatedDate < date && a.GroupId == GroupId && a.CreatedBy == _iUserInfoService.UserId);
+            _iSysSignalROnlineService.Delete(a => a.GroupId == GroupId && a.CreatedBy == _iUserInfoService.UserId);
 
             _iSysSignalROnlineService.Save(null, new SysSignalROnline { ConnectionId = Context.ConnectionId, GroupId = GroupId });
 

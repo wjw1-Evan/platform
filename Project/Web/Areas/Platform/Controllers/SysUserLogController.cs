@@ -52,7 +52,7 @@ namespace Web.Areas.Platform.Controllers
                                           a.RecordId,
                                           a.Url,
                                           a.Ip,
-                                          CreatedDate= a.CreatedDate.Year +"/"+a.CreatedDate.Month+"/"+ a.CreatedDate.Day+" "+a.CreatedDate.Hour+":"+a.CreatedDate.Minute+":"+a.CreatedDate.Second
+                                          a.CreatedDate
                                       }).Search(keyword);
 
             if (!string.IsNullOrEmpty(ordering))

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Configuration;
+using System.Data.Objects.SqlClient;
+using System.Linq;
 using Common;
 using IServices.ISysServices;
 using Models.SysModels;
@@ -13,7 +15,10 @@ namespace Services.SysServices
             : base(databaseFactory, userInfo)
         {
         }
-
+        public override IQueryable<SysUserLog> GetAll(bool containsDeleted = false, bool allEnt = false)
+        {
+            return base.GetAll(containsDeleted, allEnt).OrderByDescending(a => a.CreatedDate);
+        }
 
         public void DeleteExpiredData()
         {
@@ -22,9 +27,7 @@ namespace Services.SysServices
 
             var logValidity = Convert.ToDouble(ConfigurationManager.AppSettings["LogValidity"]);
 
-            var createddatetime = DateTimeLocal.Now.AddDays(-logValidity);
-
-            Delete(a => a.CreatedDate < createddatetime);
+            Delete(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) > logValidity);
         }
     }
 

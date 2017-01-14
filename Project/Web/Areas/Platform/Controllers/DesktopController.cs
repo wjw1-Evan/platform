@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web.Mvc;
 using Common;
@@ -37,14 +39,11 @@ namespace Web.Areas.Platform.Controllers
             //用户总数统计
             ViewBag.SysUserCount = _iSysUserService.GetAll().Count();
 
-            //近十天用户每天增长
-            ViewBag.SysUserCountDayLine = string.Join(",", _iSysUserService.GetAll(a => DbFunctions.DiffDays(a.CreatedDate, DateTimeLocal.Now) < 14).GroupBy(a => DbFunctions.TruncateTime(a.CreatedDate)).Select(a => a.Count()));
-
             //近十天用户注册次数
-            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => DbFunctions.DiffDays(a.CreatedDate, DateTimeLocal.Now) < 14).GroupBy(a => DbFunctions.TruncateTime(a.CreatedDate)).Select(a => new { a.Key, Count = a.Count() }).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
+            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { a.Key, Count = a.Count() }).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
 
             //近十天用户活动次数
-            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => DbFunctions.DiffDays(a.CreatedDate, DateTimeLocal.Now) < 14).GroupBy(a => DbFunctions.TruncateTime(a.CreatedDate)).Select(a => new { a.Key, Count = a.Count() }).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
+            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { Key = (DateTime?)a.Key.Value, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
 
 
             return View();

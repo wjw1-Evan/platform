@@ -10,8 +10,8 @@ namespace Models
     {
         string Id { get; set; }
 
-        DateTime CreatedDate { get; set; }
-        DateTime? UpdatedDate { get; set; }
+        string CreatedDate { get; set; }
+        string UpdatedDate { get; set; }
 
         string CreatedBy { get; set; }
         string UpdatedBy { get; set; }
@@ -25,7 +25,7 @@ namespace Models
         [MaxLength(128)]
         string EnterpriseId { get; set; }
     }
-   
+
     /// <summary>
     /// 企业关联基础表
     /// </summary>
@@ -34,7 +34,7 @@ namespace Models
         protected DbSetBase()
         {
             Id = Guid.NewGuid().ToString();
-          
+
             CreatedDate = DateTimeLocal.Now;
             Deleted = false;
         }
@@ -46,10 +46,11 @@ namespace Models
         public string Id { get; set; }
 
         [Editable(false)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
+        [MaxLength(50)]
         [Index]
-        public DateTime CreatedDate { get; set; }
-       
+        [DataType(DataType.DateTime)]
+        public string CreatedDate { get; set; }
+
         [Editable(false)]
         public string CreatedBy { get; set; }
 
@@ -58,9 +59,9 @@ namespace Models
         public virtual SysUser UserCreatedBy { get; set; }
 
         [Editable(false)]
-        [Index]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
-        public DateTime? UpdatedDate { get; set; }
+        [MaxLength(50)]
+        [DataType(DataType.DateTime)]
+        public string UpdatedDate { get; set; }
 
         [Editable(false)]
         public string UpdatedBy { get; set; }

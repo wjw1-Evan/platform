@@ -4,13 +4,18 @@ namespace Common
 {
     public  class DateTimeLocal
     {
-        public static DateTime Now => GetNow();
+        public static string Now => GetNow();
 
-        public static DateTime GetNow()
+        public static string NowDate => GetNowDate();
+
+        public static string GetNow()
         {
-            return DateTime.UtcNow.AddHours(8);
+            return DateTime.UtcNow.AddHours(8).ToString("yyyy/MM/dd HH:mm:ss");
         }
-
+        public static string GetNowDate()
+        {
+            return DateTime.UtcNow.AddHours(8).ToString("yyyy/MM/dd");
+        }
     }
 
 }

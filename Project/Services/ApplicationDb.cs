@@ -31,22 +31,8 @@ namespace Services
         public DbSet<SysHelpClass> SysHelpClasses { get; set; }
 
         public DbSet<SysUserLog> SysUserLogs { get; set; }
-      
-
-        public DbSet<SysUserCapital> SysUserCapitals { get; set; }//用户资金流水表  
-
-
-        public DbSet<UserPoint> UserPoints{ get; set; }//用户积分
-
-        public DbSet<UserPointSetting> UserPointSettings{ get; set; }//积分变化规则定义
 
         public DbSet<SysKeyword> SysKeywords { get; set; }//用户所有搜索记录
-    
-        //短信发送记录
-    
-
-        public DbSet<UserGradeConfiguration> UserGradeConfigurations { get; set; }//用户等级
-
 
         //系统消息
         public DbSet<SysBroadcast> SysMessages { get; set; }

@@ -55,6 +55,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
     <Reference Include="System.Data" />
   </ItemGroup>
@@ -73,7 +74,6 @@
     <Compile Include="SysServices\SysHelpClassService.cs" />
     <Compile Include="SysServices\SysConfigurationSettingService.cs" />
     <Compile Include="SysServices\SysKeywordService.cs" />
-    <Compile Include="SysServices\SysUserCapitalService.cs" />
     <Compile Include="SysServices\SysActionService.cs" />
     <Compile Include="SysServices\SysAreaService.cs" />
     <Compile Include="SysServices\SysBroadcastReceivedService.cs" />

@@ -156,14 +156,14 @@ namespace Web.Models
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string NewPassword { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
         public string ConfirmPassword { get; set; }
 
     }
