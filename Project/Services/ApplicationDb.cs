@@ -60,11 +60,18 @@ namespace Services
         /// </summary>
         public DbSet<SysDepartmentSysUser> SysDepartmentSysUser { get; set; }
 
-      
+
 
         #endregion
 
-   
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //为表生成 基本的存储过程 Insert Update Delete
+            modelBuilder.Types().Configure(a => a.MapToStoredProcedures());
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         public virtual int Commit()
         {

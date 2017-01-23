@@ -17,6 +17,7 @@ namespace Web.Helpers
         public PagedList(IQueryable<T> source, int index, int pageSize)
         {
             IsLastPage = false;
+            var data = source.Skip((index - 1) * pageSize).Take(pageSize).Future();
             TotalCount = source.FutureCount();
             PageSize = pageSize;
             PageIndex = index;
@@ -26,8 +27,9 @@ namespace Web.Helpers
                 PageIndex = index;
                 IsLastPage = true;
             }
-            AddRange(source.Skip((index - 1) * pageSize).Take(pageSize).Future());
-            
+
+            AddRange(data);
+
         }
 
         public int TotalCount { get; set; }
