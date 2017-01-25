@@ -8,16 +8,27 @@ namespace Models.SysModels
     /// </summary>
     public class SysUserLog : DbSetBase
     {
-      
+
         [Required]
         [ForeignKey("SysControllerSysAction")]
         public string SysControllerSysActionId { get; set; }
 
         public virtual SysControllerSysAction SysControllerSysAction { get; set; }
 
+        [MaxLength(40)]
+        public string SysArea { get; set; }
+
+        [MaxLength(40)]
+        public string SysController { get; set; }
+
+        [MaxLength(40)]
+        public string SysAction { get; set; }
+
         [MaxLength(128)]
         public string RecordId { get; set; }
 
+        //[MaxLength(256)]
+        //public string UserName { get; set; }
 
         [ForeignKey("CreatedBy")]
         public virtual SysUser SysUser { get; set; }
@@ -28,5 +39,5 @@ namespace Models.SysModels
 
         public string Url { get; set; }
     }
-    
+
 }

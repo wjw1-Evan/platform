@@ -68,6 +68,9 @@ namespace Web.Helpers
                 SysControllerSysActionId = sysControllerSysAction.Id,
                 RecordId = recordId,
                 Url = httpContext.Request.RawUrl,
+                SysArea=sysControllerSysAction.SysController.SysArea.Name,
+                SysController = sysControllerSysAction.SysController.Name,
+                SysAction = sysControllerSysAction.SysAction.Name,
             };
 
             sysUserLogService.Save(null, sysuserlog);

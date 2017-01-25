@@ -84,6 +84,7 @@ namespace Models
         /// </summary>
         [MaxLength(128)]
         [ScaffoldColumn(false)]
+        [Index]
         public string EnterpriseId { get; set; }
     }
 }

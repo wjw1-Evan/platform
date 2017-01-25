@@ -46,9 +46,9 @@ namespace Web.Areas.Platform.Controllers
                                       new
                                       {
                                           a.SysUser.UserName,
-                                          SysArea = a.SysControllerSysAction.SysController.SysArea.Name,
-                                          SysController = a.SysControllerSysAction.SysController.Name,
-                                          SysAction = a.SysControllerSysAction.SysAction.Name,
+                                          a.SysArea,
+                                          a.SysController,
+                                          a.SysAction,
                                           a.RecordId,
                                           a.Url,
                                           a.Ip,
