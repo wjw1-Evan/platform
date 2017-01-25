@@ -5,7 +5,7 @@ using Models.SysModels;
 
 namespace Services
 {
-    public class ApplicationDbContext : IdentityDbContext<SysUser>
+    public sealed class ApplicationDbContext : IdentityDbContext<SysUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", false)
@@ -43,8 +43,7 @@ namespace Services
         public DbSet<SysSignalR> SysSignalRs { get; set; }
 
         public DbSet<SysSignalROnline> SysSignalROnlines { get; set; }
-
-        public DbSet<SysConfigurationSetting> SysConfigurationSetting { get; set; }
+   
         /// <summary>
         /// 验证码存储
         /// </summary>
@@ -73,12 +72,12 @@ namespace Services
             base.OnModelCreating(modelBuilder);
         }
 
-        public virtual int Commit()
+        public int Commit()
         {
             return SaveChanges();
         }
 
-        public virtual Task<int> CommitAsync()
+        public Task<int> CommitAsync()
         {
             return SaveChangesAsync();
         }

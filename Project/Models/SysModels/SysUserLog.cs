@@ -27,8 +27,8 @@ namespace Models.SysModels
         [MaxLength(128)]
         public string RecordId { get; set; }
 
-        //[MaxLength(256)]
-        //public string UserName { get; set; }
+        [MaxLength(256)]
+        public string UserName { get; set; }
 
         [ForeignKey("CreatedBy")]
         public virtual SysUser SysUser { get; set; }

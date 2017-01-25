@@ -224,11 +224,6 @@ namespace Services.Infrastructure
             return model;
         }
 
-        public virtual void AddOrUpdate(T item)
-        {
-            _dbset.AddOrUpdate(item);
-        }
-
         public int Commit()
         {
             return _dataContext.Commit();

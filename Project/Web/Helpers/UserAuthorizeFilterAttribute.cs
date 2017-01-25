@@ -64,11 +64,14 @@ namespace Web.Helpers
 
             var sysuserlog = new SysUserLog
             {
+                UserName = userInfo.UserName,
+                EnterpriseId = userInfo.EnterpriseId,
+                CreatedBy = userInfo.UserId,
                 Ip = httpContext.Request.ServerVariables["Remote_Addr"],
                 SysControllerSysActionId = sysControllerSysAction.Id,
                 RecordId = recordId,
                 Url = httpContext.Request.RawUrl,
-                SysArea=sysControllerSysAction.SysController.SysArea.Name,
+                SysArea = sysControllerSysAction.SysController.SysArea.Name,
                 SysController = sysControllerSysAction.SysController.Name,
                 SysAction = sysControllerSysAction.SysAction.Name,
             };

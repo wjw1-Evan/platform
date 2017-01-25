@@ -60,7 +60,6 @@
     <Compile Include="SysModels\SysDepartmentSysUser.cs" />
     <Compile Include="SysModels\SysDepartment.cs" />
     <Compile Include="Infrastructure\IUserDictionary.cs" />
-    <Compile Include="SysModels\SysConfigurationSetting.cs" />
     <Compile Include="SysModels\SysEnterpriseSysUser.cs" />
     <Compile Include="SysModels\SysHelpClass.cs" />
     <Compile Include="SysModels\SysKeyword.cs" />

@@ -45,7 +45,7 @@ namespace Web.Areas.Platform.Controllers
                                       a =>
                                       new
                                       {
-                                          a.SysUser.UserName,
+                                          a.UserName,
                                           a.SysArea,
                                           a.SysController,
                                           a.SysAction,

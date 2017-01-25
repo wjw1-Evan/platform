@@ -72,7 +72,6 @@
     <Compile Include="SysServices\SysEnterpriseService.cs" />
     <Compile Include="SysServices\SysEnterpriseSysUserService.cs" />
     <Compile Include="SysServices\SysHelpClassService.cs" />
-    <Compile Include="SysServices\SysConfigurationSettingService.cs" />
     <Compile Include="SysServices\SysKeywordService.cs" />
     <Compile Include="SysServices\SysActionService.cs" />
     <Compile Include="SysServices\SysAreaService.cs" />
