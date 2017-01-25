@@ -8,6 +8,7 @@ using Models.SysModels;
 using Owin;
 using Services;
 using Web.Providers;
+using System.Configuration;
 
 namespace Web
 {
@@ -39,7 +40,8 @@ namespace Web
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, SysUser>(
                         TimeSpan.FromMinutes(30),
                         (manager, user) => user.GenerateUserIdentityAsync(manager))
-                }
+                },
+                CookieName= ConfigurationManager.AppSettings["SystemName"]+ "_UseCookieAuthentication"
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
