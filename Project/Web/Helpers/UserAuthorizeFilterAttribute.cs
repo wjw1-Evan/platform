@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using EntityFramework.Extensions;
 using IServices.ISysServices;
 using Models.SysModels;
+using System.Data.Entity;
 
 namespace Web.Helpers
 {
@@ -37,7 +38,6 @@ namespace Web.Helpers
 
             //判断用户是否有该区域访问的权限
             //如果权限中有该区域的任何一个操作既可以进行访问
-
             var action = (string)httpContext.Request.RequestContext.RouteData.Values["action"];
             var controller = (string)httpContext.Request.RequestContext.RouteData.Values["controller"];
             var recordId = (string)httpContext.Request.RequestContext.RouteData.Values["id"];
@@ -46,19 +46,16 @@ namespace Web.Helpers
             var userInfo = DependencyResolver.Current.GetService<IUserInfo>();
 
             //检测用户是否有权限访问 
-
             if (!sysRoleService.CheckSysUserSysRoleSysControllerSysActions(userInfo.UserId, area, action, controller))
                 throw new Exception("用户：" + userInfo.UserName + "(" + userInfo.UserId + ") 没有权限访问 " + area + " > " + controller + " > " + action + " ！请联系系统管理员进行权限分配！");
 
-
             //记录用户访问记录
-
             var sysControllerSysActionService = DependencyResolver.Current.GetService<ISysControllerSysActionService>();
             var sysUserLogService = DependencyResolver.Current.GetService<ISysUserLogService>();
 
             var sysControllerSysAction =
                 sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
-                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).FromCacheFirstOrDefault();
+                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).Include(a=>a.SysController.SysArea).Include(a=>a.SysController).Include(a=>a.SysAction).OrderBy(a => a.SysController.SystemId).FromCacheFirstOrDefault();
 
             if (sysControllerSysAction == null) return true;
 
@@ -83,8 +80,4 @@ namespace Web.Helpers
             return true;
         }
     }
-
-
-
-
 }
