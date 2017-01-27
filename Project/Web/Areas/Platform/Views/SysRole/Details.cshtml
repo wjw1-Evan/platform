@@ -1,0 +1,53 @@
+﻿@using Models.SysModels
+@model SysRole
+
+@{
+    Layout = "../Shared/_LayoutForm.cshtml";
+}
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(a => a.RoleName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-8" style="padding: 7px 15px">
+            @Html.DisplayFor(a => a.RoleName)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.SystemId, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-8" style="padding: 7px 15px">
+            @Html.DisplayFor(a => a.SystemId)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">详细</label>
+        <div class="col-sm-8">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-condensed">
+                    <tbody>
+                        @foreach (SysController sysController in ViewBag.SysControllers)
+                        {
+                            <tr>
+                                <th>
+                                    @sysController.SysArea.Name
+                                </th>
+                                <th>
+                                    @(">".PadLeft(sysController.SystemId.Length - 3, '　'))
+                                    @sysController.Name
+                                </th>
+                                <td>
+                                    @foreach (var sysControllerSysActions in sysController.SysControllerSysActions.OrderBy(a => a.SysAction.SystemId))
+                                    {
+                                        if (Model.SysRoleSysControllerSysActions != null && Model.SysRoleSysControllerSysActions.Any(a => a.SysControllerSysActionId.Equals(sysControllerSysActions.Id)))
+                                        {
+                                            <i class='fa fa-check' aria-hidden='true'></i>    @sysControllerSysActions.SysAction.Name
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

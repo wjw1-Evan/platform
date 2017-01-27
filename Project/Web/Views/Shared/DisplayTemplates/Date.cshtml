@@ -1,7 +1,0 @@
-﻿@model DateTime?
-@if (Model.HasValue)
-{
-    <span title="@(Model.Value.ToString("yyyy-MM-dd"))">
-        @($"{Model.Value:yyyy/MM/dd}")
-    </span>
-}

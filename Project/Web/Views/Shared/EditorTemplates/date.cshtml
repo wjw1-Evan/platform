@@ -1,9 +1,6 @@
 ﻿@model DateTime?
 
-
-
-
-    @Html.TextBoxFor(a => a, "{0:yyyy/MM/dd}", new { @class = " form-control", placeholder = ViewData["placeholder"] })
+@Html.TextBoxFor(a => a, "{0:yyyy/MM/dd}", new { @class = " form-control", placeholder = ViewData["placeholder"] })
 
 <span class="fa fa-calendar-check-o form-control-feedback" style="margin: 10px"></span>
 

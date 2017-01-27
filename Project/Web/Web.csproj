@@ -657,7 +657,6 @@
     <Content Include="Areas\Platform\Views\Shared\Button_Submit.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Details.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Edit.cshtml" />
-    <Content Include="Areas\Platform\Views\Shared\EditSingleForm.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Index.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Search_Input.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\_Layout.cshtml" />
@@ -1008,6 +1007,7 @@
     <Content Include="Areas\Platform\Views\ChangePassword\Index.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\DisplayTemplates\object.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\EditorTemplates\object.cshtml" />
+    <Content Include="Areas\Platform\Views\SysRole\Details.cshtml" />
     <None Include="Properties\PublishProfiles\platform-wjw1 - Web Deploy.pubxml" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
@@ -1097,15 +1097,11 @@
     <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MultiSelectList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\object.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\object4SingleForm.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SelectList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\string.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tag.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UserDictionary.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\decimal.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Extension.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Object.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SysUser.cshtml" />

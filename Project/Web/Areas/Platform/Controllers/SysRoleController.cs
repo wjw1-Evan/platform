@@ -65,6 +65,7 @@ namespace Web.Areas.Platform.Controllers
         public ActionResult Details(object id)
         {
             var item = _iSysRoleService.GetById(id);
+            ViewBag.SysControllers = _sysControllerService.GetAll().ToList();
             return View(item);
         }
 
