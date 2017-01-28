@@ -43,6 +43,10 @@
       <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fissoft.EntityFramework.Fts, Version=1.0.12.0, Culture=neutral, PublicKeyToken=00e20d155e1afabe, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fissoft.EntityFramework.Fts.1.0.12\lib\net45\Fissoft.EntityFramework.Fts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>

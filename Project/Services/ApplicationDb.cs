@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Threading.Tasks;
+using Fissoft.EntityFramework.Fts;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.SysModels;
 
@@ -10,7 +11,7 @@ namespace Services
         public ApplicationDbContext()
             : base("DefaultConnection", false)
         {
-           
+            DbInterceptors.Init();
         }
       
 

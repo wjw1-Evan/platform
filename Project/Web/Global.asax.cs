@@ -7,6 +7,7 @@ using System.Web.Routing;
 using Microsoft.AspNet.Identity;
 using Services;
 using Web.Helpers;
+using Fissoft.EntityFramework.Fts;
 
 namespace Web
 {
@@ -27,12 +28,6 @@ namespace Web
 
             //更新数据库到最新的版本
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
-
-
-            //系统缓存
-            //  Locator.Current.Register<ICacheProvider>(() => new MemoryCacheProvider());
-
-         
 
 
             //计划任务 按照间隔时间执行

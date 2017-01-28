@@ -10,7 +10,6 @@ namespace Services.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "Services.ApplicationDb";
         }
 
         protected override void Seed(ApplicationDbContext context)
@@ -23,8 +22,13 @@ namespace Services.Migrations
             {
                 new SysEnterprise
                 {
-                    Id = "defalutEnt",
+                    Id = "defaultEnt",
                     EnterpriseName = "系统默认企业"
+                },
+                new SysEnterprise
+                {
+                    Id = "TestEnt",
+                    EnterpriseName = "测试企业"
                 }
             };
             context.SysEnterprises.AddOrUpdate(a => new {a.Id}, sysEnterprises);

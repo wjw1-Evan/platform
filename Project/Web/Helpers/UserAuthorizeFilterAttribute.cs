@@ -55,7 +55,7 @@ namespace Web.Helpers
 
             var sysControllerSysAction =
                 sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
-                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).Include(a=>a.SysController.SysArea).Include(a=>a.SysController).Include(a=>a.SysAction).OrderBy(a => a.SysController.SystemId).FromCacheFirstOrDefault();
+                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).Include(a=>a.SysController.SysArea).Include(a=>a.SysController).Include(a=>a.SysAction).OrderBy(a => a.SysController.SystemId).FirstOrDefault();
 
             if (sysControllerSysAction == null) return true;
 
