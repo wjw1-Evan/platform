@@ -359,6 +359,7 @@
     <Compile Include="Helpers\ModelMetadataExtensions\MetadataConventionsAttribute.cs" />
     <Compile Include="Helpers\OnTimedEvent.cs" />
     <Compile Include="Helpers\PagedList.cs" />
+    <Compile Include="Helpers\StatisticsTrackerAttribute.cs" />
     <Compile Include="Helpers\UserAuthorizeFilterAttribute.cs" />
     <Compile Include="Helpers\UserInfo.cs" />
     <Compile Include="Helpers\Utils.cs" />

@@ -50,6 +50,7 @@ namespace Web.Areas.Platform.Controllers
                                           a.SysController,
                                           a.SysAction,
                                           a.RecordId,
+                                          a.Duration,
                                           a.Url,
                                           a.Ip,
                                           a.CreatedDate
@@ -81,6 +82,7 @@ namespace Web.Areas.Platform.Controllers
                                           控制器显示名称 = a.SysControllerSysAction.SysController.Name,
                                           操作显示名称 = a.SysControllerSysAction.SysAction.Name,
                                           记录编号 = a.RecordId,
+                                          a.Duration,
                                           a.Url,
                                           a.Ip,
                                           创建日期 = a.CreatedDate

@@ -13,6 +13,9 @@ namespace Web.Controllers
             return RedirectToAction("Index", "Index", new {area = "Platform"});
         }
 
-        
+        public ActionResult Test()
+        {
+            return null;
+        }
     }
 }

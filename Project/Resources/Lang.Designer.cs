@@ -1690,6 +1690,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 持续时间 的本地化字符串。
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 编辑 的本地化字符串。
         /// </summary>
         public static string Edit {

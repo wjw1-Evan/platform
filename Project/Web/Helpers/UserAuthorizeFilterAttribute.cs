@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EntityFramework.Extensions;
 using IServices.ISysServices;
-using Models.SysModels;
-using System.Data.Entity;
 
 namespace Web.Helpers
 {
@@ -27,7 +23,6 @@ namespace Web.Helpers
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-
             var area = (string)httpContext.Request.RequestContext.RouteData.DataTokens["area"];
 
             //是否对该Area区域进行身份验证
@@ -40,7 +35,7 @@ namespace Web.Helpers
             //如果权限中有该区域的任何一个操作既可以进行访问
             var action = (string)httpContext.Request.RequestContext.RouteData.Values["action"];
             var controller = (string)httpContext.Request.RequestContext.RouteData.Values["controller"];
-            var recordId = (string)httpContext.Request.RequestContext.RouteData.Values["id"];
+            //var recordId = (string)httpContext.Request.RequestContext.RouteData.Values["id"];
 
             var sysRoleService = DependencyResolver.Current.GetService<ISysRoleService>();
             var userInfo = DependencyResolver.Current.GetService<IUserInfo>();
@@ -48,35 +43,7 @@ namespace Web.Helpers
             //检测用户是否有权限访问 
             if (!sysRoleService.CheckSysUserSysRoleSysControllerSysActions(userInfo.UserId, area, action, controller))
                 throw new Exception("用户：" + userInfo.UserName + "(" + userInfo.UserId + ") 没有权限访问 " + area + " > " + controller + " > " + action + " ！请联系系统管理员进行权限分配！");
-
-            //记录用户访问记录
-            var sysControllerSysActionService = DependencyResolver.Current.GetService<ISysControllerSysActionService>();
-            var sysUserLogService = DependencyResolver.Current.GetService<ISysUserLogService>();
-
-            var sysControllerSysAction =
-                sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
-                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).Include(a=>a.SysController.SysArea).Include(a=>a.SysController).Include(a=>a.SysAction).OrderBy(a => a.SysController.SystemId).FirstOrDefault();
-
-            if (sysControllerSysAction == null) return true;
-
-            var sysuserlog = new SysUserLog
-            {
-                UserName = userInfo.UserName,
-                EnterpriseId = userInfo.EnterpriseId,
-                CreatedBy = userInfo.UserId,
-                Ip = httpContext.Request.ServerVariables["Remote_Addr"],
-                SysControllerSysActionId = sysControllerSysAction.Id,
-                RecordId = recordId,
-                Url = httpContext.Request.RawUrl,
-                SysArea = sysControllerSysAction.SysController.SysArea.Name,
-                SysController = sysControllerSysAction.SysController.Name,
-                SysAction = sysControllerSysAction.SysAction.Name,
-            };
-
-            sysUserLogService.Save(null, sysuserlog);
-
-            sysUserLogService.Commit();
-
+        
             return true;
         }
     }

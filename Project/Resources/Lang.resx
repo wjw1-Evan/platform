@@ -1740,4 +1740,7 @@
   <data name="Modify" xml:space="preserve">
     <value>修改</value>
   </data>
+  <data name="Duration" xml:space="preserve">
+    <value>持续时间</value>
+  </data>
 </root>
