@@ -34,7 +34,11 @@ namespace Models.SysModels
         [MaxLength(100)]
         public string Ip { get; set; }
 
+        [MaxLength(1024)]
         public string Url { get; set; }
+
+        [MaxLength(64)]
+        public string RequestType { get; set; }
 
         public double Duration { get; set; }
     }

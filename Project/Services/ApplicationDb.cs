@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Threading.Tasks;
 using Fissoft.EntityFramework.Fts;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -67,6 +68,9 @@ namespace Services
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            modelBuilder.Conventions.Add(new DecimalPropertyConvention(38, 4));
+
             //为表生成 基本的存储过程 Insert Update Delete
             modelBuilder.Types().Configure(a => a.MapToStoredProcedures());
 

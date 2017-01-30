@@ -51,7 +51,7 @@ namespace Web.Areas.Platform.Controllers
                                           a.SysAction,
                                           a.RecordId,
                                           a.Duration,
-                                          a.Url,
+                                          a.RequestType,
                                           a.Ip,
                                           a.CreatedDate
                                       }).Search(keyword);
@@ -71,7 +71,7 @@ namespace Web.Areas.Platform.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public ReportResult Report()
+        public ReportResult Report(string keyword)
         {
             var model = _sysUserLogService.GetAll().Select(
                                       a =>
@@ -83,10 +83,11 @@ namespace Web.Areas.Platform.Controllers
                                           操作显示名称 = a.SysControllerSysAction.SysAction.Name,
                                           记录编号 = a.RecordId,
                                           a.Duration,
+                                          a.RequestType,
                                           a.Url,
                                           a.Ip,
                                           创建日期 = a.CreatedDate
-                                      });
+                                      }).Search(keyword);
             var report = new Report(model.ToReportSource());
 
             report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];

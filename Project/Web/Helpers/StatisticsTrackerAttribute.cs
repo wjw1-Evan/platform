@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Data.Entity;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using IServices.ISysServices;
 using Models.SysModels;
@@ -65,7 +60,8 @@ namespace Web.Helpers
                 SysArea = sysControllerSysAction?.SysController.SysArea.Name ?? area,
                 SysController = sysControllerSysAction?.SysController.Name ?? controller,
                 SysAction = sysControllerSysAction?.SysAction.Name ?? action,
-                Duration = (DateTime.Now - _datetimenow).TotalSeconds
+                Duration = (DateTime.Now - _datetimenow).TotalSeconds,
+                RequestType= filterContext.HttpContext.Request.RequestType
             };
 
             sysUserLogService.Save(null, sysuserlog);

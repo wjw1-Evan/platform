@@ -49,6 +49,7 @@ namespace Web.Helpers
 
             routevalues.Remove("X-Requested-With");
             routevalues.Remove("X-HTTP-Method-Override");
+            routevalues.Remove("_");
 
             return routevalues;
         }
