@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using IServices.Infrastructure;
+using EntityFramework.Audit;
 
 namespace Services.Infrastructure
 {

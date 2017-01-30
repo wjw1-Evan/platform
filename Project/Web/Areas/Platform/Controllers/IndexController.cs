@@ -53,7 +53,7 @@ namespace Web.Areas.Platform.Controllers
             ViewBag.OffsiderbarHelp = _iSysHelpService.GetAll().ToList();
             ViewBag.LoadPage = loadPage;
 
-            ViewBag.sysEnterprises = new SelectList(ent.Select(a=>a.SysEnterprise), "Id", "EnterpriseName", _iUserInfo.EnterpriseId);
+            ViewBag.sysEnterprises = new SelectList(ent.Select(a => a.SysEnterprise), "Id", "EnterpriseName", _iUserInfo.EnterpriseId);
 
             return View();
         }
@@ -71,8 +71,6 @@ namespace Web.Areas.Platform.Controllers
                                            c.SysRole.Users.Any(
                                                d => d.UserId == _iUserInfo.UserId))) &&
                                    a.SysArea.AreaName.Equals(area)).ToList();
-
-            //.FromCache(tags: new[] { "SysController" });禁用缓存，权限变更后不能清理别的用户的缓存数据    
 
             return View(model);
         }

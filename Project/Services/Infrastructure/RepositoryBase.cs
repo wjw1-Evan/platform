@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
@@ -26,7 +25,7 @@ namespace Services.Infrastructure
         }
 
         /// <summary>
-        ///     添加
+        /// 添加
         /// </summary>
         /// <param name="entity"></param>
         public virtual void Add(T entity)
@@ -50,9 +49,8 @@ namespace Services.Infrastructure
             _dbset.Add(entity);
         }
 
-
         /// <summary>
-        ///     更新
+        /// 更新
         /// </summary>
         /// <param name="entity"></param>
         public virtual void Update(T entity)
@@ -100,9 +98,8 @@ namespace Services.Infrastructure
             _dataContext.Entry(entity).State = EntityState.Modified;
         }
 
-
         /// <summary>
-        ///     添加或者更新
+        /// 添加或者更新
         /// </summary>
         /// <param name="id">实体主键ID</param>
         /// <param name="entity">实体</param>
@@ -136,7 +133,6 @@ namespace Services.Infrastructure
         /// <param name="remove">物理删除标记 默认false</param>
         public virtual void Delete(T item, bool remove = false)
         {
-
             var dbSetBase = item as IDbSetBase;
 
             var iEnterprise = item as IEnterprise;
@@ -165,7 +161,7 @@ namespace Services.Infrastructure
         }
 
         /// <summary>
-        ///     获取单个记录
+        /// 获取单个记录
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -181,7 +177,7 @@ namespace Services.Infrastructure
         }
 
         /// <summary>
-        ///     获取符合条件的用户所在企业数据
+        /// 获取符合条件的用户所在企业数据
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
@@ -190,9 +186,8 @@ namespace Services.Infrastructure
             return GetAll().Where(where);
         }
 
-
         /// <summary>
-        ///     获取用户所在企业数据
+        /// 获取用户所在企业数据
         /// </summary>
         /// <param name="containsDeleted">包含已删除数据</param>
         /// <param name="allEnt"></param>

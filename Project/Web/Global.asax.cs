@@ -4,10 +4,11 @@ using System.Timers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using EntityFramework;
+using EntityFramework.Caching;
 using Microsoft.AspNet.Identity;
 using Services;
 using Web.Helpers;
-using Fissoft.EntityFramework.Fts;
 
 namespace Web
 {
@@ -18,6 +19,9 @@ namespace Web
 
         protected void Application_Start()
         {
+            // 更新数据库到最新的版本
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -25,12 +29,10 @@ namespace Web
 
             Bootstrapper.Run();
 
+            // Replace cache provider with Memcached provider
+            // Locator.Current.Register<ICacheProvider>(() => new MemcachedProvider());
 
-            //更新数据库到最新的版本
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
-
-
-            //计划任务 按照间隔时间执行
+            // 计划任务 按照间隔时间执行
 
             var onTimedEvent = DependencyResolver.Current.GetService<IOnTimedEvent>();
 

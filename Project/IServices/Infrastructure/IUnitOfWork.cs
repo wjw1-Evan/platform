@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace IServices.Infrastructure
 {
-    public interface IUnitOfWork 
+    public interface IUnitOfWork
     {
         int Commit();
         Task<int> CommitAsync();
