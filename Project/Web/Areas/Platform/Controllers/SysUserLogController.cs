@@ -8,6 +8,7 @@ using DoddleReport.Web;
 using IServices.ISysServices;
 using Web.Helpers;
 using System.Linq.Dynamic;
+using System.Threading.Tasks;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -37,7 +38,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
+        public async Task<ActionResult> Index(string keyword, string ordering, int pageIndex = 1)
         {
             var model =
                 _sysUserLogService.GetAll()
@@ -45,7 +46,7 @@ namespace Web.Areas.Platform.Controllers
                                       a =>
                                       new
                                       {
-                                          a.UserName,
+                                          a.SysUser.UserName,
                                           a.SysArea,
                                           a.SysController,
                                           a.SysAction,
@@ -78,11 +79,11 @@ namespace Web.Areas.Platform.Controllers
                                       new
                                       {
                                           用户名 = a.SysUser.UserName,
-                                          区域显示名称 = a.SysControllerSysAction.SysController.SysArea.Name,
-                                          控制器显示名称 = a.SysControllerSysAction.SysController.Name,
-                                          操作显示名称 = a.SysControllerSysAction.SysAction.Name,
+                                          区域显示名称 = a.SysArea,
+                                          控制器显示名称 = a.SysController,
+                                          操作显示名称 = a.SysAction,
                                           记录编号 = a.RecordId,
-                                          a.Duration,
+                                          持续时间 = a.Duration,
                                           a.RequestType,
                                           a.Url,
                                           a.Ip,

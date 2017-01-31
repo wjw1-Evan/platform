@@ -36,6 +36,7 @@ namespace Services.Infrastructure
             {
                 dbSetBase.CreatedBy = _userInfo.UserId;
                 dbSetBase.CreatedDate = DateTimeLocal.Now;
+
                 entity = dbSetBase as T;
             }
 

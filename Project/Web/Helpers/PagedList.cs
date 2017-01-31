@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EntityFramework.Extensions;
 
 namespace Web.Helpers
@@ -27,9 +28,7 @@ namespace Web.Helpers
                 PageIndex = index;
                 IsLastPage = true;
             }
-
             AddRange(data);
-
         }
 
         public int TotalCount { get; set; }
@@ -49,10 +48,10 @@ namespace Web.Helpers
             return new PagedList<T>(source, index, pageSize);
         }
 
-        //public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source, int index = 1, int pageSize = 20) where T : class
-        //{
-        //    return await Task.Run(() => new PagedList<T>(source, index, pageSize));
-        //}
+        public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source, int index = 1, int pageSize = 20) where T : class
+        {
+            return await Task.Run(() => new PagedList<T>(source, index, pageSize));
+        }
 
     }
 }

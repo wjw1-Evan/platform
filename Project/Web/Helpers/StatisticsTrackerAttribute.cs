@@ -40,7 +40,6 @@ namespace Web.Helpers
             var controller = (string)filterContext.RouteData.Values["controller"];
             var recordId = (string)filterContext.RouteData.Values["id"];
 
-            var userInfo = DependencyResolver.Current.GetService<IUserInfo>();
             var sysControllerSysActionService = DependencyResolver.Current.GetService<ISysControllerSysActionService>();
             var sysUserLogService = DependencyResolver.Current.GetService<ISysUserLogService>();
 
@@ -50,9 +49,6 @@ namespace Web.Helpers
 
             var sysuserlog = new SysUserLog
             {
-                UserName = userInfo.UserName,
-                EnterpriseId = userInfo.EnterpriseId,
-                CreatedBy = userInfo.UserId,
                 Ip = filterContext.RequestContext.HttpContext.Request.ServerVariables["Remote_Addr"],
                 SysControllerSysActionId = sysControllerSysAction?.Id,
                 RecordId = recordId,
