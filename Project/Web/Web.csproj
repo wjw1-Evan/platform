@@ -670,6 +670,7 @@
     <Content Include="Scripts\ckeditor\contents.css" />
     <Content Include="Scripts\ckeditor\lang\af.js" />
     <Content Include="Scripts\ckeditor\lang\ar.js" />
+    <Content Include="Scripts\ckeditor\lang\az.js" />
     <Content Include="Scripts\ckeditor\lang\bg.js" />
     <Content Include="Scripts\ckeditor\lang\bn.js" />
     <Content Include="Scripts\ckeditor\lang\bs.js" />
@@ -739,6 +740,7 @@
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\az.js" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
     <Content Include="Scripts\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
@@ -901,6 +903,7 @@
     <Content Include="Scripts\ckeditor\plugins\smiley\images\wink_smile.png" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\af.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\az.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
     <Content Include="Scripts\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
@@ -994,6 +997,14 @@
     <Content Include="Scripts\html5shiv-printshiv.min.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\html5shiv.min.js" />
+    <Content Include="Areas\Platform\Views\ChangePassword\Index.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\DisplayTemplates\object.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\EditorTemplates\object.cshtml" />
+    <Content Include="Areas\Platform\Views\SysRole\Details.cshtml" />
+    <None Include="Properties\PublishProfiles\platform-wjw1 - Web Deploy.pubxml" />
+    <Content Include="Scripts\pace.js" />
+    <Content Include="Scripts\pace.min.js" />
+    <Content Include="Scripts\pace.min.js.map" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
@@ -1004,14 +1015,6 @@
     <Content Include="Scripts\ckeditor\package.json" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <Content Include="Areas\Platform\Views\ChangePassword\Index.cshtml" />
-    <Content Include="Areas\Platform\Views\Shared\DisplayTemplates\object.cshtml" />
-    <Content Include="Areas\Platform\Views\Shared\EditorTemplates\object.cshtml" />
-    <Content Include="Areas\Platform\Views\SysRole\Details.cshtml" />
-    <None Include="Properties\PublishProfiles\platform-wjw1 - Web Deploy.pubxml" />
-    <Content Include="Scripts\pace.js" />
-    <Content Include="Scripts\pace.min.js" />
-    <Content Include="Scripts\pace.min.js.map" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
