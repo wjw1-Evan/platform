@@ -1743,4 +1743,16 @@
   <data name="Duration" xml:space="preserve">
     <value>持续时间</value>
   </data>
+  <data name="Deadline" xml:space="preserve">
+    <value>截止时间</value>
+  </data>
+  <data name="TaskExecutor" xml:space="preserve">
+    <value>任务执行人</value>
+  </data>
+  <data name="ActualEndTime" xml:space="preserve">
+    <value>实际结束时间</value>
+  </data>
+  <data name="ScheduleEndTime" xml:space="preserve">
+    <value>计划结束时间</value>
+  </data>
 </root>

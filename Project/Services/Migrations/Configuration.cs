@@ -149,6 +149,26 @@ namespace Services.Migrations
 
                 #endregion other                
 
+                #region 任务管理 800
+                  new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "任务管理",
+                    ControllerName = "Index",
+                    SystemId = "800",
+                    Ico = "fa-line-chart",
+                    Display = true
+                },
+                new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "任务中心",
+                    ControllerName = "TaskCenter",
+                    SystemId = "800200",
+                    Ico = "fa-tasks"
+                },
+                #endregion
+
 
                 #region 用户管理 900
                 new SysController

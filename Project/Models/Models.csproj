@@ -80,6 +80,7 @@
     <Compile Include="SysModels\SysUser.cs" />
     <Compile Include="SysModels\SysUserLog.cs" />
     <Compile Include="SysModels\VerifyCode.cs" />
+    <Compile Include="TaskModels\TaskCenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

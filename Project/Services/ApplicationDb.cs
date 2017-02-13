@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Fissoft.EntityFramework.Fts;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.SysModels;
+using Models.TaskModels;
 
 namespace Services
 {
@@ -14,10 +15,15 @@ namespace Services
         {
             DbInterceptors.Init();
         }
-      
 
-        #region //系统表
-    
+        #region 任务中心
+
+        public DbSet<TaskCenter> TaskCenters { get; set; }
+
+        #endregion
+
+        #region 系统表
+
         public DbSet<SysEnterprise> SysEnterprises { get; set; }
 
         public DbSet<SysEnterpriseSysUser> SysEnterpriseSysUsers { get; set; }

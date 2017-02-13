@@ -1106,7 +1106,6 @@
     <Content Include="Views\Shared\EditorTemplates\UserDictionary.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Extension.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Object.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SysUser.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />

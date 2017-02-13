@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 实际结束时间 的本地化字符串。
+        /// </summary>
+        public static string ActualEndTime {
+            get {
+                return ResourceManager.GetString("ActualEndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 实际发货数量（吨） 的本地化字符串。
         /// </summary>
         public static string ActualQuantity {
@@ -1362,6 +1371,15 @@ namespace Resources {
         public static string DateOfCollection {
             get {
                 return ResourceManager.GetString("DateOfCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 截止时间 的本地化字符串。
+        /// </summary>
+        public static string Deadline {
+            get {
+                return ResourceManager.GetString("Deadline", resourceCulture);
             }
         }
         
@@ -3796,6 +3814,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 计划结束时间 的本地化字符串。
+        /// </summary>
+        public static string ScheduleEndTime {
+            get {
+                return ResourceManager.GetString("ScheduleEndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 搜索 的本地化字符串。
         /// </summary>
         public static string Search {
@@ -4476,6 +4503,15 @@ namespace Resources {
         public static string TargetBlank {
             get {
                 return ResourceManager.GetString("TargetBlank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 任务执行人 的本地化字符串。
+        /// </summary>
+        public static string TaskExecutor {
+            get {
+                return ResourceManager.GetString("TaskExecutor", resourceCulture);
             }
         }
         
