@@ -2,6 +2,8 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using System.Reflection;
+using System.Web.Http;
+using Autofac.Integration.WebApi;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using Resources;
@@ -43,7 +45,7 @@ namespace Web
 
             var container = builder.Build();
 
-            //GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             //自动处理多语言

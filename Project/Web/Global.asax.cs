@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Timers;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using System.Web.Routing;
 using EntityFramework;
@@ -26,11 +27,12 @@ namespace Web
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+     
+            // webapi
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
             // mvc
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            // webapi
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Bootstrapper.Run();

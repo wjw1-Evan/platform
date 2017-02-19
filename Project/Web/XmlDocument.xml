@@ -1,0 +1,1617 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Web</name>
+    </assembly>
+    <members>
+        <member name="T:Web.Areas.Api.Controllers.DefaultController">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:Web.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,Web.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:Web.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:Web.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:Web.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:Web.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Web.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:Web.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:Web.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:Web.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:Web.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Web.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:Web.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,Web.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,Web.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:Web.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:Web.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(Web.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:Web.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:Web.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Web.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:Web.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:Web.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleKey.#ctor(Web.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Web.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Web.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,Web.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Web.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:Web.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Web.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:Web.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:Web.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Web.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:Web.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Web.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.ChangePasswordController.Index">
+            <summary>
+            修改密码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.DesktopController">
+            <summary>
+            桌面
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.DesktopController.#ctor(IServices.ISysServices.ISysUserService,IServices.ISysServices.ISysUserLogService)">
+            <summary>
+            
+            </summary>
+            <param name="iSysUserService"></param>
+            <param name="iSysUserLogService"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.DesktopController.Index">
+            <summary>
+            管理平台的桌面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.MyMessageController">
+            <summary>
+            我的消息中心： Todo： 只显示后才操作类的消息
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.MyMessageController.#ctor(IServices.ISysServices.ISysBroadcastService,IServices.ISysServices.IUserInfo,IServices.Infrastructure.IUnitOfWork,IServices.ISysServices.ISysBroadcastReceivedService)">
+            <summary>
+            
+            </summary>
+            <param name="iSysBroadcastService"></param>
+            <param name="iUserInfo"></param>
+            <param name="iUnitOfWork"></param>
+            <param name="iSysBroadcastReceivedService"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.MyMessageController.Index(System.String,System.Int32)">
+            <summary>
+            我收到的消息列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.MyMessageController.Details(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.MyMessageController.Delete(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysActionController">
+            <summary>
+            操作类型
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.#ctor(IServices.ISysServices.ISysActionService,IServices.Infrastructure.IUnitOfWork)">
+            <summary>
+            
+            </summary>
+            <param name="sysActionService"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Index(System.String,System.String,System.Int32)">
+            <summary>
+            列表
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Report(System.String)">
+            <summary>
+            导出全部数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Details(System.String)">
+            <summary>
+            查看
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Create">
+            <summary>
+            创建
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Edit(System.String)">
+            <summary>
+            编辑
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Edit(System.String,Models.SysModels.SysAction)">
+            <summary>
+            保存
+            </summary>
+            <param name="id"></param>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Delete(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysAreaController.Details(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysAreaController.Delete(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysControllerController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.#ctor(IServices.ISysServices.ISysActionService,IServices.ISysServices.ISysAreaService,IServices.Infrastructure.IUnitOfWork,IServices.ISysServices.ISysControllerService,IServices.ISysServices.ISysControllerSysActionService)">
+            <summary>
+            
+            </summary>
+            <param name="sysActionService"></param>
+            <param name="sysAreaService"></param>
+            <param name="unitOfWork"></param>
+            <param name="sysControllerService"></param>
+            <param name="sysControllerSysActionService"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Index(System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Report">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Details(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Create">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Edit(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Edit(System.String,Models.SysModels.SysController)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Delete(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysHelpController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.#ctor(IServices.ISysServices.ISysHelpService,IServices.Infrastructure.IUnitOfWork,IServices.ISysServices.ISysHelpClassService)">
+            <summary>
+            
+            </summary>
+            <param name="sysHelp"></param>
+            <param name="unitOfWork"></param>
+            <param name="iSysHelpClassService"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Index(System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Report">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Details(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Create">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Edit(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Edit(System.String,Models.SysModels.SysHelp)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Delete(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysKeywordController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.#ctor(IServices.ISysServices.ISysKeywordService,IServices.Infrastructure.IUnitOfWork)">
+            <summary>
+            
+            </summary>
+            <param name="sysKeywordService"></param>
+            <param name="iUnitOfWork"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Index(System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Report">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Details(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Create">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Edit(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Edit(System.String,Models.SysModels.SysKeyword)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Delete(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysUserController">
+            <summary>
+                用户管理
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.#ctor(IServices.Infrastructure.IUnitOfWork,IServices.ISysServices.ISysUserService,IServices.ISysServices.ISysRoleService,IServices.ISysServices.ISysDepartmentService,IServices.ISysServices.ISysEnterpriseService,IServices.ISysServices.IUserInfo,IServices.ISysServices.ISysEnterpriseSysUserService,IServices.ISysServices.ISysDepartmentSysUserService)">
+            <summary>
+            </summary>
+            <param name="unitOfWork"></param>
+            <param name="sysUserService"></param>
+            <param name="sysRoleService"></param>
+            <param name="iDepartmentService"></param>
+            <param name="iUserInfo"></param>
+            <param name="iSysEnterpriseSysUserService"></param>
+            <param name="iSysEnterpriseService"></param>
+            <param name="iSysDepartmentSysUserService"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.#ctor(Web.ApplicationUserManager)">
+            <summary>
+            </summary>
+            <param name="userManager"></param>
+        </member>
+        <member name="P:Web.Areas.Platform.Controllers.SysUserController.UserManager">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Index(System.String,System.String,System.Int32)">
+            <summary>
+                用户列表
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Report">
+            <summary>
+                数据导出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Details(System.Object)">
+            <summary>
+                查看用户详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Create">
+            <summary>
+                新建用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Edit(System.String)">
+            <summary>
+                编辑用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Edit(System.String,Web.Areas.Platform.Models.SysUserEditModel)">
+            <summary>
+                保存用户
+            </summary>
+            <param name="id"></param>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Delete(System.String)">
+            <summary>
+                删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysUserLogController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.#ctor(IServices.ISysServices.ISysUserLogService)">
+            <summary>
+            
+            </summary>
+            <param name="sysUserLogService"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Index(System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Report(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Helpers.DeleteSuccessResult">
+            <summary>
+            扩展删除后的返回结果，提示和跳转
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Helpers.DeleteSuccessResult.#ctor(System.String,System.Web.Routing.RouteValueDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="routeValues"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Helpers.DeleteSuccessResult.ExecuteResult(System.Web.Mvc.ControllerContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Web.Areas.Platform.Helpers.EditSuccessResult">
+            <summary>
+            扩展添加和编辑后的返回结果，提示和跳转
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Helpers.EditSuccessResult.#ctor(System.String,System.Web.Routing.RouteValueDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="routeValues"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Helpers.EditSuccessResult.ExecuteResult(System.Web.Mvc.ControllerContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="P:Web.Areas.Platform.PlatformAreaRegistration.AreaName">
+            <summary>
+            网站管理平台
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.AccountController.ForgotPasswordConfirmation">
+            ;
+        </member>
+        <member name="M:Web.Controllers.AccountController.LogOff">
+            <summary>
+            注销
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Controllers.FilesController.UploadFile(Web.Controllers.FilesController.Filetypes,System.Boolean,ImageProcessor.Imaging.ResizeMode)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="filetype"></param>
+            <param name="ckeditor"></param>
+            <param name="resizeMode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Controllers.HomeController.Index">
+            <summary>
+            首页
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.WebApiApplication.GetVaryByCustomString(System.Web.HttpContext,System.String)">
+            <summary>
+            按照用户Id更新缓存信息，不同用户Id分别缓存 
+            </summary>
+            <param name="context"></param>
+            <param name="arg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.HtmlHelperExtensions.ToSystemIdSelectList``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            将数据变成 无限分类下拉框
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="model">需要实现 IUserDictionary</param>
+            <param name="id">选中值的ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.HtmlHelperExtensions.ReplaceHtmlTag(System.String,System.Int32)">
+            <summary>
+            去除html代码
+            </summary>
+            <param name="html"></param>
+            <param name="length">截取长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.HtmlHelperExtensions.CutString(System.String,System.Int32,System.Boolean)">
+            <summary>
+            截取指定长度的字符串
+            </summary>
+            <param name="str">要截取的字符串</param>
+            <param name="len">要截取的长度</param>
+            <param name="flag">截取后是否加省略号(true加,false不加)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.HtmlHelperExtensions.DateStringFromNow(System.DateTime)">
+            <summary>
+            处理时间显示为距离现在多久
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Helpers.MikePagerAjaxExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.MikePagerAjaxExtensions.MikePager``1(System.Web.Mvc.AjaxHelper,Web.Helpers.PagedList{``0},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="data"></param>
+            <param name="updateTargetId"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.MikePagerAjaxExtensions.MikePager(System.Web.Mvc.AjaxHelper,System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="totalCount"></param>
+            <param name="updateTargetId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Helpers.MikePagerHtmlExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.MikePagerHtmlExtensions.MikePager``1(System.Web.Mvc.HtmlHelper,Web.Helpers.PagedList{``0})">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="data"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.MikePagerHtmlExtensions.MikePager(System.Web.Mvc.HtmlHelper,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="totalCount"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Helpers.UserAuthorizeAttribute">
+            <summary>
+            用户身份验证
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.UserAuthorizeAttribute.Areas">
+            <summary>
+            需要验证的区域   
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.UserAuthorizeAttribute.AuthorizeCore(System.Web.HttpContextBase)">
+            <summary>
+            
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Helpers.UserInfo">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.UserInfo.EnterpriseId">
+            <summary>
+            用户当前企业ID
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.UserInfo.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.UserInfo.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="T:Web.Models.ExternalLoginConfirmationViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.ExternalLoginListViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.SendCodeViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.VerifyCodeViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.ForgotViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.LoginViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Models.LoginViewModel.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Models.LoginViewModel.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.RegisterViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.ChangePasswordViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Models.ChangePasswordViewModel.CurrentPassword">
+            <summary>
+            原密码
+            </summary>
+        </member>
+        <member name="P:Web.Models.ChangePasswordViewModel.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="P:Web.Models.ChangePasswordViewModel.ConfirmPassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Models.ForgotPasswordViewModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Models.ForgotPasswordViewModel.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Models.ForgotPasswordViewModel.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Models.ForgotPasswordViewModel.ConfirmPassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.SignalR.MessengerHub">
+            <summary>
+            用户弹出消息
+            </summary>
+        </member>
+        <member name="M:Web.SignalR.MessengerHub.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.SignalR.MessengerHub.OnConnected">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.SignalR.MessengerHub.OnDisconnected(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="stopCalled"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.SignalR.ISignalMessenger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.SignalR.ISignalMessenger.SendMessage(System.String,System.String)">
+            <summary>
+            给某个用户弹出右下角消息
+            </summary>
+            <param name="userId"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:Web.SignalR.ISignalMessenger.SendAll(System.String)">
+            <summary>
+            给全体用户弹出右下角消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Web.SignalR.ISignalMessenger.SendSysBroadcast(Models.SysModels.SysBroadcast)">
+            <summary>
+            发送给指定用户
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Web.SignalR.ISignalMessenger.SendSysBroadcastByAction(System.String,System.String,System.String,Models.SysModels.SysBroadcast)">
+            <summary>
+            发送有模块权限的人
+            </summary>
+            <param name="area"></param>
+            <param name="message"></param>
+            <param name="action"></param>
+            <param name="controller"></param>
+        </member>
+        <member name="T:Web.SignalR.Messenger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.SignalR.Messenger.SendMessage(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="userId"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:Web.SignalR.Messenger.SendAll(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Web.SignalR.Messenger.SendSysBroadcast(Models.SysModels.SysBroadcast)">
+            <summary>
+            推送消息，不用提前保存
+            </summary>
+            <param name="sysBroadcast"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.SignalR.Messenger.SendSysBroadcastByAction(System.String,System.String,System.String,Models.SysModels.SysBroadcast)">
+            <summary>
+            推送给有操作权限的用户
+            </summary>
+            <param name="action"></param>
+            <param name="controller"></param>
+            <param name="area"></param>
+            <param name="sysBroadcast"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BootstrapSupport.ControlGroup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroup.#ctor(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroup.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.BeginControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="modelProperty"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.BeginControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="modelProperty"></param>
+            <param name="htmlAttributes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.BeginControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="modelProperty"></param>
+            <param name="htmlAttributes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.BeginControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.BeginControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="propertyName"></param>
+            <param name="htmlAttributes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.BeginControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="propertyName"></param>
+            <param name="htmlAttributes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.EndControlGroup(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.ControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="modelProperty"></param>
+            <param name="htmlAttributes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.ControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="propertyName"></param>
+            <param name="htmlAttributes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.ControlGroupExtensions.ControlGroupFor``1(System.Web.Mvc.HtmlHelper{``0},System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="html"></param>
+            <param name="propertyName"></param>
+            <param name="htmlAttributes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BootstrapSupport.Alerts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:BootstrapSupport.Alerts.Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:BootstrapSupport.Alerts.Attention">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="F:BootstrapSupport.Alerts.Warning">
+            <summary>
+            错误
+            </summary>
+        </member>
+        <member name="F:BootstrapSupport.Alerts.Information">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="T:BootstrapSupport.DefaultScaffoldingExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.GetControllerName(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="controllerType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.GetActionName(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            
+            </summary>
+            <param name="actionExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.VisibleProperties(System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.VisibleProperties(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.OrderedByDisplayAttr(System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo})">
+            <summary>
+            
+            </summary>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.GetIdValue(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.GetId(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.IdentifierPropertyName(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.IdentifierPropertyName(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.DefaultScaffoldingExtensions.GetLabel(System.Reflection.PropertyInfo)">
+            <summary>
+            
+            </summary>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BootstrapSupport.PropertyInfoExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BootstrapSupport.PropertyInfoExtensions.AttributeExists``1(System.Reflection.PropertyInfo)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.PropertyInfoExtensions.AttributeExists``1(System.Type)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.PropertyInfoExtensions.GetAttribute``1(System.Type)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.PropertyInfoExtensions.GetAttribute``1(System.Reflection.PropertyInfo)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.PropertyInfoExtensions.LabelFromType(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.PropertyInfoExtensions.GetLabel(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BootstrapSupport.PropertyInfoExtensions.GetLabel(System.Collections.IEnumerable)">
+            <summary>
+            
+            </summary>
+            <param name="Model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BootstrapSupport.HtmlHelperExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Common.CommonCodeGenerator">
+            <summary>
+            验证码生成器
+            </summary>
+        </member>
+        <member name="M:Common.CommonCodeGenerator.Generator(System.Int32)">
+            <summary>
+            获取指定长度验证码
+            </summary>
+            <param name="length">验证码长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.CommonCodeGenerator.GenerateRandomInt(System.Int32,System.Int32)">
+            <summary>
+            获取随机整数
+            </summary>
+            <param name="min">最小值</param>
+            <param name="max">最大值</param>
+            <returns>Result</returns>
+        </member>
+        <member name="M:Common.CommonCodeGenerator.GenerateUnvisibleEmail(System.String)">
+            <summary>
+            部分显示邮箱
+            </summary>
+            <param name="emailAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.CommonCodeGenerator.GenerateUnvisiblePhone(System.String)">
+            <summary>
+            部分显示手机号
+            </summary>
+            <param name="phoneNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.CommonUtils.GetUserName4Dispaly(Models.SysModels.SysUser)">
+            <summary>
+            显示用户名，
+            1   如果设置全名，则显示全名
+            2   没设置全名，显示用户名
+            3   未设置用户名，显示绑定手机
+            4   未绑定手机，显示绑定邮箱
+            5   显示系统默认用户名
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Common.CommonUtils.GetUserName4Platform(Models.SysModels.SysUser)">
+            <summary>
+            显示用户名，
+            1   如果设置全名，则显示全名
+            2   没设置全名，显示用户名
+            3   未设置用户名，显示绑定手机
+            4   未绑定手机，显示绑定邮箱
+            5   显示系统默认用户名
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
