@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Http.Cors;
+using System.Web.Mvc;
 using System.Web.Routing;
 using DoddleReport.Web;
 
@@ -17,6 +19,24 @@ namespace Web
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                new[] { "Web.Controllers" }
+            );
+        }
+    }
+
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            //跨域配置
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
+            // Web API 路由
+            config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
             );
         }
     }

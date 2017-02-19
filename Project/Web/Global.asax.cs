@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Timers;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using EntityFramework;
@@ -23,8 +24,13 @@ namespace Web
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
 
             AreaRegistration.RegisterAllAreas();
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            // mvc
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            // webapi
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Bootstrapper.Run();
