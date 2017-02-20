@@ -1068,6 +1068,52 @@
             <param name="totalCount"></param>
             <returns></returns>
         </member>
+        <member name="T:Web.Helpers.StatisticsTrackerAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.StatisticsTrackerAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Web.Helpers.StatisticsTrackerAttribute.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Web.Helpers.StatisticsTrackerAttribute.OnResultExecuting(System.Web.Mvc.ResultExecutingContext)">
+            <summary>
+            
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Web.Helpers.StatisticsTrackerAttribute.OnResultExecuted(System.Web.Mvc.ResultExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Web.Helpers.WebApiTrackerAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.WebApiTrackerAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="M:Web.Helpers.WebApiTrackerAttribute.OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="actionExecutedContext"></param>
+        </member>
         <member name="T:Web.Helpers.UserAuthorizeAttribute">
             <summary>
             用户身份验证

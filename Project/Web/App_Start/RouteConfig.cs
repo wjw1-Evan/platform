@@ -3,6 +3,7 @@ using System.Web.Http.Cors;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DoddleReport.Web;
+using Web.Helpers;
 
 namespace Web
 {
@@ -40,6 +41,8 @@ namespace Web
             );
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            config.Filters.Add(new WebApiTrackerAttribute());
         }
     }
 }
