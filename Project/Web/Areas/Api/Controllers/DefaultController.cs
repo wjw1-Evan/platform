@@ -11,7 +11,6 @@ namespace Web.Areas.Api.Controllers
         // GET: api/Default
         public IEnumerable<string> Get()
         {
-            System.Threading.Thread.Sleep(1000);
             return new string[] { "value1", "value2" };
         }
 

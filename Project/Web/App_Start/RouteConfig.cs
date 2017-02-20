@@ -13,6 +13,8 @@ namespace Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.IgnoreRoute("elmah.axd");
+
             routes.MapReportingRoute();
 
             routes.MapRoute(
