@@ -21,17 +21,17 @@ namespace Web.Areas.Platform.Controllers
     /// </summary>
     public class TaskCenterController : Controller
     {
-        private readonly ITaskCenterService _TaskCenterService;
+        private readonly ITaskCenterService _iTaskCenterService;
         private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="TaskCenterService"></param>
+        /// <param name="iTaskCenterService"></param>
         /// <param name="unitOfWork"></param>
-        public TaskCenterController(ITaskCenterService TaskCenterService, IUnitOfWork unitOfWork)
+        public TaskCenterController(ITaskCenterService iTaskCenterService, IUnitOfWork unitOfWork)
         {
-            _TaskCenterService = TaskCenterService;
+            _iTaskCenterService = iTaskCenterService;
             _unitOfWork = unitOfWork;
         }
 
@@ -45,7 +45,7 @@ namespace Web.Areas.Platform.Controllers
         public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
         {
             var model =
-                _TaskCenterService.GetAll()
+                _iTaskCenterService.GetAll()
                                  .Select(
                                      a =>
                                      new { TaskType = a.TaskType.ToString(), a.Title, a.Content,a.Files, TaskExecutor= a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
@@ -65,7 +65,7 @@ namespace Web.Areas.Platform.Controllers
         public ReportResult Report(string keyword)
         {
             var model =
-             _TaskCenterService.GetAll()
+             _iTaskCenterService.GetAll()
                               .Select(
                                   a =>
                                   new { TaskType = a.TaskType.ToString(), a.Title, a.Content, a.Files, TaskExecutor = a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
@@ -85,7 +85,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public ActionResult Details(string id)
         {
-            var item = _TaskCenterService.GetById(id);
+            var item = _iTaskCenterService.GetById(id);
             return View(item);
         }
 
@@ -111,7 +111,7 @@ namespace Web.Areas.Platform.Controllers
             var item = new TaskCenter();
             if (!string.IsNullOrEmpty(id))
             {
-                item = _TaskCenterService.GetById(id);
+                item = _iTaskCenterService.GetById(id);
             }
 
             // 根据类型选择不同的编辑视图
@@ -140,7 +140,7 @@ namespace Web.Areas.Platform.Controllers
                 return View(collection);
             }
 
-            _TaskCenterService.Save(id, collection);
+            _iTaskCenterService.Save(id, collection);
 
             await _unitOfWork.CommitAsync();
 
@@ -155,7 +155,7 @@ namespace Web.Areas.Platform.Controllers
         [HttpDelete]
         public async Task<ActionResult> Delete(string id)
         {
-            _TaskCenterService.Delete(id);
+            _iTaskCenterService.Delete(id);
 
             await _unitOfWork.CommitAsync();
 
