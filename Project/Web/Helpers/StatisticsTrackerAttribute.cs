@@ -79,7 +79,7 @@ namespace Web.Helpers
                 SysArea = sysControllerSysAction?.SysController.SysArea.Name ?? area,
                 SysController = sysControllerSysAction?.SysController.Name ?? controller,
                 SysAction = sysControllerSysAction?.SysAction.Name ?? action,
-                Duration = Math.Round((DateTime.Now - _datetimenow).TotalMilliseconds),
+                Duration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds, 3),
                 RequestType = filterContext.HttpContext.Request.RequestType
             };
 
@@ -134,7 +134,7 @@ namespace Web.Helpers
                 SysArea = "WebApi",
                 SysController = controller,
                 SysAction = action,
-                Duration = Math.Round((DateTime.Now - _datetimenow).TotalMilliseconds),
+                Duration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds,3),
                 RequestType =actionExecutedContext.Request.Method.Method
             };
 
