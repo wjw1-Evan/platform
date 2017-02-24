@@ -1755,4 +1755,7 @@
   <data name="ScheduleEndTime" xml:space="preserve">
     <value>计划结束时间</value>
   </data>
+  <data name="TaskType" xml:space="preserve">
+    <value>任务类型</value>
+  </data>
 </root>

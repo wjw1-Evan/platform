@@ -10,7 +10,7 @@
             <label class="col-sm-3 control-label" for="@prop.PropertyName">@(prop.IsRequired ? "*" : "") @prop.DisplayName</label>
             <div class="col-sm-6">
                 @Html.Editor(prop.PropertyName, !string.IsNullOrEmpty(prop.TemplateHint) ? prop.TemplateHint : prop.DataTypeName, new {prop.PropertyName, placeholder = prop.Description })
-                <span class="help-block m-b-none"></span>
+                <span class="help-block"></span>
             </div>
             <div class="col-sm-3" style="padding: 7px 15px">
                 @Html.ValidationMessage(prop.PropertyName)

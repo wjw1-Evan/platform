@@ -385,6 +385,7 @@
     <Compile Include="Areas\Platform\Controllers\SysRoleController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysUserController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysUserLogController.cs" />
+    <Compile Include="Areas\Platform\Controllers\TaskControllers\TaskCenterController.cs" />
     <Compile Include="Areas\Platform\Helpers\DeleteSuccessResult.cs" />
     <Compile Include="Areas\Platform\Helpers\EditSuccessResult.cs" />
     <Compile Include="Areas\Platform\Models\SysUserEditModel.cs" />
@@ -1088,6 +1089,7 @@
     <Content Include="Scripts\ckeditor\package.json" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
+    <Content Include="Views\Shared\DisplayTemplates\SysUser.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

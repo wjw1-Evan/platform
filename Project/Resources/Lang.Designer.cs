@@ -4516,6 +4516,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 任务类型 的本地化字符串。
+        /// </summary>
+        public static string TaskType {
+            get {
+                return ResourceManager.GetString("TaskType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 税务登记号 的本地化字符串。
         /// </summary>
         public static string TaxRegistrationNumber {

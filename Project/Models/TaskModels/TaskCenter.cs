@@ -42,7 +42,6 @@ namespace Models.TaskModels
         /// </summary>
         [MaxLength]
         [DataType(DataType.Html)]
-        [Required]
         public string Content { get; set; }
 
         /// <summary>
@@ -69,7 +68,7 @@ namespace Models.TaskModels
         /// <summary>
         /// 持续时间
         /// </summary>
-        [Range(typeof(decimal),"0","")]
+        [Range(typeof(decimal),"0","24")]
         public decimal Duration { get; set; }
 
         /// <summary>

@@ -11,7 +11,7 @@ CKEDITOR.editorConfig = function (config) {
     // The toolbar groups arrangement, optimized for two toolbar rows.
 
     config.uiColor = '#ffffff';
-    config.height = 500;
+    config.height = 300;
     config.filebrowserImageUploadUrl = "/Files/UploadFile?filetype=1&ckeditor=true";
     config.filebrowserUploadUrl = "/Files/UploadFile?filetype=0&ckeditor=true";
 

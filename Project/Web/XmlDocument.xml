@@ -912,6 +912,68 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Web.Areas.Platform.Controllers.TaskCenterController">
+            <summary>
+            任务中心
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.#ctor(IServices.ITaskServices.ITaskCenterService,IServices.Infrastructure.IUnitOfWork)">
+            <summary>
+            
+            </summary>
+            <param name="TaskCenterService"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Index(System.String,System.String,System.Int32)">
+            <summary>
+            列表
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Report(System.String)">
+            <summary>
+            导出全部数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Details(System.String)">
+            <summary>
+            查看
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Create">
+            <summary>
+            创建
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String)">
+            <summary>
+            编辑
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String,Models.TaskModels.TaskCenter)">
+            <summary>
+            保存
+            </summary>
+            <param name="id"></param>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Delete(System.String)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Web.Areas.Platform.Helpers.DeleteSuccessResult">
             <summary>
             扩展删除后的返回结果，提示和跳转

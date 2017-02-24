@@ -71,6 +71,7 @@
     <Compile Include="ISysServices\ISysUserService.cs" />
     <Compile Include="ISysServices\IUserInfo.cs" />
     <Compile Include="ISysServices\IVerifyCodeService.cs" />
+    <Compile Include="ITaskServices\ITaskCenterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +84,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ITaskServices\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

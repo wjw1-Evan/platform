@@ -90,6 +90,7 @@
     <Compile Include="SysServices\SysUserLogService.cs" />
     <Compile Include="SysServices\SysUserService.cs" />
     <Compile Include="SysServices\VerifyCodeService.cs" />
+    <Compile Include="TaskServices\TaskCenterService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -109,9 +110,7 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TaskServices\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
