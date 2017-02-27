@@ -45,11 +45,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
         {
-            var model =
-                _iTaskCenterService.GetAll()
-                                 .Select(
-                                     a =>
-                                     new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title= a.Title, Content= a.Content, Files=a.Files, TaskExecutor= a.TaskExecutor.UserName, UserName= a.UserCreatedBy.UserName, ScheduleEndTime= a.ScheduleEndTime, Id= a.Id, ActualEndTime=a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration=a.Duration }).Search(keyword);
+            var model = _iTaskCenterService.GetAll().Select(a => new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title = a.Title, Content = a.Content, Files = a.Files, TaskExecutor = a.TaskExecutor.UserName, UserName = a.UserCreatedBy.UserName, ScheduleEndTime = a.ScheduleEndTime, Id = a.Id, ActualEndTime = a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration = a.Duration }).Search(keyword);
 
             if (!string.IsNullOrEmpty(ordering))
             {
@@ -57,7 +53,7 @@ namespace Web.Areas.Platform.Controllers
             }
             else
             {
-                model = model.OrderBy(a=>a.ActualEndTime).ThenBy(a => a.ScheduleEndTime);
+                model = model.OrderBy(a => a.ActualEndTime).ThenBy(a => a.ScheduleEndTime);
             }
 
             return View(model.ToPagedList(pageIndex));
@@ -69,11 +65,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public ReportResult Report(string keyword)
         {
-            var model =
-             _iTaskCenterService.GetAll()
-                              .Select(
-                                  a =>
-                                  new { TaskType = a.TaskType.ToString(), a.Title, a.Content, a.Files, TaskExecutor = a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
+            var model = _iTaskCenterService.GetAll().Select(a => new { TaskType = a.TaskType.ToString(), a.Title, a.Content, a.Files, TaskExecutor = a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
 
             var report = new Report(model.ToReportSource());
 
@@ -100,7 +92,8 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public ActionResult Create()
         {
-            return RedirectToAction("Edit");
+            var item = new TaskCenter();
+            return View(item);
         }
 
         //
@@ -113,18 +106,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public ActionResult Edit(string id)
         {
-            var item = new TaskCenter();
-            if (!string.IsNullOrEmpty(id))
-            {
-                item = _iTaskCenterService.GetById(id);
-            }
-
-            // 根据类型选择不同的编辑视图
-            // 1、任务发布人
-
-
-            // 2、任务执行人
-
+            var item = _iTaskCenterService.GetById(id);
             return View(item);
         }
 

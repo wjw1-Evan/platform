@@ -10,7 +10,7 @@
             foreach (FilesController.UserUploadFile item in Json.Decode(Model, typeof(List<FilesController.UserUploadFile>)))
             {
                 <li>
-                    <a href="@item.Url" target="_blank">"@item.Filename</a>
+                    <a href="@item.Url" target="_blank">@item.Filename</a>
                 </li>
             }
         }
