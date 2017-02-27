@@ -68,7 +68,8 @@ namespace Models.TaskModels
         /// <summary>
         /// 持续时间
         /// </summary>
-        [Range(typeof(decimal),"0","24")]
+        [Range(typeof(decimal), "0", "24")]
+        [Display(Description = "Hour")]
         public decimal Duration { get; set; }
 
         /// <summary>

@@ -388,6 +388,7 @@
     <Compile Include="Areas\Platform\Controllers\TaskControllers\TaskCenterController.cs" />
     <Compile Include="Areas\Platform\Helpers\DeleteSuccessResult.cs" />
     <Compile Include="Areas\Platform\Helpers\EditSuccessResult.cs" />
+    <Compile Include="Areas\Platform\Models\TaskCenterListModel.cs" />
     <Compile Include="Areas\Platform\Models\SysUserEditModel.cs" />
     <Compile Include="Areas\Platform\PlatformAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\DefaultController.cs" />
@@ -1075,6 +1076,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Areas\Platform\Views\TaskCenter\Index.cshtml" />
     <None Include="Properties\PublishProfiles\platform-wjw1 - Web Deploy.pubxml" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
@@ -1090,6 +1092,7 @@
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Views\Shared\DisplayTemplates\SysUser.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Html.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

@@ -1758,4 +1758,7 @@
   <data name="TaskType" xml:space="preserve">
     <value>任务类型</value>
   </data>
+  <data name="Hour" xml:space="preserve">
+    <value>小时</value>
+  </data>
 </root>

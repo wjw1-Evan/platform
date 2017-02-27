@@ -1,0 +1,126 @@
+﻿@using Resources
+@model PagedList<Web.Areas.Platform.Models.TaskCenterListModel>
+
+@using BootstrapSupport
+@using Common
+@using Web.Helpers
+
+@{
+    var routevalues = new RouteValueDictionary { ["keyword"] = Request["Keyword"] };
+}
+
+<div class="content-heading">
+    <div class="row">
+        <div class="col-xs-6">
+            @if (Model.VisibleProperties().Any(a => a.Name == "Id") && Html.CheckControllerAction("Create"))
+            {
+                @Html.Partial("Button_Create", new { })
+            }
+
+            @if (Html.CheckControllerAction("Import"))
+            {
+                @Html.Partial("Button_Import", new { })
+            }
+
+            @if (Html.CheckControllerAction("Report"))
+            {
+                @Html.Partial("Button_Export", new { report = true, ordering = Request["ordering"], keyword = Request["keyword"] })
+            }
+        </div>
+
+        <div class="col-xs-6">
+            @Html.Partial("Search_Input")
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    @Html.Partial("_alerts")
+
+    <div class="panel-body">
+
+        @foreach (var item in Model)
+        {
+
+            <blockquote style="padding-top: 0; padding-bottom: 0;font-size: inherit">
+                <div class="pull-right">
+                    @if (string.IsNullOrEmpty(item.ActualEndTime))
+                    {
+                        <span>
+                            <button class="btn btn-success">
+                                完成
+                            </button>
+
+                        </span>
+                    }
+                    else
+                    {
+                        <span>已完成 耗时 @Html.DisplayFor(a => item.Duration)</span>
+                    }
+                </div>
+
+                <h4>
+
+                    @if (string.IsNullOrEmpty(item.ActualEndTime))
+                    {
+                        <i class="fa fa-square-o fa-fw"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-check-square-o fa-fw"></i>
+                    }
+
+                    @Html.DisplayFor(a => item.Title)
+
+                    [@item.TaskType]
+                </h4>
+                <small style="padding: 0 30px;">
+                    @if (!string.IsNullOrEmpty(item.ScheduleEndTime))
+                    {
+                        <span>截止时间：</span>
+                            <span>@Html.DisplayFor(a => item.ScheduleEndTime)</span>
+
+                        if (string.IsNullOrEmpty(item.ActualEndTime))
+                        {
+                            <span>剩余</span>
+                                <span>
+                                    @((DateTime.Parse(item.ScheduleEndTime) - DateTime.Parse(DateTimeLocal.Now)).TotalDays.ToString("F1"))
+                                </span>
+                                <span>天</span>
+                        }
+                    }
+
+                    @if (!string.IsNullOrEmpty(item.ActualEndTime))
+                    {
+                        <span>完成时间：</span>
+                            <span>@Html.DisplayFor(a => item.ActualEndTime)</span>
+                    }
+                    <span>
+                        发布人：@Html.DisplayFor(a => item.UserName)
+                    </span>
+
+                    <span>
+                        负责人：@Html.DisplayFor(a => item.TaskExecutor)
+                    </span>
+                </small>
+
+                @if (!string.IsNullOrEmpty(item.Content))
+                {
+                    <blockquote style="font-size: inherit;padding:5px 16px; margin-bottom: 5px;margin-left: 9px;">
+                        @Html.DisplayFor(a => item.Content)
+                    </blockquote>
+                }
+
+                @if (!string.IsNullOrEmpty(item.Files))
+                {
+                    <blockquote style="font-size: inherit;padding: 5px 0; margin-bottom: 5px; margin-left:9px;">
+                        @Html.DisplayFor(a => item.Files)
+                    </blockquote>
+                }
+                <div class="clearfix"></div>
+
+            </blockquote>
+        }
+        @Html.Raw(Ajax.MikePager((int)Model.GetType().GetProperty("PageIndex").GetValue(Model, null), (int)Model.GetType().GetProperty("PageSize").GetValue(Model, null), (int)Model.GetType().GetProperty("TotalCount").GetValue(Model, null)))
+    </div>
+</div>

@@ -2086,6 +2086,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 小时 的本地化字符串。
+        /// </summary>
+        public static string Hour {
+            get {
+                return ResourceManager.GetString("Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 链接 的本地化字符串。
         /// </summary>
         public static string HyperLink {

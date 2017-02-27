@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using IServices.ITaskServices;
 using Models.TaskModels;
 using Web.Areas.Platform.Helpers;
+using Web.Areas.Platform.Models;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -48,11 +49,15 @@ namespace Web.Areas.Platform.Controllers
                 _iTaskCenterService.GetAll()
                                  .Select(
                                      a =>
-                                     new { TaskType = a.TaskType.ToString(), a.Title, a.Content,a.Files, TaskExecutor= a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
+                                     new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title= a.Title, Content= a.Content, Files=a.Files, TaskExecutor= a.TaskExecutor.UserName, UserName= a.UserCreatedBy.UserName, ScheduleEndTime= a.ScheduleEndTime, Id= a.Id, ActualEndTime=a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration=a.Duration }).Search(keyword);
 
             if (!string.IsNullOrEmpty(ordering))
             {
                 model = model.OrderBy(ordering, null);
+            }
+            else
+            {
+                model = model.OrderBy(a=>a.ActualEndTime).ThenBy(a => a.ScheduleEndTime);
             }
 
             return View(model.ToPagedList(pageIndex));
