@@ -1761,4 +1761,7 @@
   <data name="Hour" xml:space="preserve">
     <value>小时</value>
   </data>
+  <data name="Files" xml:space="preserve">
+    <value>附件</value>
+  </data>
 </root>

@@ -1,14 +1,9 @@
 ﻿@using Resources
 @model PagedList<Web.Areas.Platform.Models.TaskCenterListModel>
-
 @using BootstrapSupport
 @using Common
 @using Microsoft.AspNet.Identity
 @using Web.Helpers
-
-@{
-    var routevalues = new RouteValueDictionary { ["keyword"] = Request["Keyword"] };
-}
 
 <div class="content-heading">
     <div class="row">
@@ -40,10 +35,33 @@
 
     <div class="panel-body">
 
+        @{
+            int i = 0;
+        }
+
         @foreach (var item in Model)
         {
+            <div style="float: left;width: 100px;text-align: right;padding:0 10px;">
+                @if (string.IsNullOrEmpty(item.ActualEndTime))
+                {
+                    <h3>
+                        @{
+                            i++;
+                            @i
+                        }
+                    </h3>
+                            }
 
-            <blockquote style="padding-top: 0; padding-bottom: 0;font-size: inherit">
+
+                @if (!string.IsNullOrEmpty(item.ScheduleEndTime) && string.IsNullOrEmpty(item.ActualEndTime))
+                {
+                    <div>剩余@((DateTime.Parse(item.ScheduleEndTime) - DateTime.Parse(DateTimeLocal.Now)).TotalDays.ToString("F1"))天</div>
+                }
+
+
+            </div>
+
+            <blockquote style="padding: 5px 10px; margin-left: 100px;  font-size: inherit; " onmouseover="this.style.backgroundColor='#F4F9FD'" onmouseout="this.style.backgroundColor=''">
                 <div class="pull-right">
                     @if (string.IsNullOrEmpty(item.ActualEndTime))
                     {
@@ -68,7 +86,7 @@
                     }
                     else
                     {
-                        <span>已完成</span>
+                        <span></span>
                     }
                 </div>
 
@@ -88,25 +106,17 @@
                     [@item.TaskType]
                 </h4>
                 <small style="padding: 0 30px;">
+
                     @if (!string.IsNullOrEmpty(item.ScheduleEndTime))
                     {
-                        <span>截止时间：</span>
-                        <span>@Html.DisplayFor(a => item.ScheduleEndTime)</span>
+                        <span>截止时间：@Html.DisplayFor(a => item.ScheduleEndTime)</span>
 
-                        if (string.IsNullOrEmpty(item.ActualEndTime))
-                        {
-                            <span>剩余</span>
-                            <span>
-                                @((DateTime.Parse(item.ScheduleEndTime) - DateTime.Parse(DateTimeLocal.Now)).TotalDays.ToString("F1"))
-                            </span>
-                            <span>天</span>
-                        }
                     }
 
                     @if (!string.IsNullOrEmpty(item.ActualEndTime))
                     {
-                        <span>完成时间：</span>
-                        <span>@Html.DisplayFor(a => item.ActualEndTime)</span>
+                        <span>完成时间：@Html.DisplayFor(a => item.ActualEndTime)</span>
+
                     }
                     <span>
                         发布人：@Html.DisplayFor(a => item.UserName)
@@ -133,7 +143,7 @@
                 <div class="clearfix"></div>
 
             </blockquote>
-        }
+                            }
         @Html.Raw(Ajax.MikePager((int)Model.GetType().GetProperty("PageIndex").GetValue(Model, null), (int)Model.GetType().GetProperty("PageSize").GetValue(Model, null), (int)Model.GetType().GetProperty("TotalCount").GetValue(Model, null)))
     </div>
 </div>

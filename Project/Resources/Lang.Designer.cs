@@ -1951,6 +1951,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 附件 的本地化字符串。
+        /// </summary>
+        public static string Files {
+            get {
+                return ResourceManager.GetString("Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 财务审批日期 的本地化字符串。
         /// </summary>
         public static string FinancialApprovedDateTime {

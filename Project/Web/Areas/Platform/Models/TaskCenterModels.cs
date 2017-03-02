@@ -6,7 +6,7 @@ namespace Web.Areas.Platform.Models
 {
     public class TaskCenterListModel
     {
-        public string UserName { get; set; }
+        public string UserName { get; internal set; }
 
         public string TaskType { get; internal set; }
 
@@ -25,6 +25,7 @@ namespace Web.Areas.Platform.Models
         public string Id { get; internal set; }
         public string ActualEndTime { get; internal set; }
         public string Title { get; internal set; }
+        public string CreatedDate { get; internal set; }
     }
 
     public class TaskCenterEditModel : TaskCenter
