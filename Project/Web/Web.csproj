@@ -388,7 +388,7 @@
     <Compile Include="Areas\Platform\Controllers\TaskControllers\TaskCenterController.cs" />
     <Compile Include="Areas\Platform\Helpers\DeleteSuccessResult.cs" />
     <Compile Include="Areas\Platform\Helpers\EditSuccessResult.cs" />
-    <Compile Include="Areas\Platform\Models\TaskCenterListModel.cs" />
+    <Compile Include="Areas\Platform\Models\TaskCenterModels.cs" />
     <Compile Include="Areas\Platform\Models\SysUserEditModel.cs" />
     <Compile Include="Areas\Platform\PlatformAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\DefaultController.cs" />

@@ -77,6 +77,7 @@ namespace Models.TaskModels
         /// </summary>
         [ForeignKey("TaskExecutor")]
         [Display(Name = "TaskExecutor")]
+        [Required]
         public string TaskExecutorId { get; set; }
 
         /// <summary>

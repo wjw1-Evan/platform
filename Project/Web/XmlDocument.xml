@@ -917,12 +917,14 @@
             任务中心
             </summary>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.#ctor(IServices.ITaskServices.ITaskCenterService,IServices.Infrastructure.IUnitOfWork)">
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.#ctor(IServices.ITaskServices.ITaskCenterService,IServices.Infrastructure.IUnitOfWork,IServices.ISysServices.ISysUserService,IServices.ISysServices.IUserInfo)">
             <summary>
             
             </summary>
             <param name="iTaskCenterService"></param>
             <param name="unitOfWork"></param>
+            <param name="iSysUserService"></param>
+            <param name="iUserInfo"></param>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Index(System.String,System.String,System.Int32)">
             <summary>
@@ -952,14 +954,15 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String)">
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String,System.Boolean)">
             <summary>
             编辑
             </summary>
             <param name="id"></param>
+            <param name="finished"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String,Models.TaskModels.TaskCenter)">
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String,System.Web.Mvc.FormCollection)">
             <summary>
             保存
             </summary>

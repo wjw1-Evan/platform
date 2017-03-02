@@ -10,6 +10,7 @@ using Models.SysModels;
 using Web.Helpers;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
+using AutoMapper;
 using IServices.ITaskServices;
 using Models.TaskModels;
 using Web.Areas.Platform.Helpers;
@@ -23,17 +24,23 @@ namespace Web.Areas.Platform.Controllers
     public class TaskCenterController : Controller
     {
         private readonly ITaskCenterService _iTaskCenterService;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _iUnitOfWork;
+        private readonly ISysUserService _iSysUserService;
+        private readonly IUserInfo _iUserInfo;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="iTaskCenterService"></param>
         /// <param name="unitOfWork"></param>
-        public TaskCenterController(ITaskCenterService iTaskCenterService, IUnitOfWork unitOfWork)
+        /// <param name="iSysUserService"></param>
+        /// <param name="iUserInfo"></param>
+        public TaskCenterController(ITaskCenterService iTaskCenterService, IUnitOfWork unitOfWork, ISysUserService iSysUserService, IUserInfo iUserInfo)
         {
             _iTaskCenterService = iTaskCenterService;
-            _unitOfWork = unitOfWork;
+            _iUnitOfWork = unitOfWork;
+            _iSysUserService = iSysUserService;
+            _iUserInfo = iUserInfo;
         }
 
         /// <summary>
@@ -43,9 +50,9 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
+        public async Task<ActionResult> Index(string keyword, string ordering, int pageIndex = 1)
         {
-            var model = _iTaskCenterService.GetAll().Select(a => new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title = a.Title, Content = a.Content, Files = a.Files, TaskExecutor = a.TaskExecutor.UserName, UserName = a.UserCreatedBy.UserName, ScheduleEndTime = a.ScheduleEndTime, Id = a.Id, ActualEndTime = a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration = a.Duration }).Search(keyword);
+            var model = _iTaskCenterService.GetAll(a => a.CreatedBy == _iUserInfo.UserId || a.TaskExecutorId == _iUserInfo.UserId).Select(a => new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title = a.Title, Content = a.Content, Files = a.Files, TaskExecutor = a.TaskExecutor.UserName, UserName = a.UserCreatedBy.UserName, ScheduleEndTime = a.ScheduleEndTime, Id = a.Id, ActualEndTime = a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration = a.Duration }).Search(keyword);
 
             if (!string.IsNullOrEmpty(ordering))
             {
@@ -65,7 +72,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public ReportResult Report(string keyword)
         {
-            var model = _iTaskCenterService.GetAll().Select(a => new { TaskType = a.TaskType.ToString(), a.Title, a.Content, a.Files, TaskExecutor = a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
+            var model = _iTaskCenterService.GetAll(a => a.CreatedBy == _iUserInfo.UserId || a.TaskExecutorId == _iUserInfo.UserId).Select(a => new { TaskType = a.TaskType.ToString(), a.Title, a.Content, a.Files, TaskExecutor = a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
 
             var report = new Report(model.ToReportSource());
 
@@ -80,7 +87,7 @@ namespace Web.Areas.Platform.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Details(string id)
+        public async Task<ActionResult> Details(string id)
         {
             var item = _iTaskCenterService.GetById(id);
             return View(item);
@@ -90,10 +97,9 @@ namespace Web.Areas.Platform.Controllers
         /// 创建
         /// </summary>
         /// <returns></returns>
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            var item = new TaskCenter();
-            return View(item);
+            return RedirectToAction("Edit");
         }
 
         //
@@ -103,12 +109,34 @@ namespace Web.Areas.Platform.Controllers
         /// 编辑
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="finished"></param>
         /// <returns></returns>
-        public ActionResult Edit(string id)
+        public async Task<ActionResult> Edit(string id, bool finished=false)
         {
             var item = _iTaskCenterService.GetById(id);
-            return View(item);
+
+            if (finished)
+            {
+                item.ActualEndTime = DateTimeLocal.Now;
+
+                await _iUnitOfWork.CommitAsync();
+
+                return new EditSuccessResult(id);
+            }
+
+            var model = new TaskCenterEditModel();
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                Mapper.Initialize(a => a.CreateMap<TaskCenter, TaskCenterEditModel>());
+                Mapper.Map(item, model);
+            }
+
+            ViewBag.TaskExecutorId = new SelectList(_iSysUserService.GetAll(), "Id", "UserName", model.CreatedBy);
+
+            return View(model);
         }
+    
 
         /// <summary>
         /// 保存
@@ -119,17 +147,21 @@ namespace Web.Areas.Platform.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Edit(string id, TaskCenter collection)
+        public async Task<ActionResult> Edit(string id, FormCollection collection)
         {
             if (!ModelState.IsValid)
             {
-                Edit(id);
+                await Edit(id);
                 return View(collection);
             }
 
-            _iTaskCenterService.Save(id, collection);
+            var item = new TaskCenter();
 
-            await _unitOfWork.CommitAsync();
+            TryUpdateModel(item);
+
+            _iTaskCenterService.Save(id, item);
+
+            await _iUnitOfWork.CommitAsync();
 
             return new EditSuccessResult(id);
         }
@@ -144,7 +176,7 @@ namespace Web.Areas.Platform.Controllers
         {
             _iTaskCenterService.Delete(id);
 
-            await _unitOfWork.CommitAsync();
+            await _iUnitOfWork.CommitAsync();
 
             return new DeleteSuccessResult();
         }

@@ -3,6 +3,7 @@
 
 @using BootstrapSupport
 @using Common
+@using Microsoft.AspNet.Identity
 @using Web.Helpers
 
 @{
@@ -47,15 +48,27 @@
                     @if (string.IsNullOrEmpty(item.ActualEndTime))
                     {
                         <span>
-                            <button class="btn btn-success">
-                                完成
-                            </button>
+
+                            @if (item.CreatedBy == User.Identity.GetUserId() && Html.CheckControllerAction("Edit"))
+                            {
+                                @Ajax.ActionLink(Lang.Edit, "Edit", null, new { item.Id }, new AjaxOptions { UpdateTargetId = "Main" }, new { @class = "btn btn-info" })
+                            }
+
+                            @if (item.CreatedBy == User.Identity.GetUserId() && Html.CheckControllerAction("Delete"))
+                            {
+                                @Ajax.ActionLink(Lang.Delete, "Delete", null, new { item.Id }, new AjaxOptions { UpdateTargetId = "Main", HttpMethod = "Delete", Confirm = "您确定要删除该记录吗？该操作不可恢复！" }, new { @class = "btn btn-danger" })
+                            }
+
+                            @if (item.TaskExecutorId == User.Identity.GetUserId())
+                            {
+                                @Ajax.ActionLink(Lang.Finished, "Edit", null, new { item.Id, Finished = true }, new AjaxOptions { UpdateTargetId = "Main", Confirm = "完成？" }, new { @class = "btn btn-success" })
+                            }
 
                         </span>
                     }
                     else
                     {
-                        <span>已完成 耗时 @Html.DisplayFor(a => item.Duration)</span>
+                        <span>已完成</span>
                     }
                 </div>
 
@@ -78,22 +91,22 @@
                     @if (!string.IsNullOrEmpty(item.ScheduleEndTime))
                     {
                         <span>截止时间：</span>
-                            <span>@Html.DisplayFor(a => item.ScheduleEndTime)</span>
+                        <span>@Html.DisplayFor(a => item.ScheduleEndTime)</span>
 
                         if (string.IsNullOrEmpty(item.ActualEndTime))
                         {
                             <span>剩余</span>
-                                <span>
-                                    @((DateTime.Parse(item.ScheduleEndTime) - DateTime.Parse(DateTimeLocal.Now)).TotalDays.ToString("F1"))
-                                </span>
-                                <span>天</span>
+                            <span>
+                                @((DateTime.Parse(item.ScheduleEndTime) - DateTime.Parse(DateTimeLocal.Now)).TotalDays.ToString("F1"))
+                            </span>
+                            <span>天</span>
                         }
                     }
 
                     @if (!string.IsNullOrEmpty(item.ActualEndTime))
                     {
                         <span>完成时间：</span>
-                            <span>@Html.DisplayFor(a => item.ActualEndTime)</span>
+                        <span>@Html.DisplayFor(a => item.ActualEndTime)</span>
                     }
                     <span>
                         发布人：@Html.DisplayFor(a => item.UserName)
