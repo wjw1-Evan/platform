@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using Common;
@@ -6,7 +7,6 @@ using DoddleReport;
 using DoddleReport.Web;
 using IServices.Infrastructure;
 using IServices.ISysServices;
-using Models.SysModels;
 using Web.Helpers;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
@@ -54,14 +54,7 @@ namespace Web.Areas.Platform.Controllers
         {
             var model = _iTaskCenterService.GetAll(a => a.CreatedBy == _iUserInfo.UserId || a.TaskExecutorId == _iUserInfo.UserId).Select(a => new TaskCenterListModel { TaskType = a.TaskType.ToString(), Title = a.Title, Content = a.Content, Files = a.Files, TaskExecutor = a.TaskExecutor.UserName, UserName = a.UserCreatedBy.UserName, ScheduleEndTime = a.ScheduleEndTime, Id = a.Id, ActualEndTime = a.ActualEndTime, CreatedBy = a.CreatedBy, TaskExecutorId = a.TaskExecutorId, Duration = a.Duration }).Search(keyword);
 
-            if (!string.IsNullOrEmpty(ordering))
-            {
-                model = model.OrderBy(ordering, null);
-            }
-            else
-            {
-                model = model.OrderBy(a => a.ActualEndTime).ThenBy(a => a.ScheduleEndTime);
-            }
+            model = !string.IsNullOrEmpty(ordering) ? model.OrderBy(ordering, null) : model.OrderBy(a => a.ActualEndTime).ThenBy(a => a.ScheduleEndTime);
 
             return View(model.ToPagedList(pageIndex));
         }
@@ -87,7 +80,7 @@ namespace Web.Areas.Platform.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(object id)
         {
             var item = _iTaskCenterService.GetById(id);
             return View(item);
@@ -111,12 +104,17 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="id"></param>
         /// <param name="finished"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Edit(string id, bool finished=false)
+        public async Task<ActionResult> Edit(string id, bool finished = false)
         {
             var item = _iTaskCenterService.GetById(id);
 
             if (finished)
             {
+                if (item.TaskExecutorId != _iUserInfo.UserId)
+                {
+                    throw new Exception();
+                }
+
                 item.ActualEndTime = DateTimeLocal.Now;
 
                 await _iUnitOfWork.CommitAsync();
@@ -128,15 +126,20 @@ namespace Web.Areas.Platform.Controllers
 
             if (!string.IsNullOrEmpty(id))
             {
+                if (item.CreatedBy != _iUserInfo.UserId)
+                {
+                    throw new Exception();
+                }
+
                 Mapper.Initialize(a => a.CreateMap<TaskCenter, TaskCenterEditModel>());
                 Mapper.Map(item, model);
             }
 
-            ViewBag.TaskExecutorId = new SelectList(_iSysUserService.GetAll(), "Id", "UserName", model.CreatedBy);
+            ViewBag.TaskExecutorId = new SelectList(_iSysUserService.GetAll(), "Id", "UserName", model.TaskExecutorId);
 
             return View(model);
         }
-    
+
 
         /// <summary>
         /// 保存
@@ -146,8 +149,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
-        public async Task<ActionResult> Edit(string id, FormCollection collection)
+        public async Task<ActionResult> Edit(string id, TaskCenterEditModel collection)
         {
             if (!ModelState.IsValid)
             {
@@ -156,6 +158,11 @@ namespace Web.Areas.Platform.Controllers
             }
 
             var item = new TaskCenter();
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                item = _iTaskCenterService.GetById(id);
+            }
 
             TryUpdateModel(item);
 
@@ -172,8 +179,15 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(object id)
         {
+            var item = _iTaskCenterService.GetById(id);
+
+            if (item.CreatedBy != _iUserInfo.UserId)
+            {
+                throw new Exception();
+            }
+
             _iTaskCenterService.Delete(id);
 
             await _iUnitOfWork.CommitAsync();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 using Models.SysModels;
 
 namespace Models.TaskModels
@@ -42,6 +43,7 @@ namespace Models.TaskModels
         /// </summary>
         [MaxLength]
         [DataType(DataType.Html)]
+        [AllowHtml]
         public string Content { get; set; }
 
         /// <summary>

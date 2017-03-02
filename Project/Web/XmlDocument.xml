@@ -941,7 +941,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Details(System.String)">
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Details(System.Object)">
             <summary>
             查看
             </summary>
@@ -962,7 +962,7 @@
             <param name="finished"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String,System.Web.Mvc.FormCollection)">
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Edit(System.String,Web.Areas.Platform.Models.TaskCenterEditModel)">
             <summary>
             保存
             </summary>
@@ -970,7 +970,7 @@
             <param name="collection"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Delete(System.String)">
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Delete(System.Object)">
             <summary>
             删除
             </summary>
@@ -1000,7 +1000,7 @@
             扩展添加和编辑后的返回结果，提示和跳转
             </summary>
         </member>
-        <member name="M:Web.Areas.Platform.Helpers.EditSuccessResult.#ctor(System.String,System.Web.Routing.RouteValueDictionary)">
+        <member name="M:Web.Areas.Platform.Helpers.EditSuccessResult.#ctor(System.Object,System.Web.Routing.RouteValueDictionary)">
             <summary>
             
             </summary>

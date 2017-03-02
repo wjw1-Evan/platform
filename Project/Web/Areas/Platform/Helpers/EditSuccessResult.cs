@@ -13,14 +13,14 @@ namespace Web.Areas.Platform.Helpers
     public class EditSuccessResult : ActionResult
     {
         private RouteValueDictionary RouteValues { get; set; }
-        private string Id { get; set; }
+        private object Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <param name="routeValues"></param>
-        public EditSuccessResult(string id,RouteValueDictionary routeValues=null)
+        public EditSuccessResult(object id, RouteValueDictionary routeValues = null)
         {
             Id = id;
             RouteValues = routeValues ?? new RouteValueDictionary();
@@ -31,17 +31,17 @@ namespace Web.Areas.Platform.Helpers
         /// <param name="context"></param>
         public override void ExecuteResult(ControllerContext context)
         {
-            context.Controller.TempData[Alerts.Success] = string.IsNullOrEmpty(Id) ? "添加成功" : "编辑成功";
-            
+            context.Controller.TempData[Alerts.Success] = Id == null ? "添加成功" : "编辑成功";
+
             foreach (var key in context.RequestContext.HttpContext.Request.QueryString.AllKeys.Where(a => !a.IsEmpty()))
             {
                 RouteValues.Add(key, context.RequestContext.HttpContext.Request.QueryString[key]);
             }
-       
-            RouteValues.Add("action", string.IsNullOrEmpty(Id) ? "Create" : "Index");
+
+            RouteValues.Add("action", Id == null ? "Create" : "Index");
 
             var result = new RedirectToRouteResult(RouteValues);
-            
+
             result.ExecuteResult(context);
         }
 
