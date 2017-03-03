@@ -24,6 +24,8 @@ namespace Web.Helpers
 
         private double _actionDuration;
 
+        private double _viewDuration;
+
         #region Action时间监控
         /// <summary>
         /// 
@@ -40,8 +42,9 @@ namespace Web.Helpers
         /// <param name="filterContext"></param>
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            _actionDuration = Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3);
             base.OnActionExecuted(filterContext);
+            _actionDuration = Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3);
+
         }
         #endregion
 
@@ -63,6 +66,9 @@ namespace Web.Helpers
         {
             base.OnResultExecuted(filterContext);
 
+            _viewDuration = Math.Round((DateTime.Now - _viewdatetimenow).TotalSeconds, 3);
+
+
             //记录用户访问记录
             var area = (string)filterContext.RouteData.DataTokens["area"];
             var action = (string)filterContext.RouteData.Values["action"];
@@ -74,7 +80,7 @@ namespace Web.Helpers
 
             var sysControllerSysAction =
                 sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
-                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).Select(a=>new{a.Id, SysAreaName=a.SysController.SysArea.Name, SysControllerName=a.SysController.Name, SysActionName=a.SysAction.Name }).FirstOrDefault();
+                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).Select(a => new { a.Id, SysAreaName = a.SysController.SysArea.Name, SysControllerName = a.SysController.Name, SysActionName = a.SysAction.Name }).FirstOrDefault();
 
             var sysuserlog = new SysUserLog
             {
@@ -85,20 +91,19 @@ namespace Web.Helpers
                 SysArea = sysControllerSysAction?.SysAreaName ?? area,
                 SysController = sysControllerSysAction?.SysControllerName ?? controller,
                 SysAction = sysControllerSysAction?.SysActionName ?? action,
-                ViewDuration = Math.Round((DateTime.Now - _viewdatetimenow).TotalSeconds, 3),
+                ViewDuration = _viewDuration,
                 ActionDuration = _actionDuration,
-                Duration= Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3),
+                Duration = Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3),
                 RequestType = filterContext.HttpContext.Request.RequestType
             };
 
             sysUserLogService.Save(null, sysuserlog);
 
-            sysUserLogService.Commit();
+            sysUserLogService.CommitAsync().Wait();
+           
         }
 
         #endregion
-
-
 
     }
 
@@ -120,14 +125,14 @@ namespace Web.Helpers
             _datetimenow = DateTime.Now;
             base.OnActionExecuting(actionContext);
         }
-      
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="actionExecutedContext"></param>
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-          
+
 
             ////记录用户访问记录
             var action = (string)actionExecutedContext.ActionContext.RequestContext.RouteData.Values["action"];
@@ -142,9 +147,9 @@ namespace Web.Helpers
                 SysArea = "WebApi",
                 SysController = controller,
                 SysAction = action,
-                ActionDuration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds,3),
+                ActionDuration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds, 3),
                 Duration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds, 3),
-                RequestType =actionExecutedContext.Request.Method.Method
+                RequestType = actionExecutedContext.Request.Method.Method
             };
 
             var sysUserLogService = DependencyResolver.Current.GetService<ISysUserLogService>();
@@ -154,7 +159,7 @@ namespace Web.Helpers
             sysUserLogService.Commit();
             base.OnActionExecuted(actionExecutedContext);
         }
-       
+
 
         #endregion
     }
