@@ -18,7 +18,11 @@ namespace Web.Helpers
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class StatisticsTrackerAttribute : System.Web.Mvc.ActionFilterAttribute
     {
-        private DateTime _datetimenow;
+        private DateTime _actiondatetimenow;
+
+        private DateTime _viewdatetimenow;
+
+        private double _actionDuration;
 
         #region Action时间监控
         /// <summary>
@@ -27,7 +31,7 @@ namespace Web.Helpers
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            _datetimenow = DateTime.Now;
+            _actiondatetimenow = DateTime.Now;
             base.OnActionExecuting(filterContext);
         }
         /// <summary>
@@ -36,6 +40,7 @@ namespace Web.Helpers
         /// <param name="filterContext"></param>
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
+            _actionDuration = Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3);
             base.OnActionExecuted(filterContext);
         }
         #endregion
@@ -47,6 +52,7 @@ namespace Web.Helpers
         /// <param name="filterContext"></param>
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
+            _viewdatetimenow = DateTime.Now;
             base.OnResultExecuting(filterContext);
         }
         /// <summary>
@@ -68,7 +74,7 @@ namespace Web.Helpers
 
             var sysControllerSysAction =
                 sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
-                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).Include(a => a.SysController.SysArea).Include(a => a.SysController).Include(a => a.SysAction).OrderBy(a => a.SysController.SystemId).FirstOrDefault();
+                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).Select(a=>new{a.Id, SysAreaName=a.SysController.SysArea.Name, SysControllerName=a.SysController.Name, SysActionName=a.SysAction.Name }).FirstOrDefault();
 
             var sysuserlog = new SysUserLog
             {
@@ -76,10 +82,12 @@ namespace Web.Helpers
                 SysControllerSysActionId = sysControllerSysAction?.Id,
                 RecordId = recordId,
                 Url = filterContext.RequestContext.HttpContext.Request.RawUrl,
-                SysArea = sysControllerSysAction?.SysController.SysArea.Name ?? area,
-                SysController = sysControllerSysAction?.SysController.Name ?? controller,
-                SysAction = sysControllerSysAction?.SysAction.Name ?? action,
-                Duration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds, 3),
+                SysArea = sysControllerSysAction?.SysAreaName ?? area,
+                SysController = sysControllerSysAction?.SysControllerName ?? controller,
+                SysAction = sysControllerSysAction?.SysActionName ?? action,
+                ViewDuration = Math.Round((DateTime.Now - _viewdatetimenow).TotalSeconds, 3),
+                ActionDuration = _actionDuration,
+                Duration= Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3),
                 RequestType = filterContext.HttpContext.Request.RequestType
             };
 
@@ -134,7 +142,8 @@ namespace Web.Helpers
                 SysArea = "WebApi",
                 SysController = controller,
                 SysAction = action,
-                Duration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds,3),
+                ActionDuration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds,3),
+                Duration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds, 3),
                 RequestType =actionExecutedContext.Request.Method.Method
             };
 

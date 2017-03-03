@@ -8,6 +8,13 @@ namespace Models.SysModels
     /// </summary>
     public class SysUserLog : DbSetBase
     {
+        public SysUserLog()
+        {
+            ViewDuration = 0;
+            ActionDuration = 0;
+            Duration = 0;
+        }
+
         [ForeignKey("SysControllerSysAction")]
         public string SysControllerSysActionId { get; set; }
 
@@ -37,6 +44,9 @@ namespace Models.SysModels
         [MaxLength(64)]
         public string RequestType { get; set; }
 
+        public double ViewDuration { get; set; }
+
+        public double ActionDuration { get; set; }
         public double Duration { get; set; }
     }
 

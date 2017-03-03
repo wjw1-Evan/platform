@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityFramework.Extensions;
@@ -18,7 +19,7 @@ namespace Web.Helpers
         public PagedList(IQueryable<T> source, int index, int pageSize)
         {
             IsLastPage = false;
-            var data = source.Skip((index - 1) * pageSize).Take(pageSize).Future();
+            var data = source.Skip((index - 1) * pageSize).Take(pageSize).AsNoTracking().Future();
             TotalCount = source.FutureCount();
             PageSize = pageSize;
             PageIndex = index;
