@@ -25,7 +25,7 @@ namespace Services.SysServices
                                            b =>
                                                b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
                                                b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&
-                                               b.SysControllerSysAction.SysAction.ActionName.Equals(action))).FromCache(CachePolicy.WithSlidingExpiration(new TimeSpan(0, 0, 1, 0))).Any();
+                                               b.SysControllerSysAction.SysAction.ActionName.Equals(action))).FromCacheAsync(CachePolicy.WithSlidingExpiration(new TimeSpan(0, 0, 1, 0))).Result.Any();
         }
     }
 }

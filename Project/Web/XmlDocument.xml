@@ -1133,6 +1133,80 @@
             <param name="totalCount"></param>
             <returns></returns>
         </member>
+        <member name="T:Web.Helpers.IPagedList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.IPagedList.TotalCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.IPagedList.PageIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.IPagedList.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.IPagedList.IsLastPage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Helpers.PagedList`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Web.Helpers.PagedList`1.#ctor(System.Linq.IQueryable{`0},System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="index"></param>
+            <param name="pageSize"></param>
+        </member>
+        <member name="P:Web.Helpers.PagedList`1.TotalCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.PagedList`1.PageIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.PagedList`1.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.PagedList`1.IsLastPage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Helpers.Pagination">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.Pagination.ToPagedList``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="index"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="T:Web.Helpers.StatisticsTrackerAttribute">
             <summary>
             

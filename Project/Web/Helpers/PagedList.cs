@@ -1,21 +1,48 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using EntityFramework.Extensions;
 
 namespace Web.Helpers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IPagedList
     {
+        /// <summary>
+        /// 
+        /// </summary>
         int TotalCount { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         int PageIndex { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         int PageSize { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         bool IsLastPage { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class PagedList<T> : List<T>, IPagedList where T : class
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="index"></param>
+        /// <param name="pageSize"></param>
         public PagedList(IQueryable<T> source, int index, int pageSize)
         {
             IsLastPage = false;
@@ -32,27 +59,45 @@ namespace Web.Helpers
             AddRange(data);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int TotalCount { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int PageIndex { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int PageSize { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsLastPage { get; set; }
 
     }
 
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Pagination
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="index"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public static PagedList<T> ToPagedList<T>(this IQueryable<T> source, int index = 1, int pageSize = 20) where T : class
         {
             return new PagedList<T>(source, index, pageSize);
         }
-
-        public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source, int index = 1, int pageSize = 20) where T : class
-        {
-            return await Task.Run(() => new PagedList<T>(source, index, pageSize));
-        }
-
     }
 }

@@ -7,7 +7,6 @@ using System.Data.Entity.Infrastructure;
 using System.Timers;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using System.Web.Routing;
 using EntityFramework;
@@ -51,7 +50,7 @@ namespace Web
             Bootstrapper.Run();
 
             // Replace cache provider with Memcached provider
-            // Locator.Current.Register<ICacheProvider>(() => new MemcachedProvider());
+            Locator.Current.Register<ICacheProvider>(() => new MemoryCacheProvider());
 
             // 计划任务 按照间隔时间执行
 

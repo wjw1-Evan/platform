@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Mvc;
+using EntityFramework.Caching;
+using EntityFramework.Extensions;
 using IServices.ISysServices;
 using Models.SysModels;
 
@@ -80,7 +82,7 @@ namespace Web.Helpers
 
             var sysControllerSysAction =
                 sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
-                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).Select(a => new { a.Id, SysAreaName = a.SysController.SysArea.Name, SysControllerName = a.SysController.Name, SysActionName = a.SysAction.Name }).FirstOrDefault();
+                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).Select(a => new { a.Id, SysAreaName = a.SysController.SysArea.Name, SysControllerName = a.SysController.Name, SysActionName = a.SysAction.Name }).FromCacheFirstOrDefaultAsync(CachePolicy.WithSlidingExpiration(new TimeSpan(0, 0, 1, 0))).Result;
 
             var sysuserlog = new SysUserLog
             {
@@ -100,7 +102,7 @@ namespace Web.Helpers
             sysUserLogService.Save(null, sysuserlog);
 
             sysUserLogService.CommitAsync().Wait();
-           
+
         }
 
         #endregion
@@ -132,7 +134,7 @@ namespace Web.Helpers
         /// <param name="actionExecutedContext"></param>
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-
+            base.OnActionExecuted(actionExecutedContext);
 
             ////记录用户访问记录
             var action = (string)actionExecutedContext.ActionContext.RequestContext.RouteData.Values["action"];
@@ -156,8 +158,8 @@ namespace Web.Helpers
 
             sysUserLogService.Save(null, sysuserlog);
 
-            sysUserLogService.Commit();
-            base.OnActionExecuted(actionExecutedContext);
+            sysUserLogService.CommitAsync().Wait();
+
         }
 
 
