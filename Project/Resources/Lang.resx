@@ -1764,4 +1764,7 @@
   <data name="Files" xml:space="preserve">
     <value>附件</value>
   </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
 </root>

@@ -18,7 +18,8 @@ namespace Models.SysModels
     {
         public SysUser()
         {
-            CreatedDate = DateTimeLocal.Now;
+            CreatedDate = DateTimeLocal.NowDate;
+            CreatedTime = DateTimeLocal.NowTime;
             Deleted = false;
         }
 
@@ -46,7 +47,7 @@ namespace Models.SysModels
         public string Picture { get; set; }
 
         [Editable(false)]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [MaxLength(50)]
         public string CreatedDate { get; set; }
 
@@ -85,6 +86,12 @@ namespace Models.SysModels
         [ScaffoldColumn(false)]
         public virtual ICollection<SysDepartmentSysUser> SysDepartmentSysUsers { get; set; } = new List<SysDepartmentSysUser>();
 
+        [Editable(false)]
+        [DataType(DataType.Time)]
+        [MaxLength(50)]
+        public string CreatedTime { get; set; }
+
+   
     }
     
 }

@@ -57,7 +57,7 @@ namespace Web.Areas.Platform.Controllers
                 a.SysHelpClass.Name,
                 a.Title,
                 a.Sort,
-                a.CreatedDate,
+                CreatedDateTime = a.CreatedDate + " " + a.CreatedTime,
                 a.Remark,
                 a.Id
             }).Search(keyword);

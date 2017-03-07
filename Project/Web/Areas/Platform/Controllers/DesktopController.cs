@@ -41,13 +41,13 @@ namespace Web.Areas.Platform.Controllers
             ViewBag.SysUserCount = _iSysUserService.GetAll().FutureCount();
 
             //近十天用户注册次数
-            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { a.Key, Count = a.Count() }).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
+            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => (double)a.Count);
 
             //近十天用户活动次数
-            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { Key = (DateTime?)a.Key.Value, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
+            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new { Key = a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => (double)a.Count);
 
             //执行速度
-            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { Key = (DateTime?)a.Key.Value, Duration = a.Average(b=>b.Duration) }).OrderBy(a => a.Key).ToDictionary(a => a.Key.Value.ToShortDateString(), a => a.Duration);
+            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new { Key = a.Key, Duration = a.Average(b=>b.Duration) }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => a.Duration);
 
             return View();
         }

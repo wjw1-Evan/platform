@@ -11,6 +11,9 @@ namespace Models
         string Id { get; set; }
 
         string CreatedDate { get; set; }
+
+        string CreatedTime { get; set; }
+     
         string UpdatedDate { get; set; }
 
         string CreatedBy { get; set; }
@@ -34,6 +37,9 @@ namespace Models
         protected DbSetBase()
         {
             Id = Guid.NewGuid().ToString();
+
+            CreatedDate = DateTimeLocal.NowDate;
+            CreatedTime = DateTimeLocal.NowTime;
         }
 
         [Key]
@@ -46,11 +52,26 @@ namespace Models
         /// 创建日期
         /// </summary>
         [Editable(false)]
-        [MaxLength(50)]
+        [MaxLength(10)]
         [Index]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
+        [Index("IX_CreatedDateTime", 10)]
+        [Required]
         public string CreatedDate { get; set; }
 
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        [Editable(false)]
+        [MaxLength(8)]
+        [Index]
+        [DataType(DataType.Time)]
+        [Index("IX_CreatedDateTime", 11)]
+        [Required]
+        public string CreatedTime { get; set; }
+        
+        
         /// <summary>
         /// 创建人
         /// </summary>
@@ -98,7 +119,7 @@ namespace Models
         /// </summary>
         [ScaffoldColumn(false)]
         [Index]
-        [Index("IX_EnterpriseId-Deleted",20)]
+        [Index("IX_EnterpriseId-Deleted", 20)]
         public bool Deleted { get; set; }
 
         /// <summary>
@@ -107,7 +128,7 @@ namespace Models
         [MaxLength(128)]
         [ScaffoldColumn(false)]
         [Index]
-        [Index("IX_EnterpriseId-Deleted",21)]
+        [Index("IX_EnterpriseId-Deleted", 21)]
         public string EnterpriseId { get; set; }
     }
 }

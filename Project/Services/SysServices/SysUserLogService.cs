@@ -15,11 +15,7 @@ namespace Services.SysServices
             : base(databaseFactory, userInfo)
         {
         }
-        public override IQueryable<SysUserLog> GetAll(bool containsDeleted = false, bool allEnt = false)
-        {
-            return base.GetAll(containsDeleted, allEnt).OrderByDescending(a => a.CreatedDate);
-        }
-
+     
         public void DeleteExpiredData()
         {
             //只保留一定数量的日志,根据web.config中的设置值，默认单位：天。
