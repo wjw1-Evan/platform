@@ -40,7 +40,7 @@
                         }
                     });
                     }
-                    <canvas id="sysUserChart" style="width: 100%; height: 250px"></canvas>
+                    <canvas id="sysUserChart" style="width: 100%; height: 200px"></canvas>
                     @Html.CreateChart("sysUserChart", sysUserChart)
                 </div>
             </div>
@@ -67,10 +67,49 @@
                         sysUserLogChart.ComplexData.Labels.AddRange(sysUserLogCountDay.Keys);
 
                         sysUserLogChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                        {
+                            new ComplexDataset
+                            {
+                                Data = sysUserLogCountDay.Values.ToList(),
+                                FillColor = "rgba(151,187,205,0.2)",
+                                StrokeColor = "rgba(151,187,205,1)",
+                                PointColor = "rgba(151,187,205,1)",
+                                PointHighlightStroke = "rgba(220,220,220,1)"
+                            }
+                        });
+
+                    }
+                    <canvas id="sysUserLogChart" style="width: 100%; height: 200px"></canvas>
+                    @Html.CreateChart("sysUserLogChart", sysUserLogChart)
+                </div>
+            </div>
+        </div>
+        <!-- END widget-->
+    </div>
+
+    <div class="col-lg-6">
+        <!-- START widget-->
+        <div class="panel ">
+            <div class="panel-heading">
+                <div class="panel-title">平台执行速度分析</div>
+            </div>
+
+            <div class="panel-body">
+                <div>
+                    @{
+                        var SysUserLogDayDurationChart = new LineChart();
+
+                        SysUserLogDayDurationChart.ChartConfiguration.Responsive = true;
+
+                        Dictionary<string, double> SysUserLogDayDuration = ViewBag.SysUserLogDayDuration;
+
+                        SysUserLogDayDurationChart.ComplexData.Labels.AddRange(SysUserLogDayDuration.Keys);
+
+                        SysUserLogDayDurationChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
                     {
                         new ComplexDataset
                         {
-                            Data = sysUserLogCountDay.Values.ToList(),
+                            Data = SysUserLogDayDuration.Values.ToList(),
                             FillColor = "rgba(151,187,205,0.2)",
                             StrokeColor = "rgba(151,187,205,1)",
                             PointColor = "rgba(151,187,205,1)",
@@ -79,8 +118,8 @@
                     });
 
                     }
-                    <canvas id="sysUserLogChart" style="width: 100%; height: 250px"></canvas>
-                    @Html.CreateChart("sysUserLogChart", sysUserLogChart)
+                    <canvas id="SysUserLogDayDurationChart" style="width: 100%; height: 200px"></canvas>
+                    @Html.CreateChart("SysUserLogDayDurationChart", SysUserLogDayDurationChart)
                 </div>
             </div>
         </div>

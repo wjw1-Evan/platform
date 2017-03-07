@@ -4,6 +4,7 @@ using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web.Mvc;
 using Common;
+using EntityFramework.Extensions;
 using IServices.ISysServices;
 
 
@@ -37,7 +38,7 @@ namespace Web.Areas.Platform.Controllers
         public ActionResult Index()
         {
             //用户总数统计
-            ViewBag.SysUserCount = _iSysUserService.GetAll().Count();
+            ViewBag.SysUserCount = _iSysUserService.GetAll().FutureCount();
 
             //近十天用户注册次数
             ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { a.Key, Count = a.Count() }).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
@@ -45,6 +46,8 @@ namespace Web.Areas.Platform.Controllers
             //近十天用户活动次数
             ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { Key = (DateTime?)a.Key.Value, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key.Value.ToShortDateString(), a => (double)a.Count);
 
+            //执行速度
+            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => DbFunctions.CreateDateTime(SqlFunctions.DatePart("yyyy", a.CreatedDate), SqlFunctions.DatePart("MM", a.CreatedDate), SqlFunctions.DatePart("dd", a.CreatedDate), 0, 0, 0)).Select(a => new { Key = (DateTime?)a.Key.Value, Duration = a.Average(b=>b.Duration) }).OrderBy(a => a.Key).ToDictionary(a => a.Key.Value.ToShortDateString(), a => a.Duration);
 
             return View();
         }
