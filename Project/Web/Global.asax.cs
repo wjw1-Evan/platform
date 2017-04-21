@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Optimization;
 using System.Data.Entity;
 using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Timers;
 using System.Web;
 using System.Web.Http;
@@ -28,13 +30,14 @@ namespace Web
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
 
             // ef 预热
-            using (var dbcontext = new ApplicationDbContext())
-            {
-                var objectContext = ((IObjectContextAdapter)dbcontext).ObjectContext;
-                var mappingCollection = (StorageMappingItemCollection)objectContext.MetadataWorkspace.GetItemCollection(DataSpace.CSSpace);
-                mappingCollection.GenerateViews(new List<EdmSchemaError>());
-            }
+            //using (var dbcontext = new ApplicationDbContext())
+            //{
+            //    var objectContext = ((IObjectContextAdapter)dbcontext).ObjectContext;
+            //    var mappingCollection = (StorageMappingItemCollection)objectContext.MetadataWorkspace.GetItemCollection(DataSpace.CSSpace);
+            //    mappingCollection.GenerateViews(new List<EdmSchemaError>());
+            //}
 
+            //SqlDependency.Start(ApplicationDbContext.Create().Database.Connection.ConnectionString);
 
             AreaRegistration.RegisterAllAreas();
 
@@ -50,7 +53,8 @@ namespace Web
             Bootstrapper.Run();
 
             // Replace cache provider with Memcached provider
-            Locator.Current.Register<ICacheProvider>(() => new MemoryCacheProvider());
+            //Locator.Current.Register<ICacheProvider>(() => new MemcachedProvider());
+            //Locator.Current.Register<ICacheProvider>(() => new MemoryCacheProvider());
 
             // 计划任务 按照间隔时间执行
 
@@ -63,6 +67,7 @@ namespace Web
 
         protected void Application_End()
         {
+            //SqlDependency.Stop(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             _objTimer.Stop();
         }
 
