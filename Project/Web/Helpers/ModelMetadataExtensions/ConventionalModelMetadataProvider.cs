@@ -2,18 +2,31 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Http;
 using System.Web.Mvc;
 using Web.Helpers.ModelMetadataExtensions.Extensions;
 
 namespace Web.Helpers.ModelMetadataExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ConventionalModelMetadataProvider : DataAnnotationsModelMetadataProvider
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="requireConventionAttribute"></param>
         public ConventionalModelMetadataProvider(bool requireConventionAttribute)
             : this(requireConventionAttribute, null)
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="requireConventionAttribute"></param>
+        /// <param name="defaultResourceType"></param>
         public ConventionalModelMetadataProvider(bool requireConventionAttribute, Type defaultResourceType)
         {
             RequireConventionAttribute = requireConventionAttribute;
@@ -21,9 +34,15 @@ namespace Web.Helpers.ModelMetadataExtensions
         }
 
         // Whether or not the conventions only apply to classes with the MetadatawonventionsAttribute attribute applied.
+        /// <summary>
+        /// 
+        /// </summary>
         public bool RequireConventionAttribute { get; private set; }
 
         // Whether or not the conventions only apply to classes with the MetadataConventionsAttribute attribute applied.
+        /// <summary>
+        /// 
+        /// </summary>
         public Type DefaultResourceType { get; private set; }
 
         protected override ModelMetadata CreateMetadata(IEnumerable<Attribute> attributes, Type containerType,
@@ -85,7 +104,23 @@ namespace Web.Helpers.ModelMetadataExtensions
 
             if (metadata.DisplayName == null || metadata.DisplayName == metadata.PropertyName)
             {
+                //// 从外网查询一下
+                //var postUrl = "http://fanyi.youdao.com/openapi.do?keyfrom=wjw1-mpms&key=597913687&type=data&doctype=json&version=1.1&q=" + metadata.PropertyName.SplitUpperCaseToString();
+                //try
+                //{
+                //    var httpClient = new HttpClient();
+                //    var responseJson = httpClient.GetAsync(postUrl).Result.Content.ReadAsStringAsync().Result;
+
+                //    var obj = Newtonsoft.Json.Linq.JObject.Parse(responseJson);
+
+                //    // translation
+                //    if (obj != null) metadata.DisplayName = obj["translation"][0].ToString();
+
+                //}
+                //catch (Exception)
+                //{
                 metadata.DisplayName = metadata.PropertyName.SplitUpperCaseToString();
+                //}
             }
             return metadata;
         }

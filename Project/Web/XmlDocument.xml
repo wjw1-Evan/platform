@@ -1133,6 +1133,34 @@
             <param name="totalCount"></param>
             <returns></returns>
         </member>
+        <member name="T:Web.Helpers.ModelMetadataExtensions.ConventionalModelMetadataProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.ModelMetadataExtensions.ConventionalModelMetadataProvider.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="requireConventionAttribute"></param>
+        </member>
+        <member name="M:Web.Helpers.ModelMetadataExtensions.ConventionalModelMetadataProvider.#ctor(System.Boolean,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="requireConventionAttribute"></param>
+            <param name="defaultResourceType"></param>
+        </member>
+        <member name="P:Web.Helpers.ModelMetadataExtensions.ConventionalModelMetadataProvider.RequireConventionAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Helpers.ModelMetadataExtensions.ConventionalModelMetadataProvider.DefaultResourceType">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Web.Helpers.IPagedList">
             <summary>
             
