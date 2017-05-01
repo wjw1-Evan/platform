@@ -47,7 +47,7 @@ namespace Web.Areas.Platform.Controllers
             ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new { Key = a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => (double)a.Count);
 
             //执行速度
-            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new { Key = a.Key, Duration = a.Average(b=>b.Duration) }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => a.Duration);
+            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => SqlFunctions.DateDiff("d", a.CreatedDate, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new { Key = a.Key, Duration = a.Average(b=>b.Duration) }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => Math.Round(a.Duration, 3));
 
             return View();
         }
