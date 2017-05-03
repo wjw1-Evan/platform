@@ -300,6 +300,17 @@ namespace Services.Migrations
             //context.Commit(); 实时提交一下是否能解决重复的问题？
             foreach (var ent in sysEnterprises)
             {
+                var sysRoleUser = new SysRole
+                {
+                    Id = "User-" + ent.Id,
+                    Name = ent.EnterpriseName + "注册用户",
+                    RoleName = "注册用户",
+                    SysDefault = true,
+                    SystemId = "000",
+                    EnterpriseId = ent.Id
+                };
+                context.SysRoles.AddOrUpdate(sysRoleUser);
+
                 //生成系统管理员
                 var sysRole = new SysRole
                 {

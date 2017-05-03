@@ -179,25 +179,28 @@ namespace Web.Controllers
 
             if (result.Succeeded)
             {
-                //前三个用户赋予管理员权限 
+                var iSysEnterpriseService = DependencyResolver.Current.GetService<ISysEnterpriseService>();
 
-                if (UserManager.Users.Count() < 3)
+                var iSysEnterpriseSysUserService = DependencyResolver.Current.GetService<ISysEnterpriseSysUserService>();
+
+                var iUnitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
+
+                foreach (var item in iSysEnterpriseService.GetAll())
                 {
-                    var iSysEnterpriseService = DependencyResolver.Current.GetService<ISysEnterpriseService>();
-
-                    var iSysEnterpriseSysUserService = DependencyResolver.Current.GetService<ISysEnterpriseSysUserService>();
-
-                    var iUnitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
-
-                    foreach (var item in iSysEnterpriseService.GetAll())
+                    //前三个个用户赋予管理员权限 
+                    if (UserManager.Users.Count() <= 3)
                     {
                         await UserManager.AddToRoleAsync(user.Id, item.EnterpriseName + "系统管理员");
-                        iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = item.Id, SysUserId = user.Id });
+                    }
+                    else
+                    {
+                        await UserManager.AddToRoleAsync(user.Id, item.EnterpriseName + "注册用户");
                     }
 
-                    await iUnitOfWork.CommitAsync();
-
+                    iSysEnterpriseSysUserService.Save(null, new SysEnterpriseSysUser() { SysEnterpriseId = item.Id, SysUserId = user.Id });
                 }
+
+                await iUnitOfWork.CommitAsync();
 
                 TempData[Alerts.Success] = "注册成功，请您登陆";
 
