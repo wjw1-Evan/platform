@@ -13,13 +13,13 @@ namespace Services.Infrastructure
 {
     public abstract class RepositoryBase<T> where T : class
     {
-        private readonly ApplicationDbContext _dataContext;
+        private readonly DbContext _dataContext;
         private readonly IDbSet<T> _dbset;
         private readonly IUserInfo _userInfo;
 
-        protected RepositoryBase(IDatabaseFactory databaseFactory, IUserInfo userInfo)
+        protected RepositoryBase(DbContext databaseFactory, IUserInfo userInfo)
         {
-            _dataContext = databaseFactory.Get();
+            _dataContext = databaseFactory;
             _userInfo = userInfo;
             _dbset = _dataContext.Set<T>();
         }
@@ -221,6 +221,7 @@ namespace Services.Infrastructure
 
             return model;
         }
+
 
      
     }

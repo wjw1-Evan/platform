@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Data.Entity;
+using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using System.Reflection;
@@ -7,6 +8,7 @@ using Autofac.Integration.WebApi;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using Resources;
+using Services;
 using Services.Infrastructure;
 using Web.Helpers;
 using Web.Helpers.ModelMetadataExtensions;
@@ -29,8 +31,8 @@ namespace Web
                 .AsImplementedInterfaces();
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-       
-            builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerLifetimeScope();
+
+            builder.RegisterType<ApplicationDbContext>().As<DbContext>().InstancePerLifetimeScope();
 
             builder.RegisterType<UserInfo>().As<IUserInfo>();
 

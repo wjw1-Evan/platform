@@ -13,7 +13,7 @@ namespace Services.SysServices
     public class SysUserService : RepositoryBase<SysUser>, ISysUserService
     {
 
-        public SysUserService(IDatabaseFactory databaseFactory, IUserInfo userInfo)
+        public SysUserService(DbContext databaseFactory, IUserInfo userInfo)
             : base(databaseFactory, userInfo)
         {
         }

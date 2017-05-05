@@ -1,4 +1,5 @@
-﻿using IServices.ISysServices;
+﻿using System.Data.Entity;
+using IServices.ISysServices;
 using Models.SysModels;
 using Services.Infrastructure;
 
@@ -6,7 +7,7 @@ namespace Services.SysServices
 {
     public class VerifyCodeService :RepositoryBase<VerifyCode>,IVerifyCodeService
     {
-        public VerifyCodeService(IDatabaseFactory databaseFactory, IUserInfo userInfo)
+        public VerifyCodeService(DbContext databaseFactory, IUserInfo userInfo)
             : base(databaseFactory, userInfo)
         {
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using EntityFramework.Caching;
 using EntityFramework.Extensions;
@@ -10,7 +11,7 @@ namespace Services.SysServices
 {
     public class SysRoleService : RepositoryBase<SysRole>, ISysRoleService
     {
-        public SysRoleService(IDatabaseFactory databaseFactory, IUserInfo userInfo)
+        public SysRoleService(DbContext databaseFactory, IUserInfo userInfo)
             : base(databaseFactory, userInfo)
         {
         }

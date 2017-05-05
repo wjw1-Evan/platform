@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data.Entity;
 using System.Data.Objects.SqlClient;
 using System.Linq;
 using Common;
@@ -11,7 +12,7 @@ namespace Services.SysServices
 {
     public class SysUserLogService : RepositoryBase<SysUserLog>, ISysUserLogService
     {
-        public SysUserLogService(IDatabaseFactory databaseFactory, IUserInfo userInfo)
+        public SysUserLogService(DbContext databaseFactory, IUserInfo userInfo)
             : base(databaseFactory, userInfo)
         {
         }

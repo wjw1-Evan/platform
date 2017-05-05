@@ -62,8 +62,6 @@
     <Compile Include="ApplicationDb.cs" />
     <Compile Include="SysServices\SysDepartmentSysUserService.cs" />
     <Compile Include="SysServices\SysDepartmentService.cs" />
-    <Compile Include="Infrastructure\DatabaseFactory.cs" />
-    <Compile Include="Infrastructure\IDatabaseFactory.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />

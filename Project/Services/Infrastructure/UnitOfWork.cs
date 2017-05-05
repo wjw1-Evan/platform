@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using IServices.Infrastructure;
-using EntityFramework.Audit;
 
 namespace Services.Infrastructure
 {
@@ -9,9 +8,9 @@ namespace Services.Infrastructure
     {
         private readonly DbContext _dataContext;
 
-        public UnitOfWork(IDatabaseFactory databaseFactory)
+        public UnitOfWork(DbContext databaseFactory)
         {
-            _dataContext = databaseFactory.Get();
+            _dataContext = databaseFactory;
         }
 
         public int Commit()
