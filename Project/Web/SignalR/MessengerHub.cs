@@ -116,8 +116,9 @@ namespace Web.SignalR
         private readonly ISysUserService _iSysUserService;// = DependencyResolver.Current.GetService<ISysUserService>();
         private readonly ISysRoleService _iSysRoleService;
         private readonly ISysBroadcastService _iSysBroadcastService;//= DependencyResolver.Current.GetService<ISysBroadcastService>();
-    
-        private readonly ISysSignalROnlineService _iSysSignalROnlineService;//= DependencyResolver.Current.GetService<ISysSignalROnlineService>();
+    private readonly ISysSignalROnlineService _iSysSignalROnlineService;//= DependencyResolver.Current.GetService<ISysSignalROnlineService>();
+        private readonly IUnitOfWork _iUnitOfWork;
+
         private const string GroupId = "Messenger";
 
         public Messenger()
@@ -126,6 +127,7 @@ namespace Web.SignalR
             _iSysRoleService = DependencyResolver.Current.GetService<ISysRoleService>();
             _iSysBroadcastService = DependencyResolver.Current.GetService<ISysBroadcastService>();
             _iSysSignalROnlineService = DependencyResolver.Current.GetService<ISysSignalROnlineService>();
+            _iUnitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
         }
 
 
@@ -165,7 +167,7 @@ namespace Web.SignalR
 
             _iSysBroadcastService.Save(null, sysBroadcast);//消息编辑时间即为推送时间
 
-            await _iSysBroadcastService.CommitAsync();
+            await _iUnitOfWork.CommitAsync();
 
             var context = GlobalHost.ConnectionManager.GetHubContext<MessengerHub>();
 
@@ -213,7 +215,7 @@ namespace Web.SignalR
 
                 _iSysBroadcastService.Save(null, sysBroadcast);
 
-                await _iSysBroadcastService.CommitAsync();
+                await _iUnitOfWork.CommitAsync();
 
                 foreach (var connection in _iSysSignalROnlineService.GetAll().Where(
                         a => a.GroupId == GroupId && q4UserIds.Any(q => q == a.CreatedBy && !a.Deleted)))

@@ -222,15 +222,7 @@ namespace Services.Infrastructure
             return model;
         }
 
-        public int Commit()
-        {
-            return _dataContext.Commit();
-        }
-
-        public Task<int> CommitAsync()
-        {
-            return _dataContext.CommitAsync();
-        }
+     
     }
 
 }

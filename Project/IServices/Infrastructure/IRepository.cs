@@ -49,10 +49,7 @@ namespace IServices.Infrastructure
         IQueryable<T> GetAll(bool containsDeleted = false, bool allEnt = false);
 
         IQueryable<T> GetAll(Expression<Func<T, bool>> where);
-
-        int Commit();
-
-        Task<int> CommitAsync();
+     
     }
 
     

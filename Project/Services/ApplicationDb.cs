@@ -81,16 +81,6 @@ namespace Services
             base.OnModelCreating(modelBuilder);
         }
 
-        public int Commit()
-        {
-            return SaveChanges();
-        }
-
-        public Task<int> CommitAsync()
-        {
-            return SaveChangesAsync();
-        }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Mvc;
 using EntityFramework.Caching;
 using EntityFramework.Extensions;
+using IServices.Infrastructure;
 using IServices.ISysServices;
 using Models.SysModels;
 
@@ -79,6 +77,7 @@ namespace Web.Helpers
 
             var sysControllerSysActionService = DependencyResolver.Current.GetService<ISysControllerSysActionService>();
             var sysUserLogService = DependencyResolver.Current.GetService<ISysUserLogService>();
+            var iUnitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
 
             var sysControllerSysAction =
                 sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
@@ -101,7 +100,7 @@ namespace Web.Helpers
 
             sysUserLogService.Save(null, sysuserlog);
 
-            sysUserLogService.CommitAsync().Wait();
+            iUnitOfWork.CommitAsync().Wait();
 
         }
 
@@ -155,10 +154,11 @@ namespace Web.Helpers
             };
 
             var sysUserLogService = DependencyResolver.Current.GetService<ISysUserLogService>();
+            var iUnitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();
 
             sysUserLogService.Save(null, sysuserlog);
 
-            sysUserLogService.CommitAsync().Wait();
+            iUnitOfWork.CommitAsync().Wait();
 
         }
 
