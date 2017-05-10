@@ -60,8 +60,7 @@ namespace Models.SysModels
         public DateTime CreatedDateTime { get; set; }
 
         [Editable(false)]
-        [DataType(DataType.DateTime)]
-        public string UpdatedDate { get; set; }
+        public DateTime? UpdatedDateTime { get; set; }
 
         [Editable(false)]
         [MaxLength(128)]

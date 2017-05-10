@@ -67,7 +67,7 @@ namespace Services.Infrastructure
                 dbSetBase.CreatedDate = databaseValues.GetValue<string>("CreatedDate");
                 dbSetBase.CreatedDateTime = databaseValues.GetValue<DateTime>("CreatedDateTime");
 
-                dbSetBase.UpdatedDate = DateTimeLocal.Now.ToString();
+                dbSetBase.UpdatedDateTime = DateTimeLocal.Now;
                 dbSetBase.UpdatedBy = _userInfo.UserId;
 
                 entity = dbSetBase as T;

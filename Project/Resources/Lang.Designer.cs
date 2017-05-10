@@ -4822,6 +4822,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 更新日期 的本地化字符串。
+        /// </summary>
+        public static string UpdatedDateTime {
+            get {
+                return ResourceManager.GetString("UpdatedDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 使用部门 的本地化字符串。
         /// </summary>
         public static string UseDepartment {

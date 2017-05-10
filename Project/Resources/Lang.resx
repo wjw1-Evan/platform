@@ -1770,4 +1770,7 @@
   <data name="CreatedDateTime" xml:space="preserve">
     <value>创建日期</value>
   </data>
+  <data name="UpdatedDateTime" xml:space="preserve">
+    <value>更新日期</value>
+  </data>
 </root>

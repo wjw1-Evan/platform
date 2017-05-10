@@ -14,7 +14,7 @@ namespace Models
 
         DateTime CreatedDateTime { get; set; }
 
-        string UpdatedDate { get; set; }
+        DateTime? UpdatedDateTime { get; set; }
 
         string CreatedBy { get; set; }
         string UpdatedBy { get; set; }
@@ -83,9 +83,7 @@ namespace Models
         /// 更新日期
         /// </summary>
         [Editable(false)]
-        [MaxLength(50)]
-        [DataType(DataType.DateTime)]
-        public string UpdatedDate { get; set; }
+        public DateTime? UpdatedDateTime { get; set; }
 
         /// <summary>
         /// 更新人

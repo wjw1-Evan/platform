@@ -97,7 +97,7 @@ namespace Web.Areas.Platform.Controllers
                 PhoneNumber = a.PhoneNumberConfirmed ? a.PhoneNumber : "",
                 Email = a.EmailConfirmed ? a.Email : "",
                 a.CreatedDateTime,
-                a.UpdatedDate,
+                a.UpdatedDateTime,
                 a.Id
             }).OrderByDescending(a => a.CreatedDateTime).Search(keyword);
 
@@ -123,7 +123,7 @@ namespace Web.Areas.Platform.Controllers
                 PhoneNumber = a.PhoneNumberConfirmed ? a.PhoneNumber : "",
                 Email = a.EmailConfirmed ? a.Email : "",
                 a.CreatedDateTime,
-                a.UpdatedDate,
+                a.UpdatedDateTime,
                 a.Id
             }).OrderByDescending(a => a.CreatedDateTime);
             var report = new Report(model.ToReportSource());
@@ -234,7 +234,7 @@ namespace Web.Areas.Platform.Controllers
                 //更新用户信息
                 var item = _sysUserService.GetById(id);
 
-                item.UpdatedDate = DateTimeLocal.Now.ToString();
+                item.UpdatedDateTime = DateTimeLocal.Now;
 
                 mapper.Map(collection, item);
 
