@@ -96,10 +96,10 @@ namespace Web.Areas.Platform.Controllers
                 a.FullName,
                 PhoneNumber = a.PhoneNumberConfirmed ? a.PhoneNumber : "",
                 Email = a.EmailConfirmed ? a.Email : "",
-                a.CreatedDate,
+                a.CreatedDateTime,
                 a.UpdatedDate,
                 a.Id
-            }).OrderByDescending(a => a.CreatedDate).Search(keyword);
+            }).OrderByDescending(a => a.CreatedDateTime).Search(keyword);
 
             if (!string.IsNullOrEmpty(ordering))
                 model = model.OrderBy(ordering, null);
@@ -122,10 +122,10 @@ namespace Web.Areas.Platform.Controllers
                 a.FullName,
                 PhoneNumber = a.PhoneNumberConfirmed ? a.PhoneNumber : "",
                 Email = a.EmailConfirmed ? a.Email : "",
-                a.CreatedDate,
+                a.CreatedDateTime,
                 a.UpdatedDate,
                 a.Id
-            }).OrderByDescending(a => a.CreatedDate);
+            }).OrderByDescending(a => a.CreatedDateTime);
             var report = new Report(model.ToReportSource());
 
             report.DataFields["Id"].Hidden = true;

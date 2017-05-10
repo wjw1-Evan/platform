@@ -509,6 +509,20 @@
             <param name="iUnitOfWork"></param>
             <param name="iSysUserLogService"></param>
         </member>
+        <member name="M:Web.Areas.Platform.Controllers.IndexController.Index(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="changesysenterprise"></param>
+            <param name="loadPage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.IndexController.Menu">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Web.Areas.Platform.Controllers.MyMessageController">
             <summary>
             我的消息中心： Todo： 只显示后才操作类的消息

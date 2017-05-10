@@ -19,7 +19,6 @@ namespace Models.SysModels
         public SysUser()
         {
             CreatedDate = DateTimeLocal.NowDate;
-            CreatedTime = DateTimeLocal.NowTime;
             CreatedDateTime = DateTimeLocal.Now;
             Deleted = false;
         }
@@ -51,12 +50,7 @@ namespace Models.SysModels
         [DataType(DataType.Date)]
         [MaxLength(50)]
         public string CreatedDate { get; set; }
-
-        [ScaffoldColumn(false)]
-        [DataType(DataType.Time)]
-        [MaxLength(50)]
-        public string CreatedTime { get; set; }
-
+        
         /// <summary>
         /// 创建日期时间
         /// </summary>

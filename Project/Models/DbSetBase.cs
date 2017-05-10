@@ -12,7 +12,6 @@ namespace Models
 
         string CreatedDate { get; set; }
 
-        string CreatedTime { get; set; }
         DateTime CreatedDateTime { get; set; }
 
         string UpdatedDate { get; set; }
@@ -40,7 +39,6 @@ namespace Models
             Id = Guid.NewGuid().ToString();
 
             CreatedDate = DateTimeLocal.NowDate;
-            CreatedTime = DateTimeLocal.NowTime;
             CreatedDateTime = DateTimeLocal.Now;
         }
 
@@ -59,17 +57,7 @@ namespace Models
         [DataType(DataType.Date)]
         [Required]
         public string CreatedDate { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        [ScaffoldColumn(false)]
-        [MaxLength(8)]
-        [Index]
-        [DataType(DataType.Time)]
-        [Required]
-        public string CreatedTime { get; set; }
-
+        
         /// <summary>
         /// 创建日期时间
         /// </summary>

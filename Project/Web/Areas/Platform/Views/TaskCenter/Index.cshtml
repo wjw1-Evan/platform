@@ -55,7 +55,7 @@
 
                 @if (!string.IsNullOrEmpty(item.ScheduleEndTime) && string.IsNullOrEmpty(item.ActualEndTime))
                 {
-                    <div>剩余@((DateTime.Parse(item.ScheduleEndTime) - DateTime.Parse(DateTimeLocal.Now)).TotalDays.ToString("F1"))天</div>
+                    <div>剩余@((DateTime.Parse(item.ScheduleEndTime) - DateTimeLocal.Now).TotalDays.ToString("F1"))天</div>
                 }
 
 
