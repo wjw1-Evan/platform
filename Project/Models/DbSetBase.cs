@@ -13,7 +13,8 @@ namespace Models
         string CreatedDate { get; set; }
 
         string CreatedTime { get; set; }
-     
+        DateTime CreatedDateTime { get; set; }
+
         string UpdatedDate { get; set; }
 
         string CreatedBy { get; set; }
@@ -40,6 +41,7 @@ namespace Models
 
             CreatedDate = DateTimeLocal.NowDate;
             CreatedTime = DateTimeLocal.NowTime;
+            CreatedDateTime = DateTimeLocal.Now;
         }
 
         [Key]
@@ -51,27 +53,31 @@ namespace Models
         /// <summary>
         /// 创建日期
         /// </summary>
-        [Editable(false)]
+        [ScaffoldColumn(false)]
         [MaxLength(10)]
         [Index]
         [DataType(DataType.Date)]
-        [Index("IX_CreatedDateTime", 10)]
         [Required]
         public string CreatedDate { get; set; }
-
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        [Editable(false)]
+        [ScaffoldColumn(false)]
         [MaxLength(8)]
         [Index]
         [DataType(DataType.Time)]
-        [Index("IX_CreatedDateTime", 11)]
         [Required]
         public string CreatedTime { get; set; }
-        
-        
+
+        /// <summary>
+        /// 创建日期时间
+        /// </summary>
+        [Editable(false)]
+        [Index]
+        [Required]
+        public DateTime CreatedDateTime { get; set; }
+
         /// <summary>
         /// 创建人
         /// </summary>

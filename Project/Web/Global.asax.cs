@@ -26,9 +26,7 @@ namespace Web
 
         protected void Application_Start()
         {
-            // 更新数据库到最新的版本
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
-
+         
             // ef 预热
             //using (var dbcontext = new ApplicationDbContext())
             //{

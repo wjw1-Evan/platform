@@ -56,7 +56,7 @@ namespace Web.Areas.Platform.Controllers
                                           a.Duration,
                                           a.RequestType,
                                           a.Ip,
-                                          CreatedDateTime = a.CreatedDate + " " + a.CreatedTime
+                                          a.CreatedDateTime,
                                       }).Search(keyword);
 
             if (!string.IsNullOrEmpty(ordering))
@@ -92,7 +92,7 @@ namespace Web.Areas.Platform.Controllers
                                           a.RequestType,
                                           a.Url,
                                           a.Ip,
-                                          创建日期 = a.CreatedDate + " " + a.CreatedTime
+                                          创建日期 = a.CreatedDateTime
                                       }).Search(keyword);
             var report = new Report(model.ToReportSource());
 

@@ -347,7 +347,6 @@
     <Compile Include="Areas\Platform\Controllers\ChangePasswordController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysDepartmentController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysHelpClassController.cs" />
-    <Compile Include="Areas\Platform\Controllers\DesktopController.cs" />
     <Compile Include="Areas\Platform\Controllers\IndexController.cs" />
     <Compile Include="Areas\Platform\Controllers\MyMessageController.cs" />
     <Compile Include="Areas\Platform\Controllers\SysActionController.cs" />
@@ -669,7 +668,6 @@
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\config.js" />
-    <Content Include="Areas\Platform\Views\Desktop\Index.cshtml" />
     <Content Include="Areas\Platform\Views\Index\Index.cshtml" />
     <Content Include="Areas\Platform\Views\Index\Menu.cshtml" />
     <Content Include="Areas\Platform\Views\MyMessage\Index.cshtml" />

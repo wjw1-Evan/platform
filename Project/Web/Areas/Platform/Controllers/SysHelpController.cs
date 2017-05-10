@@ -57,7 +57,7 @@ namespace Web.Areas.Platform.Controllers
                 a.SysHelpClass.Name,
                 a.Title,
                 a.Sort,
-                CreatedDateTime = a.CreatedDate + " " + a.CreatedTime,
+                 a.CreatedDateTime,
                 a.Remark,
                 a.Id
             }).Search(keyword);
@@ -85,7 +85,7 @@ namespace Web.Areas.Platform.Controllers
                 a.Title,
                 a.Content,
                 a.Sort,
-                a.CreatedDate,
+                a.CreatedDateTime,
                 a.Remark
             });
             var report = new Report(model.ToReportSource());

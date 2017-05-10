@@ -10,6 +10,7 @@ namespace Services.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
+            this.CommandTimeout = 180;
         }
 
         protected override void Seed(ApplicationDbContext context)

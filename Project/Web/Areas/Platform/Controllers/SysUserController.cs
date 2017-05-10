@@ -234,7 +234,7 @@ namespace Web.Areas.Platform.Controllers
                 //更新用户信息
                 var item = _sysUserService.GetById(id);
 
-                item.UpdatedDate = DateTimeLocal.Now;
+                item.UpdatedDate = DateTimeLocal.Now.ToString();
 
                 mapper.Map(collection, item);
 

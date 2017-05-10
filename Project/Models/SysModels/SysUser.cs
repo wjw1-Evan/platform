@@ -20,6 +20,7 @@ namespace Models.SysModels
         {
             CreatedDate = DateTimeLocal.NowDate;
             CreatedTime = DateTimeLocal.NowTime;
+            CreatedDateTime = DateTimeLocal.Now;
             Deleted = false;
         }
 
@@ -46,10 +47,23 @@ namespace Models.SysModels
         [MaxLength(300)]
         public string Picture { get; set; }
 
-        [Editable(false)]
+        [ScaffoldColumn(false)]
         [DataType(DataType.Date)]
         [MaxLength(50)]
         public string CreatedDate { get; set; }
+
+        [ScaffoldColumn(false)]
+        [DataType(DataType.Time)]
+        [MaxLength(50)]
+        public string CreatedTime { get; set; }
+
+        /// <summary>
+        /// 创建日期时间
+        /// </summary>
+        [Editable(false)]
+        [Index]
+        [Required]
+        public DateTime CreatedDateTime { get; set; }
 
         [Editable(false)]
         [DataType(DataType.DateTime)]
@@ -86,10 +100,7 @@ namespace Models.SysModels
         [ScaffoldColumn(false)]
         public virtual ICollection<SysDepartmentSysUser> SysDepartmentSysUsers { get; set; } = new List<SysDepartmentSysUser>();
 
-        [Editable(false)]
-        [DataType(DataType.Time)]
-        [MaxLength(50)]
-        public string CreatedTime { get; set; }
+    
 
    
     }

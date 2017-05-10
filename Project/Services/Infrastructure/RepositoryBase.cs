@@ -67,8 +67,9 @@ namespace Services.Infrastructure
                 dbSetBase.CreatedBy = databaseValues.GetValue<string>("CreatedBy");
                 dbSetBase.CreatedDate = databaseValues.GetValue<string>("CreatedDate");
                 dbSetBase.CreatedTime = databaseValues.GetValue<string>("CreatedTime");
+                dbSetBase.CreatedDateTime = databaseValues.GetValue<DateTime>("CreatedDateTime");
 
-                dbSetBase.UpdatedDate = DateTimeLocal.Now;
+                dbSetBase.UpdatedDate = DateTimeLocal.Now.ToString();
                 dbSetBase.UpdatedBy = _userInfo.UserId;
 
                 entity = dbSetBase as T;
@@ -210,7 +211,7 @@ namespace Services.Infrastructure
                     model = model.Where("Deleted=false");
                 }
 
-                model = model.OrderBy("CreatedDate desc, CreatedTime desc");
+                model = model.OrderBy("CreatedDateTime desc");
             }
 
             if (typeof(IUserDictionary).IsAssignableFrom(typeof(T)))

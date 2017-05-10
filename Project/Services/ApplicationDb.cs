@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Threading.Tasks;
+using Common;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.SysModels;
 using Models.TaskModels;
@@ -12,6 +14,10 @@ namespace Services
         public ApplicationDbContext()
             : base("DefaultConnection", false)
         {
+            // 更新数据库到最新的版本
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
+
+            Database.Log = log => Log.Write("EF", log);
         }
 
         #region 任务中心
@@ -49,16 +55,16 @@ namespace Services
         public DbSet<SysSignalR> SysSignalRs { get; set; }
 
         public DbSet<SysSignalROnline> SysSignalROnlines { get; set; }
-   
+
         /// <summary>
         /// 验证码存储
         /// </summary>
         public DbSet<VerifyCode> VerifyCodes { get; set; }
-        
+
         /// <summary>
         /// 组织架构
         /// </summary>
-         public DbSet<SysDepartment> SysDepartments { get; set; }
+        public DbSet<SysDepartment> SysDepartments { get; set; }
 
         /// <summary>
         /// 用户关联部门
