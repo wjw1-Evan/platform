@@ -1321,6 +1321,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 创建日期 的本地化字符串。
+        /// </summary>
+        public static string CreatedDateTime {
+            get {
+                return ResourceManager.GetString("CreatedDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 创建时间 的本地化字符串。
         /// </summary>
         public static string CreatedTime {

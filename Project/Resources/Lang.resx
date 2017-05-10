@@ -1767,4 +1767,7 @@
   <data name="CreatedTime" xml:space="preserve">
     <value>创建时间</value>
   </data>
+  <data name="CreatedDateTime" xml:space="preserve">
+    <value>创建日期</value>
+  </data>
 </root>

@@ -54,10 +54,10 @@ namespace Web.Areas.Platform.Controllers
 
             var returnModel = model.Select(a => new
             {
-                a.SysHelpClass.Name,
+                Class = a.SysHelpClass.Name,
                 a.Title,
                 a.Sort,
-                 a.CreatedDateTime,
+                a.CreatedDateTime,
                 a.Remark,
                 a.Id
             }).Search(keyword);
@@ -81,7 +81,7 @@ namespace Web.Areas.Platform.Controllers
         {
             var model = _sysHelp.GetAll().Select(a => new
             {
-                a.SysHelpClass.Name,
+                Class = a.SysHelpClass.Name,
                 a.Title,
                 a.Content,
                 a.Sort,
@@ -106,6 +106,7 @@ namespace Web.Areas.Platform.Controllers
         public ActionResult Details(object id)
         {
             var item = _sysHelp.GetById(id);
+            ViewBag.SysHelpClassId = item.SysHelpClass.ToString();
             return View(item);
         }
 
