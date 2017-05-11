@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Models.SysModels
+@{
     Layout = "../../../../views/Shared/_Layout.cshtml";
 }
 
@@ -65,7 +66,42 @@
     </header>
     <!-- sidebar-->
     <aside class="aside">
-        @Html.Action("Menu", "Index")
+        <div class="aside-inner">
+            <nav class="sidebar">
+                <ul class="nav">
+                    <li class="nav-heading">
+                        <span>菜单</span>
+                    </li>
+                    @{
+                        IEnumerable<SysController> menus = ViewBag.Menu;
+                    }
+
+                    @foreach (var item in menus.Where(a => a.SystemId.Length == 3))
+                    {
+                        <li>
+                            <a href="#@item.Id" title="@item.Name" data-toggle="collapse" >
+                                <div class="label label-info  pull-right">@menus.Count(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId))</div>
+                                <i class="fa fa-fw @item.Ico"></i>
+                                <span>@item.Name</span>
+                            </a>
+                            <ul id="@item.Id" class="nav sidebar-subnav collapse">
+                                <li class="sidebar-subnav-header" >@item.Name</li>
+                                @foreach (var item1 in menus.Where(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId)))
+                                {
+                                    <li>
+                                        <a title="@item1.Name" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" style="font-size: 12px;"  href="@Url.Action(item1.ActionName, item1.ControllerName, new {id = item1.Parameter})">
+                                            <i class="fa fa-fw @item1.Ico"></i>
+                                            @Html.DisplayFor(a => item1.Name)
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+
     </aside>
     <!-- offsidebar-->
     <aside class="offsidebar hide">

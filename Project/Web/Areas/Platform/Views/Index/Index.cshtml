@@ -11,42 +11,34 @@
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 }
 
+@if (string.IsNullOrEmpty(ViewBag.LoadPage))
+{
+    <div class="content-heading">
 
+        管理平台桌面
+        <small> 欢迎进入管理平台</small>
+    </div>
 
-@*@{
-        Html.RenderAction("Index", string.IsNullOrEmpty(ViewBag.LoadPage) ? "Desktop" :(string) ViewBag.LoadPage);
-    }*@
+    <div class="row">
+        <div class="col-lg-6">
+            <!-- START widget-->
+            <div class="panel ">
+                <div class="panel-heading">
+                    <div class="panel-title">网站用户注册分析</div>
+                </div>
 
+                <div class="panel-body">
+                    <div>
+                        @{
+                            var sysUserChart = new LineChart();
 
+                            sysUserChart.ChartConfiguration.Responsive = true;
 
-<div class="content-heading">
+                            Dictionary<string, double> sysUserCountDay = ViewBag.SysUserCountDay;
 
-    管理平台桌面
-    <small> 欢迎进入管理平台</small>
-</div>
+                            sysUserChart.ComplexData.Labels.AddRange(sysUserCountDay.Keys);
 
-
-
-<div class="row">
-    <div class="col-lg-6">
-        <!-- START widget-->
-        <div class="panel ">
-            <div class="panel-heading">
-                <div class="panel-title">网站用户注册分析</div>
-            </div>
-
-            <div class="panel-body">
-                <div>
-                    @{
-                        var sysUserChart = new LineChart();
-
-                        sysUserChart.ChartConfiguration.Responsive = true;
-
-                        Dictionary<string, double> sysUserCountDay = ViewBag.SysUserCountDay;
-
-                        sysUserChart.ComplexData.Labels.AddRange(sysUserCountDay.Keys);
-
-                        sysUserChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                            sysUserChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
                         {
                             new ComplexDataset
                             {
@@ -57,34 +49,34 @@
                                 PointHighlightStroke = "rgba(220,220,220,1)"
                             }
                         });
-                    }
-                    <canvas id="sysUserChart" style="width: 100%; height: 200px"></canvas>
-                    @Html.CreateChart("sysUserChart", sysUserChart)
+                        }
+                        <canvas id="sysUserChart" style="width: 100%; height: 200px"></canvas>
+                        @Html.CreateChart("sysUserChart", sysUserChart)
+                    </div>
                 </div>
             </div>
+            <!-- END widget-->
         </div>
-        <!-- END widget-->
-    </div>
 
-    <div class="col-lg-6">
-        <!-- START widget-->
-        <div class="panel ">
-            <div class="panel-heading">
-                <div class="panel-title">管理平台使用数据分析</div>
-            </div>
+        <div class="col-lg-6">
+            <!-- START widget-->
+            <div class="panel ">
+                <div class="panel-heading">
+                    <div class="panel-title">管理平台使用数据分析</div>
+                </div>
 
-            <div class="panel-body">
-                <div>
-                    @{
-                        var sysUserLogChart = new LineChart();
+                <div class="panel-body">
+                    <div>
+                        @{
+                            var sysUserLogChart = new LineChart();
 
-                        sysUserLogChart.ChartConfiguration.Responsive = true;
+                            sysUserLogChart.ChartConfiguration.Responsive = true;
 
-                        Dictionary<string, double> sysUserLogCountDay = ViewBag.SysUserLogCountDay;
+                            Dictionary<string, double> sysUserLogCountDay = ViewBag.SysUserLogCountDay;
 
-                        sysUserLogChart.ComplexData.Labels.AddRange(sysUserLogCountDay.Keys);
+                            sysUserLogChart.ComplexData.Labels.AddRange(sysUserLogCountDay.Keys);
 
-                        sysUserLogChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                            sysUserLogChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
                         {
                             new ComplexDataset
                             {
@@ -96,34 +88,34 @@
                             }
                         });
 
-                    }
-                    <canvas id="sysUserLogChart" style="width: 100%; height: 200px"></canvas>
-                    @Html.CreateChart("sysUserLogChart", sysUserLogChart)
+                        }
+                        <canvas id="sysUserLogChart" style="width: 100%; height: 200px"></canvas>
+                        @Html.CreateChart("sysUserLogChart", sysUserLogChart)
+                    </div>
                 </div>
             </div>
+            <!-- END widget-->
         </div>
-        <!-- END widget-->
-    </div>
 
-    <div class="col-lg-6">
-        <!-- START widget-->
-        <div class="panel ">
-            <div class="panel-heading">
-                <div class="panel-title">平台执行速度分析</div>
-            </div>
+        <div class="col-lg-6">
+            <!-- START widget-->
+            <div class="panel ">
+                <div class="panel-heading">
+                    <div class="panel-title">平台执行速度分析</div>
+                </div>
 
-            <div class="panel-body">
-                <div>
-                    @{
-                        var sysUserLogDayDurationChart = new LineChart();
+                <div class="panel-body">
+                    <div>
+                        @{
+                            var sysUserLogDayDurationChart = new LineChart();
 
-                        sysUserLogDayDurationChart.ChartConfiguration.Responsive = true;
+                            sysUserLogDayDurationChart.ChartConfiguration.Responsive = true;
 
-                        Dictionary<string, double> sysUserLogDayDuration = ViewBag.SysUserLogDayDuration;
+                            Dictionary<string, double> sysUserLogDayDuration = ViewBag.SysUserLogDayDuration;
 
-                        sysUserLogDayDurationChart.ComplexData.Labels.AddRange(sysUserLogDayDuration.Keys);
+                            sysUserLogDayDurationChart.ComplexData.Labels.AddRange(sysUserLogDayDuration.Keys);
 
-                        sysUserLogDayDurationChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                            sysUserLogDayDurationChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
                         {
                             new ComplexDataset
                             {
@@ -135,16 +127,19 @@
                             }
                         });
 
-                    }
-                    <canvas id="SysUserLogDayDurationChart" style="width: 100%; height: 200px"></canvas>
-                    @Html.CreateChart("SysUserLogDayDurationChart", sysUserLogDayDurationChart)
+                        }
+                        <canvas id="SysUserLogDayDurationChart" style="width: 100%; height: 200px"></canvas>
+                        @Html.CreateChart("SysUserLogDayDurationChart", sysUserLogDayDurationChart)
+                    </div>
                 </div>
             </div>
+            <!-- END widget-->
         </div>
-        <!-- END widget-->
     </div>
-</div>
 
 
-
-
+                            }
+                            else
+                            {
+                                Html.RenderAction("Index", (string)ViewBag.LoadPage);
+                            }

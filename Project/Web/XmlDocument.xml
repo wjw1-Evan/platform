@@ -517,12 +517,6 @@
             <param name="loadPage"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.IndexController.Menu">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Web.Areas.Platform.Controllers.MyMessageController">
             <summary>
             我的消息中心： Todo： 只显示后才操作类的消息

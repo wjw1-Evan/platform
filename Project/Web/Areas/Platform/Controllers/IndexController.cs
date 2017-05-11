@@ -34,7 +34,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="iSysUserService"></param>
         /// <param name="iUnitOfWork"></param>
         /// <param name="iSysUserLogService"></param>
-        public IndexController(ISysControllerService sysControllerService, IUserInfo iUserInfo, ISysHelpService iSysHelpService, ISysEnterpriseSysUserService iSysEnterpriseSysUserService, ISysUserService iSysUserService, IUnitOfWork iUnitOfWork,  ISysUserLogService iSysUserLogService)
+        public IndexController(ISysControllerService sysControllerService, IUserInfo iUserInfo, ISysHelpService iSysHelpService, ISysEnterpriseSysUserService iSysEnterpriseSysUserService, ISysUserService iSysUserService, IUnitOfWork iUnitOfWork, ISysUserLogService iSysUserLogService)
         {
             _sysControllerService = sysControllerService;
             _iUserInfo = iUserInfo;
@@ -44,7 +44,6 @@ namespace Web.Areas.Platform.Controllers
             _iUnitOfWork = iUnitOfWork;
             _iSysUserLogService = iSysUserLogService;
         }
-
 
         // GET: Platform/Index
         /// <summary>
@@ -70,52 +69,40 @@ namespace Web.Areas.Platform.Controllers
             }
 
             ViewBag.sysEnterpriseSysUser = ent;
-
             ViewBag.UserId = _iUserInfo.UserId;
             ViewBag.UserName = _iUserInfo.UserName;
-            ViewBag.OffsiderbarHelp = _iSysHelpService.GetAll().ToList();
+            ViewBag.OffsiderbarHelp = _iSysHelpService.GetAll().Future();
             ViewBag.LoadPage = loadPage;
 
-            ViewBag.sysEnterprises = new SelectList(ent.Select(a => a.SysEnterprise), "Id", "EnterpriseName", _iUserInfo.EnterpriseId);
+            ViewBag.sysEnterprises = new SelectList(ent.Select(a => a.SysEnterprise).Future(), "Id", "EnterpriseName", _iUserInfo.EnterpriseId);
+
+            var area = (string)RouteData.DataTokens["area"];
+
+            ViewBag.Menu = _sysControllerService.GetAll(a =>
+                a.Display && a.Enable &&
+                a.SysControllerSysActions.Any(
+                    b =>
+                        b.SysRoleSysControllerSysActions.Any(
+                            c =>
+                                c.SysRole.Users.Any(
+                                    d => d.UserId == _iUserInfo.UserId))) &&
+                a.SysArea.AreaName.Equals(area)).Future();
 
             //桌面统计
             //用户总数统计
             ViewBag.SysUserCount = _iSysUserService.GetAll().FutureCount();
 
             //近十天用户注册次数
-            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => DbFunctions.DiffDays( a.CreatedDateTime, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => (double)a.Count);
+            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -14)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => (double)a.Count);
 
             //近十天用户活动次数
-            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => DbFunctions.DiffDays(a.CreatedDateTime, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new {a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => (double)a.Count);
+            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -14)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => (double)a.Count);
 
             //执行速度
-            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => DbFunctions.DiffDays(a.CreatedDateTime, DateTimeLocal.Now) <= 14).GroupBy(a => a.CreatedDate).Select(a => new {a.Key, Duration = a.Average(b => b.Duration) }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => Math.Round(a.Duration, 3));
+            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -14)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Duration = a.Average(b => b.Duration) }).OrderBy(a => a.Key).ToDictionary(a => a.Key, a => Math.Round(a.Duration, 3));
 
             return View();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Menu()
-        {
-            var area = (string)RouteData.DataTokens["area"];
-
-            var model = _sysControllerService.GetAll(a =>
-                                   a.Display && a.Enable &&
-                                   a.SysControllerSysActions.Any(
-                                       b =>
-                                       b.SysRoleSysControllerSysActions.Any(
-                                           c =>
-                                           c.SysRole.Users.Any(
-                                               d => d.UserId == _iUserInfo.UserId))) &&
-                                   a.SysArea.AreaName.Equals(area)).ToList();
-
-            return View(model);
-        }
-
-
 
     }
 }
