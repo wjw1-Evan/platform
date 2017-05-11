@@ -1,20 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
-using System.Web.Optimization;
-using System.Data.Entity;
-using System.Data.Entity.Core.Mapping;
-using System.Data.Entity.Core.Metadata.Edm;
-using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+﻿using System.Web.Optimization;
 using System.Timers;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using EntityFramework;
-using EntityFramework.Caching;
 using Microsoft.AspNet.Identity;
-using Services;
 using Web.Helpers;
 
 namespace Web
@@ -26,21 +16,13 @@ namespace Web
 
         protected void Application_Start()
         {
-         
-            // ef 预热
-            //using (var dbcontext = new ApplicationDbContext())
-            //{
-            //    var objectContext = ((IObjectContextAdapter)dbcontext).ObjectContext;
-            //    var mappingCollection = (StorageMappingItemCollection)objectContext.MetadataWorkspace.GetItemCollection(DataSpace.CSSpace);
-            //    mappingCollection.GenerateViews(new List<EdmSchemaError>());
-            //}
 
             //SqlDependency.Start(ApplicationDbContext.Create().Database.Connection.ConnectionString);
 
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-     
+
             // webapi
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
