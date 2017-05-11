@@ -89,7 +89,7 @@
                                 @foreach (var item1 in menus.Where(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId)))
                                 {
                                     <li>
-                                        <a title="@item1.Name" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" style="font-size: 12px;"  href="@Url.Action(item1.ActionName, item1.ControllerName, new {id = item1.Parameter})">
+                                        <a title="@item1.Name" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" href="@Url.Action(item1.ActionName, item1.ControllerName, new {id = item1.Parameter})">
                                             <i class="fa fa-fw @item1.Ico"></i>
                                             @Html.DisplayFor(a => item1.Name)
                                         </a>

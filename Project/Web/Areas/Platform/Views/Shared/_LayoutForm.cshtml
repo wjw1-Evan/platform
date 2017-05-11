@@ -2,34 +2,38 @@
 @using Web.Helpers
 
 <div class="content-heading">
-    <div class="pull-right">
-        @Html.Partial("Button_Back_List")
+
+    <div class="row">
+        <div class="col-xs-6">
+            @Html.ThisControllerName() -
+
+            @{
+                var action = (string)HttpContext.Current.Request.RequestContext.RouteData.Values["action"];
+                if (action == "Details")
+                {
+                    @Lang.Details
+                }
+                if (action == "Edit")
+                {
+                    if (ViewContext.RouteData.Values["id"] == null)
+                    {
+                        <span>@Lang.Create</span>
+                    }
+                    else
+                    {
+                        <span>@Lang.Edit</span>
+                    }
+                }
+            }
+        </div>
+
+        <div class="col-xs-6 text-right" style="padding-top: 1px; padding-bottom: 1px;">
+            @Html.Partial("Button_Back_List")
+        </div>
     </div>
-
-    @Html.ThisControllerName() -
-
-    @{
-        var action = (string)HttpContext.Current.Request.RequestContext.RouteData.Values["action"];
-        if (action == "Details")
-        {
-            @Lang.Details
-        }
-        if (action == "Edit")
-        {
-            if (ViewContext.RouteData.Values["id"] == null)
-            {
-                <span>@Lang.Create</span>
-            }
-            else
-            {
-                <span>@Lang.Edit</span>
-            }
-        }
-    }
 </div>
 
 <div class="panel panel-default">
-
     <div class="panel-body form-horizontal">
         @RenderBody()
     </div>
