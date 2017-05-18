@@ -6,21 +6,13 @@ using Models.Infrastructure;
 
 namespace Models.SysModels
 {
-    public class SysArea : IUserDictionary
+    public class SysArea : DbSetBaseId, IUserDictionary
     {
         public SysArea()
         {
-            Id = Guid.NewGuid().ToString();
             SystemId = "000";
             Enable = true;
         }
-
-
-        [Key]
-        [ScaffoldColumn(false)]
-        [Required]
-        [MaxLength(128)]
-        public string Id { get; set; }
 
         [MaxLength(40)]
         [Required]

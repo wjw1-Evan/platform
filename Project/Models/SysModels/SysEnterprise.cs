@@ -5,18 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models.SysModels
 {
-    public class SysEnterprise 
+    public class SysEnterprise : DbSetBaseId
     {
-        public SysEnterprise()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
-
-        [Key]
-        [ScaffoldColumn(false)]
-        [Required]
-        [MaxLength(128)]
-        public string Id { get; set; }
 
         [MaxLength(200)]
         [Required]

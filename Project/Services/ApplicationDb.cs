@@ -6,6 +6,12 @@ using Common;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.SysModels;
 using Models.TaskModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Web.Http;
+using Models;
 
 namespace Services
 {
@@ -80,6 +86,13 @@ namespace Services
         {
             modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
             modelBuilder.Conventions.Add(new DecimalPropertyConvention(38, 4));
+
+            //// 遍历功能模块程序集并注册实体类型
+        
+            //foreach (var type in Assembly.Load("Models").GetTypes().Where(t => t.IsSubclassOf(typeof(DbSetBaseId))))
+            //{
+            //    modelBuilder.RegisterEntityType(type);
+            //}
 
             //为表生成 基本的存储过程 Insert Update Delete
             modelBuilder.Types().Configure(a => a.MapToStoredProcedures());

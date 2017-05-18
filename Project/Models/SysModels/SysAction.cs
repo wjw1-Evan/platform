@@ -6,22 +6,14 @@ using Models.Infrastructure;
 
 namespace Models.SysModels
 {
-        
-    public class SysAction : IUserDictionary
+
+    public class SysAction : DbSetBaseId, IUserDictionary
     {
         public SysAction()
         {
-            Id = Guid.NewGuid().ToString();
             SystemId = "000";
             Enable = true;
         }
-
-
-        [Key]
-        [ScaffoldColumn(false)]
-        [Required]
-        [MaxLength(128)]
-        public string Id { get; set; }
 
         [MaxLength(40)]
         [Required]

@@ -6,11 +6,10 @@ using Models.Infrastructure;
 
 namespace Models.SysModels
 {
-    public class SysController : IUserDictionary
+    public class SysController : DbSetBaseId, IUserDictionary
     {
         public SysController()
         {
-            Id = Guid.NewGuid().ToString();
             SystemId = "000";
             TargetBlank = false;
             ControllerName = "Index";
@@ -18,15 +17,8 @@ namespace Models.SysModels
             Display = true;
             Enable = true;
             Ico = "fa-list-ul";
-            SysActionsId=new List<string>();
+            SysActionsId = new List<string>();
         }
-
-
-        [Key]
-        [ScaffoldColumn(false)]
-        [Required]
-        [MaxLength(128)]
-        public string Id { get; set; }
 
         [Display(Name = "Area")]
         [Required]

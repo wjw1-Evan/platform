@@ -6,10 +6,13 @@ using Models.SysModels;
 
 namespace Models
 {
-    public interface IDbSetBase
+    public interface IDbSetBaseId
     {
         string Id { get; set; }
+    }
 
+    public interface IDbSetBase
+    {
         string CreatedDate { get; set; }
 
         DateTime CreatedDateTime { get; set; }
@@ -17,7 +20,9 @@ namespace Models
         DateTime? UpdatedDateTime { get; set; }
 
         string CreatedBy { get; set; }
+
         string UpdatedBy { get; set; }
+
         bool Deleted { get; set; }
     }
     /// <summary>
@@ -29,17 +34,11 @@ namespace Models
         string EnterpriseId { get; set; }
     }
 
-    /// <summary>
-    /// 企业关联基础表
-    /// </summary>
-    public abstract class DbSetBase : IDbSetBase, IEnterprise
+    public abstract class DbSetBaseId : IDbSetBaseId
     {
-        protected DbSetBase()
+        protected DbSetBaseId()
         {
             Id = Guid.NewGuid().ToString();
-
-            CreatedDate = DateTimeLocal.NowDate;
-            CreatedDateTime = DateTimeLocal.Now;
         }
 
         [Key]
@@ -47,6 +46,18 @@ namespace Models
         [Required]
         [MaxLength(128)]
         public string Id { get; set; }
+    }
+
+    /// <summary>
+    /// 企业关联基础表
+    /// </summary>
+    public abstract class DbSetBase : DbSetBaseId, IDbSetBase, IEnterprise
+    {
+        protected DbSetBase()
+        {
+            CreatedDate = DateTimeLocal.NowDate;
+            CreatedDateTime = DateTimeLocal.Now;
+        }
 
         /// <summary>
         /// 创建日期
@@ -57,13 +68,14 @@ namespace Models
         [DataType(DataType.Date)]
         [Required]
         public string CreatedDate { get; set; }
-        
+
         /// <summary>
         /// 创建日期时间
         /// </summary>
         [Editable(false)]
         [Index]
         [Required]
+        [Index("IX_EnterpriseId-Deleted", 22)]
         public DateTime CreatedDateTime { get; set; }
 
         /// <summary>

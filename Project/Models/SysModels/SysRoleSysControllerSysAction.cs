@@ -4,19 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.SysModels
 {
-    public class SysRoleSysControllerSysAction 
+    public class SysRoleSysControllerSysAction : DbSetBaseId
     {
-
-        public SysRoleSysControllerSysAction()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
-
-        [Key]
-        [ScaffoldColumn(false)]
-        [Required]
-        [MaxLength(128)]
-        public string Id { get; set; }
 
         [ForeignKey("SysRole")]
         [Required]
@@ -24,7 +13,7 @@ namespace Models.SysModels
 
         public virtual SysRole SysRole { get; set; }
 
-     
+
         [ForeignKey("SysControllerSysAction")]
         [Required]
         public string SysControllerSysActionId { get; set; }

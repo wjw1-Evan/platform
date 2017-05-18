@@ -4,19 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.SysModels
 {
-    public class SysEnterpriseSysUser
+    public class SysEnterpriseSysUser : DbSetBaseId
     {
-        public SysEnterpriseSysUser()
-        {
-            Id = Guid.NewGuid().ToString();
-        }
-
-        [Key]
-        [ScaffoldColumn(false)]
-        [Required]
-        [MaxLength(128)]
-        public string Id { get; set; }
-        
 
         [ForeignKey("SysEnterprise")]
         [Required]
@@ -24,7 +13,7 @@ namespace Models.SysModels
         [ScaffoldColumn(false)]
         public virtual SysEnterprise SysEnterprise { get; set; }
 
-     
+
         [ForeignKey("SysUser")]
         [Required]
         public string SysUserId { get; set; }
