@@ -88,13 +88,13 @@ namespace Services
             modelBuilder.Conventions.Add(new DecimalPropertyConvention(38, 4));
 
             //// 遍历功能模块程序集并注册实体类型
-        
+
             //foreach (var type in Assembly.Load("Models").GetTypes().Where(t => t.IsSubclassOf(typeof(DbSetBaseId))))
             //{
             //    modelBuilder.RegisterEntityType(type);
             //}
 
-            //为表生成 基本的存储过程 Insert Update Delete
+            //为表生成 基本的存储过程 Insert Update Delete      SQL Server Compact 不支持
             modelBuilder.Types().Configure(a => a.MapToStoredProcedures());
 
             base.OnModelCreating(modelBuilder);
