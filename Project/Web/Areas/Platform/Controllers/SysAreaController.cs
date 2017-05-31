@@ -28,7 +28,7 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/SysArea/
 
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
         {
             var model =
                 _SysAreaService.GetAll()
@@ -42,7 +42,10 @@ namespace Web.Areas.Platform.Controllers
                                          a.Enable,
                                          a.Id
                                      }).Search(keyword);
-
+            if (search)
+            {
+                model = model.Search(Request.QueryString);
+            }
             if (!string.IsNullOrEmpty(ordering))
             {
                 model = model.OrderBy(ordering, null);

@@ -28,7 +28,7 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/iDepartment/
 
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
         {
             var model =
                 _iDepartmentService.GetAll()
@@ -44,7 +44,10 @@ namespace Web.Areas.Platform.Controllers
                                          a.Remark,
                                          a.Id
                                      }).Search(keyword);
-
+            if (search)
+            {
+                model = model.Search(Request.QueryString);
+            }
             if (!string.IsNullOrEmpty(ordering))
             {
                 model = model.OrderBy(ordering, null);

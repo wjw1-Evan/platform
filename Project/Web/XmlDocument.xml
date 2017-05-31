@@ -563,7 +563,7 @@
             <param name="sysActionService"></param>
             <param name="unitOfWork"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Index(System.String,System.String,System.Int32)">
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Index(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             列表
             </summary>
@@ -705,7 +705,7 @@
             <param name="unitOfWork"></param>
             <param name="iSysHelpClassService"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Index(System.String,System.String,System.Int32)">
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Index(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
@@ -767,7 +767,7 @@
             <param name="sysKeywordService"></param>
             <param name="iUnitOfWork"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Index(System.String,System.String,System.Int32)">
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Index(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
@@ -843,7 +843,7 @@
             <summary>
             </summary>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Index(System.String,System.String,System.Int32)">
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Index(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
                 用户列表
             </summary>

@@ -33,11 +33,14 @@ namespace Web.Areas.Platform.Controllers
 
 
         // GET: Admin/SysRole
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
         {
             var model = _iSysRoleService.GetAll().Select(a => new { a.RoleName, a.SystemId, a.SysDefault, a.Id }).OrderBy(a => a.SystemId).Search(keyword);
 
-
+            if (search)
+            {
+                model = model.Search(Request.QueryString);
+            }
             if (!string.IsNullOrEmpty(ordering))
             {
                 model = model.OrderBy(ordering, null);

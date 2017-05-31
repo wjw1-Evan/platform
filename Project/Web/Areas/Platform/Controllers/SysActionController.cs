@@ -40,14 +40,17 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
         {
             var model =
                 _sysActionService.GetAll()
                                  .Select(
                                      a =>
                                      new { a.Name, a.ActionName, a.SystemId,a.Enable, a.Id }).Search(keyword);
-
+            if (search)
+            {
+                model = model.Search(Request.QueryString);
+            }
             if (!string.IsNullOrEmpty(ordering))
             {
                 model = model.OrderBy(ordering, null);
