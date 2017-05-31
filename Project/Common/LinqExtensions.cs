@@ -29,16 +29,41 @@ namespace Common
 
                     if (title.PropertyType == typeof(int) || title.PropertyType == typeof(double) || title.PropertyType == typeof(decimal) || title.PropertyType == typeof(float) || title.PropertyType == typeof(int?) || title.PropertyType == typeof(double?) || title.PropertyType == typeof(decimal?) || title.PropertyType == typeof(float?))
                     {
-                        model = model.Where(title.Name + item.Get(title.Name + "_method") + item.Get(title.Name));
+                        try
+                        {
+                            model = model.Where(title.Name + item.Get(title.Name + "_method") + item.Get(title.Name));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            throw new Exception("您输入的"+ item.Get(title.Name)+"有误！请重新检查输入的内容。");
+                        }
+                      
                     }
 
                     if (title.PropertyType == typeof(DateTime) || title.PropertyType == typeof(DateTime?))
                     {
-                        model = model.Where($"{title.Name}>=@0", DateTime.Parse(item.Get(title.Name)));
+
+                        if (DateTime.TryParse(item.Get(title.Name), out var datetime))
+                        {
+                            model = model.Where($"{title.Name}>=@0", datetime);
+                        }
+                        else
+                        {
+                            throw new Exception("您输入的" + item.Get(title.Name) + "有误！请重新检查输入的内容。");
+                        }
+                        
 
                         if (!string.IsNullOrEmpty(item.Get(title.Name + "_End")))
                         {
-                            model = model.Where($"{title.Name}<=@0", DateTime.Parse(item.Get(title.Name + "_End")));
+                            if (DateTime.TryParse(item.Get(title.Name), out var datetimeEnd))
+                            {
+                                model = model.Where($"{title.Name}>=@0", datetimeEnd);
+                            }
+                            else
+                            {
+                                throw new Exception("您输入的" + item.Get(title.Name + "_End") + "有误！请重新检查输入的内容。");
+                            }
                         }
                     }
 
