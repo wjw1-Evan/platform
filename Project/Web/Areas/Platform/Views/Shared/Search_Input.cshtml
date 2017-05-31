@@ -37,9 +37,10 @@
                                     }
                                 }
                                 
-
-                                @Html.Partial("Search_Input_" + type, new ViewDataDictionary() {new KeyValuePair<string, object>("Name", title.Name)})
-                            </div>
+                               
+                                    @Html.Partial("Search_Input_" + type, new ViewDataDictionary() { new KeyValuePair<string, object>("Name", title.Name) })
+                          
+                                </div>
                         </div>
                     </div>
                 }
