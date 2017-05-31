@@ -27,12 +27,12 @@ namespace Common
                         }
                     }
 
-                    if (title.PropertyType == typeof(int) || title.PropertyType == typeof(double))
+                    if (title.PropertyType == typeof(int) || title.PropertyType == typeof(double) || title.PropertyType == typeof(decimal) || title.PropertyType == typeof(float) || title.PropertyType == typeof(int?) || title.PropertyType == typeof(double?) || title.PropertyType == typeof(decimal?) || title.PropertyType == typeof(float?))
                     {
                         model = model.Where(title.Name + item.Get(title.Name + "_method") + item.Get(title.Name));
                     }
 
-                    if (title.PropertyType == typeof(DateTime))
+                    if (title.PropertyType == typeof(DateTime) || title.PropertyType == typeof(DateTime?))
                     {
                         model = model.Where($"{title.Name}>=@0", DateTime.Parse(item.Get(title.Name)));
 
@@ -42,7 +42,7 @@ namespace Common
                         }
                     }
 
-                    if (title.PropertyType == typeof(bool))
+                    if (title.PropertyType == typeof(bool) || title.PropertyType==typeof(bool?))
                     {
                         model = model.Where(title.Name + "==" + item.Get(title.Name));
                     }

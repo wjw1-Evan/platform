@@ -28,7 +28,17 @@
                                 </label>
                             </div>
                             <div class="col-md-9 col-sm-9">
-                                @Html.Partial("Search_Input_" + title.PropertyType, new ViewDataDictionary() { new KeyValuePair<string, object>("Name", title.Name) })
+                                @{
+                                    var type = title.PropertyType;
+
+                                    if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                                    {
+                                        type = type.GetGenericArguments()[0];
+                                    }
+                                }
+                                
+
+                                @Html.Partial("Search_Input_" + type, new ViewDataDictionary() {new KeyValuePair<string, object>("Name", title.Name)})
                             </div>
                         </div>
                     </div>

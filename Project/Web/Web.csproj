@@ -1043,6 +1043,7 @@
     <Content Include="Areas\Platform\Views\Shared\Search_Input_System.DateTime.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Search_Input_System.Boolean.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Search_Input_System.Int32.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\Search_Input_System.Decimal.cshtml" />
     <None Include="Properties\PublishProfiles\platform-wjw1 - Web Deploy.pubxml" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
