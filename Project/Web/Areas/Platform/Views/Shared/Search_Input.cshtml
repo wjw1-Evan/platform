@@ -13,8 +13,8 @@
     </div>
 }
 
-<div id="Search_input" class="collapse well" style="margin-top: 5px; margin-left:-400px; position: absolute; z-index: 10000">
-    @using (Ajax.BeginForm(string.Empty,new RouteValueDictionary(),new AjaxOptions() { UpdateTargetId = "Main", HttpMethod = "Get"}))
+<div id="Search_input" class="collapse well" style="margin-top:5px; margin-left:-400px; position: absolute; z-index: 10000">
+    @using (Ajax.BeginForm(string.Empty, new RouteValueDictionary(), new AjaxOptions() { UpdateTargetId = "Main", HttpMethod = "Get" }))
     {
         <div class="form-inline" style="font-size:small">
             <div class="row">
@@ -36,19 +36,19 @@
                                         type = type.GetGenericArguments()[0];
                                     }
                                 }
-                                
-                               
-                                    @Html.Partial("Search_Input_" + type, new ViewDataDictionary() { new KeyValuePair<string, object>("Name", title.Name) })
-                          
-                                </div>
+
+
+                                @Html.Partial("Search_Input_" + type, new ViewDataDictionary() { new KeyValuePair<string, object>("Name", title.Name) })
+
+                            </div>
                         </div>
                     </div>
-                }
+                                    }
             </div>
 
             <div class="text-center">
                 <button type="submit" class="btn btn-info" name="Search" value="true"> <i class="fa fa-search"></i>  @Lang.Search</button>
             </div>
         </div>
-    }
+                                    }
 </div>
