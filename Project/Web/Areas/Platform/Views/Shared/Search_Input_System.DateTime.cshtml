@@ -1,8 +1,22 @@
-﻿<input type="text" id="@ViewBag.Name" name="@ViewBag.Name"  class="form-control" placeholder="开始时间"  value="@(Request.QueryString[ViewBag.Name])"/>至<input type="text" id="@(ViewBag.Name)_End" name="@(ViewBag.Name)_End"  class="form-control" placeholder="结束时间"  value="@(Request.QueryString[ViewBag.Name+"_End"])"/>
+﻿<input type="text" id="@ViewBag.Name" name="@ViewBag.Name" class="form-control" placeholder="开始时间" value="@(Request.QueryString[ViewBag.Name])" />至<input type="text" id="@(ViewBag.Name)_End" name="@(ViewBag.Name)_End" class="form-control" placeholder="结束时间" value="@(Request.QueryString[ViewBag.Name+"_End"])" />
 
 <script>
     $(function () {
-        $('#@ViewBag.Name').datetimepicker({ lang: 'zh' });
-        $('#@(ViewBag.Name)_End').datetimepicker({ lang: 'zh' });
+        $('#@ViewBag.Name').datetimepicker({
+            lang: 'zh', format: 'Y/m/d',
+            onShow: function (ct) {
+                this.setOptions({
+                    maxDate: $('#@(ViewBag.Name)_End').val() ? $('#@(ViewBag.Name)_End').val() : false
+                });
+            }
+        });
+        $('#@(ViewBag.Name)_End').datetimepicker({
+            lang: 'zh', format: 'Y/m/d',
+            onShow: function (ct) {
+                this.setOptions({
+                    minDate: $('#@ViewBag.Name').val() ? $('#@ViewBag.Name').val() : false
+                });
+            }
+        });
     });
 </script>
