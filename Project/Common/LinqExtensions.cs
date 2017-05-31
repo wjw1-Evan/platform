@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Linq.Dynamic;
 
-
 namespace Common
 {
     public static class LinqExtensions
@@ -45,17 +44,11 @@ namespace Common
 
                     if (title.PropertyType == typeof(bool))
                     {
-                        model = model.Where($"{title.Name}==@0",item.Get(title.Name));
+                        model = model.Where(title.Name + "==" + item.Get(title.Name));
                     }
                 }
-
-
             }
-
-
-
-
-
+            
             return model;
         }
 

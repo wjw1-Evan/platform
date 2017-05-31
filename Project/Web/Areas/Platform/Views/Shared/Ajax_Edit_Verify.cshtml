@@ -4,7 +4,10 @@
 
     var routevalues = Request.ToRouteValueDictionary();
 
-    routevalues.Add("id", Model);
+
+    routevalues["id"] = Model;
+
+    //routevalues.Add("id", Model);
 }
 
 <div>
