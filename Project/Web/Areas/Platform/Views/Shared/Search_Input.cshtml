@@ -13,7 +13,7 @@
     </div>
 }
 
-<div id="Search_input" class="collapse well" style="margin-top: 5px; position: absolute; z-index: 10000">
+<div id="Search_input" class="collapse well" style="margin-top: 5px; margin-left:-400px; position: absolute; z-index: 10000">
     @using (Ajax.BeginForm(string.Empty,new RouteValueDictionary(),new AjaxOptions() { UpdateTargetId = "Main", HttpMethod = "Get"}))
     {
         <div class="form-inline" style="font-size:small">
