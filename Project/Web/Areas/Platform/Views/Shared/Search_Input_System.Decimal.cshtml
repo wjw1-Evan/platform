@@ -9,5 +9,6 @@
             <option value="<=" @(Request.QueryString[ViewBag.Name + "_method"] == "<=" ? "selected" : "")>小于等于</option>
         </select>
     </span>
+
+    <input name="@ViewBag.Name" type="text" class="form-control" placeholder="0.00" value="@(Request.QueryString[ViewBag.Name])" />
 </div>
-<input name="@ViewBag.Name" type="text" class="form-control" placeholder="0.00" value="@(Request.QueryString[ViewBag.Name])" />
