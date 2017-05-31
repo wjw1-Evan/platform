@@ -1038,6 +1038,11 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\Platform\Views\TaskCenter\Index.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\Search_Input_System.String.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\Search_Input_System.Double.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\Search_Input_System.DateTime.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\Search_Input_System.Boolean.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\Search_Input_System.Int32.cshtml" />
     <None Include="Properties\PublishProfiles\platform-wjw1 - Web Deploy.pubxml" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />

@@ -1,0 +1,9 @@
+﻿<select  name="@(ViewBag.Name)_method" class="form-control">
+    <option value="==" @(Request.QueryString[ViewBag.Name+"_method"]== "==" ? "selected":"")>等于</option>
+    <option value=">"  @(Request.QueryString[ViewBag.Name+"_method"]== ">" ? "selected":"")>大于</option>
+    <option value="<" @(Request.QueryString[ViewBag.Name+"_method"]== "<" ? "selected":"")>小于</option>
+    <option value=">=" @(Request.QueryString[ViewBag.Name+"_method"]== ">=" ? "selected":"")>大于等于</option>
+    <option value="<=" @(Request.QueryString[ViewBag.Name+"_method"]== "<=" ? "selected":"")>小于等于</option>
+</select>
+
+<input name="@ViewBag.Name"  type="text"  class="form-control" placeholder="0"  value="@(Request.QueryString[ViewBag.Name])"/>

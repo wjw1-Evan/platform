@@ -54,7 +54,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
         {
             var model =
                 _sysControllerService.GetAll()
@@ -75,6 +75,10 @@ namespace Web.Areas.Platform.Controllers
                                              a.Id
                                          }).Search(keyword);
 
+            if (search)
+            {
+                model = model.Search(Request.QueryString);
+            }
 
             if (!string.IsNullOrEmpty(ordering))
             {

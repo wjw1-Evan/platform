@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
@@ -37,8 +38,9 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="keyword"></param>
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
+        /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(string keyword, string ordering, int pageIndex = 1)
+        public async Task<ActionResult> Index(string keyword, string ordering, int pageIndex = 1,bool search=false)
         {
             var model =
                 _sysUserLogService.GetAll()
@@ -58,6 +60,10 @@ namespace Web.Areas.Platform.Controllers
                                           a.Ip,
                                           a.CreatedDateTime,
                                       }).Search(keyword);
+            if (search)
+            {
+                model = model.Search(Request.QueryString);
+            }
 
             if (!string.IsNullOrEmpty(ordering))
             {

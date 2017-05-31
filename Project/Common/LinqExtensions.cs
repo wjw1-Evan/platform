@@ -1,12 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Linq.Dynamic;
+
 
 namespace Common
 {
     public static class LinqExtensions
     {
+        public static IQueryable<T> Search<T>(this IQueryable<T> model, NameValueCollection item)
+        {
+            foreach (var title in typeof(T).GetProperties())
+            {
+                if (!string.IsNullOrEmpty(item.Get(title.Name)))
+                {
+                    if (title.PropertyType == typeof(string))
+                    {
+                        if (item.Get(title.Name + "_method") == "Contains")
+                        {
+                            model = model.Where($"{title.Name}.Contains(@0)", item.Get(title.Name));
+                        }
+
+                        if (item.Get(title.Name + "_method") == "==")
+                        {
+                            model = model.Where($"{title.Name}==@0", item.Get(title.Name));
+                        }
+                    }
+
+                    if (title.PropertyType == typeof(int) || title.PropertyType == typeof(double))
+                    {
+                        model = model.Where(title.Name + item.Get(title.Name + "_method") + item.Get(title.Name));
+                    }
+
+                    if (title.PropertyType == typeof(DateTime))
+                    {
+                        model = model.Where($"{title.Name}>=@0", DateTime.Parse(item.Get(title.Name)));
+
+                        if (!string.IsNullOrEmpty(item.Get(title.Name + "_End")))
+                        {
+                            model = model.Where($"{title.Name}<=@0", DateTime.Parse(item.Get(title.Name + "_End")));
+                        }
+                    }
+
+                    if (title.PropertyType == typeof(bool))
+                    {
+                        model = model.Where($"{title.Name}==@0",item.Get(title.Name));
+                    }
+                }
+
+
+            }
+
+
+
+
+
+            return model;
+        }
+
         public static IQueryable<T> Search<T>(this IQueryable<T> model, string keywords)
         {
             //Todo :让搜索支持多个关键字和日期字段搜索 "+"分隔
@@ -18,23 +70,23 @@ namespace Common
                     {
                         var where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(string)).Aggregate("1!=1 ", (current, item) => current + " or " + item.Name + ".Contains(@0)");
 
-                        int intKeyword;
-                        if (int.TryParse(keyword, out intKeyword))
-                        {
-                            where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(int)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + intKeyword);
-                        }
+                        //int intKeyword;
+                        //if (int.TryParse(keyword, out intKeyword))
+                        //{
+                        //    where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(int)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + intKeyword);
+                        //}
 
-                        decimal decimalKeyword;
-                        if (decimal.TryParse(keyword, out decimalKeyword))
-                        {
-                            where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(decimal)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + decimalKeyword);
-                        }
+                        //decimal decimalKeyword;
+                        //if (decimal.TryParse(keyword, out decimalKeyword))
+                        //{
+                        //    where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(decimal)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + decimalKeyword);
+                        //}
 
-                        bool boolKeyword;
-                        if (bool.TryParse(keyword, out boolKeyword))
-                        {
-                            where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(bool)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + boolKeyword);
-                        }
+                        //bool boolKeyword;
+                        //if (bool.TryParse(keyword, out boolKeyword))
+                        //{
+                        //    where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(bool)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + boolKeyword);
+                        //}
 
                         ////支持搜索日期？
                         //DateTime dateKeyword;

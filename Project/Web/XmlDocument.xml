@@ -642,7 +642,7 @@
             <param name="sysControllerService"></param>
             <param name="sysControllerSysActionService"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Index(System.String,System.String,System.Int32)">
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Index(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
@@ -904,13 +904,14 @@
             </summary>
             <param name="sysUserLogService"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Index(System.String,System.String,System.Int32)">
+        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Index(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
             <param name="keyword"></param>
             <param name="ordering"></param>
             <param name="pageIndex"></param>
+            <param name="search"></param>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Report(System.String)">
