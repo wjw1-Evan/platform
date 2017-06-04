@@ -188,10 +188,6 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleLogging.Core, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleLogging.Core.0.5.0\lib\portable-net4+sl4+wp7+win8\SimpleLogging.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -338,18 +334,18 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Platform\Controllers\ChangePasswordController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysDepartmentController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysHelpClassController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysDepartmentController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysHelpClassController.cs" />
     <Compile Include="Areas\Platform\Controllers\IndexController.cs" />
     <Compile Include="Areas\Platform\Controllers\MyMessageController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysActionController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysAreaController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysControllerController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysHelpController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SyskeywordController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysRoleController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysUserController.cs" />
-    <Compile Include="Areas\Platform\Controllers\SysUserLogController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysActionController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysAreaController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysControllerController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysHelpController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SyskeywordController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysRoleController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysUserController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysUserLogController.cs" />
     <Compile Include="Areas\Platform\Controllers\TaskControllers\TaskCenterController.cs" />
     <Compile Include="Areas\Platform\Helpers\DeleteSuccessResult.cs" />
     <Compile Include="Areas\Platform\Helpers\EditSuccessResult.cs" />
