@@ -25,13 +25,24 @@ namespace Common
                         {
                             model = model.Where($"{title.Name}==@0", item.Get(title.Name));
                         }
+
+                        if (item.Get(title.Name + "_method") == "!=")
+                        {
+                            model = model.Where($"{title.Name}!=@0", item.Get(title.Name));
+                        }
                     }
 
                     if (title.PropertyType == typeof(int) || title.PropertyType == typeof(double) || title.PropertyType == typeof(decimal) || title.PropertyType == typeof(float) || title.PropertyType == typeof(int?) || title.PropertyType == typeof(double?) || title.PropertyType == typeof(decimal?) || title.PropertyType == typeof(float?))
                     {
                         try
                         {
-                            model = model.Where(title.Name + item.Get(title.Name + "_method") + item.Get(title.Name));
+                            var met = item.Get(title.Name + "_method");
+
+                            // 防止错误
+                            if (met == "==" || met == ">" || met == "<" || met == ">=" || met == "<=" )
+                            {
+                                  model = model.Where(title.Name + met + item.Get(title.Name));
+                            }
                         }
                         catch (Exception e)
                         {
@@ -69,7 +80,14 @@ namespace Common
 
                     if (title.PropertyType == typeof(bool) || title.PropertyType==typeof(bool?))
                     {
-                        model = model.Where(title.Name + "==" + item.Get(title.Name));
+                        if (bool.TryParse(item.Get(title.Name), out var boolvalue))
+                        {
+                            model = model.Where(title.Name + "==" + boolvalue);
+                        }
+                        else
+                        {
+                            throw new Exception("您输入的" + item.Get(title.Name + "_End") + "有误！请重新检查输入的内容。");
+                        }
                     }
                 }
             }
