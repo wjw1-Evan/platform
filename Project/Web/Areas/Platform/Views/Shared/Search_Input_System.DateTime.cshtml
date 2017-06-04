@@ -3,20 +3,10 @@
 <script>
     $(function () {
         $('#@ViewBag.Name').datetimepicker({
-            lang: 'zh', format: 'Y/m/d',
-            onShow: function (ct) {
-                this.setOptions({
-                    maxDate: $('#@(ViewBag.Name)_End').val() ? $('#@(ViewBag.Name)_End').val() : false
-                });
-            }
+            lang: 'zh'
         });
         $('#@(ViewBag.Name)_End').datetimepicker({
-            lang: 'zh', format: 'Y/m/d',
-            onShow: function (ct) {
-                this.setOptions({
-                    minDate: $('#@ViewBag.Name').val() ? $('#@ViewBag.Name').val() : false
-                });
-            }
+            lang: 'zh'
         });
     });
 </script>
