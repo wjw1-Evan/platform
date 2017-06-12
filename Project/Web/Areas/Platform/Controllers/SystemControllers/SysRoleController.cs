@@ -84,7 +84,7 @@ namespace Web.Areas.Platform.Controllers
             {
                 item = _iSysRoleService.GetById(id);
             }
-            ViewBag.SysControllers = _sysControllerService.GetAll().ToList();
+            ViewBag.SysControllers = _sysControllerService.GetAll(a=>a.Enable).ToList();
             return View(item);
         }
 
