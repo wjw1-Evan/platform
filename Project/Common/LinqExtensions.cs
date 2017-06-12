@@ -106,11 +106,11 @@ namespace Common
                     {
                         var where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(string)).Aggregate("1!=1 ", (current, item) => current + " or " + item.Name + ".Contains(@0)");
 
-                        //int intKeyword;
-                        //if (int.TryParse(keyword, out intKeyword))
-                        //{
-                        //    where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(int)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + intKeyword);
-                        //}
+                        int intKeyword;
+                        if (int.TryParse(keyword, out intKeyword))
+                        {
+                            where = model.GetType().GetGenericArguments()[0].GetProperties().Where(item => item.PropertyType == typeof(int)).Aggregate(where, (current, item) => current + " or " + item.Name + "==" + intKeyword);
+                        }
 
                         //decimal decimalKeyword;
                         //if (decimal.TryParse(keyword, out decimalKeyword))
