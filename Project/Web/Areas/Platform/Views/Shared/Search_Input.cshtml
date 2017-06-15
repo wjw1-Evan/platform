@@ -13,21 +13,21 @@
     </div>
 }
 
-<div id="Search_input" class="collapse well" style="margin-top:5px; margin-left:-400px; position: absolute; z-index: 10000">
+<div id="Search_input" class="collapse well" style="margin-top:5px; margin-left:-30%;  position: absolute; z-index: 10000">
     @using (Ajax.BeginForm(string.Empty, new RouteValueDictionary(), new AjaxOptions() { UpdateTargetId = "Main", HttpMethod = "Get" }))
     {
         <div class="form-inline" style="font-size:small">
             <div class="row">
                 @foreach (var title in Model.VisibleProperties().Where(a=>a.PropertyType == typeof(string) || a.PropertyType.IsValueType))
                 {
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-xs-12">
                         <div class="row">
-                            <div class="col-md-3 col-sm-3 text-right">
+                            <div class="col-md-3 col-xs-3 text-right">
                                 <label style="padding-top: 8px;">
                                     @title.GetLabel().ToSeparatedWords()
                                 </label>
                             </div>
-                            <div class="col-md-9 col-sm-9">
+                            <div class="col-md-9 col-xs-9">
                                 @{
                                     var type = title.PropertyType;
 
