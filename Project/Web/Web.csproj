@@ -355,6 +355,7 @@
     <Compile Include="Areas\Platform\Controllers\SystemControllers\SysControllerController.cs" />
     <Compile Include="Areas\Platform\Controllers\SystemControllers\SysHelpController.cs" />
     <Compile Include="Areas\Platform\Controllers\SystemControllers\SyskeywordController.cs" />
+    <Compile Include="Areas\Platform\Controllers\SystemControllers\SysLogController.cs" />
     <Compile Include="Areas\Platform\Controllers\SystemControllers\SysRoleController.cs" />
     <Compile Include="Areas\Platform\Controllers\SystemControllers\SysUserController.cs" />
     <Compile Include="Areas\Platform\Controllers\SystemControllers\SysUserLogController.cs" />

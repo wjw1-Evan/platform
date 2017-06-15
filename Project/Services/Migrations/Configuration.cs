@@ -251,7 +251,14 @@ namespace Services.Migrations
                     SystemId = "950990",
                     Ico = "fa-calendar"
                 },
-
+                new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "系统日志",
+                    ControllerName = "SysLog",
+                    SystemId = "950995",
+                    Ico = "fa-file-text-o"
+                },
                 #endregion
             };
 

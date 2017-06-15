@@ -75,6 +75,7 @@
     <Compile Include="SysModels\SysController.cs" />
     <Compile Include="SysModels\SysControllerSysAction.cs" />
     <Compile Include="SysModels\SysHelp.cs" />
+    <Compile Include="SysModels\SysLog.cs" />
     <Compile Include="SysModels\SysMail.cs" />
     <Compile Include="SysModels\SysRole.cs" />
     <Compile Include="SysModels\SysRoleSysControllerSysAction.cs" />

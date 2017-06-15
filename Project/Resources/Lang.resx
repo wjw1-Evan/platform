@@ -1773,4 +1773,7 @@
   <data name="UpdatedDateTime" xml:space="preserve">
     <value>更新日期</value>
   </data>
+  <data name="Log" xml:space="preserve">
+    <value>日志</value>
+  </data>
 </root>

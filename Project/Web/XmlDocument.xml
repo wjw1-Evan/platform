@@ -817,6 +817,34 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysLogController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysLogController.#ctor(IServices.ISysServices.ISysLogService,IServices.Infrastructure.IUnitOfWork)">
+            <summary>
+            
+            </summary>
+            <param name="sysLogService"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysLogController.Index(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysLogController.Report">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Web.Areas.Platform.Controllers.SysUserController">
             <summary>
                 用户管理

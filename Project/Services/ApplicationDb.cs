@@ -75,9 +75,12 @@ namespace Services
         /// <summary>
         /// 用户关联部门
         /// </summary>
-        public DbSet<SysDepartmentSysUser> SysDepartmentSysUser { get; set; }
+        public DbSet<SysDepartmentSysUser> SysDepartmentSysUsers { get; set; }
 
-
+        /// <summary>
+        /// 系统日志
+        /// </summary>
+        public DbSet<SysLog> SysLogs { get; set; }
 
         #endregion
 

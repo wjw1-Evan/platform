@@ -90,6 +90,7 @@
     <Compile Include="SysServices\SysControllerService.cs" />
     <Compile Include="SysServices\SysControllerSysActionService.cs" />
     <Compile Include="SysServices\SysHelpService.cs" />
+    <Compile Include="SysServices\SysLogService.cs" />
     <Compile Include="SysServices\SysRoleService.cs" />
     <Compile Include="SysServices\SysRoleSysControllerSysActionService.cs" />
     <Compile Include="SysServices\SysSignalROnlineService.cs" />

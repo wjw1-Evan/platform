@@ -2563,6 +2563,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 日志 的本地化字符串。
+        /// </summary>
+        public static string Log {
+            get {
+                return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 登录 的本地化字符串。
         /// </summary>
         public static string Login {

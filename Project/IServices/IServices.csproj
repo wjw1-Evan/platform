@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISysServices\ISysLogService.cs" />
     <Compile Include="ISystemService.cs" />
     <Compile Include="ISysServices\ISysDepartmentSysUserService.cs" />
     <Compile Include="ISysServices\ISysDepartmentService.cs" />
