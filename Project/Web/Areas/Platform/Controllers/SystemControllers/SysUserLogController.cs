@@ -58,6 +58,7 @@ namespace Web.Areas.Platform.Controllers
                                           a.Duration,
                                           a.RequestType,
                                           a.Ip,
+                                          a.Url,
                                           a.CreatedDateTime,
                                       }).Search(keyword);
             if (search)

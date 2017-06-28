@@ -3,6 +3,7 @@ using System.Web.Http.Cors;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DoddleReport.Web;
+using Swashbuckle.Application;
 using Web.Helpers;
 
 namespace Web
@@ -36,14 +37,20 @@ namespace Web
             // Web API 路由
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "Api-v1",
+            //    routeTemplate: "api/v1/{controller}/{id}",
+            //    defaults: new { version = "v1", id = RouteParameter.Optional }
+            //);
+
+            //config.Routes.MapHttpRoute(
+            //    name: "Api-v2",
+            //    routeTemplate: "api/v2/{controller}/{id}",
+            //    defaults: new { version="v2", id = RouteParameter.Optional }
+            //);
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
-
+            
             config.Filters.Add(new WebApiTrackerAttribute());
         }
     }

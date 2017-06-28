@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 操作(s) 的本地化字符串。
+        /// </summary>
+        public static string ActionDuration {
+            get {
+                return ResourceManager.GetString("ActionDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 操作名称 的本地化字符串。
         /// </summary>
         public static string ActionName {
@@ -3787,6 +3796,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 请求类型 的本地化字符串。
+        /// </summary>
+        public static string RequestType {
+            get {
+                return ResourceManager.GetString("RequestType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请填写 {0} 的本地化字符串。
         /// </summary>
         public static string Required {
@@ -4971,6 +4989,15 @@ namespace Resources {
         public static string VideoUrl {
             get {
                 return ResourceManager.GetString("VideoUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 视图(s) 的本地化字符串。
+        /// </summary>
+        public static string ViewDuration {
+            get {
+                return ResourceManager.GetString("ViewDuration", resourceCulture);
             }
         }
         

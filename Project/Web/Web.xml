@@ -4,10 +4,31 @@
         <name>Web</name>
     </assembly>
     <members>
-        <member name="T:Web.Areas.Api.Controllers.DefaultController">
+        <member name="T:Web.Areas.Api.v1.DefaultController">
             <summary>
             默认
             </summary>
+        </member>
+        <member name="M:Web.Areas.Api.v1.DefaultController.Get">
+            <summary>
+            获取
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Web.Areas.Api.v1.DefaultController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id">记录编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Api.v2.IndexController.Get">
+            <summary>
+            获取
+            </summary>
+            <returns></returns>
+            
         </member>
         <member name="M:Web.Areas.Platform.Controllers.ChangePasswordController.Index">
             <summary>

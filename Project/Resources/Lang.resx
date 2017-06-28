@@ -1776,4 +1776,13 @@
   <data name="Log" xml:space="preserve">
     <value>日志</value>
   </data>
+  <data name="ActionDuration" xml:space="preserve">
+    <value>操作(s)</value>
+  </data>
+  <data name="RequestType" xml:space="preserve">
+    <value>请求类型</value>
+  </data>
+  <data name="ViewDuration" xml:space="preserve">
+    <value>视图(s)</value>
+  </data>
 </root>

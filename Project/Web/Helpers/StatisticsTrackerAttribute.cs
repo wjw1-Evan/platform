@@ -136,14 +136,17 @@ namespace Web.Helpers
             base.OnActionExecuted(actionExecutedContext);
 
             ////记录用户访问记录
-            var action = (string)actionExecutedContext.ActionContext.RequestContext.RouteData.Values["action"];
-            var controller = (string)actionExecutedContext.ActionContext.RequestContext.RouteData.Values["controller"];
-            var recordId = (string)actionExecutedContext.ActionContext.RequestContext.RouteData.Values["id"];
+            var routetemplate = actionExecutedContext.ActionContext.RequestContext.RouteData.Route.RouteTemplate;
+
+
+            var action = actionExecutedContext.ActionContext.ActionDescriptor.ActionName;
+
+            var controller = actionExecutedContext.ActionContext.ActionDescriptor.ControllerDescriptor.ControllerName;
 
             var sysuserlog = new SysUserLog
             {
                 Ip = HttpContext.Current.Request.UserHostAddress,
-                RecordId = recordId,
+                RecordId = "",
                 Url = actionExecutedContext.Request.RequestUri.PathAndQuery,
                 SysArea = "WebApi",
                 SysController = controller,
