@@ -741,6 +741,40 @@
             
             </summary>
         </member>
+        <member name="T:Web.Helpers.IOnTimedEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.IOnTimedEvent.Run(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="elapsedEventArgs"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Helpers.OnTimedEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Helpers.OnTimedEvent.#ctor(IServices.Infrastructure.IUnitOfWork,IServices.ISysServices.ISysUserLogService,IServices.ISysServices.ISysLogService)">
+            <summary>
+            
+            </summary>
+            <param name="unitOfWork"></param>
+            <param name="sysUserLogService"></param>
+            <param name="iSysLogService"></param>
+        </member>
+        <member name="M:Web.Helpers.OnTimedEvent.Run(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="elapsedEventArgs"></param>
+            <returns></returns>
+        </member>
         <member name="T:Web.Helpers.IPagedList">
             <summary>
             
