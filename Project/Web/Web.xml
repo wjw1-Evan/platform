@@ -622,6 +622,16 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Web.WebApiApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Web.WebApiApplication.GetVaryByCustomString(System.Web.HttpContext,System.String)">
             <summary>
             按照用户Id更新缓存信息，不同用户Id分别缓存 

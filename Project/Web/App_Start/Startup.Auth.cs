@@ -9,6 +9,7 @@ using Owin;
 using Services;
 using Web.Providers;
 using System.Configuration;
+using Microsoft.Owin.Security.Tencent.Wechat;
 
 namespace Web
 {
@@ -72,6 +73,8 @@ namespace Web
 
             // 使应用程序可以使用不记名令牌来验证用户身份
             app.UseOAuthBearerTokens(OAuthOptions);
+
+            //app.UseWeChatAuthentication(appId:"",appSecret:"");
         }
     }
 }

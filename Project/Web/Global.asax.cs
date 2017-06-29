@@ -9,11 +9,17 @@ using Web.Helpers;
 
 namespace Web
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class WebApiApplication : HttpApplication
     {
         private Timer _objTimer;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void Application_Start()
         {
 
@@ -48,7 +54,7 @@ namespace Web
         protected void Application_End()
         {
             //SqlDependency.Stop(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            _objTimer.Stop();
+            //_objTimer.Stop();
         }
 
         /// <summary>

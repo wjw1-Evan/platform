@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -7,10 +8,17 @@ namespace IServices.Infrastructure
 {
     public interface IRepository<T> where T : class
     {
+
+        int SqlCommand(string sql, params object[] parameters);
+
+        DbRawSqlQuery<T> SqlQuery(string sql, params object[] parameters);
+
+        DbRawSqlQuery<T1> SqlQuery<T1>(string sql, params object[] parameters);
+
         void Add(T entity);
 
         void Update(T entity);
-    
+
         void Save(object id, T entity);
 
         /// <summary>
@@ -49,8 +57,8 @@ namespace IServices.Infrastructure
         IQueryable<T> GetAll(bool containsDeleted = false, bool allEnt = false);
 
         IQueryable<T> GetAll(Expression<Func<T, bool>> where);
-     
+
     }
 
-    
+
 }

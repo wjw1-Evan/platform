@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
@@ -21,6 +22,21 @@ namespace Services.Infrastructure
             _dataContext = databaseFactory;
             _userInfo = userInfo;
             _dbset = _dataContext.Set<T>();
+        }
+
+        public virtual int SqlCommand(string sql, params object[] parameters)
+        {
+            return _dataContext.Database.ExecuteSqlCommand(sql, parameters);
+        }
+
+        public virtual DbRawSqlQuery<T> SqlQuery(string sql, params object[] parameters)
+        {
+            return _dataContext.Database.SqlQuery<T>(sql, parameters);
+        }
+
+        public virtual DbRawSqlQuery<T1> SqlQuery<T1>(string sql, params object[] parameters)
+        {
+            return _dataContext.Database.SqlQuery<T1>(sql, parameters);
         }
 
         /// <summary>
@@ -221,7 +237,7 @@ namespace Services.Infrastructure
         }
 
 
-     
+
     }
 
 }
