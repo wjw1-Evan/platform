@@ -622,12 +622,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Web.Controllers.HomeController.Test">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Web.WebApiApplication">
             <summary>
             
             </summary>
         </member>
         <member name="M:Web.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.WebApiApplication.Application_End">
             <summary>
             
             </summary>
