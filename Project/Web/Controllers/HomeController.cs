@@ -31,7 +31,7 @@ namespace Web.Controllers
         /// <returns></returns>
         public ActionResult Test()
         {
-            var aa = _ISysUserLogService.SqlQuery<int>("select count(*) from sysuserlogs11") ;
+            var aa = _ISysUserLogService.SqlQuery<int>("select count(*) from sysuserlogs") ;
             
             return Content(aa.First().ToString());
         }
