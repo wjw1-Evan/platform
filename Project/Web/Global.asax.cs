@@ -51,10 +51,13 @@ namespace Web
             _objTimer.Start();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected void Application_End()
         {
             //SqlDependency.Stop(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            //_objTimer.Stop();
+            _objTimer.Stop();
         }
 
         /// <summary>
