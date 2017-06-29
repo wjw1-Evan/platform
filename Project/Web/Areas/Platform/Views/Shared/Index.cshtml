@@ -93,8 +93,8 @@
                                 }
                                 else
                                 {
-                                    <td nowrap>
-                                        @Html.Display("DataList." + title.Name)
+                                    <td nowrap="nowrap" style="max-width: 500px; text-overflow: ellipsis; overflow: hidden">
+                                         @Html.Display("DataList." + title.Name)
                                     </td>
                                 }
                             }
