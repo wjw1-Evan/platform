@@ -65,7 +65,7 @@
 
 }
 
-@if (Model.Exception is AggregateException)
+@*@if (Model.Exception is AggregateException)
 {
     foreach (var innerException in Model.InnerExceptions)
     {
@@ -74,4 +74,4 @@
                     innerException.PropertyName, innerException.ErrorMessage)
         </h5>
     }
-}
+}*@

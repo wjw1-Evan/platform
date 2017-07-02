@@ -60,14 +60,12 @@ namespace Web.Helpers
                 //清理过期用户操作日志
                 try
                 {
-                    _sysUserLogService.Delete(a => a.CreatedDateTime < DbFunctions.AddDays(DateTimeLocal.Now, -logValidity), true);
-
-                    var re1 = _unitOfWork.Commit();
+                    var re1 = await _sysUserLogService.SqlCommandAsync("DELETE FROM SysUserLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
 
                     if (re1 > 0)
                     {
                         _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天用户操作日志" + re1 + "行" });
-                        _unitOfWork.Commit();
+                        await _unitOfWork.CommitAsync();
                     }
                 }
                 catch (AggregateException e)
@@ -75,27 +73,20 @@ namespace Web.Helpers
                     foreach (var innerException in e.InnerExceptions)
                     {
                         _iSysLogService.Add(new SysLog { Log = innerException.Message });
-                        _unitOfWork.Commit();
+                        await _unitOfWork.CommitAsync();
                     }
+                }
 
-                }
-                catch (Exception e)
-                {
-                    _iSysLogService.Add(new SysLog { Log = e.Message });
-                    _unitOfWork.Commit();
-                }
 
                 //清理过期系统日志
                 try
                 {
-                    _iSysLogService.Delete(a => a.CreatedDateTime < DbFunctions.AddDays(DateTimeLocal.Now, -logValidity), true);
-
-                    var re3 = _unitOfWork.Commit();
+                    var re3 = await _iSysLogService.SqlCommandAsync("DELETE FROM SysLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
 
                     if (re3 > 0)
                     {
                         _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天系统日志" + re3 + "行" });
-                        _unitOfWork.Commit();
+                        await _unitOfWork.CommitAsync();
                     }
                 }
                 catch (AggregateException e)
@@ -103,16 +94,11 @@ namespace Web.Helpers
                     foreach (var innerException in e.InnerExceptions)
                     {
                         _iSysLogService.Add(new SysLog { Log = innerException.Message });
-                        _unitOfWork.Commit();
+                        await _unitOfWork.CommitAsync();
                     }
+                }
 
-                }
-                catch (Exception e)
-                {
-                    _iSysLogService.Add(new SysLog { Log = e.Message });
-                    _unitOfWork.Commit();
-                }
-                
+
             }
         }
     }
