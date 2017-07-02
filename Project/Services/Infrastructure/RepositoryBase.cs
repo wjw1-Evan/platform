@@ -4,6 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Common;
 using IServices.ISysServices;
 using Models;
@@ -27,6 +28,11 @@ namespace Services.Infrastructure
         public virtual int SqlCommand(string sql, params object[] parameters)
         {
             return _dataContext.Database.ExecuteSqlCommand(sql, parameters);
+        }
+
+        public virtual Task<int> SqlCommandAsync(string sql, params object[] parameters)
+        {
+            return _dataContext.Database.ExecuteSqlCommandAsync(sql, parameters);
         }
 
         public virtual DbRawSqlQuery<T> SqlQuery(string sql, params object[] parameters)
