@@ -46,7 +46,7 @@ namespace Web
 
             var onTimedEvent = DependencyResolver.Current.GetService<IOnTimedEvent>();
 
-            _objTimer = new Timer { Interval = 10 * (1000 * 60) };
+            _objTimer = new Timer { Interval = 1 * (1000 * 60) };
             _objTimer.Elapsed += (source, elapsedEventArgs) => onTimedEvent.Run(source, elapsedEventArgs);
             _objTimer.Start();
         }

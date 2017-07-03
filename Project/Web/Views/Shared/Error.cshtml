@@ -65,13 +65,13 @@
 
 }
 
-@*@if (Model.Exception is AggregateException)
+@if (Model.Exception is AggregateException)
 {
-    foreach (var innerException in Model.InnerExceptions)
+    foreach (var innerException in Model.Exception.InnerExceptions)
     {
         <h5>
             @string.Format("Property: {0} Error: {1}",
                     innerException.PropertyName, innerException.ErrorMessage)
         </h5>
     }
-}*@
+}

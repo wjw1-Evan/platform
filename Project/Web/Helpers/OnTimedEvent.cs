@@ -57,10 +57,10 @@ namespace Web.Helpers
 
             if (int.TryParse(ConfigurationManager.AppSettings["LogValidity"], out int logValidity))
             {
-                //清理过期用户操作日志
+                //清理过期用户操作日志  限制一下每次删除的数量
                 try
                 {
-                    var re1 = await _sysUserLogService.SqlCommandAsync("DELETE FROM SysUserLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
+                    var re1 = await _sysUserLogService.SqlCommandAsync("DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
 
                     if (re1 > 0)
                     {
@@ -81,7 +81,7 @@ namespace Web.Helpers
                 //清理过期系统日志
                 try
                 {
-                    var re3 = await _iSysLogService.SqlCommandAsync("DELETE FROM SysLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
+                    var re3 = await _iSysLogService.SqlCommandAsync("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
 
                     if (re3 > 0)
                     {
