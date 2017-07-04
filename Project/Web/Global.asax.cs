@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿using System.Configuration;
+using System.Web.Optimization;
 using System.Timers;
 using System.Web;
 using System.Web.Http;
@@ -45,8 +46,13 @@ namespace Web
             // 计划任务 按照间隔时间执行
 
             var onTimedEvent = DependencyResolver.Current.GetService<IOnTimedEvent>();
+            
+            if (!int.TryParse(ConfigurationManager.AppSettings["TaskInterval"], out int taskInterval))
+            {
+                taskInterval = 60;
+            }
 
-            _objTimer = new Timer { Interval = 1 * (1000 * 60) };
+            _objTimer = new Timer { Interval = taskInterval * (1000 * 60) };
             _objTimer.Elapsed += (source, elapsedEventArgs) => onTimedEvent.Run(source, elapsedEventArgs);
             _objTimer.Start();
         }
