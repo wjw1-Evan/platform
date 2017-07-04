@@ -210,6 +210,13 @@ namespace Services.Migrations
                     ControllerName = "Index",
                     SystemId = "950",
                     Ico = "fa-cog"
+                }, new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "系统参数",
+                    ControllerName = "WebConfigAppSetting",
+                    SystemId = "950200",
+                    Ico = "fa-cubes"
                 },
                 new SysController
                 {

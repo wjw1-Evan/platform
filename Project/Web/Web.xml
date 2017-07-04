@@ -492,6 +492,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Web.Areas.Platform.Controllers.WebAppSetting.Modify(System.String,System.String)">
+            
+            修改web.config文件appSettings配置节中的Add里的value属性
+            
+            
+            注意，调用该函数后，会使整个Web Application重启，导致当前所有的会话丢失
+            
+            要修改的键key
+            修改后的value
+            找不到相关的键
+            权限不够，无法保存到web.config文件中
+        </member>
         <member name="T:Web.Areas.Platform.Controllers.TaskCenterController">
             <summary>
             任务中心

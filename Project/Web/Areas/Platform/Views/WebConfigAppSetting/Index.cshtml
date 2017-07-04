@@ -1,0 +1,53 @@
+﻿@using Resources
+@model System.Collections.Specialized.NameValueCollection
+
+
+<div class="content-heading">
+    <div class="row">
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    @Html.Partial("_alerts")
+
+    <div class="panel-body">
+        <!-- START table-responsive-->
+        <div class="table-responsive">
+
+            <table class="table table-striped table-hover  table-condensed">
+                <thead>
+                    <tr>
+                        <th>
+                            名称
+                        </th>
+                        <th>
+                            值
+                        </th>
+                        <th class="text-center">
+                            @Lang.Edit
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (string item in Model.Keys)
+                    {
+                        <tr>
+                            <td>
+                                @item
+                            </td>
+                            <td nowrap="nowrap" style="max-width: 500px; text-overflow: ellipsis; overflow: hidden">
+                                @Model[item]
+                            </td>
+                            <td class="text-center">
+
+                                @Ajax.ActionLink(Lang.Edit, "Edit", new { id = item }, new AjaxOptions { UpdateTargetId = "Main", HttpMethod = "Get" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

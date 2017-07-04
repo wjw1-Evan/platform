@@ -71,7 +71,7 @@ namespace Web.Areas.Platform.Controllers
             ViewBag.sysEnterpriseSysUser = ent;
             ViewBag.UserId = _iUserInfo.UserId;
             ViewBag.UserName = _iUserInfo.UserName;
-            ViewBag.OffsiderbarHelp =  _iSysHelpService.GetAll().ToListAsync().Result;
+            ViewBag.OffsiderbarHelp = _iSysHelpService.GetAll().ToListAsync().Result;
             ViewBag.LoadPage = loadPage;
 
             ViewBag.sysEnterprises = new SelectList(ent.Select(a => a.SysEnterprise).Future(), "Id", "EnterpriseName", _iUserInfo.EnterpriseId);
@@ -89,15 +89,15 @@ namespace Web.Areas.Platform.Controllers
                 a.SysArea.AreaName.Equals(area)).Future();
 
             //桌面统计
-     
+
             //近十天用户注册次数
-            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -14)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
+            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -30)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
 
             //近十天用户活动次数
-            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -14)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
+            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
 
             //执行速度
-            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -14)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Duration = a.Average(b => b.Duration) }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => Math.Round(a.Duration, 3)).Result;
+            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Duration = a.Average(b => b.Duration) }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => Math.Round(a.Duration, 3)).Result;
 
             return View();
         }
