@@ -63,7 +63,7 @@ namespace Services.Infrastructure
 
             var ienterprise = entity as IEnterprise;
 
-            if (ienterprise != null)
+            if (ienterprise != null && string.IsNullOrEmpty(ienterprise.EnterpriseId))
             {
                 ienterprise.EnterpriseId = _userInfo.EnterpriseId;
                 entity = ienterprise as T;
