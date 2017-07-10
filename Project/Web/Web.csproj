@@ -612,6 +612,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.init.js" />
     <Content Include="Scripts\app\modules\bootstrap-start.js" />
     <Content Include="Scripts\app\modules\chart-easypie.js" />
@@ -1036,6 +1039,7 @@
     <Content Include="Areas\Platform\Views\WebConfigAppSetting\Index.cshtml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - Web Deploy.pubxml" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
