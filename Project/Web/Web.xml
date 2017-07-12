@@ -36,6 +36,24 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Web.Areas.Platform.Controllers.MenuController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.MenuController.#ctor(IServices.ISysServices.ISysControllerService,IServices.ISysServices.IUserInfo)">
+            <summary>
+            
+            </summary>
+            <param name="sysControllerService"></param>
+            <param name="iUserInfo"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.MenuController.Index">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Web.Areas.Platform.Controllers.IndexController">
             <summary>
             

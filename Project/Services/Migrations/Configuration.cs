@@ -32,7 +32,7 @@ namespace Services.Migrations
                     EnterpriseName = "测试企业"
                 }
             };
-            context.SysEnterprises.AddOrUpdate(a => new {a.Id}, sysEnterprises);
+            context.SysEnterprises.AddOrUpdate(a => new { a.Id }, sysEnterprises);
 
             #endregion
 
@@ -47,7 +47,7 @@ namespace Services.Migrations
                     SystemId = "002"
                 }
             };
-            context.SysAreas.AddOrUpdate(a => new {a.AreaName, a.Name, a.SystemId}, sysAreas);
+            context.SysAreas.AddOrUpdate(a => new { a.AreaName, a.Name, a.SystemId }, sysAreas);
 
             #endregion
 
@@ -98,7 +98,7 @@ namespace Services.Migrations
                     System = true
                 }
             };
-            context.SysActions.AddOrUpdate(a => new {a.ActionName}, sysActions);
+            context.SysActions.AddOrUpdate(a => new { a.ActionName }, sysActions);
 
             #endregion
 
@@ -115,7 +115,14 @@ namespace Services.Migrations
                     SystemId = "100",
                     Display = false
                 },
-               
+                new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "管理平台-菜单",
+                    ControllerName = "Menu",
+                    SystemId = "100100",
+                    Display = false
+                },
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
@@ -245,9 +252,17 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "帮助信息",
+                    ControllerName = "SysHelp",
+                    SystemId = "950900100",
+                    Ico = "fa-info-circle"
+                },
+                new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "帮助信息分类",
                     ControllerName = "SysHelpClass",
-                    SystemId = "950950",
+                    SystemId = "950900200",
                     Ico = "fa-info-circle"
                 },
                 new SysController
@@ -270,29 +285,29 @@ namespace Services.Migrations
             };
 
             context.SysControllers.AddOrUpdate(
-                a => new {a.SysAreaId, a.SystemId}, sysControllers);
+                a => new { a.SysAreaId, a.SystemId }, sysControllers);
 
             #endregion
 
             #region SysControllerSysAction
 
             var sysControllerSysActions = (from sysAction in sysActions.Where(a => a.System)
-                from sysController in sysControllers
-                select
-                new SysControllerSysAction
-                {
-                    SysActionId = sysAction.Id,
-                    SysControllerId = sysController.Id
-                }).ToArray();
+                                           from sysController in sysControllers
+                                           select
+                                           new SysControllerSysAction
+                                           {
+                                               SysActionId = sysAction.Id,
+                                               SysControllerId = sysController.Id
+                                           }).ToArray();
 
-            context.SysControllerSysActions.AddOrUpdate(a => new {a.SysActionId, a.SysControllerId},
+            context.SysControllerSysActions.AddOrUpdate(a => new { a.SysActionId, a.SysControllerId },
                 sysControllerSysActions);
 
             #endregion
 
             #region 模块特殊Action
 
-            context.SysControllerSysActions.AddOrUpdate(a => new {a.SysActionId, a.SysControllerId});
+            context.SysControllerSysActions.AddOrUpdate(a => new { a.SysActionId, a.SysControllerId });
 
             #endregion
 
@@ -334,13 +349,13 @@ namespace Services.Migrations
                 context.SysRoles.AddOrUpdate(sysRole);
                 //系统管理员自动获得所有权限
                 var sysRoleSysControllerSysActions = (from aa in sysControllerSysActions
-                    select
-                    new SysRoleSysControllerSysAction
-                    {
-                        SysControllerSysActionId = aa.Id,
-                        RoleId = sysRole.Id
-                    }).ToArray();
-                context.SysRoleSysControllerSysActions.AddOrUpdate(rc => new {rc.RoleId, rc.SysControllerSysActionId},
+                                                      select
+                                                      new SysRoleSysControllerSysAction
+                                                      {
+                                                          SysControllerSysActionId = aa.Id,
+                                                          RoleId = sysRole.Id
+                                                      }).ToArray();
+                context.SysRoleSysControllerSysActions.AddOrUpdate(rc => new { rc.RoleId, rc.SysControllerSysActionId },
                     sysRoleSysControllerSysActions);
             }
 
