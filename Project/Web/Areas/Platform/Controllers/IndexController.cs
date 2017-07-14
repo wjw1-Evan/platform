@@ -87,7 +87,7 @@ namespace Web.Areas.Platform.Controllers
                 a.SysControllerSysActions.Any(
                     b =>
                         b.SysRoleSysControllerSysActions.Any(
-                            c =>
+                            c => c.SysRole.EnterpriseId == _iUserInfo.EnterpriseId &&
                                 c.SysRole.Users.Any(
                                     d => d.UserId == _iUserInfo.UserId))) &&
                 a.SysArea.AreaName.Equals(area)).Future();
