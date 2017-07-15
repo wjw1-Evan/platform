@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using System.Data.Entity;
-using System.Threading.Tasks;
-using System.Timers;
+using System.Threading;
 using Common;
 using IServices.Infrastructure;
 using IServices.ISysServices;
@@ -19,9 +17,8 @@ namespace Web.Helpers
         /// 
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="elapsedEventArgs"></param>
         /// <returns></returns>
-        Task Run(object source, ElapsedEventArgs elapsedEventArgs);
+        void Run(object source);
     }
 
     /// <summary>
@@ -32,6 +29,7 @@ namespace Web.Helpers
         private readonly ISysUserLogService _sysUserLogService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISysLogService _iSysLogService;
+        private static int _inTimer = 0;
 
         /// <summary>
         /// 
@@ -50,22 +48,22 @@ namespace Web.Helpers
         /// 
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="elapsedEventArgs"></param>
         /// <returns></returns>
-        public async Task Run(object source, ElapsedEventArgs elapsedEventArgs)
+        public void Run(object source)
         {
+            if (Interlocked.Exchange(ref _inTimer, 1) != 0) return;
 
             if (int.TryParse(ConfigurationManager.AppSettings["LogValidity"], out int logValidity))
             {
                 //清理过期用户操作日志  限制一下每次删除的数量
                 try
                 {
-                    var re1 = await _sysUserLogService.SqlCommandAsync("DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
+                    var re1 =  _sysUserLogService.SqlCommand("DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
 
                     if (re1 > 0)
                     {
                         _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天用户操作日志" + re1 + "行" });
-                        await _unitOfWork.CommitAsync();
+                         _unitOfWork.Commit();
                     }
                 }
                 catch (AggregateException e)
@@ -73,7 +71,7 @@ namespace Web.Helpers
                     foreach (var innerException in e.InnerExceptions)
                     {
                         _iSysLogService.Add(new SysLog { Log = innerException.Message });
-                        await _unitOfWork.CommitAsync();
+                         _unitOfWork.Commit();
                     }
                 }
 
@@ -81,12 +79,12 @@ namespace Web.Helpers
                 //清理过期系统日志
                 try
                 {
-                    var re3 = await _iSysLogService.SqlCommandAsync("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
+                    var re3 =  _iSysLogService.SqlCommand("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
 
                     if (re3 > 0)
                     {
                         _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天系统日志" + re3 + "行" });
-                        await _unitOfWork.CommitAsync();
+                         _unitOfWork.Commit();
                     }
                 }
                 catch (AggregateException e)
@@ -94,11 +92,11 @@ namespace Web.Helpers
                     foreach (var innerException in e.InnerExceptions)
                     {
                         _iSysLogService.Add(new SysLog { Log = innerException.Message });
-                        await _unitOfWork.CommitAsync();
+                         _unitOfWork.Commit();
                     }
                 }
 
-
+                Interlocked.Exchange(ref _inTimer, 0);
             }
         }
     }

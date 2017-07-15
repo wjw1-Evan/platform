@@ -797,12 +797,11 @@
             
             </summary>
         </member>
-        <member name="M:Web.Helpers.IOnTimedEvent.Run(System.Object,System.Timers.ElapsedEventArgs)">
+        <member name="M:Web.Helpers.IOnTimedEvent.Run(System.Object)">
             <summary>
             
             </summary>
             <param name="source"></param>
-            <param name="elapsedEventArgs"></param>
             <returns></returns>
         </member>
         <member name="T:Web.Helpers.OnTimedEvent">
@@ -818,12 +817,11 @@
             <param name="sysUserLogService"></param>
             <param name="iSysLogService"></param>
         </member>
-        <member name="M:Web.Helpers.OnTimedEvent.Run(System.Object,System.Timers.ElapsedEventArgs)">
+        <member name="M:Web.Helpers.OnTimedEvent.Run(System.Object)">
             <summary>
             
             </summary>
             <param name="source"></param>
-            <param name="elapsedEventArgs"></param>
             <returns></returns>
         </member>
         <member name="T:Web.Helpers.IPagedList">
