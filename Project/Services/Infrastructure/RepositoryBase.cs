@@ -105,14 +105,7 @@ namespace Services.Infrastructure
 
                 if (!string.IsNullOrEmpty(entId))
                 {
-                    if (entId == _userInfo.EnterpriseId)
-                    {
-                        ienterprise.EnterpriseId = entId;
-                    }
-                    else
-                    {
-                        throw new Exception();
-                    }
+                    ienterprise.EnterpriseId = entId;
 
                     entity = ienterprise as T;
                 }
