@@ -115,7 +115,7 @@ namespace Web.Areas.Platform.Controllers
                     throw new Exception();
                 }
 
-                item.ActualEndTime = DateTimeLocal.Now.ToString();
+                item.ActualEndTime = DateTimeOffset.Now.ToString();
 
                 await _iUnitOfWork.CommitAsync();
 

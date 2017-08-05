@@ -131,7 +131,7 @@ namespace Web.Controllers
 
                     var container = blobClient.GetContainerReference(uploadFileRoot);
 
-                    var blockBlob = container.GetBlockBlobReference(_iUserInfo.UserId + "/" + DateTimeLocal.NowDate + "/" + filename);
+                    var blockBlob = container.GetBlockBlobReference(_iUserInfo.UserId + "/" + DateTimeOffset.Now.Year+"/" + DateTimeOffset.Now.Month+ "/" + filename);
 
                     outStream.Position = 0;
 
@@ -141,7 +141,7 @@ namespace Web.Controllers
                 }
                 else
                 {
-                    var url = "/" + uploadFileRoot + "/" + _iUserInfo.UserId + "/" + DateTimeLocal.NowDate + "/";
+                    var url = "/" + uploadFileRoot + "/" + _iUserInfo.UserId + "/" + DateTimeOffset.Now.Year + "/" + DateTimeOffset.Now.Month + "/";
 
                     var path = Server.MapPath(url);
 

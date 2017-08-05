@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -94,14 +95,16 @@ namespace Web.Areas.Platform.Controllers
 
             //桌面统计
 
+            var startdate = DateTimeOffset.Now.Date.AddDays(-30);
+
             //近十天用户注册次数
-            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => a.CreatedDateTime > DbFunctions.AddDays(DateTimeLocal.Now.Date, -30)).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
+            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => a.CreatedDateTime > startdate).GroupBy(a =>DbFunctions.TruncateTime(a.CreatedDateTime)).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key.ToString(), a => (double)a.Count).Result;
 
             //近十天用户活动次数
-            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
+            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll().GroupBy(a => DbFunctions.TruncateTime(a.CreatedDateTime)).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key.ToString(), a => (double)a.Count).Result;
 
             //执行速度
-            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Duration = a.Average(b => b.Duration) }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => Math.Round(a.Duration, 3)).Result;
+            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll().GroupBy(a => DbFunctions.TruncateTime(a.CreatedDateTime)).Select(a => new { a.Key, Duration = a.Average(b => b.Duration) }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key.ToString(), a => Math.Round(a.Duration, 3)).Result;
 
             return View();
         }

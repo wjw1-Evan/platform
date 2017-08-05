@@ -239,7 +239,7 @@ namespace Web.Areas.Platform.Controllers
                 //更新用户信息
                 var item = _sysUserService.GetById(id);
 
-                item.UpdatedDateTime = DateTimeLocal.Now;
+                item.UpdatedDateTime = DateTimeOffset.Now;
 
                 mapper.Map(collection, item);
 

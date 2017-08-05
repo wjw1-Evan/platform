@@ -11,7 +11,7 @@ namespace Models.SysModels
     {
         public SysLog()
         {
-            CreatedDateTime = DateTimeLocal.Now;
+            CreatedDateTime = DateTimeOffset.Now;
         }
 
         public string Log { get; set; }
@@ -21,6 +21,6 @@ namespace Models.SysModels
         /// </summary>
         [Index]
         [Required]
-        public DateTime CreatedDateTime { get; set; }
+        public DateTimeOffset CreatedDateTime { get; set; }
     }
 }

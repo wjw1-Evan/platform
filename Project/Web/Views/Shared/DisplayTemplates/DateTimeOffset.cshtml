@@ -1,0 +1,5 @@
+﻿@model DateTimeOffset?
+@if (Model.HasValue)
+{
+    @Model.Value.LocalDateTime
+   }

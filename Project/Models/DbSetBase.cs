@@ -15,9 +15,9 @@ namespace Models
     {
         string CreatedDate { get; set; }
 
-        DateTime CreatedDateTime { get; set; }
+        DateTimeOffset CreatedDateTime { get; set; }
 
-        DateTime? UpdatedDateTime { get; set; }
+        DateTimeOffset? UpdatedDateTime { get; set; }
 
         string CreatedBy { get; set; }
 
@@ -55,15 +55,15 @@ namespace Models
     {
         protected DbSetBase()
         {
-            CreatedDate = DateTimeLocal.NowDate;
-            CreatedDateTime = DateTimeLocal.Now;
+            CreatedDate = DateTimeOffset.Now.ToString();
+            CreatedDateTime = DateTimeOffset.Now;
         }
 
         /// <summary>
         /// 创建日期
         /// </summary>
         [ScaffoldColumn(false)]
-        [MaxLength(10)]
+        [MaxLength(24)]
         [Index]
         [DataType(DataType.Date)]
         [Required]
@@ -76,7 +76,7 @@ namespace Models
         [Index]
         [Required]
         [Index("IX_EnterpriseId-Deleted", 22)]
-        public DateTime CreatedDateTime { get; set; }
+        public DateTimeOffset CreatedDateTime { get; set; }
 
         /// <summary>
         /// 创建人
@@ -95,7 +95,7 @@ namespace Models
         /// 更新日期
         /// </summary>
         [Editable(false)]
-        public DateTime? UpdatedDateTime { get; set; }
+        public DateTimeOffset? UpdatedDateTime { get; set; }
 
         /// <summary>
         /// 更新人

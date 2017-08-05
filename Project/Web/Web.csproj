@@ -1038,6 +1038,7 @@
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Areas\Platform\Views\WebConfigAppSetting\Edit.cshtml" />
     <Content Include="Areas\Platform\Views\WebConfigAppSetting\Index.cshtml" />
+    <Content Include="Areas\Platform\Views\Shared\Search_Input_System.DateTimeOffset.cshtml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - Web Deploy.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -1143,6 +1144,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Images.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Files.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

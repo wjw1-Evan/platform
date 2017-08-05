@@ -18,8 +18,8 @@ namespace Models.SysModels
     {
         public SysUser()
         {
-            CreatedDate = DateTimeLocal.NowDate;
-            CreatedDateTime = DateTimeLocal.Now;
+            CreatedDate = DateTimeOffset.Now.ToString();
+            CreatedDateTime = DateTimeOffset.Now;
             Deleted = false;
         }
 
@@ -57,10 +57,10 @@ namespace Models.SysModels
         [Editable(false)]
         [Index]
         [Required]
-        public DateTime CreatedDateTime { get; set; }
+        public DateTimeOffset CreatedDateTime { get; set; }
 
         [Editable(false)]
-        public DateTime? UpdatedDateTime { get; set; }
+        public DateTimeOffset? UpdatedDateTime { get; set; }
 
         [Editable(false)]
         [MaxLength(128)]

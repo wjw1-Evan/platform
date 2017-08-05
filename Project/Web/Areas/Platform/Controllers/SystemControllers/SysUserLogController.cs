@@ -104,7 +104,7 @@ namespace Web.Areas.Platform.Controllers
             var report = new Report(model.ToReportSource());
 
             report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-            return new ReportResult(report) { FileName = DateTimeLocal.Now.ToString(CultureInfo.InvariantCulture) };
+            return new ReportResult(report) { FileName = DateTimeOffset.Now.ToString(CultureInfo.InvariantCulture) };
         }
     }
 }

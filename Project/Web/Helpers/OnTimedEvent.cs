@@ -58,7 +58,7 @@ namespace Web.Helpers
                 //清理过期用户操作日志  限制一下每次删除的数量
                 try
                 {
-                    var re1 =  _sysUserLogService.SqlCommand("DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
+                    var re1 =  _sysUserLogService.SqlCommand("DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}", DateTimeOffset.Now.AddDays(-logValidity));
 
                     if (re1 > 0)
                     {
@@ -79,7 +79,7 @@ namespace Web.Helpers
                 //清理过期系统日志
                 try
                 {
-                    var re3 =  _iSysLogService.SqlCommand("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}", DateTimeLocal.Now.AddDays(-logValidity));
+                    var re3 =  _iSysLogService.SqlCommand("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}", DateTimeOffset.Now.AddDays(-logValidity));
 
                     if (re3 > 0)
                     {
