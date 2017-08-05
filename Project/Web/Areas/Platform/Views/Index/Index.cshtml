@@ -21,23 +21,6 @@
     <script src="/signalr/hubs"></script>
 
     <script>
-        $(function () {
-            var messenger = $.connection.messenger; // generate the client-side hub proxy { Initialized to Exposed Hub }
-
-            messenger.client.add = function (message) {
-                if (message !== "" && message != null) {
-                    $.notify('<a href="/Platform?loadPage=MyMessage">' + message + "</a>", { "status": "danger", "pos": "bottom-right" });
-                }
-            };
-
-            // Start the Connection
-            $.connection.hub.start().done().fail(function () {
-                $.notify('消息推送服务启动失败！', { "status": "danger", "pos": "bottom-right" });
-            });
-        });
-    </script>
-
-    <script>
         $.ajaxSetup({ cache: false });
 
         $(function() {
@@ -67,6 +50,23 @@
             } else {
                 $.notify(request.responseText, { "status": "danger", "pos": "bottom-right" });
             }
+        });
+    </script>
+    
+    <script>
+        $(function () {
+            var messenger = $.connection.messenger; // generate the client-side hub proxy { Initialized to Exposed Hub }
+
+            messenger.client.add = function (message) {
+                if (message !== "" && message != null) {
+                    $.notify('<a href="#/Platform/MyMessage">' + message + "</a>", { "status": "danger", "pos": "bottom-right" });
+                }
+            };
+
+            // Start the Connection
+            $.connection.hub.start().done().fail(function () {
+                $.notify('消息推送服务启动失败！', { "status": "danger", "pos": "bottom-right" });
+            });
         });
     </script>
     
