@@ -30,7 +30,6 @@ a {
 }
 
 .navbar-brand {
-   
 }
 
 
@@ -93,14 +92,13 @@ ul.multiselect-container.dropdown-menu {
     text-decoration: underline;
 }
 
-.navbar-nav li  {
+.navbar-nav li {
     float: left;
 }
 
-.navbar-nav li a {
-  
-    padding-right: 0px;
-}
+    .navbar-nav li a {
+        padding-right: 0px;
+    }
 
 .FriendSite a {
     padding: 0 5px;
@@ -231,192 +229,16 @@ a.pricedetailslink {
     }
 
 
-/*main css*/
-.izl-rmenu {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-    padding-bottom: 73px;
-    z-index: 999;
+
+
+.scroll_horizontal .list {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
-    .izl-rmenu .btn {
-        width: 72px;
-        height: 73px;
-        margin-bottom: 1px;
-        cursor: pointer;
-        position: relative;
-    }
-
-    .izl-rmenu .btn-qq {
-        background: url(/content/r_qq.png) 0px 0px no-repeat;
-        background-color: #6da9de;
-    }
-
-        .izl-rmenu .btn-qq:hover {
-            background-color: #488bc7;
-        }
-
-    .izl-rmenu a.btn-qq, .izl-rmenu a.btn-qq:visited {
-        background: url(/content/r_qq.png) 0px 0px no-repeat;
-        background-color: #6da9de;
-        text-decoration: none;
-        display: block;
-    }
-
-
-     .izl-rmenu .btn-phone {
-        background: url(/content/r_phone.png) 0px 0px no-repeat;
-        background-color: #fbb01f;
-    }
-
-        .izl-rmenu .btn-phone:hover {
-            background-color: #ff811b;
-        }
-
-    .izl-rmenu a.btn-phone, .izl-rmenu a.btn-phone:visited {
-        background: url(/content/r_phone.png) 0px 0px no-repeat;
-        background-color: #ff811b;
-        text-decoration: none;
-        display: block;
-    }
-
-
-    .izl-rmenu .btn-wx {
-        background: url(/content/r_wx.png) 0px 0px no-repeat;
-        background-color: #78c340;
-    }
-
-        .izl-rmenu .btn-wx:hover {
-            background-color: #58a81c;
-        }
-
-        .izl-rmenu .btn-wx .pic {
-            position: absolute;
-            left: -160px;
-            top: 0px;
-            display: none;
-            width: 160px;
-            height: 160px;
-        }
-
-    /*.izl-rmenu .btn-phone {
-        background: url(/content/r_phone.png) 0px 0px no-repeat;
-        background-color: #fbb01f;
-    }
-
-        .izl-rmenu .btn-phone:hover {
-            background-color: #ff811b;
-        }
-
-        .izl-rmenu .btn-phone .phone {
-            background-color: #ff811b;
-            position: absolute;
-            width: 160px;
-            left: -160px;
-            top: 0px;
-            line-height: 73px;
-            color: #FFF;
-            font-size: 18px;
-            text-align: center;
-            display: none;
-        }*/
-
-    .izl-rmenu .btn-top {
-        background: url(/content/r_top.png) 0px 0px no-repeat;
-        background-color: #666666;
-        display: none;
-    }
-
-        .izl-rmenu .btn-top:hover {
-            background-color: #444;
-        }
-
-.scroll_horizontal {
-    
-}
-
-
-.scroll_horizontal  .list{display: table;table-layout: fixed; width: 100%;padding: 0;margin: 0;} 
-
-.scroll_horizontal  .list li{display:table-cell}
-
-
-
-
-.ztree {
-    width: 100%
-}
-
-.ztree li a {
-    display: block;
-    width: 100%
-}
-
-    .ztree li a:hover {
-        text-decoration: none;
-        background-color: #E7E7E7;
-    }
-
-    .ztree li a span.button.switch {
-        visibility: hidden
-    }
-
-.ztree.showIcon li a span.button.switch {
-    visibility: visible
-}
-
-.ztree li a.curSelectedNode {
-    background-color: #D4D4D4;
-    border: 0;
-    height: 30px;
-}
-
-.ztree li span {
-    line-height: 30px;
-}
-
-    .ztree li span.button {
-        margin-top: -7px;
-    }
-
-        .ztree li span.button.switch {
-            width: 16px;
-            height: 16px;
-        }
-
-.ztree li a.level0 span {
-    font-size: 150%;
-    font-weight: bold;
-}
-
-.ztree li span.button {
-    background-image: url("left_menuForOutLook.png");
-    *background-image: url("left_menuForOutLook.gif")
-}
-
-    .ztree li span.button.switch.level0 {
-        width: 20px;
-        height: 20px
-    }
-
-    .ztree li span.button.switch.level1 {
-        width: 20px;
-        height: 20px
-    }
-
-    .ztree li span.button.noline_open {
-        background-position: 0 0;
-    }
-
-    .ztree li span.button.noline_close {
-        background-position: -18px 0;
-    }
-
-    .ztree li span.button.noline_open.level0 {
-        background-position: 0 -18px;
-    }
-
-    .ztree li span.button.noline_close.level0 {
-        background-position: -18px -18px;
+    .scroll_horizontal .list li {
+        display: table-cell
     }

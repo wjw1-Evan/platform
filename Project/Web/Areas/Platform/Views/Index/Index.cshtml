@@ -40,15 +40,16 @@
     <script>
         $.ajaxSetup({ cache: false });
 
-        if (!"" === window.location.hash.substr(1)) {
-            alert(11);
-            $("#Main").load(window.location.hash.substr(1));
-        }
-
-     
+        $(function() {
+            if (window.location.hash.length>1) {
+                $("#Main").load(window.location.hash.substr(1));
+            }
+        });
 
         window.onhashchange = function () {
-            $("#Main").load(window.location.hash.substr(1));
+            if (window.location.hash.length > 1) {
+                $("#Main").load(window.location.hash.substr(1));
+            }
         }
 
         $(document).ajaxStart(function () {
