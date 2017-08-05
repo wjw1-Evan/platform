@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.Entity;
-using System.Data.Objects.SqlClient;
-using System.Linq;
+using System.Data.Entity.SqlServer;
 using Common;
 using IServices.ISysServices;
 using Models.SysModels;
@@ -16,7 +15,6 @@ namespace Services.SysServices
             : base(databaseFactory, userInfo)
         {
         }
-     
      
     }
 

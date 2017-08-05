@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Common;
-using Models.Infrastructure;
 
 namespace Models.SysModels
 {
@@ -14,6 +12,7 @@ namespace Models.SysModels
             CreatedDateTime = DateTimeOffset.Now;
         }
 
+        [DataType(DataType.MultilineText)]
         public string Log { get; set; }
 
         /// <summary>

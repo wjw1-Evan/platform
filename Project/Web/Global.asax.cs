@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Web.Optimization;
 using System.Web;
 using System.Web.Http;
@@ -15,7 +16,7 @@ namespace Web
     public class WebApiApplication : HttpApplication
     {
         private System.Threading.Timer _objTimer;
-
+        private static readonly object Locko = new object();
 
         /// <summary>
         /// 
@@ -48,10 +49,10 @@ namespace Web
 
             if (!int.TryParse(ConfigurationManager.AppSettings["TaskInterval"], out int taskInterval))
             {
-                taskInterval = 60;
+                taskInterval = 60; //秒
             }
 
-            _objTimer = new System.Threading.Timer(onTimedEvent.Run, null, 60000, taskInterval * 1000);
+            _objTimer = new System.Threading.Timer(onTimedEvent.Run, Locko, new TimeSpan(0, 0, 0, taskInterval), new TimeSpan(0, 0, 0, taskInterval));
 
         }
 
