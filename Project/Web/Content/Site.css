@@ -339,4 +339,84 @@ a.pricedetailslink {
 
 .scroll_horizontal  .list{display: table;table-layout: fixed; width: 100%;padding: 0;margin: 0;} 
 
-.scroll_horizontal  .list li{display:table-cell} 
+.scroll_horizontal  .list li{display:table-cell}
+
+
+
+
+.ztree {
+    width: 100%
+}
+
+.ztree li a {
+    display: block;
+    width: 100%
+}
+
+    .ztree li a:hover {
+        text-decoration: none;
+        background-color: #E7E7E7;
+    }
+
+    .ztree li a span.button.switch {
+        visibility: hidden
+    }
+
+.ztree.showIcon li a span.button.switch {
+    visibility: visible
+}
+
+.ztree li a.curSelectedNode {
+    background-color: #D4D4D4;
+    border: 0;
+    height: 30px;
+}
+
+.ztree li span {
+    line-height: 30px;
+}
+
+    .ztree li span.button {
+        margin-top: -7px;
+    }
+
+        .ztree li span.button.switch {
+            width: 16px;
+            height: 16px;
+        }
+
+.ztree li a.level0 span {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.ztree li span.button {
+    background-image: url("left_menuForOutLook.png");
+    *background-image: url("left_menuForOutLook.gif")
+}
+
+    .ztree li span.button.switch.level0 {
+        width: 20px;
+        height: 20px
+    }
+
+    .ztree li span.button.switch.level1 {
+        width: 20px;
+        height: 20px
+    }
+
+    .ztree li span.button.noline_open {
+        background-position: 0 0;
+    }
+
+    .ztree li span.button.noline_close {
+        background-position: -18px 0;
+    }
+
+    .ztree li span.button.noline_open.level0 {
+        background-position: 0 -18px;
+    }
+
+    .ztree li span.button.noline_close.level0 {
+        background-position: -18px -18px;
+    }

@@ -1,145 +1,320 @@
 ﻿@using Chart.Mvc.ComplexChart
 @using Chart.Mvc.Extensions
-
-
+@using Models.SysModels
 @{
-    Layout = "../Shared/_Layout.cshtml";
+    Layout = "../../../../views/Shared/_Layout.cshtml";
 }
 
-
-@section scripts{
-    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-}
-
-@if (string.IsNullOrEmpty(ViewBag.LoadPage))
+@section Styles
 {
-    <div class="content-heading">
+    <style>
+        .navbar-nav li a {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
+    </style>
+}
 
-        管理平台桌面
-        <small> 欢迎进入管理平台</small>
-    </div>
+@section Scripts{
 
-    <div class="row">
-        <div class="col-lg-6">
-            <!-- START widget-->
-            <div class="panel ">
-                <div class="panel-heading">
-                    <div class="panel-title">网站用户注册分析</div>
-                </div>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="/signalr/hubs"></script>
 
-                <div class="panel-body">
-                    <div>
-                        @{
-                            var sysUserChart = new LineChart();
+    <script>
+        $(function () {
+            var messenger = $.connection.messenger; // generate the client-side hub proxy { Initialized to Exposed Hub }
 
-                            sysUserChart.ChartConfiguration.Responsive = true;
+            messenger.client.add = function (message) {
+                if (message !== "" && message != null) {
+                    $.notify('<a href="/Platform?loadPage=MyMessage">' + message + "</a>", { "status": "danger", "pos": "bottom-right" });
+                }
+            };
 
-                            Dictionary<string, double> sysUserCountDay = ViewBag.SysUserCountDay;
+            // Start the Connection
+            $.connection.hub.start().done().fail(function () {
+                $.notify('消息推送服务启动失败！', { "status": "danger", "pos": "bottom-right" });
+            });
+        });
+    </script>
 
-                            sysUserChart.ComplexData.Labels.AddRange(sysUserCountDay.Keys);
+    <script>
+        $.ajaxSetup({ cache: false });
 
-                            sysUserChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
-                        {
-                            new ComplexDataset
-                            {
-                                Data = sysUserCountDay.Values.ToList(),
-                                FillColor = "rgba(151,187,205,0.2)",
-                                StrokeColor = "rgba(151,187,205,1)",
-                                PointColor = "rgba(151,187,205,1)",
-                                PointHighlightStroke = "rgba(220,220,220,1)"
-                            }
-                        });
-                        }
-                        <canvas id="sysUserChart" style="width: 100%; height: 200px"></canvas>
-                        @Html.CreateChart("sysUserChart", sysUserChart)
-                    </div>
-                </div>
-            </div>
-            <!-- END widget-->
+        if (!"" === window.location.hash.substr(1)) {
+            alert(11);
+            $("#Main").load(window.location.hash.substr(1));
+        }
+
+     
+
+        window.onhashchange = function () {
+            $("#Main").load(window.location.hash.substr(1));
+        }
+
+        $(document).ajaxStart(function () {
+            Pace.restart();
+        });
+
+        $(document).ajaxStop(function () {
+            $('#Main input[type=text]:first').focus();
+            Pace.stop();
+        });
+
+        $(document).ajaxError(function (event, request) {
+            if (request.responseText === '' || request.responseText == undefined) {
+                $.notify('您的网络无法访问到服务器，请稍后再试！', { "status": "danger", "pos": "bottom-right" });
+            } else {
+                $.notify(request.responseText, { "status": "danger", "pos": "bottom-right" });
+            }
+        });
+    </script>
+    
+    <SCRIPT type="text/javascript">
+        <!--
+        var curMenu = null, zTree_Menu = null;
+        var setting = {
+            view: {
+                showLine: false,
+                showIcon: false,
+                selectedMulti: false,
+                dblClickExpand: false,
+                addDiyDom: addDiyDom
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeClick: beforeClick
+            }
+        };
+
+        var zNodes =[
+            @foreach (SysController item in ViewBag.Menu)
+                {
+                    @Html.Raw(string.Format("{{ id: '{0}', pId: '{1}', name: '{2}', url: '{3}', target: '{4}'}},",item.SystemId,item.SystemId.Substring(0,item.SystemId.Length-3),item.Name,"#"+ Url.Action(item.ActionName, item.ControllerName, new { id = item.Parameter }), "_self"))
+                }
+        ];
+
+        function addDiyDom(treeId, treeNode) {
+            var switchObj = $("#" + treeNode.tId + "_switch"),
+                icoObj = $("#" + treeNode.tId + "_ico");
+            switchObj.remove();
+            icoObj.before(switchObj);
+        }
+
+        function beforeClick(treeId, treeNode) {
+            if (treeNode.level == 0 ) {
+                var zTree = $.fn.zTree.getZTreeObj("leftmenutree");
+                zTree.expandNode(treeNode);
+                return false;
+            }
+            return true;
+        }
+
+        $(document).ready(function(){
+            var treeObj = $("#leftmenutree");
+            $.fn.zTree.init(treeObj, setting, zNodes);
+            zTree_Menu = $.fn.zTree.getZTreeObj("leftmenutree");
+            curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+            zTree_Menu.selectNode(curMenu);
+            treeObj.addClass("showIcon");
+
+        });
+        //-->
+    </SCRIPT>
+}
+
+<div class="wrapper">
+    <!-- top navbar-->
+    <header class="topnavbar-wrapper">
+        @Html.Partial("_TopNavbar")
+    </header>
+    <!-- sidebar-->
+    <aside class="aside">
+        <div class="aside-inner">
+            <nav class="sidebar">
+                @*<h4>菜单</h4>
+                <ul id="leftmenutree" class="ztree"></ul>*@
+                
+
+                <ul class="nav">
+                    <li class="nav-heading">
+                        <span>菜单</span>
+                    </li>
+                    @{
+                        IEnumerable<SysController> menus = ViewBag.Menu;
+                    }
+
+                    @foreach (var item in menus.Where(a => a.SystemId.Length == 3))
+                    {
+                        <li>
+                            <a href="#@item.Id" title="@item.Name" data-toggle="collapse">
+                                <div class="label label-info  pull-right">@menus.Count(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId))</div>
+                                <i class="fa fa-fw @item.Ico"></i>
+                                <span>@item.Name</span>
+                            </a>
+                            <ul id="@item.Id" class="nav sidebar-subnav collapse">
+                                <li class="sidebar-subnav-header">@item.Name</li>
+                                @foreach (var item1 in menus.Where(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId)))
+                                {
+                                    <li>
+                                        <a title="@item1.Name"  href="#@Url.Action(item1.ActionName, item1.ControllerName, new { id = item1.Parameter })">
+                                            <i class="fa fa-fw @item1.Ico"></i>
+                                            @Html.DisplayFor(a => item1.Name)
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </nav>
         </div>
 
-        <div class="col-lg-6">
-            <!-- START widget-->
-            <div class="panel ">
-                <div class="panel-heading">
-                    <div class="panel-title">管理平台使用数据分析</div>
+    </aside>
+    <!-- offsidebar-->
+    <aside class="offsidebar hide">
+        @Html.Partial("_Offsidebar")
+    </aside>
+    <!-- Main section-->
+    <section>
+        <!-- Page content-->
+        <div class="content-wrapper" id="Main">
+            <div class="content-heading">
+
+                管理平台桌面
+                <small> 欢迎进入管理平台</small>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- START widget-->
+                    <div class="panel ">
+                        <div class="panel-heading">
+                            <div class="panel-title">网站用户注册分析</div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div>
+                                @{
+                                    var sysUserChart = new LineChart();
+
+                                    sysUserChart.ChartConfiguration.Responsive = true;
+
+                                    Dictionary<string, double> sysUserCountDay = ViewBag.SysUserCountDay;
+
+                                    sysUserChart.ComplexData.Labels.AddRange(sysUserCountDay.Keys);
+
+                                    sysUserChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                                    {
+                                        new ComplexDataset
+                                        {
+                                            Data = sysUserCountDay.Values.ToList(),
+                                            FillColor = "rgba(151,187,205,0.2)",
+                                            StrokeColor = "rgba(151,187,205,1)",
+                                            PointColor = "rgba(151,187,205,1)",
+                                            PointHighlightStroke = "rgba(220,220,220,1)"
+                                        }
+                                    });
+                                }
+                                <canvas id="sysUserChart" style="width: 100%; height: 200px"></canvas>
+                                @Html.CreateChart("sysUserChart", sysUserChart)
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END widget-->
                 </div>
 
-                <div class="panel-body">
-                    <div>
-                        @{
-                            var sysUserLogChart = new LineChart();
+                <div class="col-lg-6">
+                    <!-- START widget-->
+                    <div class="panel ">
+                        <div class="panel-heading">
+                            <div class="panel-title">管理平台使用数据分析</div>
+                        </div>
 
-                            sysUserLogChart.ChartConfiguration.Responsive = true;
+                        <div class="panel-body">
+                            <div>
+                                @{
+                                    var sysUserLogChart = new LineChart();
 
-                            Dictionary<string, double> sysUserLogCountDay = ViewBag.SysUserLogCountDay;
+                                    sysUserLogChart.ChartConfiguration.Responsive = true;
 
-                            sysUserLogChart.ComplexData.Labels.AddRange(sysUserLogCountDay.Keys);
+                                    Dictionary<string, double> sysUserLogCountDay = ViewBag.SysUserLogCountDay;
 
-                            sysUserLogChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
-                        {
-                            new ComplexDataset
-                            {
-                                Data = sysUserLogCountDay.Values.ToList(),
-                                FillColor = "rgba(151,187,205,0.2)",
-                                StrokeColor = "rgba(151,187,205,1)",
-                                PointColor = "rgba(151,187,205,1)",
-                                PointHighlightStroke = "rgba(220,220,220,1)"
-                            }
-                        });
+                                    sysUserLogChart.ComplexData.Labels.AddRange(sysUserLogCountDay.Keys);
 
-                        }
-                        <canvas id="sysUserLogChart" style="width: 100%; height: 200px"></canvas>
-                        @Html.CreateChart("sysUserLogChart", sysUserLogChart)
+                                    sysUserLogChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                                    {
+                                        new ComplexDataset
+                                        {
+                                            Data = sysUserLogCountDay.Values.ToList(),
+                                            FillColor = "rgba(151,187,205,0.2)",
+                                            StrokeColor = "rgba(151,187,205,1)",
+                                            PointColor = "rgba(151,187,205,1)",
+                                            PointHighlightStroke = "rgba(220,220,220,1)"
+                                        }
+                                    });
+
+                                }
+                                <canvas id="sysUserLogChart" style="width: 100%; height: 200px"></canvas>
+                                @Html.CreateChart("sysUserLogChart", sysUserLogChart)
+                            </div>
+                        </div>
                     </div>
+                    <!-- END widget-->
+                </div>
+
+                <div class="col-lg-6">
+                    <!-- START widget-->
+                    <div class="panel ">
+                        <div class="panel-heading">
+                            <div class="panel-title">平台执行速度分析</div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div>
+                                @{
+                                    var sysUserLogDayDurationChart = new LineChart();
+
+                                    sysUserLogDayDurationChart.ChartConfiguration.Responsive = true;
+
+                                    Dictionary<string, double> sysUserLogDayDuration = ViewBag.SysUserLogDayDuration;
+
+                                    sysUserLogDayDurationChart.ComplexData.Labels.AddRange(sysUserLogDayDuration.Keys);
+
+                                    sysUserLogDayDurationChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
+                                    {
+                                        new ComplexDataset
+                                        {
+                                            Data = sysUserLogDayDuration.Values.ToList(),
+                                            FillColor = "rgba(151,187,205,0.2)",
+                                            StrokeColor = "rgba(151,187,205,1)",
+                                            PointColor = "rgba(151,187,205,1)",
+                                            PointHighlightStroke = "rgba(220,220,220,1)"
+                                        }
+                                    });
+
+                                }
+                                <canvas id="SysUserLogDayDurationChart" style="width: 100%; height: 200px"></canvas>
+                                @Html.CreateChart("SysUserLogDayDurationChart", sysUserLogDayDurationChart)
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END widget-->
                 </div>
             </div>
-            <!-- END widget-->
         </div>
-
-        <div class="col-lg-6">
-            <!-- START widget-->
-            <div class="panel ">
-                <div class="panel-heading">
-                    <div class="panel-title">平台执行速度分析</div>
-                </div>
-
-                <div class="panel-body">
-                    <div>
-                        @{
-                            var sysUserLogDayDurationChart = new LineChart();
-
-                            sysUserLogDayDurationChart.ChartConfiguration.Responsive = true;
-
-                            Dictionary<string, double> sysUserLogDayDuration = ViewBag.SysUserLogDayDuration;
-
-                            sysUserLogDayDurationChart.ComplexData.Labels.AddRange(sysUserLogDayDuration.Keys);
-
-                            sysUserLogDayDurationChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
-                        {
-                            new ComplexDataset
-                            {
-                                Data = sysUserLogDayDuration.Values.ToList(),
-                                FillColor = "rgba(151,187,205,0.2)",
-                                StrokeColor = "rgba(151,187,205,1)",
-                                PointColor = "rgba(151,187,205,1)",
-                                PointHighlightStroke = "rgba(220,220,220,1)"
-                            }
-                        });
-
-                        }
-                        <canvas id="SysUserLogDayDurationChart" style="width: 100%; height: 200px"></canvas>
-                        @Html.CreateChart("SysUserLogDayDurationChart", sysUserLogDayDurationChart)
-                    </div>
-                </div>
-            </div>
-            <!-- END widget-->
-        </div>
-    </div>
+    </section>
+    <!-- Page footer-->
+    <footer>
+        @Html.Partial("_Footer")
+    </footer>
+</div>
 
 
-                            }
-                            else
-                            {
-                                Html.RenderAction("Index", (string)ViewBag.LoadPage);
-                            }
+
+
+

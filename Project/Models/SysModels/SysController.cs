@@ -12,8 +12,6 @@ namespace Models.SysModels
         {
             SystemId = "000";
             TargetBlank = false;
-            ControllerName = "Index";
-            ActionName = "Index";
             Display = true;
             Enable = true;
             Ico = "fa-list-ul";

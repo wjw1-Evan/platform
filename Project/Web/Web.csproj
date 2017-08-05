@@ -399,6 +399,8 @@
     <Content Include="Content\404\world.fw.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\left_menuForOutLook.gif" />
+    <Content Include="Content\left_menuForOutLook.png" />
     <Content Include="Content\logo.gif" />
     <Content Include="Content\logo1.gif" />
     <Content Include="Content\more.gif" />
@@ -675,7 +677,6 @@
     <Content Include="Areas\Platform\Views\Shared\Edit.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Index.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\Search_Input.cshtml" />
-    <Content Include="Areas\Platform\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\_LayoutSingleForm.cshtml" />
     <Content Include="Areas\Platform\Views\Shared\_Offsidebar.cshtml" />

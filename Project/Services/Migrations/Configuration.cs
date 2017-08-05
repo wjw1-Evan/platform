@@ -112,15 +112,8 @@ namespace Services.Migrations
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "管理平台-桌面",
                     ControllerName = "Index",
+                    ActionName="Index",
                     SystemId = "100",
-                    Display = false
-                },
-                new SysController
-                {
-                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "管理平台-菜单",
-                    ControllerName = "Menu",
-                    SystemId = "100100",
                     Display = false
                 },
                 new SysController
@@ -155,8 +148,7 @@ namespace Services.Migrations
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "任务管理",
-                    ControllerName = "Index",
-                    SystemId = "800",
+                   SystemId = "800",
                     Ico = "fa-line-chart",
                     Display = true
                 },
@@ -176,7 +168,6 @@ namespace Services.Migrations
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "用户管理",
-                    ControllerName = "Index",
                     SystemId = "900",
                     Ico = "fa-users",
                     Display = true
@@ -214,7 +205,6 @@ namespace Services.Migrations
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "系统设置",
-                    ControllerName = "Index",
                     SystemId = "950",
                     Ico = "fa-cog"
                 }, new SysController

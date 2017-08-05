@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -100,7 +101,7 @@ namespace Web.Controllers
 
                 var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
 
-                AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = model.RememberMe }, identity);
+                AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = model.RememberMe, AllowRefresh = true, ExpiresUtc = DateTimeOffset.Now.AddYears(1)}, identity);
 
                 return RedirectToLocal(returnUrl);
             }
