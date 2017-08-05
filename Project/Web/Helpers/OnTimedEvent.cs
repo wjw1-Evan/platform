@@ -58,7 +58,7 @@ namespace Web.Helpers
                     {
                         var re1 = _sysUserLogService.SqlCommand(
                             "DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}",
-                            DateTimeLocal.Now.AddDays(-logValidity));
+                            DateTimeOffset.Now.AddDays(-logValidity));
 
                         if (re1 > 0)
                         {
@@ -79,7 +79,7 @@ namespace Web.Helpers
                     try
                     {
                         var re3 = _iSysLogService.SqlCommand("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}",
-                            DateTimeLocal.Now.AddDays(-logValidity));
+                            DateTimeOffset.Now.AddDays(-logValidity));
 
                         if (re3 > 0)
                         {
