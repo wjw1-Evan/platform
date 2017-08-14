@@ -13,14 +13,12 @@ namespace Web.Helpers
     {
         #region MikePager 分页控件
 
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="html"></param>
         /// <param name="data"></param>
         /// <param name="updateTargetId"></param>
-        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static string MikePager(this AjaxHelper html, IPagedList data, string updateTargetId = "Main")
         {
@@ -92,7 +90,6 @@ namespace Web.Helpers
             vs.Remove("X-HTTP-Method-Override");
             vs.Remove("_");
 
-
             var builder = new StringBuilder();
             builder.AppendFormat("<div class=\"pull-right\"><ul class=\"pagination\">");
             
@@ -134,7 +131,6 @@ namespace Web.Helpers
             builder.Append("</div>");
 
             var buliderstring = builder.ToString();
-
 
             if (string.IsNullOrEmpty(updateTargetId))
             {
