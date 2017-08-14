@@ -2,10 +2,16 @@
 @model System.Collections.IEnumerable
 
 @using BootstrapSupport
+
 @using Web.Helpers
 
 @{
     var routevalues = new RouteValueDictionary { ["keyword"] = Request["Keyword"] };
+}
+
+@if (!Request.IsAjaxRequest())
+{
+    Response.Redirect("/");
 }
 
 <div class="content-heading">
@@ -102,8 +108,8 @@
                     }
                 </tbody>
             </table>
-
-            @Html.Raw(Ajax.MikePager((int)Model.GetType().GetProperty("PageIndex").GetValue(Model, null), (int)Model.GetType().GetProperty("PageSize").GetValue(Model, null), (int)Model.GetType().GetProperty("TotalCount").GetValue(Model, null)))
+            
+            @Html.Raw(Ajax.MikePager(Model as IPagedList))
         </div>
     </div>
 </div>

@@ -714,12 +714,12 @@
             <param name="dt"></param>
             <returns></returns>
         </member>
-        <member name="T:Web.Helpers.MikePagerAjaxExtensions">
+        <member name="T:Web.Helpers.MikePagerExtensions">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Web.Helpers.MikePagerAjaxExtensions.MikePager``1(System.Web.Mvc.AjaxHelper,Web.Helpers.PagedList{``0},System.String)">
+        <member name="M:Web.Helpers.MikePagerExtensions.MikePager(System.Web.Mvc.AjaxHelper,Web.Helpers.IPagedList,System.String)">
             <summary>
             
             </summary>
@@ -729,39 +729,23 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:Web.Helpers.MikePagerAjaxExtensions.MikePager(System.Web.Mvc.AjaxHelper,System.Int32,System.Int32,System.Int32,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="html"></param>
-            <param name="pageIndex"></param>
-            <param name="pageSize"></param>
-            <param name="totalCount"></param>
-            <param name="updateTargetId"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Web.Helpers.MikePagerHtmlExtensions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Web.Helpers.MikePagerHtmlExtensions.MikePager``1(System.Web.Mvc.HtmlHelper,Web.Helpers.PagedList{``0})">
+        <member name="M:Web.Helpers.MikePagerExtensions.MikePager(System.Web.Mvc.HtmlHelper,Web.Helpers.IPagedList)">
             <summary>
             
             </summary>
             <param name="html"></param>
             <param name="data"></param>
-            <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:Web.Helpers.MikePagerHtmlExtensions.MikePager(System.Web.Mvc.HtmlHelper,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Web.Helpers.MikePagerExtensions.MikePagerString(System.Web.Mvc.ViewContext,System.Int32,System.Int32,System.Int32,System.String)">
             <summary>
             
             </summary>
-            <param name="html"></param>
+            <param name="viewContext"></param>
             <param name="pageIndex"></param>
             <param name="pageSize"></param>
             <param name="totalCount"></param>
+            <param name="updateTargetId"></param>
             <returns></returns>
         </member>
         <member name="T:Web.Helpers.ModelMetadataExtensions.ConventionalModelMetadataProvider">
