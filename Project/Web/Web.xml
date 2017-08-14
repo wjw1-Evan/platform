@@ -726,7 +726,6 @@
             <param name="html"></param>
             <param name="data"></param>
             <param name="updateTargetId"></param>
-            <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Web.Helpers.MikePagerExtensions.MikePager(System.Web.Mvc.HtmlHelper,Web.Helpers.IPagedList)">
