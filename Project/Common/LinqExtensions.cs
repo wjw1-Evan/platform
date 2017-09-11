@@ -39,17 +39,17 @@ namespace Common
                             var met = item.Get(title.Name + "_method");
 
                             // 防止错误
-                            if (met == "==" || met == ">" || met == "<" || met == ">=" || met == "<=" )
+                            if (met == "==" || met == ">" || met == "<" || met == ">=" || met == "<=")
                             {
-                                  model = model.Where(title.Name + met + item.Get(title.Name));
+                                model = model.Where(title.Name + met + item.Get(title.Name));
                             }
                         }
                         catch (Exception e)
                         {
                             Console.WriteLine(e);
-                            throw new Exception("您输入的"+ item.Get(title.Name)+"有误！请重新检查输入的内容。");
+                            throw new Exception("您输入的" + item.Get(title.Name) + "有误！请重新检查输入的内容。");
                         }
-                      
+
                     }
 
                     if (title.PropertyType == typeof(DateTime) || title.PropertyType == typeof(DateTime?))
@@ -63,11 +63,11 @@ namespace Common
                         {
                             throw new Exception("您输入的" + item.Get(title.Name) + "有误！请重新检查输入的内容。");
                         }
-                        
+
 
                         if (!string.IsNullOrEmpty(item.Get(title.Name + "_End")))
                         {
-                            if (DateTime.TryParse(item.Get(title.Name), out var datetimeEnd))
+                            if (DateTime.TryParse(item.Get(title.Name + "_End"), out var datetimeEnd))
                             {
                                 model = model.Where($"{title.Name}>=@0", datetimeEnd);
                             }
@@ -78,7 +78,7 @@ namespace Common
                         }
                     }
 
-                    if (title.PropertyType == typeof(bool) || title.PropertyType==typeof(bool?))
+                    if (title.PropertyType == typeof(bool) || title.PropertyType == typeof(bool?))
                     {
                         if (bool.TryParse(item.Get(title.Name), out var boolvalue))
                         {
@@ -91,7 +91,7 @@ namespace Common
                     }
                 }
             }
-            
+
             return model;
         }
 
