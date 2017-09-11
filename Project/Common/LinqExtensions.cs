@@ -69,7 +69,7 @@ namespace Common
                         {
                             if (DateTime.TryParse(item.Get(title.Name + "_End"), out var datetimeEnd))
                             {
-                                model = model.Where($"{title.Name}>=@0", datetimeEnd);
+                                model = model.Where($"{title.Name}<=@0", datetimeEnd);
                             }
                             else
                             {
