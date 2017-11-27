@@ -1,16 +1,12 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
-using IServices.Infrastructure;
-using Web.Helpers;
-using System.Linq.Dynamic;
-using System.Threading.Tasks;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
 using Models.SysModels;
+using System.Linq;
+using System.Linq.Dynamic;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -28,7 +24,7 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/SysArea/
 
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, bool export = false, int pageIndex = 1, bool search = false)
         {
             var model =
                 _SysAreaService.GetAll()
@@ -50,31 +46,14 @@ namespace Web.Areas.Platform.Controllers
             {
                 model = model.OrderBy(ordering, null);
             }
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
 
             return View(model.ToPagedList(pageIndex));
         }
 
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        public ReportResult Report()
-        {
-            var model = _SysAreaService.GetAll().Select(
-                                     a =>
-                                     new
-                                     {
-                                         a.Name,
-                                         a.AreaName,
-                                         a.SystemId,
-                                         a.Enable,
-                                         a.Id
-                                     });
-            var report = new Report(model.ToReportSource());
-
-            report.DataFields["Id"].Hidden = true;
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-
-            return new ReportResult(report);
-        }
 
         //
         // GET: /Platform/SysArea/Details/5

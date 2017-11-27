@@ -1,16 +1,15 @@
-﻿using System;
+﻿using ImageProcessor;
+using ImageProcessor.Imaging;
+using IServices.ISysServices;
+using Microsoft.Azure;
+using Microsoft.WindowsAzure.Storage;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using Common;
-using ImageProcessor;
-using ImageProcessor.Imaging;
-using IServices.ISysServices;
-using Microsoft.Azure;
-using Microsoft.WindowsAzure.Storage;
 
 namespace Web.Controllers
 {
@@ -131,7 +130,7 @@ namespace Web.Controllers
 
                     var container = blobClient.GetContainerReference(uploadFileRoot);
 
-                    var blockBlob = container.GetBlockBlobReference(_iUserInfo.UserId + "/" + DateTimeOffset.Now.Year+"/" + DateTimeOffset.Now.Month+ "/" + filename);
+                    var blockBlob = container.GetBlockBlobReference(_iUserInfo.UserId + "/" + DateTimeOffset.Now.Year + "/" + DateTimeOffset.Now.Month + "/" + filename);
 
                     outStream.Position = 0;
 

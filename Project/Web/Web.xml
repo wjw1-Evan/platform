@@ -125,19 +125,15 @@
             <param name="sysActionService"></param>
             <param name="unitOfWork"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Index(System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Index(System.String,System.String,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             列表
             </summary>
             <param name="keyword"></param>
             <param name="ordering"></param>
+            <param name="export"></param>
             <param name="pageIndex"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysActionController.Report(System.String)">
-            <summary>
-            导出全部数据
-            </summary>
+            <param name="search"></param>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.SysActionController.Details(System.String)">
@@ -204,19 +200,13 @@
             <param name="sysControllerService"></param>
             <param name="sysControllerSysActionService"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Index(System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Index(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
             <param name="keyword"></param>
             <param name="ordering"></param>
             <param name="pageIndex"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Report">
-            <summary>
-            
-            </summary>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.SysControllerController.Details(System.Object)">
@@ -267,19 +257,13 @@
             <param name="unitOfWork"></param>
             <param name="iSysHelpClassService"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Index(System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Index(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
             <param name="keyword"></param>
             <param name="ordering"></param>
             <param name="pageIndex"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Report">
-            <summary>
-            
-            </summary>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.SysHelpController.Details(System.Object)">
@@ -329,19 +313,13 @@
             <param name="sysKeywordService"></param>
             <param name="iUnitOfWork"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Index(System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Index(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
             <param name="keyword"></param>
             <param name="ordering"></param>
             <param name="pageIndex"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Report">
-            <summary>
-            
-            </summary>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.SysKeywordController.Details(System.Object)">
@@ -391,7 +369,7 @@
             <param name="sysLogService"></param>
             <param name="unitOfWork"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysLogController.Index(System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Web.Areas.Platform.Controllers.SysLogController.Index(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
@@ -399,12 +377,6 @@
             <param name="ordering"></param>
             <param name="pageIndex"></param>
             <param name="search"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysLogController.Report">
-            <summary>
-            
-            </summary>
             <returns></returns>
         </member>
         <member name="T:Web.Areas.Platform.Controllers.SysUserController">
@@ -433,19 +405,13 @@
             <summary>
             </summary>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Index(System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Index(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
             <summary>
                 用户列表
             </summary>
             <param name="keyword"></param>
             <param name="ordering"></param>
             <param name="pageIndex"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysUserController.Report">
-            <summary>
-                数据导出
-            </summary>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.SysUserController.Details(System.Object)">
@@ -494,7 +460,7 @@
             </summary>
             <param name="sysUserLogService"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Index(System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Index(System.String,System.String,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
@@ -502,12 +468,6 @@
             <param name="ordering"></param>
             <param name="pageIndex"></param>
             <param name="search"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.SysUserLogController.Report(System.String)">
-            <summary>
-            
-            </summary>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.WebAppSetting.Modify(System.String,System.String)">
@@ -543,12 +503,6 @@
             <param name="keyword"></param>
             <param name="ordering"></param>
             <param name="pageIndex"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Report(System.String)">
-            <summary>
-            导出全部数据
-            </summary>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Details(System.Object)">

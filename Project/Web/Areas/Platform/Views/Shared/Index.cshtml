@@ -27,9 +27,9 @@
                 @Html.Partial("Button_Import", new { })
             }
 
-            @if (Html.CheckControllerAction("Report"))
+            @if (Html.CheckControllerAction("Index"))
             {
-                @Html.Partial("Button_Export", new { report = true, ordering = Request["ordering"], keyword = Request["keyword"] })
+                @Html.Partial("Button_Export", new { })
             }
         </div>
 
@@ -100,7 +100,7 @@
                                 else
                                 {
                                     <td nowrap="nowrap" style="max-width: 500px; text-overflow: ellipsis; overflow: hidden">
-                                         @Html.Display("DataList." + title.Name)
+                                        @Html.Display("DataList." + title.Name)
                                     </td>
                                 }
                             }
@@ -108,7 +108,7 @@
                     }
                 </tbody>
             </table>
-            
+
             @Html.Raw(Ajax.MikePager(Model as IPagedList))
         </div>
     </div>

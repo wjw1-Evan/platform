@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using DoddleReport;
-using DoddleReport.Web;
-using IServices.Infrastructure;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
 using Models.SysModels;
-using Web.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
-using Common;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -33,7 +29,7 @@ namespace Web.Areas.Platform.Controllers
 
 
         // GET: Admin/SysRole
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
             var model = _iSysRoleService.GetAll().Select(a => new { a.RoleName, a.SystemId, a.SysDefault, a.Id }).OrderBy(a => a.SystemId).Search(keyword);
 
@@ -45,25 +41,16 @@ namespace Web.Areas.Platform.Controllers
             {
                 model = model.OrderBy(ordering, null);
             }
-
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
             return View(model.ToPagedList(pageIndex));
         }
 
 
 
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        public ReportResult Report()
-        {
-            var model = _iSysRoleService.GetAll().Select(a => new { a.RoleName, a.SystemId, a.SysDefault, a.Id }).OrderBy(a => a.SystemId);
 
-            var report = new Report(model.ToReportSource());
-
-            report.DataFields["Id"].Hidden = true;
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-            //return new ReportResult(report) { FileName = DateTimeLocal.Now.ToString(CultureInfo.InvariantCulture) };
-            return new ReportResult(report);
-        }
 
         public ActionResult Details(object id)
         {
@@ -84,7 +71,7 @@ namespace Web.Areas.Platform.Controllers
             {
                 item = _iSysRoleService.GetById(id);
             }
-            ViewBag.SysControllers = _sysControllerService.GetAll(a=>a.Enable).ToList();
+            ViewBag.SysControllers = _sysControllerService.GetAll(a => a.Enable).ToList();
             return View(item);
         }
 

@@ -1,16 +1,12 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
-using IServices.Infrastructure;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
 using Models.SysModels;
-using Web.Helpers;
+using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -54,7 +50,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
             var model =
                 _sysControllerService.GetAll()
@@ -84,41 +80,13 @@ namespace Web.Areas.Platform.Controllers
             {
                 model = model.OrderBy(ordering, null);
             }
-
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
             return View(model.ToPagedList(pageIndex));
         }
 
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report()
-        {
-            var model = _sysControllerService.GetAll().Select(
-                                         a =>
-                                         new
-                                         {
-                                             SysArea = a.SysArea.Name,
-                                             a.Name,
-                                             a.ControllerName,
-                                             a.ActionName,
-                                             a.Parameter,
-                                             a.SystemId,
-                                             a.Display,
-                                             a.Ico,
-                                             a.Enable,
-                                             a.TargetBlank,
-                                             a.Id
-                                         });
-            var report = new Report(model.ToReportSource());
-
-            report.DataFields["Id"].Hidden = true;
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-
-            return new ReportResult(report);
-        }
 
 
         //

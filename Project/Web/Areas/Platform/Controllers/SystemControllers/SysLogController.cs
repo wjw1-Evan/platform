@@ -1,13 +1,9 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
-using IServices.Infrastructure;
-using Web.Helpers;
-using System.Linq.Dynamic;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
+using System.Linq;
+using System.Linq.Dynamic;
+using System.Web.Mvc;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -39,7 +35,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="pageIndex"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
             var model =
                 _sysLogService.GetAll()
@@ -56,32 +52,14 @@ namespace Web.Areas.Platform.Controllers
             }
 
             model = !string.IsNullOrEmpty(ordering) ? model.OrderBy(ordering, null) : model.OrderByDescending(a => a.CreatedDateTime);
-
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
             return View(model.ToPagedList(pageIndex));
         }
 
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report()
-        {
-            var model = _sysLogService.GetAll().Select(
-                                     a =>
-                                     new
-                                     {
-                                         a.Log,
-                                         a.CreatedDateTime
-                                     });
-            var report = new Report(model.ToReportSource());
-         
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
 
-            return new ReportResult(report);
-        }
-        
     }
 
 

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Common;
-using DocumentFormat.OpenXml.Spreadsheet;
-using EntityFramework.Extensions;
-using IServices.Infrastructure;
-using IServices.ISysServices;
+﻿using IServices.ISysServices;
 using Models.SysModels;
-using Services;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -58,7 +50,7 @@ namespace Web.Areas.Platform.Controllers
                 {
                     id = l.SystemId,
                     text = l.Name,
-                    url=Url.Action(l.ActionName,l.ControllerName),
+                    url = Url.Action(l.ActionName, l.ControllerName),
                     children = GetChildren(locations, l.SystemId)
                 }).ToList();
 
@@ -68,7 +60,7 @@ namespace Web.Areas.Platform.Controllers
 
         private List<Location> GetChildren(List<SysController> locations, string parentId)
         {
-            return locations.Where(l => l.SystemId.StartsWith(parentId) && l.SystemId.Length==parentId.Length+3).OrderBy(l => l.SystemId)
+            return locations.Where(l => l.SystemId.StartsWith(parentId) && l.SystemId.Length == parentId.Length + 3).OrderBy(l => l.SystemId)
                 .Select(l => new Location
                 {
                     id = l.SystemId,

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Configuration;
-using System.Globalization;
+﻿using IServices.ISysServices;
 using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
-using IServices.ISysServices;
-using Web.Helpers;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -40,7 +34,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="pageIndex"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<ActionResult> Index(string keyword, string ordering, int pageIndex = 1,bool search=false)
+        public async Task<ActionResult> Index(string keyword, string ordering, bool export = false, int pageIndex = 1, bool search = false)
         {
             var model =
                 _sysUserLogService.GetAll()
@@ -70,41 +64,13 @@ namespace Web.Areas.Platform.Controllers
             {
                 model = model.OrderBy(ordering, null);
             }
-          
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
 
             return View(model.ToPagedList(pageIndex));
         }
 
-
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report(string keyword)
-        {
-            var model = _sysUserLogService.GetAll().Select(
-                                      a =>
-                                      new
-                                      {
-                                          用户名 = a.SysUser.UserName,
-                                          区域显示名称 = a.SysArea,
-                                          控制器显示名称 = a.SysController,
-                                          操作显示名称 = a.SysAction,
-                                          记录编号 = a.RecordId,
-                                          a.ActionDuration,
-                                          a.ViewDuration,
-                                          a.Duration,
-                                          a.RequestType,
-                                          a.Url,
-                                          a.Ip,
-                                          创建日期 = a.CreatedDateTime
-                                      }).Search(keyword);
-            var report = new Report(model.ToReportSource());
-
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-            return new ReportResult(report) { FileName = DateTimeOffset.Now.ToString(CultureInfo.InvariantCulture) };
-        }
     }
 }

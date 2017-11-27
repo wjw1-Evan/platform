@@ -1,16 +1,12 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
-using IServices.Infrastructure;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
 using Models.SysModels;
-using Web.Helpers;
+using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -38,45 +34,33 @@ namespace Web.Areas.Platform.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ordering"></param>
+        /// <param name="export"></param>
         /// <param name="pageIndex"></param>
+        /// <param name="search"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, bool export = false, int pageIndex = 1, bool search = false)
         {
             var model =
                 _sysActionService.GetAll()
                                  .Select(
                                      a =>
-                                     new { a.Name, a.ActionName, a.SystemId,a.Enable, a.Id }).Search(keyword);
+                                     new { a.Name, a.ActionName, a.SystemId, a.Enable, a.Id }).Search(keyword);
             if (search)
             {
                 model = model.Search(Request.QueryString);
             }
+
             if (!string.IsNullOrEmpty(ordering))
             {
                 model = model.OrderBy(ordering, null);
             }
 
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
+
             return View(model.ToPagedList(pageIndex));
-        }
-
-        /// <summary>
-        /// 导出全部数据
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report(string keyword)
-        {
-            var model =
-             _sysActionService.GetAll()
-                              .Select(
-                                  a =>
-                                  new { a.Name, a.ActionName, a.SystemId, a.Enable, a.Id }).Search(keyword);
-
-            var report = new Report(model.ToReportSource());
-
-            report.DataFields["Id"].Hidden = true;
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-
-            return new ReportResult(report);
         }
 
         /// <summary>

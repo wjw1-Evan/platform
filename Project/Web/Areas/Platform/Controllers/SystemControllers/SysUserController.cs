@@ -1,20 +1,16 @@
-﻿using System;
-using System.Configuration;
-using System.Linq;
-using System.Linq.Dynamic;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
+﻿using AutoMapper;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Models.SysModels;
+using System;
+using System.Linq;
+using System.Linq.Dynamic;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
 using Web.Areas.Platform.Models;
 using Web.Helpers;
@@ -85,7 +81,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
             var model = _sysUserService.GetAll().Select(a => new
             {
@@ -108,36 +104,13 @@ namespace Web.Areas.Platform.Controllers
 
             if (!string.IsNullOrEmpty(ordering))
                 model = model.OrderBy(ordering, null);
-
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
             return View(model.ToPagedList(pageIndex));
         }
 
-        /// <summary>
-        ///     数据导出
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report()
-        {
-            var model = _sysUserService.GetAll().Select(a => new
-            {
-                Department =
-                a.SysDepartmentSysUsers.FirstOrDefault(c => c.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId)
-                    .SysDepartment.Name,
-                a.UserName,
-                a.FullName,
-                PhoneNumber = a.PhoneNumberConfirmed ? a.PhoneNumber : "",
-                Email = a.EmailConfirmed ? a.Email : "",
-                a.CreatedDateTime,
-                a.UpdatedDateTime,
-                a.Id
-            }).OrderByDescending(a => a.CreatedDateTime);
-            var report = new Report(model.ToReportSource());
-
-            report.DataFields["Id"].Hidden = true;
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-            //return new ReportResult(report) { FileName = DateTimeLocal.Now.ToString(CultureInfo.InvariantCulture) };
-            return new ReportResult(report);
-        }
 
         /// <summary>
         ///     查看用户详细信息
@@ -251,13 +224,13 @@ namespace Web.Areas.Platform.Controllers
                     await UserManager.RemoveFromRoleAsync(item.Id, role.Name);
 
                 foreach (var roleId in collection.SysRolesId)
-                    item.Roles.Add(new IdentityUserRole {RoleId = roleId, UserId = item.Id});
+                    item.Roles.Add(new IdentityUserRole { RoleId = roleId, UserId = item.Id });
 
                 _iSysDepartmentSysUserService.Delete(
                     a => a.SysUserId == item.Id && a.SysDepartment.EnterpriseId == _iUserInfo.EnterpriseId);
 
                 _iSysDepartmentSysUserService.Save(null,
-                    new SysDepartmentSysUser {SysDepartmentId = collection.DepartmentId, SysUserId = item.Id});
+                    new SysDepartmentSysUser { SysDepartmentId = collection.DepartmentId, SysUserId = item.Id });
 
                 //处理关联企业
                 //限制编辑自己的关联企业
@@ -300,7 +273,7 @@ namespace Web.Areas.Platform.Controllers
                 });
 
                 foreach (var roleId in collection.SysRolesId)
-                    item.Roles.Add(new IdentityUserRole {RoleId = roleId, UserId = item.Id});
+                    item.Roles.Add(new IdentityUserRole { RoleId = roleId, UserId = item.Id });
 
                 foreach (var entId in collection.SysEnterprisesId)
                     item.SysEnterpriseSysUsers.Add(new SysEnterpriseSysUser

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EntityFramework.Extensions;
+using IServices.Infrastructure;
+using IServices.ISysServices;
+using System;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Common;
-using DocumentFormat.OpenXml.Spreadsheet;
-using EntityFramework.Extensions;
-using IServices.Infrastructure;
-using IServices.ISysServices;
-using Models.SysModels;
-using Services;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -98,7 +92,7 @@ namespace Web.Areas.Platform.Controllers
             var startdate = DateTimeOffset.Now.Date.AddDays(-30);
 
             //近十天用户注册次数
-            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => a.CreatedDateTime > startdate).GroupBy(a =>a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
+            ViewBag.SysUserCountDay = _iSysUserService.GetAll(a => a.CreatedDateTime > startdate).GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
 
             //近十天用户活动次数
             ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => (double)a.Count).Result;
@@ -108,7 +102,7 @@ namespace Web.Areas.Platform.Controllers
 
             return View();
         }
-        
+
 
     }
 }

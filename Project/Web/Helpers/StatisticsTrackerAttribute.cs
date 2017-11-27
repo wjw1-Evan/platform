@@ -1,14 +1,14 @@
-﻿using System;
+﻿using EntityFramework.Caching;
+using EntityFramework.Extensions;
+using IServices.Infrastructure;
+using IServices.ISysServices;
+using Models.SysModels;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Mvc;
-using EntityFramework.Caching;
-using EntityFramework.Extensions;
-using IServices.Infrastructure;
-using IServices.ISysServices;
-using Models.SysModels;
 
 namespace Web.Helpers
 {
@@ -153,8 +153,11 @@ namespace Web.Helpers
                 SysAction = action,
                 ActionDuration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds, 3),
                 Duration = Math.Round((DateTime.Now - _datetimenow).TotalSeconds, 3),
-                RequestType = actionExecutedContext.Request.Method.Method
+                RequestType = actionExecutedContext.Request.Method.Method,
+
             };
+
+
 
             var sysUserLogService = DependencyResolver.Current.GetService<ISysUserLogService>();
             var iUnitOfWork = DependencyResolver.Current.GetService<IUnitOfWork>();

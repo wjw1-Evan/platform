@@ -1,20 +1,16 @@
-﻿using System;
-using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
+﻿using AutoMapper;
 using IServices.Infrastructure;
 using IServices.ISysServices;
-using Web.Helpers;
-using System.Linq.Dynamic;
-using System.Threading.Tasks;
-using AutoMapper;
 using IServices.ITaskServices;
 using Models.TaskModels;
+using System;
+using System.Linq;
+using System.Linq.Dynamic;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
 using Web.Areas.Platform.Models;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -57,22 +53,6 @@ namespace Web.Areas.Platform.Controllers
             model = !string.IsNullOrEmpty(ordering) ? model.OrderBy(ordering, null) : model.OrderBy(a => a.ActualEndTime).ThenBy(a => a.ScheduleEndTime);
 
             return View(model.ToPagedList(pageIndex));
-        }
-
-        /// <summary>
-        /// 导出全部数据
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report(string keyword)
-        {
-            var model = _iTaskCenterService.GetAll(a => a.CreatedBy == _iUserInfo.UserId || a.TaskExecutorId == _iUserInfo.UserId).Select(a => new { TaskType = a.TaskType.ToString(), a.Title, a.Content, a.Files, TaskExecutor = a.TaskExecutor.UserName, a.UserCreatedBy.UserName, a.ScheduleEndTime, a.Id }).Search(keyword);
-
-            var report = new Report(model.ToReportSource());
-
-            report.DataFields["Id"].Hidden = true;
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-
-            return new ReportResult(report);
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
+ï»¿using Models.SysModels;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using Models.SysModels;
 
 namespace Services.Migrations
 {
@@ -17,19 +17,19 @@ namespace Services.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            #region ÆóÒµ
+            #region ä¼ä¸š
 
             var sysEnterprises = new[]
             {
                 new SysEnterprise
                 {
                     Id = "defaultEnt",
-                    EnterpriseName = "ÏµÍ³Ä¬ÈÏÆóÒµ"
+                    EnterpriseName = "ç³»ç»Ÿé»˜è®¤ä¼ä¸š"
                 },
                 new SysEnterprise
                 {
                     Id = "TestEnt",
-                    EnterpriseName = "²âÊÔÆóÒµ"
+                    EnterpriseName = "æµ‹è¯•ä¼ä¸š"
                 }
             };
             context.SysEnterprises.AddOrUpdate(a => new { a.Id }, sysEnterprises);
@@ -43,7 +43,7 @@ namespace Services.Migrations
                 new SysArea
                 {
                     AreaName = "Platform",
-                    Name = "¹ÜÀíÆ½Ì¨",
+                    Name = "ç®¡ç†å¹³å°",
                     SystemId = "002"
                 }
             };
@@ -57,46 +57,40 @@ namespace Services.Migrations
             {
                 new SysAction
                 {
-                    Name = "ÁĞ±í",
+                    Name = "åˆ—è¡¨",
                     ActionName = "Index",
                     SystemId = "001",
                     System = true
                 },
                 new SysAction
                 {
-                    Name = "ÏêÏ¸",
+                    Name = "è¯¦ç»†",
                     ActionName = "Details",
                     SystemId = "003",
                     System = true
                 },
                 new SysAction
                 {
-                    Name = "ĞÂ½¨",
+                    Name = "æ–°å»º",
                     ActionName = "Create",
                     SystemId = "004",
                     System = true
                 },
                 new SysAction
                 {
-                    Name = "±à¼­",
+                    Name = "ç¼–è¾‘",
                     ActionName = "Edit",
                     SystemId = "005",
                     System = true
                 },
                 new SysAction
                 {
-                    Name = "É¾³ı",
+                    Name = "åˆ é™¤",
                     ActionName = "Delete",
                     SystemId = "006",
                     System = true
                 },
-                new SysAction
-                {
-                    Name = "µ¼³ö",
-                    ActionName = "Report",
-                    SystemId = "007",
-                    System = true
-                }
+
             };
             context.SysActions.AddOrUpdate(a => new { a.ActionName }, sysActions);
 
@@ -106,11 +100,11 @@ namespace Services.Migrations
 
             var sysControllers = new[]
             {
-                #region »ù´¡ÄÚÈİ 100
+                #region åŸºç¡€å†…å®¹ 100
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "¹ÜÀíÆ½Ì¨-×ÀÃæ",
+                    Name = "ç®¡ç†å¹³å°-æ¡Œé¢",
                     ControllerName = "Index",
                     ActionName="Index",
                     SystemId = "100",
@@ -119,7 +113,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "Ê¹ÓÃ°ïÖú",
+                    Name = "ä½¿ç”¨å¸®åŠ©",
                     ControllerName = "Help",
                     SystemId = "100200",
                     Display = false
@@ -127,7 +121,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÏûÏ¢ÖĞĞÄ",
+                    Name = "æ¶ˆæ¯ä¸­å¿ƒ",
                     ControllerName = "MyMessage",
                     SystemId = "100300",
                     Display = false
@@ -135,7 +129,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ĞŞ¸ÄÃÜÂë",
+                    Name = "ä¿®æ”¹å¯†ç ",
                     ControllerName = "ChangePassword",
                     SystemId = "100400",
                     Display = false
@@ -143,11 +137,11 @@ namespace Services.Migrations
 
                 #endregion other                
 
-                #region ÈÎÎñ¹ÜÀí 800
+                #region ä»»åŠ¡ç®¡ç† 800
                   new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÈÎÎñ¹ÜÀí",
+                    Name = "ä»»åŠ¡ç®¡ç†",
                    SystemId = "800",
                     Ico = "fa-line-chart",
                     Display = true
@@ -155,7 +149,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÈÎÎñÖĞĞÄ",
+                    Name = "ä»»åŠ¡ä¸­å¿ƒ",
                     ControllerName = "TaskCenter",
                     SystemId = "800200",
                     Ico = "fa-tasks"
@@ -163,11 +157,11 @@ namespace Services.Migrations
                 #endregion
 
 
-                #region ÓÃ»§¹ÜÀí 900
+                #region ç”¨æˆ·ç®¡ç† 900
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÓÃ»§¹ÜÀí",
+                    Name = "ç”¨æˆ·ç®¡ç†",
                     SystemId = "900",
                     Ico = "fa-users",
                     Display = true
@@ -175,7 +169,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "×éÖ¯¼Ü¹¹",
+                    Name = "ç»„ç»‡æ¶æ„",
                     ControllerName = "SysDepartment",
                     SystemId = "900200",
                     Ico = "fa-dot-circle-o"
@@ -183,7 +177,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "½ÇÉ«¹ÜÀí",
+                    Name = "è§’è‰²ç®¡ç†",
                     ControllerName = "SysRole",
                     SystemId = "900300",
                     Ico = "fa-dot-circle-o"
@@ -191,7 +185,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÓÃ»§¹ÜÀí",
+                    Name = "ç”¨æˆ·ç®¡ç†",
                     ControllerName = "SysUser",
                     SystemId = "900400",
                     Ico = "fa-dot-circle-o"
@@ -200,17 +194,17 @@ namespace Services.Migrations
                 #endregion
 
                 
-                #region ÏµÍ³¿ª·¢ÅäÖÃ 950
+                #region ç³»ç»Ÿå¼€å‘é…ç½® 950
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÏµÍ³ÉèÖÃ",
+                    Name = "ç³»ç»Ÿè®¾ç½®",
                     SystemId = "950",
                     Ico = "fa-cog"
                 }, new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÏµÍ³²ÎÊı",
+                    Name = "ç³»ç»Ÿå‚æ•°",
                     ControllerName = "WebConfigAppSetting",
                     SystemId = "950200",
                     Ico = "fa-cubes"
@@ -218,7 +212,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "²Ù×÷ÀàĞÍ",
+                    Name = "æ“ä½œç±»å‹",
                     ControllerName = "SysAction",
                     SystemId = "950300",
                     Ico = "fa-th-large"
@@ -226,7 +220,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÏµÍ³Ä£¿é",
+                    Name = "ç³»ç»Ÿæ¨¡å—",
                     ControllerName = "SysController",
                     SystemId = "950400",
                     Ico = "fa-puzzle-piece"
@@ -234,7 +228,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "°ïÖúĞÅÏ¢",
+                    Name = "å¸®åŠ©ä¿¡æ¯",
                     ControllerName = "SysHelp",
                     SystemId = "950900",
                     Ico = "fa-info-circle"
@@ -242,7 +236,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "°ïÖúĞÅÏ¢",
+                    Name = "å¸®åŠ©ä¿¡æ¯",
                     ControllerName = "SysHelp",
                     SystemId = "950900100",
                     Ico = "fa-info-circle"
@@ -250,7 +244,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "°ïÖúĞÅÏ¢·ÖÀà",
+                    Name = "å¸®åŠ©ä¿¡æ¯åˆ†ç±»",
                     ControllerName = "SysHelpClass",
                     SystemId = "950900200",
                     Ico = "fa-info-circle"
@@ -258,7 +252,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÓÃ»§ÈÕÖ¾",
+                    Name = "ç”¨æˆ·æ—¥å¿—",
                     ControllerName = "SysUserLog",
                     SystemId = "950990",
                     Ico = "fa-calendar"
@@ -266,7 +260,7 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "ÏµÍ³ÈÕÖ¾",
+                    Name = "ç³»ç»Ÿæ—¥å¿—",
                     ControllerName = "SysLog",
                     SystemId = "950995",
                     Ico = "fa-file-text-o"
@@ -295,49 +289,49 @@ namespace Services.Migrations
 
             #endregion
 
-            #region Ä£¿éÌØÊâAction
+            #region æ¨¡å—ç‰¹æ®ŠAction
 
             context.SysControllerSysActions.AddOrUpdate(a => new { a.SysActionId, a.SysControllerId });
 
             #endregion
 
-            #region ½ÇÉ«¶¨Òå
+            #region è§’è‰²å®šä¹‰
 
-            //×Ô¶¯ÇåÀí²»ĞèÒªµÄÈ¨ÏŞÉèÖÃ¹¦ÄÜ
+            //è‡ªåŠ¨æ¸…ç†ä¸éœ€è¦çš„æƒé™è®¾ç½®åŠŸèƒ½
             var ids4SysControllerSysActions = sysControllerSysActions.Select(a => a.Id).ToList();
             context.SysRoleSysControllerSysActions.RemoveRange(
                 context.SysRoleSysControllerSysActions.Where(
                     rc =>
                         rc.SysControllerSysAction.SysAction.System &&
                         !ids4SysControllerSysActions.Contains(rc.SysControllerSysActionId)).ToList());
-            //context.Commit(); ÊµÊ±Ìá½»Ò»ÏÂÊÇ·ñÄÜ½â¾öÖØ¸´µÄÎÊÌâ£¿
+            //context.Commit(); å®æ—¶æäº¤ä¸€ä¸‹æ˜¯å¦èƒ½è§£å†³é‡å¤çš„é—®é¢˜ï¼Ÿ
             foreach (var ent in sysEnterprises)
             {
                 var sysRoleUser = new SysRole
                 {
                     Id = "User-" + ent.Id,
-                    Name = ent.EnterpriseName + "×¢²áÓÃ»§",
-                    RoleName = "×¢²áÓÃ»§",
+                    Name = ent.EnterpriseName + "æ³¨å†Œç”¨æˆ·",
+                    RoleName = "æ³¨å†Œç”¨æˆ·",
                     SysDefault = true,
                     SystemId = "000",
                     EnterpriseId = ent.Id
                 };
                 context.SysRoles.AddOrUpdate(sysRoleUser);
 
-                //Éú³ÉÏµÍ³¹ÜÀíÔ±
+                //ç”Ÿæˆç³»ç»Ÿç®¡ç†å‘˜
                 var sysRole = new SysRole
                 {
                     Id = "admin-" + ent.Id,
-                    Name = ent.EnterpriseName + "ÏµÍ³¹ÜÀíÔ±",
-                    RoleName = "ÏµÍ³¹ÜÀíÔ±",
+                    Name = ent.EnterpriseName + "ç³»ç»Ÿç®¡ç†å‘˜",
+                    RoleName = "ç³»ç»Ÿç®¡ç†å‘˜",
                     SysDefault = true,
                     SystemId = "999",
                     EnterpriseId = ent.Id
-                    //ÏµÍ³¹ÜÀíÔ±×Ô¶¯»ñµÃËùÓĞÈ¨ÏŞ
+                    //ç³»ç»Ÿç®¡ç†å‘˜è‡ªåŠ¨è·å¾—æ‰€æœ‰æƒé™
                     //SysRoleSysControllerSysActions = (from aa in sysControllerSysActions select new SysRoleSysControllerSysAction { SysControllerSysActionId = aa.Id, RoleId = "admin-" + ent.Id }).ToArray()
                 };
                 context.SysRoles.AddOrUpdate(sysRole);
-                //ÏµÍ³¹ÜÀíÔ±×Ô¶¯»ñµÃËùÓĞÈ¨ÏŞ
+                //ç³»ç»Ÿç®¡ç†å‘˜è‡ªåŠ¨è·å¾—æ‰€æœ‰æƒé™
                 var sysRoleSysControllerSysActions = (from aa in sysControllerSysActions
                                                       select
                                                       new SysRoleSysControllerSysAction

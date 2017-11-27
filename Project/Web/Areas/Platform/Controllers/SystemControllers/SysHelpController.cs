@@ -1,16 +1,12 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
-using IServices.Infrastructure;
 using Models.SysModels;
-using Web.Helpers;
+using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
+using Web.Helpers;
 
 //Todo： 测试消息系统功能，正式发布前请注释掉测试代码
 
@@ -48,9 +44,9 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
-            var model  = _sysHelp.GetAll().Select(a => new
+            var model = _sysHelp.GetAll().Select(a => new
             {
                 Class = a.SysHelpClass.Name,
                 a.Title,
@@ -67,34 +63,12 @@ namespace Web.Areas.Platform.Controllers
             {
                 model = model.OrderBy(ordering, null);
             }
-
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
             return View(model.ToPagedList(pageIndex));
         }
-
-
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report()
-        {
-            var model = _sysHelp.GetAll().Select(a => new
-            {
-                Class = a.SysHelpClass.Name,
-                a.Title,
-                a.Content,
-                a.Sort,
-                a.CreatedDateTime,
-                a.Remark
-            });
-            var report = new Report(model.ToReportSource());
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-
-            return new ReportResult(report);
-        }
-
 
         //
         // GET: /Platform/SysHelp/Details/5

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Linq.Dynamic;
+using System.Web.Mvc;
 
-namespace Common
+namespace Web.Helpers
 {
     public static class LinqExtensions
     {
@@ -95,6 +97,17 @@ namespace Common
             return model;
         }
 
+        public static FileResult ToExcelFile<T>(this IEnumerable<T> model)
+        {
+            var pck = new ExcelPackage();
+
+            var ws = pck.Workbook.Worksheets.Add(DateTime.Now.ToShortDateString());
+
+            ws.Cells["A1"].LoadFromCollection(model, true);
+
+            return new FileContentResult(pck.GetAsByteArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        }
+
         public static IQueryable<T> Search<T>(this IQueryable<T> model, string keywords)
         {
             //Todo :让搜索支持多个关键字和日期字段搜索 "+"分隔
@@ -178,6 +191,8 @@ namespace Common
         {
             return _comparer.GetHashCode(_keySelector(obj));
         }
-    }
 
+
+
+    }
 }

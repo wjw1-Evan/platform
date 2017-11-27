@@ -2,8 +2,6 @@
 using System.Web.Http.Cors;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DoddleReport.Web;
-using Swashbuckle.Application;
 using Web.Helpers;
 
 namespace Web
@@ -15,8 +13,6 @@ namespace Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.IgnoreRoute("elmah.axd");
-
-            routes.MapReportingRoute();
 
             routes.MapRoute(
                 "Default",
@@ -50,7 +46,7 @@ namespace Web
             //);
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
-            
+
             config.Filters.Add(new WebApiTrackerAttribute());
         }
     }

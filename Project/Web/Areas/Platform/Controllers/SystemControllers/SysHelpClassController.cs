@@ -1,16 +1,12 @@
-﻿using System.Configuration;
-using System.Linq;
-using System.Web.Mvc;
-using Common;
-using DoddleReport;
-using DoddleReport.Web;
-using IServices.Infrastructure;
+﻿using IServices.Infrastructure;
+using IServices.ISysServices;
 using Models.SysModels;
-using Web.Helpers;
+using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
-using IServices.ISysServices;
+using System.Web.Mvc;
 using Web.Areas.Platform.Helpers;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -28,7 +24,7 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/iSysHelpClass/
 
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
             var model =
                 _iSysHelpClassService.GetAll()
@@ -36,7 +32,7 @@ namespace Web.Areas.Platform.Controllers
                                      a =>
                                      new
                                      {
-                                        a.Name,
+                                         a.Name,
                                          a.SystemId,
                                          a.CreatedDate,
                                          a.Remark,
@@ -50,30 +46,12 @@ namespace Web.Areas.Platform.Controllers
             {
                 model = model.OrderBy(ordering, null);
             }
+            if (export)
+            {
+                return model.ToExcelFile();
+            }
 
             return View(model.ToPagedList(pageIndex));
-        }
-
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        public ReportResult Report()
-        {
-            var model = _iSysHelpClassService.GetAll().Select(
-                                     a =>
-                                     new
-                                     {
-                                        a.Name,
-                                       a.SystemId,
-                                         a.CreatedDate,
-                                         a.Remark,
-                                         a.Id
-                                     });
-            var report = new Report(model.ToReportSource());
-
-            report.DataFields["Id"].Hidden = true;
-            report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-
-            return new ReportResult(report);
         }
 
         //
@@ -93,12 +71,12 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/iSysHelpClass/Edit/5
 
-        public  ActionResult Edit(string id)
+        public ActionResult Edit(string id)
         {
             var item = new SysHelpClass();
             if (!string.IsNullOrEmpty(id))
             {
-                item =  _iSysHelpClassService.GetById(id);
+                item = _iSysHelpClassService.GetById(id);
             }
             return View(item);
         }

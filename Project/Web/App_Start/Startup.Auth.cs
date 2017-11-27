@@ -9,7 +9,6 @@ using Owin;
 using Services;
 using Web.Providers;
 using System.Configuration;
-using Microsoft.Owin.Security.Tencent.Wechat;
 
 namespace Web
 {

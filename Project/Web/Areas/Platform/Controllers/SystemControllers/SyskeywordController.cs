@@ -1,15 +1,12 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using IServices.Infrastructure;
-using Common;
-using Web.Areas.Platform.Helpers;
-using Web.Helpers;
+﻿using IServices.Infrastructure;
+using IServices.ISysServices;
+using Models.SysModels;
+using System.Linq;
 using System.Linq.Dynamic;
 using System.Threading.Tasks;
-using DoddleReport;
-using DoddleReport.Web;
-using Models.SysModels;
-using IServices.ISysServices;
+using System.Web.Mvc;
+using Web.Areas.Platform.Helpers;
+using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
@@ -42,9 +39,9 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
         /// <returns></returns>
-        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool search = false)
+        public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
-            var model = _sysKeywordService.GetAll().Select(m => new { m.Keyword,  m.Type, m.Count, m.CreatedDate, m.UserCreatedBy, m.Id }).Search(keyword);
+            var model = _sysKeywordService.GetAll().Select(m => new { m.Keyword, m.Type, m.Count, m.CreatedDate, m.UserCreatedBy, m.Id }).Search(keyword);
             if (search)
             {
                 model = model.Search(Request.QueryString);
@@ -53,28 +50,11 @@ namespace Web.Areas.Platform.Controllers
             {
                 model = model.OrderBy(ordering, null);
             }
-
-            return View(model.ToPagedList(pageIndex));
-        }
-
-        // 导出全部数据
-        // GET: /Platform/SysHelp/Report       
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public ReportResult Report()
-        {
-            var model = _sysKeywordService.GetAll().GroupBy(a => a.Keyword).Select(a => new
+            if (export)
             {
-                关键词 = a.Key,
-                总数 = a.Count()
-            }).OrderByDescending(a => a.总数).ThenBy(a => a.关键词);
-            var report = new Report(model.ToReportSource());
-
-            //report.TextFields.Footer = ConfigurationManager.AppSettings["Copyright"];
-
-            return new ReportResult(report);
+                return model.ToExcelFile();
+            }
+            return View(model.ToPagedList(pageIndex));
         }
 
         /// <summary>
