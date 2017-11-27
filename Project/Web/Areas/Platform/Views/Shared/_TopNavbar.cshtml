@@ -44,7 +44,9 @@
             </li>
 
             <li>
-               @Ajax.ActionLink((string)ViewBag.UserName,"Index", "ChangePassword", new AjaxOptions() {UpdateTargetId = "Main"})
+              <a href="#@Url.Action("Index","ChangePassword")"  title="修改密码">
+                   @ViewBag.UserName
+                </a>
             </li>
 
             <li>
@@ -55,7 +57,7 @@
             
             <!-- START Alert menu-->
             <li class="dropdown dropdown-list">
-                <a href="@Url.Action("Index","MyMessage")" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#Main" title="消息">
+                <a href="#@Url.Action("Index","MyMessage")"  title="消息">
                     <em class="fa fa-bell-o"></em>
                 </a>
                 
