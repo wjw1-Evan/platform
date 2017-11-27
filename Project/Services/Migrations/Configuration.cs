@@ -172,7 +172,7 @@ namespace Services.Migrations
                     Name = "组织架构",
                     ControllerName = "SysDepartment",
                     SystemId = "900200",
-                    Ico = "fa-dot-circle-o"
+                    Ico = "fa-sitemap"
                 },
                 new SysController
                 {
@@ -188,9 +188,16 @@ namespace Services.Migrations
                     Name = "用户管理",
                     ControllerName = "SysUser",
                     SystemId = "900400",
-                    Ico = "fa-dot-circle-o"
+                    Ico = "fa-user-o"
                 },
-
+                new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "用户日志",
+                    ControllerName = "SysUserLog",
+                    SystemId = "900990",
+                    Ico = "fa-calendar"
+                },
                 #endregion
 
                 
@@ -236,27 +243,12 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "帮助信息",
-                    ControllerName = "SysHelp",
-                    SystemId = "950900100",
-                    Ico = "fa-info-circle"
-                },
-                new SysController
-                {
-                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "帮助信息分类",
                     ControllerName = "SysHelpClass",
-                    SystemId = "950900200",
+                    SystemId = "950950",
                     Ico = "fa-info-circle"
                 },
-                new SysController
-                {
-                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "用户日志",
-                    ControllerName = "SysUserLog",
-                    SystemId = "950990",
-                    Ico = "fa-calendar"
-                },
+             
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,

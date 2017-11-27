@@ -52,7 +52,7 @@
                                     <th>
                                         @sysController.SysArea.Name
                                     </th>
-                                    <th>
+                                    <th onclick="javascript:checkedthisline(this);" style="cursor:pointer">
                                         @(">".PadLeft(sysController.SystemId.Length - 3, '　'))
                                         @sysController.Name
                                     </th>
@@ -77,3 +77,10 @@
         @Html.Partial("Button_Submit")
     </div>
 }
+<script>
+    function checkedthisline(line) {
+        $(line).parent("tr").find("input[type='checkbox']").each(function () {
+            this.checked = !this.checked;
+        });
+    }
+</script>
