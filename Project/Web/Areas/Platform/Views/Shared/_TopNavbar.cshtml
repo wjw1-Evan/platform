@@ -31,8 +31,8 @@
 
         <!-- START Right Navbar-->
         <ul class="nav navbar-nav navbar-right">
-            <li style="padding-top: 15px;">
-                @Html.DropDownList("sysEnterprises")
+            <li style="padding-top: 10px;">
+                @Html.DropDownList("sysEnterprises", null, null, new { @class = "form-control input-sm" })
                 <script>
                     $(function() {
                         $('select[id=sysEnterprises]').bind("change", function() {
