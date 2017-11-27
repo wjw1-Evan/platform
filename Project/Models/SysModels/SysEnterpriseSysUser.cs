@@ -10,6 +10,7 @@ namespace Models.SysModels
         [ForeignKey("SysEnterprise")]
         [Required]
         public string SysEnterpriseId { get; set; }
+
         [ScaffoldColumn(false)]
         public virtual SysEnterprise SysEnterprise { get; set; }
 
@@ -17,8 +18,14 @@ namespace Models.SysModels
         [ForeignKey("SysUser")]
         [Required]
         public string SysUserId { get; set; }
+
         [ScaffoldColumn(false)]
         public virtual SysUser SysUser { get; set; }
 
+
+        /// <summary>
+        /// 用户同意
+        /// </summary>
+        public bool Accept { get; set; }
     }
 }

@@ -55,7 +55,7 @@ namespace Models
     {
         protected DbSetBase()
         {
-            CreatedDate = DateTimeOffset.UtcNow.Date.ToShortDateString();
+            CreatedDate = DateTimeOffset.UtcNow.ToString("yyyy/MM/dd");
             CreatedDateTime = DateTimeOffset.Now;
         }
 

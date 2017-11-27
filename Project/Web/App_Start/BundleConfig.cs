@@ -54,13 +54,12 @@ namespace Web
             "~/Scripts/app/modules/chart.js",
             "~/Scripts/app/modules/morris.js",//图形报表
             "~/Scripts/app/modules/rickshaw.js",
-            "~/Scripts/app/modules/chartist.js",
+
             "~/Scripts/app/modules/tour.js",//用户向导
             "~/Scripts/app/modules/sweetalert.js",//替代alert 消息警告框插件
             "~/Scripts/app/modules/color-picker.js",
-            "~/Scripts/app/modules/imagecrop.js",//图片裁剪
-            "~/Scripts/app/modules/chart-knob.js",
-            "~/Scripts/app/modules/chart-easypie.js"
+            "~/Scripts/app/modules/imagecrop.js"//图片裁剪
+
 ));
         }
     }

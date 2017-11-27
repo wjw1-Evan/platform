@@ -56,7 +56,6 @@ namespace Services.Infrastructure
             if (dbSetBase != null)
             {
                 dbSetBase.CreatedBy = _userInfo.UserId;
-                dbSetBase.CreatedDateTime = DateTimeOffset.Now;
                 entity = dbSetBase as T;
             }
 
@@ -88,7 +87,6 @@ namespace Services.Infrastructure
                 dbSetBase.CreatedDate = databaseValues.GetValue<string>("CreatedDate");
                 dbSetBase.CreatedDateTime = databaseValues.GetValue<DateTimeOffset>("CreatedDateTime");
 
-                dbSetBase.UpdatedDateTime = DateTimeOffset.Now;
                 dbSetBase.UpdatedBy = _userInfo.UserId;
 
                 entity = dbSetBase as T;

@@ -87,10 +87,6 @@
       <HintPath>..\packages\bootstrap-rating.mvc.1.0.0\lib\net452\BootstrapRating.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Chart.Mvc, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Chart.Mvc.1.0.0.2\lib\net45\Chart.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="DelegateDecompiler, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
       <HintPath>..\packages\DelegateDecompiler.0.23.0\lib\net40-client\DelegateDecompiler.dll</HintPath>
     </Reference>
@@ -636,6 +632,7 @@
     <Content Include="Scripts\bootstrap-rating\bootstrap-rating.js" />
     <Content Include="Scripts\bootstrap-rating\bootstrap-rating.min.js" />
     <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\config.js" />

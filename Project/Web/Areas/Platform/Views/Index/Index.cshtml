@@ -1,6 +1,5 @@
-﻿@using Chart.Mvc.ComplexChart
-@using Chart.Mvc.Extensions
-@using Models.SysModels
+﻿@using Models.SysModels
+@using Newtonsoft.Json
 @{
     Layout = "../../../../views/Shared/_Layout.cshtml";
 }
@@ -70,61 +69,6 @@
         });
     </script>
     
-    <SCRIPT type="text/javascript">
-        <!--
-        var curMenu = null, zTree_Menu = null;
-        var setting = {
-            view: {
-                showLine: false,
-                showIcon: false,
-                selectedMulti: false,
-                dblClickExpand: false,
-                addDiyDom: addDiyDom
-            },
-            data: {
-                simpleData: {
-                    enable: true
-                }
-            },
-            callback: {
-                beforeClick: beforeClick
-            }
-        };
-
-        var zNodes =[
-            @foreach (SysController item in ViewBag.Menu)
-                {
-                    @Html.Raw(string.Format("{{ id: '{0}', pId: '{1}', name: '{2}', url: '{3}', target: '{4}'}},",item.SystemId,item.SystemId.Substring(0,item.SystemId.Length-3),item.Name,"#"+ Url.Action(item.ActionName, item.ControllerName, new { id = item.Parameter }), "_self"))
-                }
-        ];
-
-        function addDiyDom(treeId, treeNode) {
-            var switchObj = $("#" + treeNode.tId + "_switch"),
-                icoObj = $("#" + treeNode.tId + "_ico");
-            switchObj.remove();
-            icoObj.before(switchObj);
-        }
-
-        function beforeClick(treeId, treeNode) {
-            if (treeNode.level == 0 ) {
-                var zTree = $.fn.zTree.getZTreeObj("leftmenutree");
-                zTree.expandNode(treeNode);
-                return false;
-            }
-            return true;
-        }
-
-        $(document).ready(function(){
-            var treeObj = $("#leftmenutree");
-            $.fn.zTree.init(treeObj, setting, zNodes);
-            zTree_Menu = $.fn.zTree.getZTreeObj("leftmenutree");
-            curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
-            zTree_Menu.selectNode(curMenu);
-            treeObj.addClass("showIcon");
-
-        });
-        //-->
-    </SCRIPT>
 }
 
 <div class="wrapper">
@@ -191,43 +135,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6">
-                    <!-- START widget-->
-                    <div class="panel ">
-                        <div class="panel-heading">
-                            <div class="panel-title">网站用户注册分析</div>
-                        </div>
-
-                        <div class="panel-body">
-                            <div>
-                                @{
-                                    var sysUserChart = new LineChart();
-
-                                    sysUserChart.ChartConfiguration.Responsive = true;
-
-                                    Dictionary<string, double> sysUserCountDay = ViewBag.SysUserCountDay;
-
-                                    sysUserChart.ComplexData.Labels.AddRange(sysUserCountDay.Keys);
-
-                                    sysUserChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
-                                    {
-                                        new ComplexDataset
-                                        {
-                                            Data = sysUserCountDay.Values.ToList(),
-                                            FillColor = "rgba(151,187,205,0.2)",
-                                            StrokeColor = "rgba(151,187,205,1)",
-                                            PointColor = "rgba(151,187,205,1)",
-                                            PointHighlightStroke = "rgba(220,220,220,1)"
-                                        }
-                                    });
-                                }
-                                <canvas id="sysUserChart" style="width: 100%; height: 200px"></canvas>
-                                @Html.CreateChart("sysUserChart", sysUserChart)
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END widget-->
-                </div>
+               
 
                 <div class="col-lg-6">
                     <!-- START widget-->
@@ -238,30 +146,34 @@
 
                         <div class="panel-body">
                             <div>
-                                @{
-                                    var sysUserLogChart = new LineChart();
-
-                                    sysUserLogChart.ChartConfiguration.Responsive = true;
-
-                                    Dictionary<string, double> sysUserLogCountDay = ViewBag.SysUserLogCountDay;
-
-                                    sysUserLogChart.ComplexData.Labels.AddRange(sysUserLogCountDay.Keys);
-
-                                    sysUserLogChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
-                                    {
-                                        new ComplexDataset
+                              
+                                <canvas id="sysUserLogChart" ></canvas>
+                             
+                                <script>
+                                    @{
+                                        var SysUserLogCountDay = ViewBag.SysUserLogCountDay as Dictionary<string, int>;
+                                    }
+                                    var chart = new Chart(document.getElementById('sysUserLogChart').getContext('2d'),
                                         {
-                                            Data = sysUserLogCountDay.Values.ToList(),
-                                            FillColor = "rgba(151,187,205,0.2)",
-                                            StrokeColor = "rgba(151,187,205,1)",
-                                            PointColor = "rgba(151,187,205,1)",
-                                            PointHighlightStroke = "rgba(220,220,220,1)"
-                                        }
-                                    });
+                                            // The type of chart we want to create
+                                            type: 'line',
 
-                                }
-                                <canvas id="sysUserLogChart" style="width: 100%; height: 200px"></canvas>
-                                @Html.CreateChart("sysUserLogChart", sysUserLogChart)
+                                            // The data for our dataset
+                                            data: {
+                                                labels: @Html.Raw(JsonConvert.SerializeObject(SysUserLogCountDay.Keys)),
+                                                datasets: [
+                                                    {
+                                                        label: "使用次数",
+                                                        data:
+                                                            @Html.Raw(JsonConvert.SerializeObject(SysUserLogCountDay.Values))
+                                                    }
+                                                ]
+                                            },
+
+                                            // Configuration options go here
+                                            options: {}
+                                        });
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -277,30 +189,32 @@
 
                         <div class="panel-body">
                             <div>
-                                @{
-                                    var sysUserLogDayDurationChart = new LineChart();
-
-                                    sysUserLogDayDurationChart.ChartConfiguration.Responsive = true;
-
-                                    Dictionary<string, double> sysUserLogDayDuration = ViewBag.SysUserLogDayDuration;
-
-                                    sysUserLogDayDurationChart.ComplexData.Labels.AddRange(sysUserLogDayDuration.Keys);
-
-                                    sysUserLogDayDurationChart.ComplexData.Datasets.AddRange(new List<ComplexDataset>
-                                    {
-                                        new ComplexDataset
+                                <canvas id="myChart"></canvas>
+                                <script>
+                                    @{
+                                        var sysUserLogDayDuration = ViewBag.SysUserLogDayDuration as Dictionary<string, double>;
+                                    }
+                                    var chart = new Chart(document.getElementById('myChart').getContext('2d'),
                                         {
-                                            Data = sysUserLogDayDuration.Values.ToList(),
-                                            FillColor = "rgba(151,187,205,0.2)",
-                                            StrokeColor = "rgba(151,187,205,1)",
-                                            PointColor = "rgba(151,187,205,1)",
-                                            PointHighlightStroke = "rgba(220,220,220,1)"
-                                        }
-                                    });
+                                            // The type of chart we want to create
+                                            type: 'line',
 
-                                }
-                                <canvas id="SysUserLogDayDurationChart" style="width: 100%; height: 200px"></canvas>
-                                @Html.CreateChart("SysUserLogDayDurationChart", sysUserLogDayDurationChart)
+                                            // The data for our dataset
+                                            data: {
+                                                labels: @Html.Raw(JsonConvert.SerializeObject(sysUserLogDayDuration.Keys)),
+                                                datasets: [
+                                                    {
+                                                        label: "平均执行时长（秒）",
+                                                        data:
+                                                            @Html.Raw(JsonConvert.SerializeObject(sysUserLogDayDuration.Values))
+                                                    }
+                                                ]
+                                            },
+
+                                            // Configuration options go here
+                                            options: {}
+                                        });
+                                </script>
                             </div>
                         </div>
                     </div>
