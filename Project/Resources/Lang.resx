@@ -1785,4 +1785,7 @@
   <data name="ViewDuration" xml:space="preserve">
     <value>视图(s)</value>
   </data>
+  <data name="IsSystem" xml:space="preserve">
+    <value>系统</value>
+  </data>
 </root>

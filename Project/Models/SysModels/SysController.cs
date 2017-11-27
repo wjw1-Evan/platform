@@ -16,6 +16,7 @@ namespace Models.SysModels
             Enable = true;
             Ico = "fa-list-ul";
             SysActionsId = new List<string>();
+            IsSystem = false;
         }
 
         [Display(Name = "Area")]
@@ -42,6 +43,8 @@ namespace Models.SysModels
         [MaxLength(50)]
         [Required]
         public string SystemId { get; set; }
+
+        public bool IsSystem { get; set; }
 
         public bool Display { get; set; }
 

@@ -64,6 +64,7 @@ namespace Web.Areas.Platform.Controllers
                                              a.ActionName,
                                              a.Parameter,
                                              a.SystemId,
+                                             a.IsSystem,
                                              a.Display,
                                              a.Ico,
                                              a.Enable,

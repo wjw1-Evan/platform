@@ -207,14 +207,14 @@ namespace Services.Migrations
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "系统设置",
                     SystemId = "950",
-                    Ico = "fa-cog"
+                    Ico = "fa-cog",IsSystem = true
                 }, new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
                     Name = "系统参数",
                     ControllerName = "WebConfigAppSetting",
                     SystemId = "950200",
-                    Ico = "fa-cubes"
+                    Ico = "fa-cubes",IsSystem = true
                 },
                 new SysController
                 {
@@ -222,7 +222,7 @@ namespace Services.Migrations
                     Name = "操作类型",
                     ControllerName = "SysAction",
                     SystemId = "950300",
-                    Ico = "fa-th-large"
+                    Ico = "fa-th-large",IsSystem = true
                 },
                 new SysController
                 {
@@ -230,7 +230,7 @@ namespace Services.Migrations
                     Name = "系统模块",
                     ControllerName = "SysController",
                     SystemId = "950400",
-                    Ico = "fa-puzzle-piece"
+                    Ico = "fa-puzzle-piece",IsSystem = true
                 },
                 new SysController
                 {
@@ -238,7 +238,7 @@ namespace Services.Migrations
                     Name = "帮助信息",
                     ControllerName = "SysHelp",
                     SystemId = "950900",
-                    Ico = "fa-info-circle"
+                    Ico = "fa-info-circle",IsSystem = true
                 },
                 new SysController
                 {
@@ -246,7 +246,7 @@ namespace Services.Migrations
                     Name = "帮助信息分类",
                     ControllerName = "SysHelpClass",
                     SystemId = "950950",
-                    Ico = "fa-info-circle"
+                    Ico = "fa-info-circle",IsSystem = true
                 },
              
                 new SysController
@@ -255,7 +255,7 @@ namespace Services.Migrations
                     Name = "系统日志",
                     ControllerName = "SysLog",
                     SystemId = "950995",
-                    Ico = "fa-file-text-o"
+                    Ico = "fa-file-text-o",IsSystem = true
                 },
                 #endregion
             };
