@@ -1788,4 +1788,7 @@
   <data name="IsSystem" xml:space="preserve">
     <value>系统</value>
   </data>
+  <data name="MachineName" xml:space="preserve">
+    <value>机器名称</value>
+  </data>
 </root>

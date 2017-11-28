@@ -10,7 +10,11 @@ namespace Models.SysModels
         public SysLog()
         {
             CreatedDateTime = DateTimeOffset.Now;
+            MachineName = Environment.MachineName;
         }
+
+        [MaxLength(128)]
+        public string MachineName { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Log { get; set; }

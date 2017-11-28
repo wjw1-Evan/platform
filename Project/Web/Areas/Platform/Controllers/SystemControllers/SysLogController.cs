@@ -33,6 +33,7 @@ namespace Web.Areas.Platform.Controllers
         /// <param name="keyword"></param>
         /// <param name="ordering"></param>
         /// <param name="pageIndex"></param>
+        /// <param name="export"></param>
         /// <param name="search"></param>
         /// <returns></returns>
         public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
@@ -43,6 +44,7 @@ namespace Web.Areas.Platform.Controllers
                                      a =>
                                      new
                                      {
+                                         a.MachineName,
                                          a.Log,
                                          a.CreatedDateTime
                                      }).Search(keyword);

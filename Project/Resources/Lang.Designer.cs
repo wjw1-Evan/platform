@@ -2626,6 +2626,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   查找类似 机器名称 的本地化字符串。
+        /// </summary>
+        public static string MachineName {
+            get {
+                return ResourceManager.GetString("MachineName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 生产厂家 的本地化字符串。
         /// </summary>
         public static string Manufacturer {
