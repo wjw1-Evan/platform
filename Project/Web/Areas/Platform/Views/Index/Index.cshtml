@@ -168,6 +168,7 @@
                                                 datasets: [
                                                     {
                                                         label: "使用次数",
+                                                        borderColor: "rgba(151,187,205,0.8)", backgroundColor: "rgba(151,187,205,0.3)",
                                                         data:
                                                             @Html.Raw(JsonConvert.SerializeObject(SysUserLogCountDay.Values))
                                                     }
@@ -208,7 +209,9 @@
                                                 labels: @Html.Raw(JsonConvert.SerializeObject(sysUserLogDayDuration.Keys)),
                                                 datasets: [
                                                     {
+                                                        
                                                         label: "平均执行时长（秒）",
+                                                        borderColor: "rgba(151,187,205,0.8)", backgroundColor: "rgba(151,187,205,0.3)",
                                                         data:
                                                             @Html.Raw(JsonConvert.SerializeObject(sysUserLogDayDuration.Values))
                                                     }
