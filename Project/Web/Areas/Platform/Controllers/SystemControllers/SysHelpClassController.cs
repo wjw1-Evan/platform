@@ -10,11 +10,19 @@ using Web.Helpers;
 
 namespace Web.Areas.Platform.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SysHelpClassController : Controller
     {
         private readonly ISysHelpClassService _iSysHelpClassService;
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="iSysHelpClassService"></param>
+        /// <param name="unitOfWork"></param>
         public SysHelpClassController(ISysHelpClassService iSysHelpClassService, IUnitOfWork unitOfWork)
         {
             _iSysHelpClassService = iSysHelpClassService;
@@ -24,6 +32,15 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/iSysHelpClass/
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="ordering"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="export"></param>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public ActionResult Index(string keyword, string ordering, int pageIndex = 1, bool export = false, bool search = false)
         {
             var model =
@@ -57,12 +74,21 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/iSysHelpClass/Details/5
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(object id)
         {
             var item = _iSysHelpClassService.GetById(id);
             return View(item);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return RedirectToAction("Edit");
@@ -71,6 +97,11 @@ namespace Web.Areas.Platform.Controllers
         //
         // GET: /Platform/iSysHelpClass/Edit/5
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(string id)
         {
             var item = new SysHelpClass();
@@ -84,6 +115,12 @@ namespace Web.Areas.Platform.Controllers
         //
         // POST: /Platform/iSysHelpClass/Edit/5
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> Edit(string id, SysHelpClass collection)
         {
@@ -103,6 +140,11 @@ namespace Web.Areas.Platform.Controllers
         //
         // POST: /Platform/iSysHelpClass/Delete/5
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<ActionResult> Delete(object id)
         {

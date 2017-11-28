@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Common;
 using IServices.ISysServices;
 using Models;
 using Models.Infrastructure;
@@ -25,21 +24,46 @@ namespace Services.Infrastructure
             _dbset = _dataContext.Set<T>();
         }
 
+        /// <summary>
+        /// sql 命令
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns>影响的记录数</returns>
         public virtual int SqlCommand(string sql, params object[] parameters)
         {
             return _dataContext.Database.ExecuteSqlCommand(sql, parameters);
         }
 
+        /// <summary>
+        /// sql 命令
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns>影响的记录数</returns>
         public virtual Task<int> SqlCommandAsync(string sql, params object[] parameters)
         {
             return _dataContext.Database.ExecuteSqlCommandAsync(sql, parameters);
         }
 
+        /// <summary>
+        /// sql查询
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns>原类型</returns>
         public virtual DbRawSqlQuery<T> SqlQuery(string sql, params object[] parameters)
         {
             return _dataContext.Database.SqlQuery<T>(sql, parameters);
         }
 
+        /// <summary>
+        /// sql查询
+        /// </summary>
+        /// <typeparam name="T1">返回值类型</typeparam>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <returns>新类型</returns>
         public virtual DbRawSqlQuery<T1> SqlQuery<T1>(string sql, params object[] parameters)
         {
             return _dataContext.Database.SqlQuery<T1>(sql, parameters);
@@ -51,21 +75,18 @@ namespace Services.Infrastructure
         /// <param name="entity"></param>
         public virtual void Add(T entity)
         {
-            var dbSetBase = entity as IDbSetBase;
-
-            if (dbSetBase != null)
+            if (entity is IDbSetBase dbSetBase)
             {
                 dbSetBase.CreatedBy = _userInfo.UserId;
                 entity = dbSetBase as T;
             }
 
-            var ienterprise = entity as IEnterprise;
-
-            if (ienterprise != null && string.IsNullOrEmpty(ienterprise.EnterpriseId))
+            if (entity is IEnterprise ienterprise && string.IsNullOrEmpty(ienterprise.EnterpriseId))
             {
                 ienterprise.EnterpriseId = _userInfo.EnterpriseId;
                 entity = ienterprise as T;
             }
+
             _dbset.Add(entity);
         }
 
@@ -77,9 +98,7 @@ namespace Services.Infrastructure
         {
             _dbset.Attach(entity);
 
-            var dbSetBase = entity as IDbSetBase;
-
-            if (dbSetBase != null)
+            if (entity is IDbSetBase dbSetBase)
             {
                 var databaseValues = _dataContext.Entry(dbSetBase).GetDatabaseValues();
 
@@ -92,9 +111,7 @@ namespace Services.Infrastructure
                 entity = dbSetBase as T;
             }
 
-            var ienterprise = entity as IEnterprise;
-
-            if (ienterprise != null)
+            if (entity is IEnterprise ienterprise)
             {
                 var databaseValues = _dataContext.Entry(ienterprise).GetDatabaseValues();
 
@@ -131,7 +148,7 @@ namespace Services.Infrastructure
         /// <summary>
         ///  删除
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">该用户所在企业内数据</param>
         /// <param name="remove">物理删除标记 默认false</param>
         public virtual void Delete(object id, bool remove = false)
         {
@@ -142,22 +159,14 @@ namespace Services.Infrastructure
         /// <summary>
         /// 删除
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">全部数据范围</param>
         /// <param name="remove">物理删除标记 默认false</param>
         public virtual void Delete(T item, bool remove = false)
         {
-            var dbSetBase = item as IDbSetBase;
-
-            var iEnterprise = item as IEnterprise;
-
-            if (iEnterprise?.EnterpriseId == _userInfo.EnterpriseId || iEnterprise == null)//有权操作
-            {
-                if (!remove && dbSetBase != null)//标记删除
+            if (!remove && item is IDbSetBase dbSetBase)//标记删除
                     dbSetBase.Deleted = true;
                 else
                     _dbset.Remove(item);
-            }
-
         }
 
         /// <summary>
@@ -176,15 +185,13 @@ namespace Services.Infrastructure
         /// <summary>
         /// 获取单个记录
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">该用户所在企业内</param>
         /// <returns></returns>
         public virtual T GetById(object id)
         {
             var item = _dbset.Find(id);
 
-            var iEnterprise = item as IEnterprise;
-
-            if (iEnterprise != null && iEnterprise.EnterpriseId != _userInfo.EnterpriseId) return null;
+            if (item is IEnterprise iEnterprise && iEnterprise.EnterpriseId != _userInfo.EnterpriseId) return null;
 
             return item;
         }
@@ -231,8 +238,6 @@ namespace Services.Infrastructure
 
             return model;
         }
-
-
 
     }
 

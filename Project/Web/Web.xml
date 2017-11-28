@@ -54,6 +54,64 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Web.Areas.Platform.Controllers.SysHelpClassController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpClassController.#ctor(IServices.ISysServices.ISysHelpClassService,IServices.Infrastructure.IUnitOfWork)">
+            <summary>
+            
+            </summary>
+            <param name="iSysHelpClassService"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpClassController.Index(System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="keyword"></param>
+            <param name="ordering"></param>
+            <param name="pageIndex"></param>
+            <param name="export"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpClassController.Details(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpClassController.Create">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpClassController.Edit(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpClassController.Edit(System.String,Models.SysModels.SysHelpClass)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.SysHelpClassController.Delete(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:Web.Areas.Platform.Controllers.IndexController">
             <summary>
             
