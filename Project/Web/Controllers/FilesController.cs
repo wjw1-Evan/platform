@@ -1,7 +1,6 @@
 ﻿using ImageProcessor;
 using ImageProcessor.Imaging;
 using IServices.ISysServices;
-using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using System;
 using System.Collections.Generic;
@@ -124,7 +123,7 @@ namespace Web.Controllers
 
                 if (ConfigurationManager.AppSettings["StorageConnectionString"] != null)
                 {
-                    var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+                    var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
                     var blobClient = storageAccount.CreateCloudBlobClient();
 
