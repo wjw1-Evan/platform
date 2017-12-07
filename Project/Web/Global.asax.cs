@@ -54,6 +54,11 @@ namespace Web
                 taskInterval = 60; //秒
             }
 
+            //// 同步多服务器的启动时间
+            //var startDateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, 0).AddMinutes(1);
+
+            //_objTimer = new System.Threading.Timer(onTimedEvent.Run, Locko, (startDateTime - DateTime.Now), new TimeSpan(0, 0, 0, taskInterval));
+
             _objTimer = new System.Threading.Timer(onTimedEvent.Run, Locko, new TimeSpan(0, 0, 0, taskInterval), new TimeSpan(0, 0, 0, taskInterval));
 
         }

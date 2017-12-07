@@ -1,7 +1,6 @@
 ﻿using ImageProcessor;
 using ImageProcessor.Imaging;
 using IServices.ISysServices;
-using Microsoft.WindowsAzure.Storage;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,25 +11,50 @@ using System.Web.Mvc;
 
 namespace Web.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Authorize]
     public class FilesController : Controller
     {
         private readonly IUserInfo _iUserInfo;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="iUserInfo"></param>
         public FilesController(IUserInfo iUserInfo)
         {
             _iUserInfo = iUserInfo;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public enum Filetypes
         {
+            /// <summary>
+            /// 
+            /// </summary>
             全部 = 0,
+            /// <summary>
+            /// 
+            /// </summary>
             图片 = 1
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class UserUploadFile
         {
+            /// <summary>
+            /// 
+            /// </summary>
             public string Filename { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
             public string Url { get; set; }
         }
 
@@ -121,24 +145,24 @@ namespace Web.Controllers
 
                 //上传到存储 或者网站目录
 
-                if (ConfigurationManager.AppSettings["StorageConnectionString"] != null)
-                {
-                    var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
+                //if (ConfigurationManager.AppSettings["StorageConnectionString"] != null)
+                //{
+                //    var storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-                    var blobClient = storageAccount.CreateCloudBlobClient();
+                //    var blobClient = storageAccount.CreateCloudBlobClient();
 
-                    var container = blobClient.GetContainerReference(uploadFileRoot);
+                //    var container = blobClient.GetContainerReference(uploadFileRoot);
 
-                    var blockBlob = container.GetBlockBlobReference(_iUserInfo.UserId + "/" + DateTimeOffset.Now.Year + "/" + DateTimeOffset.Now.Month + "/" + filename);
+                //    var blockBlob = container.GetBlockBlobReference(_iUserInfo.UserId + "/" + DateTimeOffset.Now.Year + "/" + DateTimeOffset.Now.Month + "/" + filename);
 
-                    outStream.Position = 0;
+                //    outStream.Position = 0;
 
-                    blockBlob.UploadFromStream(outStream);
+                //    blockBlob.UploadFromStream(outStream);
 
-                    fileurllist.Add(new UserUploadFile { Filename = blockBlob.Name, Url = blockBlob.Uri.ToString() });
-                }
-                else
-                {
+                //    fileurllist.Add(new UserUploadFile { Filename = blockBlob.Name, Url = blockBlob.Uri.ToString() });
+                //}
+                //else
+                //{
                     var url = "/" + uploadFileRoot + "/" + _iUserInfo.UserId + "/" + DateTimeOffset.Now.Year + "/" + DateTimeOffset.Now.Month + "/";
 
                     var path = Server.MapPath(url);
@@ -156,7 +180,7 @@ namespace Web.Controllers
 
                     fileurllist.Add(new UserUploadFile { Filename = file.FileName, Url = url + filename });
 
-                }
+                //}
 
             }
 

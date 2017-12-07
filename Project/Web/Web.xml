@@ -650,6 +650,47 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Web.Controllers.FilesController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.FilesController.#ctor(IServices.ISysServices.IUserInfo)">
+            <summary>
+            
+            </summary>
+            <param name="iUserInfo"></param>
+        </member>
+        <member name="T:Web.Controllers.FilesController.Filetypes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Web.Controllers.FilesController.Filetypes.全部">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Web.Controllers.FilesController.Filetypes.图片">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Web.Controllers.FilesController.UserUploadFile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Controllers.FilesController.UserUploadFile.Filename">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Controllers.FilesController.UserUploadFile.Url">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Web.Controllers.FilesController.UploadFile(Web.Controllers.FilesController.Filetypes,System.Boolean,ImageProcessor.Imaging.ResizeMode)">
             <summary>
             上传文件
