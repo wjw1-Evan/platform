@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Diagnostics;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.SysModels;
 using Models.TaskModels;
@@ -15,7 +16,7 @@ namespace Services
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
             Database.CommandTimeout = 60;
 #if DEBUG
-            Database.Log = log => Log.Write("EF", log);
+            Database.Log = log => Trace.WriteLine(log, "EF");
 #endif
         }
 
