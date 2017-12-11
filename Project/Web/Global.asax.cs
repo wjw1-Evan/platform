@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data.Entity;
 using System.Globalization;
 using System.Threading;
 using System.Web.Optimization;
@@ -8,6 +9,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.AspNet.Identity;
+using Services;
 using Web.Helpers;
 
 namespace Web
@@ -25,6 +27,9 @@ namespace Web
         /// </summary>
         protected void Application_Start()
         {
+
+            // 更新数据库到最新的版本
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
 
             //SqlDependency.Start(ApplicationDbContext.Create().Database.Connection.ConnectionString);
 

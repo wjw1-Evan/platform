@@ -12,8 +12,8 @@ namespace Services
         public ApplicationDbContext()
             : base("DefaultConnection", false)
         {
-            // 更新数据库到最新的版本
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
+           // // 更新数据库到最新的版本
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Services.Migrations.Configuration>());
             Database.CommandTimeout = 60;
             Database.Log = log => Log.Write("EF", log);
         }
