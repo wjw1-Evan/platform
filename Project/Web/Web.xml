@@ -1163,6 +1163,11 @@
             
             </summary>
         </member>
+        <member name="M:Web.SignalR.Messenger.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Web.SignalR.Messenger.SendMessage(System.String,System.String)">
             <summary>
             

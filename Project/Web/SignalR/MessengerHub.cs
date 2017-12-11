@@ -121,6 +121,9 @@ namespace Web.SignalR
 
         private const string GroupId = "Messenger";
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Messenger()
         {
             _iSysUserService = DependencyResolver.Current.GetService<ISysUserService>();

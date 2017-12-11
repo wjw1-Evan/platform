@@ -21,7 +21,7 @@ namespace Web.Controllers.Tests
         {
 
 
-           // var action = await new AccountController().Login(new Models.LoginViewModel() { UserName = "TestUser", Password = "test@123" }, null);
+           var action = await new AccountController().Login(new Models.LoginViewModel() { UserName = "TestUser", Password = "test@123" }, null);
 
 
 
