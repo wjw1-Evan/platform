@@ -458,9 +458,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Scripts\angular-mocks.js" />
-    <Content Include="Scripts\angular.js" />
-    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.init.js" />
     <Content Include="Scripts\app\modules\bootstrap-start.js" />
     <Content Include="Scripts\app\modules\chart-easypie.js" />
@@ -881,7 +878,6 @@
     <Content Include="Areas\Platform\Views\Shared\Search_Input_System.DateTimeOffset.cshtml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - Web Deploy.pubxml" />
-    <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
