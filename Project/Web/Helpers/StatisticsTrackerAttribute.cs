@@ -12,10 +12,10 @@ using System.Web.Mvc;
 
 namespace Web.Helpers
 {
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class StatisticsTrackerAttribute : System.Web.Mvc.ActionFilterAttribute
     {
         private DateTime _actiondatetimenow;
@@ -111,7 +111,7 @@ namespace Web.Helpers
     /// <summary>
     /// 
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class WebApiTrackerAttribute : System.Web.Http.Filters.ActionFilterAttribute
     {
         private DateTime _datetimenow;
