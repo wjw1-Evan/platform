@@ -1,11 +1,11 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
-using EntityFramework.Caching;
+﻿using EntityFramework.Caching;
 using EntityFramework.Extensions;
 using IServices.ISysServices;
 using Models.SysModels;
 using Services.Infrastructure;
+using System;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Services.SysServices
 {
@@ -16,7 +16,7 @@ namespace Services.SysServices
         {
         }
 
-        public bool CheckSysUserSysRoleSysControllerSysActions( string userid, string area,
+        public bool CheckSysUserSysRoleSysControllerSysActions(string userid, string area,
             string action,
             string controller)
         {
@@ -26,7 +26,7 @@ namespace Services.SysServices
                                            b =>
                                                b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
                                                b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&
-                                               b.SysControllerSysAction.SysAction.ActionName.Equals(action))).FromCacheAsync(CachePolicy.WithSlidingExpiration(new TimeSpan(0, 0, 1, 0))).Result.Any();
+                                               b.SysControllerSysAction.SysAction.ActionName.Equals(action))).Select(a => a.Id).FromCacheAsync(CachePolicy.WithSlidingExpiration(new TimeSpan(0, 0, 1, 0))).Result.Any();
         }
     }
 }
