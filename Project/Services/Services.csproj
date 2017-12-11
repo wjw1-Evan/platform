@@ -106,10 +106,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{4130c9f9-443f-4402-b8da-6f53eba9d3c7}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IServices\IServices.csproj">
       <Project>{0bf83c78-1e12-4067-bf41-c887c0e4936e}</Project>
       <Name>IServices</Name>

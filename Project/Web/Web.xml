@@ -727,6 +727,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Web.Extensions.ExceptionExtensions">
+            <summary>
+            异常信息相关扩展
+            </summary>
+        </member>
+        <member name="M:Web.Extensions.ExceptionExtensions.GetInnerException(System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
         <member name="T:Web.WebApiApplication">
             <summary>
             

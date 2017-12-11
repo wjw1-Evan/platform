@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
 
-namespace Common
+
+namespace Web.Extensions
 {
-    public static class Log
+    /// <summary>
+    /// 异常信息相关扩展
+    /// </summary>
+    public static class ExceptionExtensions
     {
-        public static void Write(string category, string message)
-        {
-            //输出到 Trace.axd
-            Trace.WriteLine(message, category);
-        }
-
         /// <summary>
         /// 
         /// </summary>
