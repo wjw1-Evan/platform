@@ -4,6 +4,22 @@
         <name>Web</name>
     </assembly>
     <members>
+        <member name="T:Web.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Web.Startup.PublicClientId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Startup.ConfigureAuth(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
         <member name="T:Web.Areas.Api.v1.DefaultController">
             <summary>
             默认
