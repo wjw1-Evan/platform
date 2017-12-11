@@ -1,11 +1,12 @@
 ﻿using IServices.Infrastructure;
 using Models.SysModels;
+using System.Threading.Tasks;
 
 namespace IServices.ISysServices
 {
-    public interface ISysRoleService :  IRepository<SysRole>
+    public interface ISysRoleService : IRepository<SysRole>
     {
-        bool CheckSysUserSysRoleSysControllerSysActions(string userid, string area, string action,
+        Task<bool> CheckSysUserSysRoleSysControllerSysActions(string userid, string area, string action,
             string controller);
 
     }

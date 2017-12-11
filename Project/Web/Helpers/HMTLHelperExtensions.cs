@@ -1,16 +1,19 @@
-﻿using System;
+﻿using EntityFramework.Extensions;
+using IServices.ISysServices;
+using Models.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.WebPages;
-using EntityFramework.Extensions;
-using IServices.ISysServices;
-using Models.Infrastructure;
 
 namespace Web.Helpers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class HtmlHelperExtensions
     {
 
@@ -23,13 +26,11 @@ namespace Web.Helpers
         /// <returns></returns>
         public static IList<IUserDictionary> ToSystemIdSelectList<T>(this IEnumerable<T> model, string id)
         {
-            var queryable = model as IEnumerable<IUserDictionary>;
-
-            if (queryable == null) return null;
+            if (!(model is IEnumerable<IUserDictionary> queryable)) return null;
 
             var systemIdSelectList = queryable as IList<IUserDictionary> ?? queryable.ToList();
 
-            foreach (var item in systemIdSelectList.Where(a=>a.Enable))
+            foreach (var item in systemIdSelectList.Where(a => a.Enable))
             {
                 item.Selected = item.Id == id;
             }
@@ -38,6 +39,11 @@ namespace Web.Helpers
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public static RouteValueDictionary ToRouteValueDictionary(this HttpRequestBase model)
         {
             var routevalues = new RouteValueDictionary();
@@ -54,6 +60,12 @@ namespace Web.Helpers
             return routevalues;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
         public static bool CheckControllerAction(this HtmlHelper html, string action)
         {
             var area = (string)html.ViewContext.RouteData.DataTokens["area"];
@@ -64,9 +76,25 @@ namespace Web.Helpers
 
             var userInfo = DependencyResolver.Current.GetService<IUserInfo>();
 
-            return sysRoleService.CheckSysUserSysRoleSysControllerSysActions(userInfo.UserId, area, action,controller);
+            var cache = HttpContext.Current.Cache.Get(userInfo.UserId + area + action + controller);
+
+            if (cache != null && cache is bool aa) return aa;
+
+            var check = sysRoleService.CheckSysUserSysRoleSysControllerSysActions(userInfo.UserId, area, action,
+                controller).Result;
+
+            HttpContext.Current.Cache.Insert(userInfo.UserId + area + action + controller, check, null, System.Web.Caching.Cache.NoAbsoluteExpiration, new TimeSpan(0, 0, 1, 0));
+
+            return check;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="controller"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
         public static string IsActive(this HtmlHelper html, string controller = null, string action = null)
         {
             var activeClass = "active"; // change here if you another name to activate sidebar items
@@ -83,6 +111,11 @@ namespace Web.Helpers
             return controller == actualController && action == actualAction ? activeClass : String.Empty;
         }
 
+        /// <summary>
+        /// 当前控制器显示名称
+        /// </summary>
+        /// <param name="html"></param>
+        /// <returns></returns>
         public static string ThisControllerName(this HtmlHelper html)
         {
 
@@ -136,7 +169,7 @@ namespace Web.Helpers
                 return "";
             }
 
-            var _outString = "";
+            var outString = "";
             var _len = 0;
             for (var i = 0; i < str.Length; i++)
             {
@@ -157,7 +190,7 @@ namespace Web.Helpers
 
                 try
                 {
-                    _outString += str.Substring(i, 1);
+                    outString += str.Substring(i, 1);
                 }
                 catch
                 {
@@ -168,11 +201,11 @@ namespace Web.Helpers
                     break;
                 }
             }
-            if (str != _outString && flag == true) //判断是否添加省略号
+            if (str != outString && flag) //判断是否添加省略号
             {
-                _outString += "...";
+                outString += "...";
             }
-            return _outString;
+            return outString;
         }
 
         /// <summary>

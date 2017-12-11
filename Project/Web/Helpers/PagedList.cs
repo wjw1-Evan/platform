@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using EntityFramework.Extensions;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using EntityFramework.Extensions;
 
 namespace Web.Helpers
 {
@@ -31,14 +31,14 @@ namespace Web.Helpers
         bool IsLastPage { get; set; }
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class PagedList<T> : List<T>, IPagedList where T : class
     {
+        /// <inheritdoc />
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="source"></param>
         /// <param name="index"></param>
@@ -59,23 +59,23 @@ namespace Web.Helpers
             AddRange(data);
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// 
         /// </summary>
         public int TotalCount { get; set; }
 
+        /// <inheritdoc />
         /// <summary>
-        /// 
         /// </summary>
         public int PageIndex { get; set; }
 
+        /// <inheritdoc />
         /// <summary>
-        /// 
         /// </summary>
         public int PageSize { get; set; }
 
+        /// <inheritdoc />
         /// <summary>
-        /// 
         /// </summary>
         public bool IsLastPage { get; set; }
 
