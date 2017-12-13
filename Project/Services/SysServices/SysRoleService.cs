@@ -19,28 +19,14 @@ namespace Services.SysServices
             string action,
             string controller)
         {
-
-            //var re=GetAll(a => a.Users.Any(b => b.UserId.Equals(userid)) &&
-            //                             a.SysRoleSysControllerSysActions.Any(
-            //                                 b =>
-            //                                     b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
-            //                                     b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&
-            //                                     b.SysControllerSysAction.SysAction.ActionName.Equals(action))).Select(a => a.Id).FromCacheAsync(CachePolicy.WithSlidingExpiration(new TimeSpan(0, 0, 1, 0))).Result.Any();
-
-
-
-
-            var re =
-                GetAll(a => a.Users.Any(b => b.UserId.Equals(userid)) &&
-                            a.SysRoleSysControllerSysActions.Any(
-                                b =>
-                                    b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
-                                    b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&
-                                    b.SysControllerSysAction.SysAction.ActionName.Equals(action))).Cacheable().AnyAsync();
-
+            var re = GetAll(a => a.Users.Any(b => b.UserId.Equals(userid)) &&
+                             a.SysRoleSysControllerSysActions.Any(
+                                 b =>
+                                     b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
+                                     b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&
+                                     b.SysControllerSysAction.SysAction.ActionName.Equals(action))).Cacheable().AnyAsync();
 
             return re;
-
         }
     }
 }
