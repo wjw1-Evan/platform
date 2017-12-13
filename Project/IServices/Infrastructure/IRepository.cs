@@ -8,13 +8,6 @@ namespace IServices.Infrastructure
 {
     public interface IRepository<T> where T : class
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns>影响的记录行数</returns>
-        int SqlCommand(string sql, params object[] parameters);
 
         /// <summary>
         /// 

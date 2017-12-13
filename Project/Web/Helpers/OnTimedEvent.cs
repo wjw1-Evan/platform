@@ -51,19 +51,18 @@ namespace Web.Helpers
         {
             lock (state)
             {
-                if (int.TryParse(ConfigurationManager.AppSettings["LogValidity"], out int logValidity))
+                if (int.TryParse(ConfigurationManager.AppSettings["LogValidity"], out var logValidity))
                 {
                     //清理过期用户操作日志  限制一下每次删除的数量
                     try
                     {
-                        var re1 = _sysUserLogService.SqlCommand(
-                            "DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}",
+                        var re1 = _sysUserLogService.SqlCommandAsync("DELETE TOP(10000) FROM SysUserLogs WHERE createddatetime<{0}",
                             DateTimeOffset.Now.AddDays(-logValidity));
 
-                        if (re1 > 0)
+                        if (re1.Result > 0)
                         {
-                            _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天用户操作日志" + re1 + "行" });
-                            _unitOfWork.CommitAsync();
+                            _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天用户操作日志" + re1.Result + "行" });
+                            _unitOfWork.CommitAsync().Wait();
                         }
                     }
                     catch (Exception e)
@@ -72,19 +71,19 @@ namespace Web.Helpers
                         {
                             Log = "日志清理功能出现故障(Exception)：" + e.GetInnerException()
                         });
-                        _unitOfWork.CommitAsync();
+                        _unitOfWork.CommitAsync().Wait();
                     }
 
                     //清理过期系统日志
                     try
                     {
-                        var re3 = _iSysLogService.SqlCommand("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}",
+                        var re3 = _iSysLogService.SqlCommandAsync("DELETE TOP(10000) FROM SysLogs WHERE createddatetime<{0}",
                             DateTimeOffset.Now.AddDays(-logValidity));
 
-                        if (re3 > 0)
+                        if (re3.Result > 0)
                         {
-                            _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天系统日志" + re3 + "行" });
-                            _unitOfWork.CommitAsync();
+                            _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天系统日志" + re3.Result + "行" });
+                            _unitOfWork.CommitAsync().Wait();
                         }
                     }
                     catch (Exception e)
@@ -93,7 +92,7 @@ namespace Web.Helpers
                         {
                             Log = "日志清理功能出现故障(Exception)：" + e.GetInnerException()
                         });
-                        _unitOfWork.CommitAsync();
+                        _unitOfWork.CommitAsync().Wait();
                     }
                 }
             }

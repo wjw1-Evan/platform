@@ -30,17 +30,6 @@ namespace Services.Infrastructure
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
         /// <returns>影响的记录数</returns>
-        public virtual int SqlCommand(string sql, params object[] parameters)
-        {
-            return _dataContext.Database.ExecuteSqlCommand(sql, parameters);
-        }
-
-        /// <summary>
-        /// sql 命令
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns>影响的记录数</returns>
         public virtual Task<int> SqlCommandAsync(string sql, params object[] parameters)
         {
             return _dataContext.Database.ExecuteSqlCommandAsync(sql, parameters);
