@@ -1,6 +1,6 @@
-﻿using System.Data.Entity;
+﻿using IServices.Infrastructure;
+using System.Data.Entity;
 using System.Threading.Tasks;
-using IServices.Infrastructure;
 
 namespace Services.Infrastructure
 {
@@ -13,10 +13,6 @@ namespace Services.Infrastructure
             _dataContext = databaseFactory;
         }
 
-        public int Commit()
-        {
-            return _dataContext.SaveChanges();
-        }
 
         public Task<int> CommitAsync()
         {

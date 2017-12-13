@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using IServices.Infrastructure;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Models.SysModels;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 
 namespace Web.SignalR
@@ -55,7 +55,7 @@ namespace Web.SignalR
 
             _iSysSignalROnlineService.Save(null, new SysSignalROnline { ConnectionId = Context.ConnectionId, GroupId = GroupId });
 
-            _iUnitOfWork.Commit();
+            _iUnitOfWork.CommitAsync();
 
             return base.OnConnected();
         }
@@ -69,7 +69,7 @@ namespace Web.SignalR
         {
             _iSysSignalROnlineService.Delete(a => a.ConnectionId == Context.ConnectionId);
 
-            _iUnitOfWork.Commit();
+            _iUnitOfWork.CommitAsync();
 
             return base.OnDisconnected(stopCalled);
         }
@@ -116,7 +116,7 @@ namespace Web.SignalR
         private readonly ISysUserService _iSysUserService;// = DependencyResolver.Current.GetService<ISysUserService>();
         private readonly ISysRoleService _iSysRoleService;
         private readonly ISysBroadcastService _iSysBroadcastService;//= DependencyResolver.Current.GetService<ISysBroadcastService>();
-    private readonly ISysSignalROnlineService _iSysSignalROnlineService;//= DependencyResolver.Current.GetService<ISysSignalROnlineService>();
+        private readonly ISysSignalROnlineService _iSysSignalROnlineService;//= DependencyResolver.Current.GetService<ISysSignalROnlineService>();
         private readonly IUnitOfWork _iUnitOfWork;
 
         private const string GroupId = "Messenger";

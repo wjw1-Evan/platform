@@ -1,9 +1,9 @@
-﻿using EntityFramework.Caching;
-using EntityFramework.Extensions;
+﻿using EFSecondLevelCache;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using Models.SysModels;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http.Controllers;
@@ -81,7 +81,7 @@ namespace Web.Helpers
 
             var sysControllerSysAction =
                 sysControllerSysActionService.GetAll(a => a.SysController.ControllerName.Equals(controller) &&
-                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).Select(a => new { a.Id, SysAreaName = a.SysController.SysArea.Name, SysControllerName = a.SysController.Name, SysActionName = a.SysAction.Name }).FromCacheFirstOrDefaultAsync(CachePolicy.WithSlidingExpiration(new TimeSpan(0, 0, 1, 0))).Result;
+                            a.SysController.SysArea.AreaName.Equals(area) && a.SysAction.ActionName.Equals(action)).OrderBy(a => a.SysController.SystemId).Select(a => new { a.Id, SysAreaName = a.SysController.SysArea.Name, SysControllerName = a.SysController.Name, SysActionName = a.SysAction.Name }).Cacheable().FirstOrDefaultAsync().Result;
 
             var sysuserlog = new SysUserLog
             {

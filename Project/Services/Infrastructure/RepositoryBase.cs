@@ -1,13 +1,13 @@
-﻿using System;
+﻿using IServices.ISysServices;
+using Models;
+using Models.Infrastructure;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using IServices.ISysServices;
-using Models;
-using Models.Infrastructure;
 
 namespace Services.Infrastructure
 {
@@ -164,9 +164,9 @@ namespace Services.Infrastructure
         public virtual void Delete(T item, bool remove = false)
         {
             if (!remove && item is IDbSetBase dbSetBase)//标记删除
-                    dbSetBase.Deleted = true;
-                else
-                    _dbset.Remove(item);
+                dbSetBase.Deleted = true;
+            else
+                _dbset.Remove(item);
         }
 
         /// <summary>

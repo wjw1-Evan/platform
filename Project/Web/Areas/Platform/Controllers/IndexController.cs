@@ -1,4 +1,4 @@
-﻿using EntityFramework.Extensions;
+﻿using EFSecondLevelCache;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using System;
@@ -53,7 +53,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         public async Task<ActionResult> Index(string changesysenterprise, string loadPage = "")
         {
-            var ent = _iSysEnterpriseSysUserService.GetAll(a => a.SysUserId == _iUserInfo.UserId);
+            var ent = _iSysEnterpriseSysUserService.GetAll(a => a.SysUserId == _iUserInfo.UserId).Cacheable();
 
             if (!string.IsNullOrEmpty(changesysenterprise))
             {
@@ -70,10 +70,10 @@ namespace Web.Areas.Platform.Controllers
             ViewBag.sysEnterpriseSysUser = ent;
             ViewBag.UserId = _iUserInfo.UserId;
             ViewBag.UserName = _iUserInfo.UserName;
-            ViewBag.OffsiderbarHelp = _iSysHelpService.GetAll().ToListAsync().Result;
+            ViewBag.OffsiderbarHelp = _iSysHelpService.GetAll().Cacheable();
             ViewBag.LoadPage = loadPage;
 
-            ViewBag.sysEnterprises = new SelectList(ent.Select(a => a.SysEnterprise).Future(), "Id", "EnterpriseName", _iUserInfo.EnterpriseId);
+            ViewBag.sysEnterprises = new SelectList(ent.Select(a => a.SysEnterprise).Cacheable(), "Id", "EnterpriseName", _iUserInfo.EnterpriseId);
 
             var area = (string)RouteData.DataTokens["area"];
 
@@ -85,14 +85,14 @@ namespace Web.Areas.Platform.Controllers
                             c => c.SysRole.EnterpriseId == _iUserInfo.EnterpriseId &&
                                 c.SysRole.Users.Any(
                                     d => d.UserId == _iUserInfo.UserId))) &&
-                a.SysArea.AreaName.Equals(area)).Future();
+                a.SysArea.AreaName.Equals(area)).Cacheable();
 
 
             //近十天用户活动次数
-            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a=>a.Key).ToDictionaryAsync(a => a.Key, a => a.Count).Result;
+            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => a.Count).Result;
 
             //执行速度
-            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new {  a.Key, Duration = Math.Round(a.Average(b => b.Duration), 3) }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, b => b.Duration).Result;
+            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Duration = Math.Round(a.Average(b => b.Duration), 3) }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, b => b.Duration).Result;
 
             return View();
         }

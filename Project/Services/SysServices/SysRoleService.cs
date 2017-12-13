@@ -1,4 +1,5 @@
-﻿using IServices.ISysServices;
+﻿using EFSecondLevelCache;
+using IServices.ISysServices;
 using Models.SysModels;
 using Services.Infrastructure;
 using System.Data.Entity;
@@ -35,7 +36,7 @@ namespace Services.SysServices
                                 b =>
                                     b.SysControllerSysAction.SysController.SysArea.AreaName.Equals(area) &&
                                     b.SysControllerSysAction.SysController.ControllerName.Equals(controller) &&
-                                    b.SysControllerSysAction.SysAction.ActionName.Equals(action))).AnyAsync();
+                                    b.SysControllerSysAction.SysAction.ActionName.Equals(action))).Cacheable().AnyAsync();
 
 
             return re;

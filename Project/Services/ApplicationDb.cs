@@ -1,6 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using EFSecondLevelCache;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Models.SysModels;
 using Models.TaskModels;
@@ -157,6 +160,24 @@ namespace Services
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+
+        public override Task<int> SaveChangesAsync()
+        {
+            var changedEntityNames = ChangeTracker.Entries()
+                .Where(x => x.State == EntityState.Added ||
+                            x.State == EntityState.Modified ||
+                            x.State == EntityState.Deleted)
+                .Select(x => System.Data.Entity.Core.Objects.ObjectContext.GetObjectType(x.Entity.GetType()).FullName)
+                .Distinct()
+                .ToArray();
+
+            var result = base.SaveChangesAsync();
+
+            new EFCacheServiceProvider().InvalidateCacheDependencies(changedEntityNames);
+
+            return result;
         }
 
 

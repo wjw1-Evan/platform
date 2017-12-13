@@ -1,4 +1,4 @@
-﻿using EntityFramework.Extensions;
+﻿using EFSecondLevelCache;
 using IServices.ISysServices;
 using Models.Infrastructure;
 using System;
@@ -76,14 +76,14 @@ namespace Web.Helpers
 
             var userInfo = DependencyResolver.Current.GetService<IUserInfo>();
 
-            var cache = HttpContext.Current.Cache.Get(userInfo.UserId + area + action + controller);
+            //var cache = HttpContext.Current.Cache.Get(userInfo.UserId + area + action + controller);
 
-            if (cache != null && cache is bool aa) return aa;
+            //if (cache != null && cache is bool aa) return aa;
 
             var check = sysRoleService.CheckSysUserSysRoleSysControllerSysActions(userInfo.UserId, area, action,
                 controller).Result;
 
-            HttpContext.Current.Cache.Insert(userInfo.UserId + area + action + controller, check, null, System.Web.Caching.Cache.NoAbsoluteExpiration, new TimeSpan(0, 0, 1, 0));
+            //HttpContext.Current.Cache.Insert(userInfo.UserId + area + action + controller, check, null, System.Web.Caching.Cache.NoAbsoluteExpiration, new TimeSpan(0, 0, 1, 0));
 
             return check;
         }
@@ -125,7 +125,7 @@ namespace Web.Helpers
 
             var controller = (string)HttpContext.Current.Request.RequestContext.RouteData.Values["controller"];
 
-            var item = iSysControllerService.GetAll(a => a.ControllerName == controller && a.SysArea.AreaName == area).FromCacheFirstOrDefault();
+            var item = iSysControllerService.GetAll(a => a.ControllerName == controller && a.SysArea.AreaName == area).Cacheable().FirstOrDefault();
 
             return item?.Name;
         }

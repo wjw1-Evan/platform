@@ -1,9 +1,8 @@
-﻿using System;
-using System.Configuration;
-using Common;
-using IServices.Infrastructure;
+﻿using IServices.Infrastructure;
 using IServices.ISysServices;
 using Models.SysModels;
+using System;
+using System.Configuration;
 using Web.Extensions;
 
 namespace Web.Helpers
@@ -63,8 +62,8 @@ namespace Web.Helpers
 
                         if (re1 > 0)
                         {
-                            _iSysLogService.Add(new SysLog {Log = "清理超过" + logValidity + "天用户操作日志" + re1 + "行"});
-                            _unitOfWork.Commit();
+                            _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天用户操作日志" + re1 + "行" });
+                            _unitOfWork.CommitAsync();
                         }
                     }
                     catch (Exception e)
@@ -73,7 +72,7 @@ namespace Web.Helpers
                         {
                             Log = "日志清理功能出现故障(Exception)：" + e.GetInnerException()
                         });
-                        _unitOfWork.Commit();
+                        _unitOfWork.CommitAsync();
                     }
 
                     //清理过期系统日志
@@ -84,8 +83,8 @@ namespace Web.Helpers
 
                         if (re3 > 0)
                         {
-                            _iSysLogService.Add(new SysLog {Log = "清理超过" + logValidity + "天系统日志" + re3 + "行"});
-                            _unitOfWork.Commit();
+                            _iSysLogService.Add(new SysLog { Log = "清理超过" + logValidity + "天系统日志" + re3 + "行" });
+                            _unitOfWork.CommitAsync();
                         }
                     }
                     catch (Exception e)
@@ -94,7 +93,7 @@ namespace Web.Helpers
                         {
                             Log = "日志清理功能出现故障(Exception)：" + e.GetInnerException()
                         });
-                        _unitOfWork.Commit();
+                        _unitOfWork.CommitAsync();
                     }
                 }
             }
