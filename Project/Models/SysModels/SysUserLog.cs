@@ -15,10 +15,6 @@ namespace Models.SysModels
             Duration = 0;
         }
 
-        [ForeignKey("SysControllerSysAction")]
-        public string SysControllerSysActionId { get; set; }
-
-        public virtual SysControllerSysAction SysControllerSysAction { get; set; }
 
         [MaxLength(40)]
         public string SysArea { get; set; }

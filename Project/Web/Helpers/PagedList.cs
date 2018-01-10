@@ -25,10 +25,6 @@ namespace Web.Helpers
         /// </summary>
         int PageSize { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        bool IsLastPage { get; set; }
     }
 
     /// <inheritdoc />
@@ -45,18 +41,16 @@ namespace Web.Helpers
         /// <param name="pageSize"></param>
         public PagedList(IQueryable<T> source, int index, int pageSize)
         {
-            IsLastPage = false;
-            var data = source.Skip((index - 1) * pageSize).Take(pageSize).Cacheable();
-            TotalCount = source.Cacheable().Count();
+            var data = source.Skip((index - 1) * pageSize).Take(pageSize).Cacheable().ToListAsync();
+            TotalCount = source.Cacheable().CountAsync().Result;
             PageSize = pageSize;
             PageIndex = index;
             if (TotalCount / pageSize < PageIndex - 1)
             {
                 index = 1;
                 PageIndex = index;
-                IsLastPage = true;
             }
-            AddRange(data);
+            AddRange(data.Result);
         }
 
         /// <inheritdoc />
@@ -74,10 +68,6 @@ namespace Web.Helpers
         /// </summary>
         public int PageSize { get; set; }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// </summary>
-        public bool IsLastPage { get; set; }
 
     }
 

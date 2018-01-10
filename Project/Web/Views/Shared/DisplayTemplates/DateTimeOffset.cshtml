@@ -1,7 +1,2 @@
 ﻿@model DateTimeOffset?
-<span title="@Model">
-    @if (Model.HasValue)
-    {
-        @Model.Value.LocalDateTime
-    }
-</span>
+@(Model?.LocalDateTime)

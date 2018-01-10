@@ -43,7 +43,7 @@ namespace Web.Helpers
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
-            _actionDuration = Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3);
+            _actionDuration = Math.Round((DateTime.Now - _actiondatetimenow).TotalMilliseconds, 3);
 
         }
         #endregion
@@ -66,7 +66,7 @@ namespace Web.Helpers
         {
             base.OnResultExecuted(filterContext);
 
-            _viewDuration = Math.Round((DateTime.Now - _viewdatetimenow).TotalSeconds, 3);
+            _viewDuration = Math.Round((DateTime.Now - _viewdatetimenow).TotalMilliseconds, 3);
 
 
             //记录用户访问记录
@@ -86,7 +86,6 @@ namespace Web.Helpers
             var sysuserlog = new SysUserLog
             {
                 Ip = filterContext.RequestContext.HttpContext.Request.ServerVariables["Remote_Addr"],
-                SysControllerSysActionId = sysControllerSysAction?.Id,
                 RecordId = recordId,
                 Url = filterContext.RequestContext.HttpContext.Request.RawUrl,
                 SysArea = sysControllerSysAction?.SysAreaName ?? area,
@@ -94,7 +93,7 @@ namespace Web.Helpers
                 SysAction = sysControllerSysAction?.SysActionName ?? action,
                 ViewDuration = _viewDuration,
                 ActionDuration = _actionDuration,
-                Duration = Math.Round((DateTime.Now - _actiondatetimenow).TotalSeconds, 3),
+                Duration = Math.Round((DateTime.Now - _actiondatetimenow).TotalMilliseconds, 3),
                 RequestType = filterContext.HttpContext.Request.RequestType
             };
 

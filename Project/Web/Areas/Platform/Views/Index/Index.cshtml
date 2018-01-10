@@ -22,8 +22,8 @@
     <script>
         $.ajaxSetup({ cache: false });
 
-        $(function() {
-            if (window.location.hash.length>1) {
+        $(function () {
+            if (window.location.hash.length > 1) {
                 $("#Main").load(window.location.hash.substr(1));
             }
         });
@@ -51,7 +51,7 @@
             }
         });
     </script>
-    
+
     <script>
         $(function () {
             var messenger = $.connection.messenger; // generate the client-side hub proxy { Initialized to Exposed Hub }
@@ -68,7 +68,7 @@
             });
         });
     </script>
-    
+
 }
 
 <div class="wrapper">
@@ -81,8 +81,8 @@
         <div class="aside-inner">
             <nav class="sidebar">
                 @*<h4>菜单</h4>
-                <ul id="leftmenutree" class="ztree"></ul>*@
-                
+                    <ul id="leftmenutree" class="ztree"></ul>*@
+
 
                 <ul class="nav">
                     <li class="nav-heading">
@@ -106,13 +106,13 @@
                                 {
                                     <li>
                                         @*<a title="@item1.Name"  href="#@Url.Action(item1.ActionName, item1.ControllerName, new { id = item1.Parameter })">
+                                                <i class="fa fa-fw @item1.Ico"></i>
+                                                @Html.DisplayFor(a => item1.Name)
+                                            </a>*@
+                                        <a title="@item1.Name" href="javascript:void(0);" onclick="window.location.href='#@Url.Action(item1.ActionName, item1.ControllerName, new { id = item1.Parameter })?_='+Math.random()">
                                             <i class="fa fa-fw @item1.Ico"></i>
                                             @Html.DisplayFor(a => item1.Name)
-                                        </a>*@
-                                        <a title="@item1.Name" href="javascript:void(0);" onclick="window.location.href='#@Url.Action(item1.ActionName, item1.ControllerName, new { id = item1.Parameter })?_='+Math.random()">
-    <i class="fa fa-fw @item1.Ico"></i>
-    @Html.DisplayFor(a => item1.Name)
-</a>
+                                        </a>
                                     </li>
                                 }
                             </ul>
@@ -139,7 +139,7 @@
             </div>
 
             <div class="row">
-               
+
 
                 <div class="col-lg-6">
                     <!-- START widget-->
@@ -150,9 +150,9 @@
 
                         <div class="panel-body">
                             <div>
-                              
-                                <canvas id="sysUserLogChart" ></canvas>
-                             
+
+                                <canvas id="sysUserLogChart"></canvas>
+
                                 <script>
                                     @{
                                         var SysUserLogCountDay = ViewBag.SysUserLogCountDay as Dictionary<string, int>;
@@ -209,8 +209,8 @@
                                                 labels: @Html.Raw(JsonConvert.SerializeObject(sysUserLogDayDuration.Keys)),
                                                 datasets: [
                                                     {
-                                                        
-                                                        label: "平均执行时长（秒）",
+
+                                                        label: "平均执行时长（毫秒）",
                                                         borderColor: "rgba(151,187,205,0.8)", backgroundColor: "rgba(151,187,205,0.3)",
                                                         data:
                                                             @Html.Raw(JsonConvert.SerializeObject(sysUserLogDayDuration.Values))
@@ -235,8 +235,3 @@
         @Html.Partial("_Footer")
     </footer>
 </div>
-
-
-
-
-
