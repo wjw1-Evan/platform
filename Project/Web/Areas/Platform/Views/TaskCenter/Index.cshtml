@@ -18,9 +18,9 @@
                 @Html.Partial("Button_Import", new { })
             }
 
-            @if (Html.CheckControllerAction("Report"))
+            @if (Html.CheckControllerAction("Index"))
             {
-                @Html.Partial("Button_Export", new { report = true, ordering = Request["ordering"], keyword = Request["keyword"] })
+                @Html.Partial("Button_Export", new { })
             }
         </div>
 
@@ -50,7 +50,7 @@
                             @i
                         }
                     </h3>
-                            }
+                }
 
 
                 @if (!string.IsNullOrEmpty(item.ScheduleEndTime) && string.IsNullOrEmpty(item.ActualEndTime))
@@ -143,7 +143,7 @@
                 <div class="clearfix"></div>
 
             </blockquote>
-                            }
+        }
         @Html.Raw(Ajax.MikePager(Model))
     </div>
 </div>
