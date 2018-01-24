@@ -84,11 +84,25 @@ namespace Web.Helpers
                     {
                         if (bool.TryParse(item.Get(title.Name), out var boolvalue))
                         {
-                            model = model.Where(title.Name + "==" + boolvalue);
+                            model = model.Where($"{title.Name}==@0", boolvalue);
                         }
                         else
                         {
                             throw new Exception("您输入的" + item.Get(title.Name + "_End") + "有误！请重新检查输入的内容。");
+                        }
+                    }
+
+
+
+                    if (title.PropertyType.BaseType == typeof(Enum))
+                    {
+                        if (int.TryParse(item.Get(title.Name), out var intvalue))
+                        {
+                            model = model.Where($"{title.Name}==@0", intvalue);
+                        }
+                        else
+                        {
+                            throw new Exception("您输入的" + item.Get(title.Name) + "有误！请重新检查输入的内容。");
                         }
                     }
                 }

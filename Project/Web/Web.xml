@@ -944,11 +944,6 @@
             
             </summary>
         </member>
-        <member name="P:Web.Helpers.IPagedList.IsLastPage">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Web.Helpers.PagedList`1">
             <inheritdoc />
             <summary>
@@ -974,11 +969,6 @@
             </summary>
         </member>
         <member name="P:Web.Helpers.PagedList`1.PageSize">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="P:Web.Helpers.PagedList`1.IsLastPage">
             <inheritdoc />
             <summary>
             </summary>

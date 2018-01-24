@@ -18,7 +18,7 @@
     {
         <div class="form-inline" style="font-size:small">
             <div class="row">
-                @foreach (var title in Model.VisibleProperties().Where(a=>a.PropertyType == typeof(string) || a.PropertyType.IsValueType))
+                @foreach (var title in Model.VisibleProperties().Where(a => a.PropertyType == typeof(string) || a.PropertyType.IsValueType))
                 {
                     <div class="col-md-6 col-xs-12">
                         <div class="row">
@@ -28,27 +28,30 @@
                                 </label>
                             </div>
                             <div class="col-md-9 col-xs-9">
-                                @{
+                                @if (title.PropertyType.BaseType == typeof(Enum))
+                                {
+                                    @Html.Partial("Search_Input_System.Enum", new ViewDataDictionary() { new KeyValuePair<string, object>("Name", title.Name), new KeyValuePair<string, object>("typename", title.PropertyType.AssemblyQualifiedName) })
+                                }
+                                else
+                                {
                                     var type = title.PropertyType;
 
                                     if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
                                     {
                                         type = type.GetGenericArguments()[0];
                                     }
+
+                                    @Html.Partial("Search_Input_" + type, new ViewDataDictionary() { new KeyValuePair<string, object>("Name", title.Name) })
                                 }
-
-
-                                @Html.Partial("Search_Input_" + type, new ViewDataDictionary() { new KeyValuePair<string, object>("Name", title.Name) })
-
                             </div>
                         </div>
                     </div>
-                                    }
+                }
             </div>
 
             <div class="text-center">
                 <button type="submit" class="btn btn-info" name="Search" value="true"> <i class="fa fa-search"></i>  @Lang.Search</button>
             </div>
         </div>
-                                    }
+    }
 </div>

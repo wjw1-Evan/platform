@@ -1,0 +1,7 @@
+﻿<select name="@(ViewBag.Name)" class="form-control">
+    <option></option>
+    @foreach (int value in Enum.GetValues(Type.GetType(ViewBag.typename, true)))
+    {
+        <option value="@value" @(Request.QueryString[ViewBag.Name] == value.ToString() ? "selected" : "")>@Enum.GetName(Type.GetType(ViewBag.typename, true), value)</option>
+    }
+</select>
