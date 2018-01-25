@@ -51,6 +51,7 @@ namespace Web.Areas.Platform.Controllers
                                      {
                                          a.Name,
                                          a.SystemId,
+                                         a.Enable,
                                          a.CreatedDate,
                                          a.Remark,
                                          a.Id

@@ -1,5 +1,5 @@
-﻿<select name="@(ViewBag.Name)" class="form-control">
+﻿<select name="@(ViewBag.Name)" id="@(ViewBag.Name)" class="form-control">
     <option></option>
-    <option value="true"  @(Request.QueryString[ViewBag.Name] == "true" ? "selected" : "")>是</option>
-    <option value="false"  @(Request.QueryString[ViewBag.Name] == "false" ? "selected" : "")>否</option>
+    <option value="true" @(Request.QueryString[ViewBag.Name] == "true" ? "selected" : "")>是</option>
+    <option value="false" @(Request.QueryString[ViewBag.Name] == "false" ? "selected" : "")>否</option>
 </select>

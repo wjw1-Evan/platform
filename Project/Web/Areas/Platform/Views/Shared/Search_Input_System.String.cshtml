@@ -1,11 +1,10 @@
 ﻿<div class="input-group">
-    <span class="input-group-btn">
-        <select name="@(ViewBag.Name)_method" class="form-control">
+    <div class="input-group-btn">
+        <select name="@(ViewBag.Name)_method" class="form-control" style="border-radius: 4px 0 0 4px; border-right: 0">
             <option value="==" @(Request.QueryString[ViewBag.Name + "_method"] == "==" ? "selected" : "")>等于</option>
             <option value="Contains" @(Request.QueryString[ViewBag.Name + "_method"] == "Contains" ? "selected" : "")>包含</option>
             <option value="!=" @(Request.QueryString[ViewBag.Name + "_method"] == "!=" ? "selected" : "")>不等于</option>
         </select>
-    </span>
-
+    </div>
     <input name="@ViewBag.Name" type="text" class="form-control" placeholder="关键词" value="@(Request.QueryString[ViewBag.Name])" />
 </div>

@@ -571,7 +571,7 @@
             <param name="iSysUserService"></param>
             <param name="iUserInfo"></param>
         </member>
-        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Index(System.String,System.String,System.Int32)">
+        <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Index(System.String,System.String,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             列表
             </summary>
