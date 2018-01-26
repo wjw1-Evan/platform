@@ -884,11 +884,14 @@
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Areas\Platform\Views\Shared\Search_Input_System.Enum.cshtml" />
     <Content Include="Areas\Platform\Views\Desktop\Index.cshtml" />
-    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.2.1.js" />
-    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
     <Content Include="Views\Shared\DisplayTemplates\SysUser.cshtml" />
@@ -898,10 +901,6 @@
     <Content Include="Areas\Platform\Views\Shared\Search_Input_System.DateTimeOffset.cshtml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wjw1-platform - Web Deploy.pubxml" />
-    <Content Include="Scripts\jquery-3.2.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Areas\Platform\Views\Shared\Button_Import.cshtml" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
@@ -1000,6 +999,7 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\double.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
