@@ -88,11 +88,6 @@ namespace Web.Areas.Platform.Controllers
                 a.SysArea.AreaName.Equals(area)).Cacheable();
 
 
-            //近十天用户活动次数
-            ViewBag.SysUserLogCountDay = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Count = a.Count() }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, a => a.Count).Result;
-
-            //执行速度
-            ViewBag.SysUserLogDayDuration = _iSysUserLogService.GetAll().GroupBy(a => a.CreatedDate).Select(a => new { a.Key, Duration = Math.Round(a.Average(b => b.Duration), 3) }).OrderBy(a => a.Key).ToDictionaryAsync(a => a.Key, b => b.Duration).Result;
 
             return View();
         }
