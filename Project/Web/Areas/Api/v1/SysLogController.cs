@@ -36,7 +36,7 @@ namespace Web.Areas.Api.v1
         {
             _iSysLogService.Add(new SysLog()
             {
-                MachineName = ((HttpContextWrapper)Request.Properties["MS_HttpContext"]).Request.UserHostAddress,
+                MachineName = HttpContext.Current.Request.UserHostAddress,
                 LogLevel = logLevel,
                 Log = log,
 
