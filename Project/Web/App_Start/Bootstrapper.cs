@@ -1,15 +1,15 @@
-﻿using System.Data.Entity;
-using System.Web.Mvc;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
-using System.Reflection;
-using System.Web.Http;
 using Autofac.Integration.WebApi;
 using IServices.Infrastructure;
 using IServices.ISysServices;
 using Resources;
 using Services;
 using Services.Infrastructure;
+using System.Data.Entity;
+using System.Reflection;
+using System.Web.Http;
+using System.Web.Mvc;
 using Web.Helpers;
 using Web.Helpers.ModelMetadataExtensions;
 using Web.SignalR;
@@ -42,13 +42,25 @@ namespace Web
 
             //builder.RegisterType<SmsService>().As<IIdentityMessageService>();
 
+
             //关联mvc
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+
             var container = builder.Build();
 
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            // Set the dependency resolver for Web API.
+            var webApiResolver = new AutofacWebApiDependencyResolver(container);
+
+            GlobalConfiguration.Configuration.DependencyResolver = webApiResolver;
+
+            // Set the dependency resolver for MVC.
+            var resolver = new AutofacDependencyResolver(container);
+
+            DependencyResolver.SetResolver(resolver);
 
             //自动处理多语言
             ModelMetadataProviders.Current = new ConventionalModelMetadataProvider(false, typeof(Lang));

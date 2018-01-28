@@ -44,6 +44,7 @@ namespace Web.Areas.Platform.Controllers
                                      a =>
                                      new
                                      {
+                                         a.LogLevel,
                                          a.MachineName,
                                          a.Log,
                                          a.CreatedDateTime
