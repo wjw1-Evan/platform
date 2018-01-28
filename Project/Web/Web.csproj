@@ -310,6 +310,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\v1\SysLogController.cs" />
     <Compile Include="Areas\Platform\Controllers\ChangePasswordController.cs" />
     <Compile Include="Areas\Platform\Controllers\DesktopController.cs" />
     <Compile Include="Areas\Platform\Controllers\MenuController.cs" />

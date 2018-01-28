@@ -20,6 +20,25 @@
             </summary>
             <param name="app"></param>
         </member>
+        <member name="T:Web.Areas.Api.v1.SysLogController">
+            <inheritdoc />
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Api.v1.SysLogController.#ctor(IServices.ISysServices.ISysLogService,IServices.Infrastructure.IUnitOfWork)">
+            <summary>
+            
+            </summary>
+            <param name="iSysLogService"></param>
+            <param name="iUnitOfWork"></param>
+        </member>
+        <member name="M:Web.Areas.Api.v1.SysLogController.Post(Models.SysModels.LogLevels,System.String)">
+            <summary>
+            </summary>
+            <param name="logLevel"></param>
+            <param name="log"></param>
+        </member>
         <member name="T:Web.Areas.Api.v1.DefaultController">
             <summary>
             默认
@@ -49,6 +68,24 @@
         <member name="M:Web.Areas.Platform.Controllers.ChangePasswordController.Index">
             <summary>
             修改密码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Areas.Platform.Controllers.DesktopController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.DesktopController.#ctor(IServices.Infrastructure.IUnitOfWork,IServices.ISysServices.ISysUserLogService)">
+            <summary>
+            
+            </summary>
+            <param name="iUnitOfWork"></param>
+            <param name="iSysUserLogService"></param>
+        </member>
+        <member name="M:Web.Areas.Platform.Controllers.DesktopController.Index">
+            <summary>
+            
             </summary>
             <returns></returns>
         </member>
