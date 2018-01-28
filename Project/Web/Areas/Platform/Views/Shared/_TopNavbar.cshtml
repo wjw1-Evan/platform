@@ -34,8 +34,8 @@
             <li style="padding-top: 10px;">
                 @Html.DropDownList("sysEnterprises", null, null, new { @class = "form-control input-sm" })
                 <script>
-                    $(function() {
-                        $('select[id=sysEnterprises]').bind("change", function() {
+                    $(function () {
+                        $('select[id=sysEnterprises]').bind("change", function () {
                             window.location = "?changesysenterprise=" + $(this).val();
 
                         });
@@ -44,23 +44,23 @@
             </li>
 
             <li>
-              <a href="#@Url.Action("Index","ChangePassword")"  title="修改密码">
-                   @ViewBag.UserName
+                <a href="#@Url.Action("Index","ChangePassword")" title="修改密码">
+                    @ViewBag.UserName
                 </a>
             </li>
 
             <li>
-                <a title="桌面"  href="@Url.Action("Index","Index")">
+                <a title="桌面" href="javascript:void(0);" onclick="window.location.href='#@Url.Action("Index", "Desktop")?_='+Math.random()">
                     <em class="fa fa-home"></em>
                 </a>
             </li>
-            
+
             <!-- START Alert menu-->
             <li class="dropdown dropdown-list">
-                <a href="#@Url.Action("Index","MyMessage")"  title="消息">
+                <a title="消息" href="javascript:void(0);" onclick="window.location.href='#@Url.Action("Index", "MyMessage")?_='+Math.random()">
                     <em class="fa fa-bell-o"></em>
                 </a>
-                
+
             </li>
             <!-- END Alert menu-->
             <!-- START Contacts button-->
@@ -80,6 +80,6 @@
         <!-- END Right Navbar-->
     </div>
     <!-- END Nav wrapper-->
-  
+
 </nav>
 <!-- END Top Navbar-->

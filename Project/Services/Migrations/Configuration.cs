@@ -104,10 +104,18 @@ namespace Services.Migrations
                 new SysController
                 {
                     SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
-                    Name = "管理平台-桌面",
+                    Name = "管理平台",
                     ControllerName = "Index",
                     ActionName="Index",
                     SystemId = "100",
+                    Display = false
+                },
+                  new SysController
+                {
+                    SysAreaId = sysAreas.Single(a => a.AreaName == "Platform").Id,
+                    Name = "桌面",
+                    ControllerName = "Desktop",
+                    SystemId = "100100",
                     Display = false
                 },
                 new SysController
