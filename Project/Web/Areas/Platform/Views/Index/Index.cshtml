@@ -100,7 +100,7 @@
                             <a href="#@item.Id" title="@item.Name" data-toggle="collapse">
                                 <div class="label label-info  pull-right">@menus.Count(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId))</div>
                                 <i class="fa fa-fw @item.Ico"></i>
-                                <span>@item.Name</span>
+                                <b>@item.Name</b>
                             </a>
                             <ul id="@item.Id" class="nav sidebar-subnav collapse">
                                 <li class="sidebar-subnav-header">@item.Name</li>
