@@ -96,6 +96,7 @@ namespace Services.Infrastructure
                 dbSetBase.CreatedDateTime = databaseValues.GetValue<DateTimeOffset>("CreatedDateTime");
 
                 dbSetBase.UpdatedBy = _userInfo.UserId;
+                dbSetBase.UpdatedDateTime = DateTimeOffset.Now;
 
                 entity = dbSetBase as T;
             }
