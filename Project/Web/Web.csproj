@@ -371,10 +371,6 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="SignalR\MessengerHub.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Workflow\ActivityDesigner1.xaml.cs">
-      <DependentUpon>ActivityDesigner1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Workflow\CodeActivity1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Api\readme.txt" />
@@ -1008,9 +1004,6 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\double.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Workflow\Service1.xamlx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1044,18 +1037,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamlAppDef Include="Workflow\Activity1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </XamlAppDef>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Workflow\ActivityDesigner1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
