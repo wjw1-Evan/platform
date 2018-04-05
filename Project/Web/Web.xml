@@ -1290,21 +1290,6 @@
             <param name="sysBroadcast"></param>
             <returns></returns>
         </member>
-        <member name="T:Web.Workflow.ActivityDesigner1">
-            <summary>
-            ActivityDesigner1
-            </summary>
-        </member>
-        <member name="M:Web.Workflow.ActivityDesigner1.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="M:Web.Workflow.Activity1.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="T:BootstrapSupport.ControlGroup">
             <summary>
             

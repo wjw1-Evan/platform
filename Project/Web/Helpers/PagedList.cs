@@ -43,6 +43,9 @@ namespace Web.Helpers
         {
             var data = source.Skip((index - 1) * pageSize).Take(pageSize).Cacheable().ToListAsync();
             TotalCount = source.Cacheable().CountAsync().Result;
+            //var data = source.Skip((index - 1) * pageSize).Take(pageSize);
+            //TotalCount = source.Count();
+
             PageSize = pageSize;
             PageIndex = index;
             if (TotalCount / pageSize < PageIndex - 1)
