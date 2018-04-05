@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Models.SysModels;
 using System;
 using System.Linq;
-using System.Linq.Dynamic;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;

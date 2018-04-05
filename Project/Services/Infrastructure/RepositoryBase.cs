@@ -5,7 +5,6 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -206,24 +205,31 @@ namespace Services.Infrastructure
         {
             var model = _dbset as IQueryable<T>;
 
+            var paramterExpression = Expression.Parameter(typeof(T));
+
+
             if (!allEnt && typeof(IEnterprise).IsAssignableFrom(typeof(T)))
             {
-                model = model.Where("EnterpriseId=\"" + _userInfo.EnterpriseId + "\"");
+                var entpriseLambda = Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.Property(paramterExpression, "EnterpriseId"), Expression.Constant(_userInfo.EnterpriseId)), paramterExpression);
+
+                model = model.Where(entpriseLambda);
             }
 
             if (typeof(IDbSetBase).IsAssignableFrom(typeof(T)))
             {
                 if (!containsDeleted)
                 {
-                    model = model.Where("Deleted=false");
+                    model = model.Where(Expression.Lambda<Func<T, bool>>(Expression.Equal(Expression.Property(paramterExpression, "Deleted"), Expression.Constant(false)), paramterExpression));//"Deleted=false"
                 }
 
-                model = model.OrderBy("CreatedDateTime desc");
+                model = model.OrderByDescending(Expression.Lambda<Func<T, DateTimeOffset>>(Expression.PropertyOrField(paramterExpression, "CreatedDateTime"),
+                    paramterExpression));
             }
 
             if (typeof(IUserDictionary).IsAssignableFrom(typeof(T)))
             {
-                model = model.OrderBy("SystemId");
+                model = model.OrderBy(Expression.Lambda<Func<T, string>>(Expression.PropertyOrField(paramterExpression, "SystemId"),
+                    paramterExpression));
             }
 
             return model;
