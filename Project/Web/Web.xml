@@ -614,7 +614,9 @@
             </summary>
             <param name="keyword"></param>
             <param name="ordering"></param>
+            <param name="export"></param>
             <param name="pageIndex"></param>
+            <param name="search"></param>
             <returns></returns>
         </member>
         <member name="M:Web.Areas.Platform.Controllers.TaskCenterController.Details(System.Object)">
@@ -868,12 +870,47 @@
             <param name="dt"></param>
             <returns></returns>
         </member>
+        <member name="M:Web.Helpers.LinqExtensions.Search``1(System.Linq.IQueryable{``0},System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="model"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.LinqExtensions.ToExcelFile``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.LinqExtensions.Search``1(System.Linq.IQueryable{``0},System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="model"></param>
+            <param name="keywords"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Helpers.LinqExtensions.PageResult``1(System.Linq.IQueryable{``0},System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
         <member name="T:Web.Helpers.MikePagerExtensions">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Web.Helpers.MikePagerExtensions.MikePager(System.Web.Mvc.AjaxHelper,Web.Helpers.IPagedList,System.String)">
+        <member name="M:Web.Helpers.MikePagerExtensions.MikePager(System.Web.Mvc.AjaxHelper,System.Linq.Dynamic.Core.PagedResult,System.String)">
             <summary>
             
             </summary>
@@ -882,7 +919,7 @@
             <param name="updateTargetId"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.Helpers.MikePagerExtensions.MikePager(System.Web.Mvc.HtmlHelper,Web.Helpers.IPagedList)">
+        <member name="M:Web.Helpers.MikePagerExtensions.MikePager(System.Web.Mvc.HtmlHelper,System.Linq.Dynamic.Core.PagedResult)">
             <summary>
             
             </summary>
@@ -959,70 +996,6 @@
             
             </summary>
             <param name="state"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Web.Helpers.IPagedList">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Web.Helpers.IPagedList.TotalCount">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Web.Helpers.IPagedList.PageIndex">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Web.Helpers.IPagedList.PageSize">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Web.Helpers.PagedList`1">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Web.Helpers.PagedList`1.#ctor(System.Linq.IQueryable{`0},System.Int32,System.Int32)">
-            <inheritdoc />
-            <summary>
-            </summary>
-            <param name="source"></param>
-            <param name="index"></param>
-            <param name="pageSize"></param>
-        </member>
-        <member name="P:Web.Helpers.PagedList`1.TotalCount">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="P:Web.Helpers.PagedList`1.PageIndex">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="P:Web.Helpers.PagedList`1.PageSize">
-            <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="T:Web.Helpers.Pagination">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Web.Helpers.Pagination.ToPagedList``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="source"></param>
-            <param name="index"></param>
-            <param name="pageSize"></param>
             <returns></returns>
         </member>
         <member name="T:Web.Helpers.StatisticsTrackerAttribute">
