@@ -1,5 +1,7 @@
-﻿<div class="input-group">
-    <input type="text" id="@ViewBag.Name" name="@ViewBag.Name" class="form-control" placeholder="开始时间" value="@(Request.QueryString[ViewBag.Name])" style="width: 50%" /><input type="text" id="@(ViewBag.Name)_End" name="@(ViewBag.Name)_End" class="form-control" placeholder="结束时间" value="@(Request.QueryString[ViewBag.Name+"_End"])" style="width: 50%" />
+﻿<div>
+
+
+    <input type="text" id="@ViewBag.Name" name="@ViewBag.Name" class="form-control" placeholder="开始时间" value="@(Request.QueryString[ViewBag.Name])" style="" />至<input type="text" id="@(ViewBag.Name)_End" name="@(ViewBag.Name)_End" class="form-control" placeholder="结束时间" value="@(Request.QueryString[ViewBag.Name+"_End"])" style="" />
 </div>
 <script>
     $(function () {

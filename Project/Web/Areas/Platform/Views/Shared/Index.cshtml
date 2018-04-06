@@ -1,25 +1,23 @@
-﻿@using System.Linq.Dynamic.Core
-@using System.Reflection
-@using Resources
-@model dynamic
-@using BootstrapSupport
-@using Web.Helpers
-@{
-    var routevalues = Request.ToRouteValueDictionary();
+﻿@using Resources
+@model System.Collections.IEnumerable
 
+@using BootstrapSupport
+
+@using Web.Helpers
+
+@{
+    var routevalues = new RouteValueDictionary { ["keyword"] = Request["Keyword"] };
 }
+
 @if (!Request.IsAjaxRequest())
 {
     Response.Redirect("/");
 }
+
 <div class="content-heading">
     <div class="row">
         <div class="col-xs-6">
-            @{
-                PropertyInfo[] properties = Model.GetType().GetGenericArguments()[0].GetProperties();
-            }
-
-            @if (properties.Any(a => a.Name == "Id"))
+            @if (Model.VisibleProperties().Any(a => a.Name == "Id") && Html.CheckControllerAction("Create"))
             {
                 @Html.Partial("Button_Create", new { })
             }
@@ -34,81 +32,75 @@
                 @Html.Partial("Button_Export", new { })
             }
         </div>
+
         <div class="col-xs-6">
-            @Html.Partial("Search_Input", properties)
+            @Html.Partial("Search_Input")
         </div>
     </div>
 </div>
+
 <div class="panel panel-default">
     @Html.Partial("_alerts")
+
     <div class="panel-body">
         <!-- START table-responsive-->
         <div class="table-responsive">
             <table class="table table-striped table-hover  table-condensed">
                 <thead>
                     <tr>
-                        @foreach (var title in properties)
+                        @foreach (var title in Model.VisibleProperties())
                         {
-                            if (title.Name == "Id")
+                            if (title.Name == Model.GetType().GetGenericArguments()[0].IdentifierPropertyName())
                             {
                                 <th class="text-center" nowrap>@Lang.Edit</th>
                             }
                             else
                             {
-
-                                if (routevalues.Keys.Contains("ordering"))
+                                var r = new RouteValueDictionary(routevalues);
+                                if (r.Keys.Contains("ordering"))
                                 {
-                                    routevalues.Remove("ordering");
+                                    r.Remove("ordering");
                                 }
                                 <th nowrap>
+
                                     @if (Request["ordering"] == title.Name)
                                     {
-                                        routevalues["ordering"] = title.Name + " desc";
-
-                                        <a href='#@Url.Action("", routevalues)'> @title.GetLabel().ToSeparatedWords() ↓</a>
-
+                                        r.Add("ordering", title.Name + " desc");
+                                        @Ajax.ActionLink(title.GetLabel().ToSeparatedWords() + " ↓", null, r, new AjaxOptions { UpdateTargetId = "Main" })
                                     }
                                     else if (Request["ordering"] == title.Name + " desc")
                                     {
-                                        routevalues["ordering"] = title.Name;
-
-                                        <a href='#@Url.Action("", routevalues)'> @title.GetLabel().ToSeparatedWords() ↑</a>
+                                        r.Add("ordering", title.Name);
+                                        @Ajax.ActionLink(title.GetLabel().ToSeparatedWords() + " ↑", null, r, new AjaxOptions { UpdateTargetId = "Main" })
                                     }
                                     else
                                     {
-                                        routevalues["ordering"] = title.Name;
-
-                                        <a href='#@Url.Action("", routevalues)'>
-                                            @title.GetLabel().ToSeparatedWords()
-                                        </a>
+                                        r.Add("ordering", title.Name);
+                                        @Ajax.ActionLink(title.GetLabel().ToSeparatedWords() + "", null, r, new AjaxOptions { UpdateTargetId = "Main" })
                                     }
                                 </th>
                             }
                         }
                     </tr>
                 </thead>
+
                 <tbody>
-                    @foreach (var item in Model.GetType().GetProperties()[0].GetValue(Model, null))
+                    @foreach (var item in Model)
                     {
                         ViewData["DataList"] = item;
                         <tr>
-                            @foreach (var title in properties)
+                            @foreach (var title in Model.VisibleProperties())
                             {
-
-                                if (title.Name == "Id")
+                                if (title.Name == item.IdentifierPropertyName())
                                 {
                                     <td class="text-center" nowrap>
-                                        @Html.Partial("Ajax_Edit_Verify", Html.Display("DataList.Id"))
+                                        @Html.Partial("Ajax_Edit_Verify", item.GetId())
                                     </td>
                                 }
                                 else
                                 {
                                     <td nowrap="nowrap" style="max-width: 500px; text-overflow: ellipsis; overflow: hidden">
-
-
                                         @Html.Display("DataList." + title.Name)
-
-
                                     </td>
                                 }
                             }
@@ -116,7 +108,8 @@
                     }
                 </tbody>
             </table>
-            @Html.Raw(Ajax.MikePager(Model as PagedResult))
+
+            @Html.Raw(Ajax.MikePager(Model as IPagedList))
         </div>
     </div>
 </div>

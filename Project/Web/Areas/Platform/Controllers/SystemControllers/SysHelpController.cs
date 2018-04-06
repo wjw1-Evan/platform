@@ -67,7 +67,7 @@ namespace Web.Areas.Platform.Controllers
             {
                 return model.ToExcelFile();
             }
-            return View(model.PageResult(pageIndex));
+            return View(model.ToPagedList(pageIndex));
         }
 
         //

@@ -1,18 +1,14 @@
-﻿@using System.Reflection
-@using Resources
-@model System.Linq.Dynamic.Core.PagedResult<Web.Areas.Platform.Models.TaskCenterListModel>
+﻿@using Resources
+@model PagedList<Web.Areas.Platform.Models.TaskCenterListModel>
 @using BootstrapSupport
+@using Common
 @using Microsoft.AspNet.Identity
 @using Web.Helpers
 
 <div class="content-heading">
     <div class="row">
         <div class="col-xs-6">
-            @{
-                PropertyInfo[] properties = Model.GetType().GetGenericArguments()[0].GetProperties();
-            }
-
-            @if (properties.Any(a => a.Name == "Id"))
+            @if (Model.VisibleProperties().Any(a => a.Name == "Id") && Html.CheckControllerAction("Create"))
             {
                 @Html.Partial("Button_Create", new { })
             }
@@ -27,8 +23,9 @@
                 @Html.Partial("Button_Export", new { })
             }
         </div>
+
         <div class="col-xs-6">
-            @Html.Partial("Search_Input", properties)
+            @Html.Partial("Search_Input")
         </div>
     </div>
 </div>
@@ -42,7 +39,7 @@
             int i = 0;
         }
 
-        @foreach (var item in Model.Queryable)
+        @foreach (var item in Model)
         {
             <div style="float: left;width: 100px;text-align: right;padding:0 10px;">
                 @if (string.IsNullOrEmpty(item.ActualEndTime))

@@ -44,9 +44,7 @@ namespace Web.Areas.Platform.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ordering"></param>
-        /// <param name="export"></param>
         /// <param name="pageIndex"></param>
-        /// <param name="search"></param>
         /// <returns></returns>
         public async Task<ActionResult> Index(string keyword, string ordering, bool export = false, int pageIndex = 1, bool search = false)
         {
@@ -60,7 +58,7 @@ namespace Web.Areas.Platform.Controllers
             {
                 return model.ToExcelFile();
             }
-            return View(model.PageResult(pageIndex));
+            return View(model.ToPagedList(pageIndex));
         }
 
         /// <summary>

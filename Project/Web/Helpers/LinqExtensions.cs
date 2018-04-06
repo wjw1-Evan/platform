@@ -10,13 +10,6 @@ namespace Web.Helpers
 {
     public static class LinqExtensions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="model"></param>
-        /// <param name="item"></param>
-        /// <returns></returns>
         public static IQueryable<T> Search<T>(this IQueryable<T> model, NameValueCollection item)
         {
             foreach (var title in typeof(T).GetProperties())
@@ -118,12 +111,6 @@ namespace Web.Helpers
             return model;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="model"></param>
-        /// <returns></returns>
         public static FileResult ToExcelFile<T>(this IEnumerable<T> model)
         {
             var pck = new ExcelPackage();
@@ -135,13 +122,6 @@ namespace Web.Helpers
             return new FileContentResult(pck.GetAsByteArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="model"></param>
-        /// <param name="keywords"></param>
-        /// <returns></returns>
         public static IQueryable<T> Search<T>(this IQueryable<T> model, string keywords)
         {
             //Todo :让搜索支持多个关键字和日期字段搜索 "+"分隔
@@ -183,18 +163,6 @@ namespace Web.Helpers
                 }
 
             return model;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TSource"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="page"></param>
-        /// <returns></returns>
-        public static PagedResult<TSource> PageResult<TSource>(this IQueryable<TSource> source, int page)
-        {
-            return source.PageResult(page, 20);
         }
     }
 
