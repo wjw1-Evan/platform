@@ -44,7 +44,7 @@ namespace Web.Areas.Platform.Controllers
         {
             var model =_iSysBroadcastService.GetAll(a => (a.AddresseeId == null || a.AddresseeId.Contains(_iUserInfo.UserId)) && !a.SysBroadcastReceiveds.Any(b =>b.CreatedBy==_iUserInfo.UserId && b.Deleted)).OrderBy(a => a.SysBroadcastReceiveds.Any(r => r.CreatedBy == _iUserInfo.UserId)).ThenByDescending(a => a.CreatedDate).Search(keyword);
 
-            return View(model.ToPagedList(pageIndex));
+            return View(model.PageResult(pageIndex));
         }
 
         /// <summary>
