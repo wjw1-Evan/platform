@@ -1,7 +1,14 @@
 ﻿@model Models.SysModels.SysUser
 @if (Model != null)
 {
-    @Html.DisplayFor(a => a.UserName)
+    if (string.IsNullOrEmpty(Model.FullName))
+    {
+        @Model.UserName
+    }
+    else
+    {
+        @(Model.FullName+"("+Model.UserName+")") 
+    }
 }
 
 

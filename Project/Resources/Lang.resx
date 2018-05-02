@@ -1791,4 +1791,7 @@
   <data name="MachineName" xml:space="preserve">
     <value>机器名称</value>
   </data>
+  <data name="SysUser" xml:space="preserve">
+    <value>用户</value>
+  </data>
 </root>

@@ -31,6 +31,7 @@ namespace Web.Areas.Platform.Controllers
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ordering"></param>
+        /// <param name="export"></param>
         /// <param name="pageIndex"></param>
         /// <param name="search"></param>
         /// <returns></returns>
@@ -42,7 +43,7 @@ namespace Web.Areas.Platform.Controllers
                                       a =>
                                       new
                                       {
-                                          a.SysUser.UserName,
+                                          a.SysUser,
                                           a.SysArea,
                                           a.SysController,
                                           a.SysAction,
