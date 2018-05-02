@@ -91,6 +91,7 @@
                     @foreach (var item in Model.GetType().GetProperties()[0].GetValue(Model, null))
                     {
                         ViewData["DataList"] = item;
+                    
                         <tr>
                             @foreach (var title in properties)
                             {
@@ -104,11 +105,7 @@
                                 else
                                 {
                                     <td nowrap="nowrap" style="max-width: 500px; text-overflow: ellipsis; overflow: hidden">
-
-
                                         @Html.Display("DataList." + title.Name)
-
-
                                     </td>
                                 }
                             }
