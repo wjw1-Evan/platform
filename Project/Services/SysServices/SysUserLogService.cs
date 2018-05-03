@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.Entity;
-using System.Data.Entity.SqlServer;
 using IServices.ISysServices;
 using Models.SysModels;
 using Services.Infrastructure;
