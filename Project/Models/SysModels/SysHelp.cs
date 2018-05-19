@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Lucene.Net.Linq.Mapping;
+using Lucene.Net.Analysis;
 
 
 namespace Models.SysModels
 {
-  
     public class SysHelp : DbSetBase
     {
         public SysHelp()
@@ -25,15 +26,14 @@ namespace Models.SysModels
 
 
         [MaxLength(100)]
-
         [Required]
+        [Field(Analyzer = typeof(KeywordAnalyzer))]
         public string Title { get; set; }
 
         [MaxLength]
         [DataType(DataType.Html)]
         [Required]
-    
-
+        [Field(Analyzer = typeof(KeywordAnalyzer))]
         public string Content { get; set; }
 
         public int Sort { get; set; }
