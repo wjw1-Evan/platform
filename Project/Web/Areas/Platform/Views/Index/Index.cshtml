@@ -1,5 +1,6 @@
 ﻿@using Models.SysModels
 @using Newtonsoft.Json
+@using Web.Helpers
 @{
     Layout = "../../../../views/Shared/_Layout.cshtml";
 }
@@ -30,11 +31,12 @@
             }
         });
 
-        window.onhashchange = function () {
+        window.addEventListener("popstate", function (event) {
             if (window.location.hash.length > 1) {
                 $("#Main").load(window.location.hash.substr(1));
             }
-        }
+        }, false);
+    
 
         $(document).ajaxStart(function () {
             Pace.restart();
@@ -81,11 +83,7 @@
     <!-- sidebar-->
     <aside class="aside">
         <div class="aside-inner">
-            <nav class="sidebar">
-                @*<h4>菜单</h4>
-                    <ul id="leftmenutree" class="ztree"></ul>*@
-
-
+            <nav class="sidebar"  data-sidebar-anyclick-close="">
                 <ul class="nav">
                     <li class="nav-heading">
                         <span>菜单</span>
@@ -99,20 +97,16 @@
                         <li>
                             <a href="#@item.Id" title="@item.Name" data-toggle="collapse">
                                 <div class="label label-info  pull-right">@menus.Count(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId))</div>
-                                <i class="fa fa-fw @item.Ico"></i>
-                                <b>@item.Name</b>
+                                <em class="fa fa-fw @item.Ico"></em>
+                                <span>@item.Name</span>
                             </a>
                             <ul id="@item.Id" class="nav sidebar-subnav collapse">
                                 <li class="sidebar-subnav-header">@item.Name</li>
                                 @foreach (var item1 in menus.Where(a => a.SystemId.Length == 6 && a.SystemId.StartsWith(item.SystemId)))
                                 {
                                     <li>
-                                        @*<a title="@item1.Name"  href="#@Url.Action(item1.ActionName, item1.ControllerName, new { id = item1.Parameter })">
-                                                <i class="fa fa-fw @item1.Ico"></i>
-                                                @Html.DisplayFor(a => item1.Name)
-                                            </a>*@
-                                        <a title="@item1.Name" href="javascript:void(0);" onclick="window.location.href='#@Url.Action(item1.ActionName, item1.ControllerName, new { id = item1.Parameter })?_='+Math.random()">
-                                            <i class="fa fa-fw @item1.Ico"></i>
+                                        <a title="@item1.Name" href="#@Url.Action(item1.ActionName, item1.ControllerName, new {id = item1.Parameter})">
+                                            <em class="fa fa-fw @item1.Ico" style="margin-left: 0"></em>
                                             @Html.DisplayFor(a => item1.Name)
                                         </a>
                                     </li>
