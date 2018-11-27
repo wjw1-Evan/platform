@@ -22,7 +22,7 @@ namespace Web
                       "~/Scripts/jquery*",
                         "~/Scripts/bootstrap.js",
                       "~/Scripts/bootstrap-multiselect.js",
-                      "~/Scripts/modernizr*",
+                        "~/Scripts/modernizr*",
                           "~/Scripts/bootstrap-rating/bootstrap*",
                           "~/Scripts/pace.js",
                         "~/Scripts/Chart.js"
