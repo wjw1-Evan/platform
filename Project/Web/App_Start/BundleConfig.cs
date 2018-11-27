@@ -20,7 +20,9 @@ namespace Web
 
             bundles.Add(new ScriptBundle("~/bundles/script").Include(
                       "~/Scripts/jquery*",
-                        "~/Scripts/bootstrap*", "~/Scripts/modernizr*",
+                        "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-multiselect.js",
+                      "~/Scripts/modernizr*",
                           "~/Scripts/bootstrap-rating/bootstrap*",
                           "~/Scripts/pace.js",
                         "~/Scripts/Chart.js"

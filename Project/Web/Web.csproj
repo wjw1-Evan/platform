@@ -379,6 +379,8 @@
     <Content Include="Content\404\pri_warning.png" />
     <Content Include="Content\404\wai404.fw.png" />
     <Content Include="Content\404\world.fw.png" />
+    <Content Include="Content\bosheng\boshenglogo-01.png" />
+    <Content Include="Content\bosheng\boshenglogo-02.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\left_menuForOutLook.gif" />
