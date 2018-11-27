@@ -137,6 +137,7 @@ namespace Web.Areas.Platform.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public async Task<ActionResult> Edit(string id, TaskCenterEditModel collection)
         {
             if (!ModelState.IsValid)
